@@ -5,10 +5,11 @@ const ctx=vm.createContext({document:{getElementById(){return el},addEventListen
 vm.runInContext(source,ctx);const run=s=>vm.runInContext(s,ctx);
 const rounds=[{q:{type:'angle',skill:'Angles',title:'SECRET',answer:118},score:96},{q:{type:'duration',skill:'How long?',title:'Soccer',answer:5400},score:100}];
 const text=run(`shareResultsText(${JSON.stringify(rounds)},'2026-10-7')`);
-assert(!text.includes('  '),'Share text must use single spaces');assert(text.includes('October 7'));assert(!text.includes('2026'));assert(!text.includes('Daily five'));assert(text.includes('📐96'));assert(text.includes('⏳100'));assert(text.includes('Final score: 196/200'));assert(text.startsWith('perception.thedanktank.com\n'));assert.equal(text.split('\n').length,4);
+assert(!text.includes('  '),'Share text must use single spaces');assert(text.includes('Oct 7'));assert(!text.includes('2026'));assert(!text.includes('Daily five'));assert(text.includes('📐96'));assert(text.includes('⏳100'));assert(text.includes('Final score: 196/200'));assert(text.startsWith('perception.thedanktank.com Oct 7\n'));assert.equal(text.split('\n').length,3);
 for(const spoiler of ['SECRET','118','Soccer','5400'])assert(!text.includes(spoiler));
 assert(run(`shareResultsText(${JSON.stringify(rounds)},'2026-10-7','angle',false)`).includes('Practice Angles'));
 const sample=['duration','timeline','angle','rhythm','colour'].map((type,i)=>({q:{type},score:[91,31,93,66,74][i]}));
-assert.equal(run(`shareResultsText(${JSON.stringify(sample)},'2026-10-8')`),'perception.thedanktank.com\nOctober 8\n⏳91 🗓️31 📐93 🥁66 🎨74\nFinal score: 355/500');
+assert.equal(run(`shareResultsText(${JSON.stringify(sample)},'2026-10-8')`),'perception.thedanktank.com Oct 8\n⏳91 🗓️31 📐93 🥁66 🎨74\nFinal score: 355/500');
+assert(run(`shareResultsText(${JSON.stringify(sample)},'2026-12-23')`).startsWith('perception.thedanktank.com Dec 23\n'));
 assert(source.includes("makeDeck(mode==='daily'?sessionDay:"));
 console.log('Verified share date, totals, game labels, practice labels, public link, and no answer spoilers.');
