@@ -86,6 +86,7 @@ class ReviewTests(unittest.TestCase):
         pr=copy.deepcopy(self.pr)
         pr.update(number=2,html_url='https://github.com/chipgpt/perception/pull/2')
         pr['head']['sha']=head_sha
+        pr['mergeable']=True
         proposed=copy.deepcopy(self.bank); proposed['facts'].append(self.fact)
         calls=[]; ref_reads=0; pr_reads=0
         def api(path, method='GET', data=None):
@@ -99,6 +100,7 @@ class ReviewTests(unittest.TestCase):
                 pr_reads+=1
                 result=copy.deepcopy(pr)
                 if changed_pr and pr_reads>1:result['head']['sha']='e'*40
+                elif any(p.endswith('git/refs/heads/'+review.BRANCH) and m=='PATCH' for p,m,d in calls):result['head']['sha']=new_sha
                 return result
             if path.endswith('/files?per_page=100'):return self.files
             if '/comments?' in path:return []
@@ -143,5 +145,30 @@ class ReviewTests(unittest.TestCase):
             calls,writes=self.run_flow(**options)
             self.assertFalse(any(path.endswith('/merge') or path.endswith('git/trees') for path,method,data in calls),options)
             self.assertEqual(writes.call_args_list[-1].args[1],self.bank)
+
+    def test_waits_for_github_mergeability_and_keeps_expected_head(self):
+        sha='c'*40
+        states=[{'state':'open','head':{'sha':sha},'mergeable':None}, {'state':'open','head':{'sha':sha},'mergeable':True}, {'merged':True}]
+        with patch.object(review,'api',side_effect=states) as api, patch.object(review.time,'sleep') as sleep:
+            review.merge_reviewed('repos/chipgpt/perception/',3,sha,2)
+            sleep.assert_called_once_with(2)
+            self.assertEqual(api.call_args.args[2]['sha'],sha)
+        for current in [{'state':'open','head':{'sha':'different'},'mergeable':True},{'state':'open','head':{'sha':sha},'mergeable':False}]:
+            with patch.object(review,'api',return_value=current) as api:
+                with self.assertRaises(AssertionError):review.merge_reviewed('',3,sha,2)
+                self.assertEqual(api.call_count,1)
+
+    def test_saved_review_requires_exact_bot_audited_questions(self):
+        original='b'*40
+        commit={'message':'Keep independently verified trivia and record review evidence','parents':[{'sha':original}], 'author':{'login':'github-actions[bot]'},'committer':{'login':'github-actions[bot]'}}
+        result={**self.verdict,'approved':True,'source_consulted':True,'answer_matches':True,'factFingerprint':review.fingerprint(self.fact)}
+        report={'reviewVersion':review.VERSION,'reviewedHeadSha':original,'baseSha':'a'*40,'approved':1,'decisions':[result]}
+        def at(sha,path):return self.bank if path.endswith('trivia-bank.json') else report
+        self.assertEqual(review.saved_review(commit,'c'*40,[self.fact],at,self.bank),report)
+        for bad in [{**commit,'author':{'login':'someone'}},{**commit,'parents':[]}]:
+            with self.assertRaises(AssertionError):review.saved_review(bad,'c'*40,[self.fact],at,self.bank)
+        changed={**self.fact,'caption':'Changed wording'}
+        with self.assertRaises(AssertionError):review.saved_review(commit,'c'*40,[changed],at,self.bank)
+        with self.assertRaises(AssertionError):review.saved_review(commit,'c'*40,[self.fact],at,{'facts':[]})
 
 if __name__=='__main__': unittest.main()

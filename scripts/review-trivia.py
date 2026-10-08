@@ -6,6 +6,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -68,6 +69,8 @@ def evaluate(additions, decisions, consulted):
         answer_ok = math.isclose(d['verified_answer'], f['answer'], abs_tol=1e-6, rel_tol=0)
         passed = source_ok and answer_ok and d['confidence'] == 'high' and all(d[g] for g in GATES)
         if passed: approved.append(f)
+        if not source_ok: d = {**d, 'reason': 'Linked primary source was not opened and matched during this review. ' + d['reason']}
+        if not answer_ok: d = {**d, 'reason': 'Independent numerical answer does not match the candidate. ' + d['reason']}
         results.append({**d, 'approved': passed, 'source_consulted': source_ok, 'answer_matches': answer_ok, 'factFingerprint': fingerprint(f)})
     return approved, results
 
@@ -99,6 +102,39 @@ def trusted_tests():
     subprocess.run([sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_*.py'], check=True)
     for test in sorted((ROOT / 'tests').glob('verify-*.cjs')): subprocess.run(['node', str(test)], check=True)
 
+def merge_reviewed(prefix, number, sha, count):
+    # Updating the branch invalidates GitHub's cached mergeability; wait for recomputation.
+    for _ in range(15):
+        current = api(prefix + f'pulls/{number}')
+        assert current['state'] == 'open' and current['head']['sha'] == sha, 'Reviewed PR changed; nothing merged'
+        if current.get('mergeable') is True:
+            result = api(prefix + f'pulls/{number}/merge', 'PUT', {'sha': sha, 'merge_method': 'squash', 'commit_title': f'Add {count} independently verified trivia questions'})
+            assert result.get('merged'), 'GitHub did not permit the merge'
+            return
+        assert current.get('mergeable') is not False, 'Reviewed PR conflicts with main; nothing merged'
+        time.sleep(2)
+    raise RuntimeError('GitHub has not finished checking mergeability; rerun to resume the saved review')
+
+def saved_review(commit, sha, additions, at, bank):
+    """Resume only the bot's exact audited commit, without another paid fact check."""
+    if commit.get('message') != 'Keep independently verified trivia and record review evidence':
+        return None
+    assert all(commit.get(k, {}).get('login') == 'github-actions[bot]' for k in ('author', 'committer')), 'Audit commit was not made by the reviewer bot'
+    parents = commit['parents']
+    assert len(parents) == 1, 'Unexpected review commit ancestry'
+    original = parents[0]['sha']
+    report = at(sha, f'data/reviews/verification-{original[:12]}.json')
+    assert report['reviewVersion'] == VERSION and report['reviewedHeadSha'] == original, 'Audit identity mismatch'
+    assert at(report['baseSha'], 'data/trivia-bank.json') == bank, 'Bank changed since the saved review'
+    passed = {r['id']: r for r in report['decisions'] if r['approved']}
+    assert len(passed) == report['approved'] == len(additions), 'Audit count mismatch'
+    assert set(passed) == {f['id'] for f in additions}, 'Unreviewed additions in audited commit'
+    for f in additions:
+        r = passed[f['id']]
+        assert r['factFingerprint'] == fingerprint(f), 'Reviewed question changed'
+        assert r['source_consulted'] and r['answer_matches'] and r['confidence'] == 'high' and all(r[g] is True for g in GATES), 'Audit does not approve this question'
+    return report
+
 def review_open_pr():
     os.chdir(ROOT)
     repo = os.environ['GITHUB_REPOSITORY']
@@ -123,6 +159,16 @@ def review_open_pr():
     bank = at(base_sha, 'data/trivia-bank.json'); schedule = at(base_sha, 'data/daily-trivia.json')
     proposed = at(sha, 'data/trivia-bank.json')
     additions = additions_only(bank, proposed, schedule)
+    previous = saved_review(api(prefix + 'commits/' + sha), sha, additions, at, bank)
+    if previous:
+        assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip() == base_sha, 'Main changed; rerun with latest trusted code'
+        write(ROOT / 'data/trivia-bank.json', proposed)
+        try: trusted_tests()
+        finally: write(ROOT / 'data/trivia-bank.json', bank)
+        assert api(prefix + 'git/ref/heads/main')['object']['sha'] == base_sha, 'Main changed; nothing merged'
+        merge_reviewed(prefix, number, sha, len(additions))
+        print(f'Resumed saved independent review and merged {len(additions)} facts: {pr["html_url"]}; no paid review repeated.')
+        return
     approved, results = research_review(additions, bank)
     final_bank = {**bank, 'facts': bank['facts'] + approved}
     validate(final_bank, schedule, (bank, schedule))
@@ -153,8 +199,7 @@ def review_open_pr():
     body += f'\n\nFlagged candidates were removed from the bank. Full review: `{audit_path}`. Trusted game/data checks passed. Automatic merge is bound to the reviewed commit.'
     api(prefix + f'issues/{number}/comments', 'POST', {'body': body})
     # Expected-head SHA prevents merging a subsequent unreviewed change. GitHub enforces branch protection.
-    result = api(prefix + f'pulls/{number}/merge', 'PUT', {'sha': commit['sha'], 'merge_method': 'squash', 'commit_title': f'Add {len(approved)} independently verified trivia questions'})
-    assert result.get('merged'), 'GitHub did not permit the merge'
+    merge_reviewed(prefix, number, commit['sha'], len(approved))
     print(f'Independently verified and merged {len(approved)} facts: {pr["html_url"]}; {len(additions) - len(approved)} flagged and excluded.')
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out: out.write(body + '\n\nMerged: ' + pr['html_url'] + '\n')
