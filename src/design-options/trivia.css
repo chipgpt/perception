@@ -1,0 +1,11 @@
+.trivia-caption{font-size:14px;color:var(--muted);margin:0 0 14px;text-align:center}.timeline-stage,.duration-stage{max-width:460px;margin:auto}.timeline-stage canvas,.duration-stage canvas{width:100%;height:auto;display:block;touch-action:none;border-radius:12px}.trivia-value{display:block;text-align:center;font-size:28px;font-weight:600;margin:12px 0 0;font-variant-numeric:tabular-nums}.timeline-zoom{display:flex;gap:14px;align-items:center;justify-content:center;margin:0 0 14px}.timeline-zoom span{font-size:13px;color:var(--muted)}.timeline-zoom button{width:48px;padding:8px;font-size:22px;min-height:44px}
+@media(max-width:760px){.trivia-caption{font-size:12px;line-height:1.4;margin:0 0 8px}.timeline-stage{width:100%;max-width:400px}.duration-stage{width:min(100%,calc(clamp(150px,100svh - 405px,270px)*4/3))}.trivia-value{font-size:23px;margin:6px 0 0}.timeline-zoom{margin-bottom:10px;gap:12px}body:has(.feedback) .duration-stage{width:min(100%,calc(clamp(120px,100svh - 505px,230px)*4/3))}body:has(.feedback) .timeline-stage{max-width:290px}body:has(.feedback) .trivia-value{display:none}}
+@media(max-width:760px){
+ [data-puzzle="timeline"] .mixed-question h1,[data-puzzle="duration"] .mixed-question h1{font-size:25px}
+ .timeline-stage{width:min(100%,clamp(230px,100svh - 400px,400px))}.trivia-value{font-size:21px;margin-top:2px}.timeline-zoom{margin-bottom:8px}
+ .duration-stage{width:min(100%,calc(clamp(150px,100svh - 475px,270px)*4/3))}
+ body:has(.feedback) .trivia-caption{display:none}
+ body:has(.feedback) .timeline-stage{width:min(100%,clamp(220px,100svh - 410px,340px));max-width:340px}
+}
+
+#timeline-canvas{cursor:grab}#timeline-canvas.dragging{cursor:grabbing}body:has(.feedback) #timeline-canvas{cursor:default}

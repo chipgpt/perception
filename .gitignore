@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+site/
+src/design-options/game-themed.js
+.trivia-report.md
+.trivia-pr.md

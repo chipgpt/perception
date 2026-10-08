@@ -1,0 +1,937 @@
+{
+  "version": 1,
+  "startsOn": "2026-10-07",
+  "days": {
+    "2026-10-07": {
+      "types": [
+        "angle",
+        "duration",
+        "motion",
+        "timeline",
+        "memory"
+      ],
+      "trivia": {
+        "duration": "duration-soccer-match",
+        "timeline": "timeline-first-moon-landing"
+      }
+    },
+    "2026-10-08": {
+      "types": [
+        "duration",
+        "timeline",
+        "angle",
+        "rhythm",
+        "memory"
+      ],
+      "trivia": {
+        "duration": "duration-the-godfather",
+        "timeline": "timeline-dna-double-helix-described"
+      }
+    },
+    "2026-10-09": {
+      "types": [
+        "motion",
+        "angle",
+        "time",
+        "perspective",
+        "balance"
+      ],
+      "trivia": {}
+    },
+    "2026-10-10": {
+      "types": [
+        "proportion",
+        "rhythm",
+        "angle",
+        "motion",
+        "view3d"
+      ],
+      "trivia": {}
+    },
+    "2026-10-11": {
+      "types": [
+        "time",
+        "balance",
+        "angle",
+        "view3d",
+        "proportion"
+      ],
+      "trivia": {}
+    },
+    "2026-10-12": {
+      "types": [
+        "proportion",
+        "memory",
+        "duration",
+        "rhythm",
+        "timeline"
+      ],
+      "trivia": {
+        "duration": "duration-oppenheimer",
+        "timeline": "timeline-google-founded"
+      }
+    },
+    "2026-10-13": {
+      "types": [
+        "balance",
+        "rhythm",
+        "angle",
+        "time",
+        "view3d"
+      ],
+      "trivia": {}
+    },
+    "2026-10-14": {
+      "types": [
+        "motion",
+        "proportion",
+        "timeline",
+        "time",
+        "angle"
+      ],
+      "trivia": {
+        "timeline": "timeline-mandela-becomes-president"
+      }
+    },
+    "2026-10-15": {
+      "types": [
+        "rhythm",
+        "memory",
+        "perspective",
+        "view3d",
+        "balance"
+      ],
+      "trivia": {}
+    },
+    "2026-10-16": {
+      "types": [
+        "balance",
+        "perspective",
+        "motion",
+        "rhythm",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-iss-orbit"
+      }
+    },
+    "2026-10-17": {
+      "types": [
+        "view3d",
+        "duration",
+        "proportion",
+        "timeline",
+        "memory"
+      ],
+      "trivia": {
+        "duration": "duration-shrek",
+        "timeline": "timeline-covid-19-called-a-pandemic"
+      }
+    },
+    "2026-10-18": {
+      "types": [
+        "memory",
+        "proportion",
+        "time",
+        "rhythm",
+        "timeline"
+      ],
+      "trivia": {
+        "timeline": "timeline-statue-of-liberty-dedicated"
+      }
+    },
+    "2026-10-19": {
+      "types": [
+        "timeline",
+        "angle",
+        "proportion",
+        "perspective",
+        "time"
+      ],
+      "trivia": {
+        "timeline": "timeline-eiffel-tower-opens"
+      }
+    },
+    "2026-10-20": {
+      "types": [
+        "angle",
+        "rhythm",
+        "motion",
+        "balance",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-home-alone"
+      }
+    },
+    "2026-10-21": {
+      "types": [
+        "rhythm",
+        "perspective",
+        "balance",
+        "angle",
+        "motion"
+      ],
+      "trivia": {}
+    },
+    "2026-10-22": {
+      "types": [
+        "perspective",
+        "angle",
+        "rhythm",
+        "duration",
+        "view3d"
+      ],
+      "trivia": {
+        "duration": "duration-rugby-sevens-match"
+      }
+    },
+    "2026-10-23": {
+      "types": [
+        "balance",
+        "timeline",
+        "rhythm",
+        "memory",
+        "perspective"
+      ],
+      "trivia": {
+        "timeline": "timeline-pokemon-first-released"
+      }
+    },
+    "2026-10-24": {
+      "types": [
+        "proportion",
+        "angle",
+        "rhythm",
+        "motion",
+        "time"
+      ],
+      "trivia": {}
+    },
+    "2026-10-25": {
+      "types": [
+        "duration",
+        "balance",
+        "timeline",
+        "rhythm",
+        "proportion"
+      ],
+      "trivia": {
+        "duration": "duration-new-moon-new-moon",
+        "timeline": "timeline-emancipation-proclamation"
+      }
+    },
+    "2026-10-26": {
+      "types": [
+        "memory",
+        "perspective",
+        "timeline",
+        "proportion",
+        "duration"
+      ],
+      "trivia": {
+        "timeline": "timeline-world-war-ii-ends",
+        "duration": "duration-nba-game"
+      }
+    },
+    "2026-10-27": {
+      "types": [
+        "proportion",
+        "balance",
+        "memory",
+        "duration",
+        "perspective"
+      ],
+      "trivia": {
+        "duration": "duration-jurassic-park"
+      }
+    },
+    "2026-10-28": {
+      "types": [
+        "proportion",
+        "balance",
+        "rhythm",
+        "perspective",
+        "memory"
+      ],
+      "trivia": {}
+    },
+    "2026-10-29": {
+      "types": [
+        "timeline",
+        "motion",
+        "rhythm",
+        "duration",
+        "perspective"
+      ],
+      "trivia": {
+        "timeline": "timeline-hubble-telescope-launched",
+        "duration": "duration-toy-story"
+      }
+    },
+    "2026-10-30": {
+      "types": [
+        "duration",
+        "view3d",
+        "rhythm",
+        "time",
+        "perspective"
+      ],
+      "trivia": {
+        "duration": "duration-moon-s-orbit-of-earth"
+      }
+    },
+    "2026-10-31": {
+      "types": [
+        "angle",
+        "perspective",
+        "proportion",
+        "balance",
+        "rhythm"
+      ],
+      "trivia": {}
+    },
+    "2026-11-01": {
+      "types": [
+        "memory",
+        "perspective",
+        "rhythm",
+        "time",
+        "balance"
+      ],
+      "trivia": {}
+    },
+    "2026-11-02": {
+      "types": [
+        "time",
+        "rhythm",
+        "view3d",
+        "angle",
+        "timeline"
+      ],
+      "trivia": {
+        "timeline": "timeline-united-nations-founded"
+      }
+    },
+    "2026-11-03": {
+      "types": [
+        "proportion",
+        "angle",
+        "rhythm",
+        "timeline",
+        "perspective"
+      ],
+      "trivia": {
+        "timeline": "timeline-elizabeth-ii-s-coronation"
+      }
+    },
+    "2026-11-04": {
+      "types": [
+        "duration",
+        "view3d",
+        "perspective",
+        "timeline",
+        "balance"
+      ],
+      "trivia": {
+        "duration": "duration-chicken-egg-hatching",
+        "timeline": "timeline-game-boy-first-released"
+      }
+    },
+    "2026-11-05": {
+      "types": [
+        "proportion",
+        "angle",
+        "memory",
+        "timeline",
+        "balance"
+      ],
+      "trivia": {
+        "timeline": "timeline-world-wide-web-invented"
+      }
+    },
+    "2026-11-06": {
+      "types": [
+        "rhythm",
+        "view3d",
+        "time",
+        "duration",
+        "balance"
+      ],
+      "trivia": {
+        "duration": "duration-one-solar-day"
+      }
+    },
+    "2026-11-07": {
+      "types": [
+        "time",
+        "duration",
+        "motion",
+        "memory",
+        "balance"
+      ],
+      "trivia": {
+        "duration": "duration-rugby-union-match"
+      }
+    },
+    "2026-11-08": {
+      "types": [
+        "motion",
+        "balance",
+        "proportion",
+        "view3d",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-nfl-play-clock"
+      }
+    },
+    "2026-11-09": {
+      "types": [
+        "rhythm",
+        "proportion",
+        "time",
+        "view3d",
+        "perspective"
+      ],
+      "trivia": {}
+    },
+    "2026-11-10": {
+      "types": [
+        "view3d",
+        "proportion",
+        "motion",
+        "rhythm",
+        "time"
+      ],
+      "trivia": {}
+    },
+    "2026-11-11": {
+      "types": [
+        "motion",
+        "memory",
+        "view3d",
+        "rhythm",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-duck-egg-hatching"
+      }
+    },
+    "2026-11-12": {
+      "types": [
+        "proportion",
+        "angle",
+        "motion",
+        "time",
+        "timeline"
+      ],
+      "trivia": {
+        "timeline": "timeline-toy-story-released"
+      }
+    },
+    "2026-11-13": {
+      "types": [
+        "balance",
+        "view3d",
+        "motion",
+        "rhythm",
+        "angle"
+      ],
+      "trivia": {}
+    },
+    "2026-11-14": {
+      "types": [
+        "duration",
+        "proportion",
+        "time",
+        "motion",
+        "angle"
+      ],
+      "trivia": {
+        "duration": "duration-titanic"
+      }
+    },
+    "2026-11-15": {
+      "types": [
+        "motion",
+        "view3d",
+        "duration",
+        "perspective",
+        "timeline"
+      ],
+      "trivia": {
+        "duration": "duration-pomodoro-focus-session",
+        "timeline": "timeline-first-ipod-introduced"
+      }
+    },
+    "2026-11-16": {
+      "types": [
+        "proportion",
+        "timeline",
+        "rhythm",
+        "angle",
+        "balance"
+      ],
+      "trivia": {
+        "timeline": "timeline-original-star-wars-released"
+      }
+    },
+    "2026-11-17": {
+      "types": [
+        "timeline",
+        "balance",
+        "rhythm",
+        "angle",
+        "duration"
+      ],
+      "trivia": {
+        "timeline": "timeline-voyager-1-launches",
+        "duration": "duration-nfl-game"
+      }
+    },
+    "2026-11-18": {
+      "types": [
+        "angle",
+        "timeline",
+        "motion",
+        "proportion",
+        "rhythm"
+      ],
+      "trivia": {
+        "timeline": "timeline-wright-brothers-first-flight"
+      }
+    },
+    "2026-11-19": {
+      "types": [
+        "timeline",
+        "motion",
+        "time",
+        "memory",
+        "view3d"
+      ],
+      "trivia": {
+        "timeline": "timeline-first-iphone"
+      }
+    },
+    "2026-11-20": {
+      "types": [
+        "angle",
+        "view3d",
+        "duration",
+        "time",
+        "rhythm"
+      ],
+      "trivia": {
+        "duration": "duration-hard-boiled-eggs"
+      }
+    },
+    "2026-11-21": {
+      "types": [
+        "perspective",
+        "memory",
+        "balance",
+        "timeline",
+        "motion"
+      ],
+      "trivia": {
+        "timeline": "timeline-shrek-released"
+      }
+    },
+    "2026-11-22": {
+      "types": [
+        "balance",
+        "proportion",
+        "angle",
+        "motion",
+        "timeline"
+      ],
+      "trivia": {
+        "timeline": "timeline-back-to-the-future-released"
+      }
+    },
+    "2026-11-23": {
+      "types": [
+        "motion",
+        "angle",
+        "perspective",
+        "proportion",
+        "timeline"
+      ],
+      "trivia": {
+        "timeline": "timeline-jurassic-park-released"
+      }
+    },
+    "2026-11-24": {
+      "types": [
+        "memory",
+        "angle",
+        "view3d",
+        "timeline",
+        "rhythm"
+      ],
+      "trivia": {
+        "timeline": "timeline-world-war-i-begins"
+      }
+    },
+    "2026-11-25": {
+      "types": [
+        "angle",
+        "proportion",
+        "motion",
+        "rhythm",
+        "memory"
+      ],
+      "trivia": {}
+    },
+    "2026-11-26": {
+      "types": [
+        "duration",
+        "time",
+        "timeline",
+        "memory",
+        "balance"
+      ],
+      "trivia": {
+        "duration": "duration-first-human-spaceflight",
+        "timeline": "timeline-super-mario-bros-released"
+      }
+    },
+    "2026-11-27": {
+      "types": [
+        "memory",
+        "rhythm",
+        "timeline",
+        "motion",
+        "angle"
+      ],
+      "trivia": {
+        "timeline": "timeline-world-war-i-ends"
+      }
+    },
+    "2026-11-28": {
+      "types": [
+        "angle",
+        "proportion",
+        "time",
+        "view3d",
+        "motion"
+      ],
+      "trivia": {}
+    },
+    "2026-11-29": {
+      "types": [
+        "memory",
+        "angle",
+        "proportion",
+        "rhythm",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-sunlight-earth"
+      }
+    },
+    "2026-11-30": {
+      "types": [
+        "view3d",
+        "memory",
+        "perspective",
+        "proportion",
+        "angle"
+      ],
+      "trivia": {}
+    },
+    "2026-12-01": {
+      "types": [
+        "time",
+        "duration",
+        "motion",
+        "view3d",
+        "balance"
+      ],
+      "trivia": {
+        "duration": "duration-nhl-game"
+      }
+    },
+    "2026-12-02": {
+      "types": [
+        "duration",
+        "angle",
+        "time",
+        "timeline",
+        "motion"
+      ],
+      "trivia": {
+        "duration": "duration-nba-shot-clock",
+        "timeline": "timeline-first-space-shuttle-launch"
+      }
+    },
+    "2026-12-03": {
+      "types": [
+        "timeline",
+        "angle",
+        "motion",
+        "time",
+        "balance"
+      ],
+      "trivia": {
+        "timeline": "timeline-bell-s-telephone-patent"
+      }
+    },
+    "2026-12-04": {
+      "types": [
+        "memory",
+        "timeline",
+        "duration",
+        "time",
+        "view3d"
+      ],
+      "trivia": {
+        "timeline": "timeline-snow-white-premieres",
+        "duration": "duration-lightning-thunder"
+      }
+    },
+    "2026-12-05": {
+      "types": [
+        "angle",
+        "rhythm",
+        "view3d",
+        "time",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-wright-brothers-first-flight"
+      }
+    }
+  },
+  "used": {
+    "duration-soccer-match": {
+      "day": "2026-10-07",
+      "fingerprint": "1097a21b0f0d1530ee7980872825354898a21be0c5188c5630420fb0e0a4fb77"
+    },
+    "timeline-first-moon-landing": {
+      "day": "2026-10-07",
+      "fingerprint": "147826e19ff7376b0c774072189e2ca9f9762af0ac4a3f47a062cae3bc177428"
+    },
+    "duration-the-godfather": {
+      "day": "2026-10-08",
+      "fingerprint": "50cdbc51317b6423ad7f7c6311b1285ecc4b547e7b250fdb766a3caf47baeebd"
+    },
+    "timeline-dna-double-helix-described": {
+      "day": "2026-10-08",
+      "fingerprint": "14424bd117f0d4ef6def4baaeb408d3b53c167f67827a493fe2b4ac08f3011e3"
+    },
+    "duration-oppenheimer": {
+      "day": "2026-10-12",
+      "fingerprint": "41cb8ec8d5fdd9073206fe9c455915dc8b7683604d8c6a027c5fe46a40d5eff7"
+    },
+    "timeline-google-founded": {
+      "day": "2026-10-12",
+      "fingerprint": "edf6b2b3d7c506ecfd5b971af07a4e52e450a24a91489d7a270137e1ec0adfcc"
+    },
+    "timeline-mandela-becomes-president": {
+      "day": "2026-10-14",
+      "fingerprint": "0aeb9b00e5dfebdc2171cf51ea5c64f590edc626f111692f7e16f453509d1e29"
+    },
+    "duration-iss-orbit": {
+      "day": "2026-10-16",
+      "fingerprint": "e663244ec452b79fc90ef09517a48a05f7c050ae30a608cecf1946a9a83260c7"
+    },
+    "duration-shrek": {
+      "day": "2026-10-17",
+      "fingerprint": "ff7f800333c37eeea2661f6c00c45b0d6f266da372b1917c8016a5dcf7f75de6"
+    },
+    "timeline-covid-19-called-a-pandemic": {
+      "day": "2026-10-17",
+      "fingerprint": "0d8d0a37732283d816c6080a64b28054576c6ea3628aa95ab7c336d8e763aabb"
+    },
+    "timeline-statue-of-liberty-dedicated": {
+      "day": "2026-10-18",
+      "fingerprint": "7b1504f47c39f27922410786933857bbe0d2934872af6dff762f792cf7687a59"
+    },
+    "timeline-eiffel-tower-opens": {
+      "day": "2026-10-19",
+      "fingerprint": "286e858d6d05428df16e508a23e02377dba898e49ff29e247aff4e051b2eac8d"
+    },
+    "duration-home-alone": {
+      "day": "2026-10-20",
+      "fingerprint": "f312b80bf9709a27f5059fc797c2f45e62e8529f80a23228d420d8b7e351aee2"
+    },
+    "duration-rugby-sevens-match": {
+      "day": "2026-10-22",
+      "fingerprint": "2d769c91ee9ad963ae565caf5afad60a3510a00195d823fd286625440504d7fc"
+    },
+    "timeline-pokemon-first-released": {
+      "day": "2026-10-23",
+      "fingerprint": "9c99000c27f2a6fa6701547571972aed548110394cdb93d32db20f87c68a8bad"
+    },
+    "duration-new-moon-new-moon": {
+      "day": "2026-10-25",
+      "fingerprint": "0fa7876e22d7739173d9a1aefbba2684d333afa60f3ad18e0288640deb7124fb"
+    },
+    "timeline-emancipation-proclamation": {
+      "day": "2026-10-25",
+      "fingerprint": "a8658ce565912431b6741fc6fbcf4de2582a5c7d252f5f5bd248562c7d1536d2"
+    },
+    "timeline-world-war-ii-ends": {
+      "day": "2026-10-26",
+      "fingerprint": "e04bc107163ff9fa118ae5089d81d1103458e10c20d40af2baa86cadb7da8a42"
+    },
+    "duration-nba-game": {
+      "day": "2026-10-26",
+      "fingerprint": "79ca0eb8458c513f5e386200540555ddbc9bcfc1dbc8538293d72b714834d569"
+    },
+    "duration-jurassic-park": {
+      "day": "2026-10-27",
+      "fingerprint": "f483a71a3239da06056fd84fc5e1b1826c9a80235ce6017540fd19f78c16fb88"
+    },
+    "timeline-hubble-telescope-launched": {
+      "day": "2026-10-29",
+      "fingerprint": "311a5e5b839fd13d4f2114e8a0a6dcb020139be541f7209d84cf1e9f34feced9"
+    },
+    "duration-toy-story": {
+      "day": "2026-10-29",
+      "fingerprint": "6a83d8c10caa6c7961c747b0df34889cd22488db0784ee5e9c4a2f72dbd32a2d"
+    },
+    "duration-moon-s-orbit-of-earth": {
+      "day": "2026-10-30",
+      "fingerprint": "66b2047de2edcbfd22cf7cbdd95972d6b0ba7cc2121d90c9145710e3a12895ef"
+    },
+    "timeline-united-nations-founded": {
+      "day": "2026-11-02",
+      "fingerprint": "dcd4ef19b903c609e5d6682c24129dde3e15d42d18da5407a61b86e8145e14a7"
+    },
+    "timeline-elizabeth-ii-s-coronation": {
+      "day": "2026-11-03",
+      "fingerprint": "4a18720028bfbe58260133a3bd7a9a761d8e55716dab4a8c7abf008562e6818a"
+    },
+    "duration-chicken-egg-hatching": {
+      "day": "2026-11-04",
+      "fingerprint": "9e415eb92855658426d1c2b9e5c01733eda9c59dc2b4401281a947bece79f79c"
+    },
+    "timeline-game-boy-first-released": {
+      "day": "2026-11-04",
+      "fingerprint": "2ce97cb0fd0aba29cef04591549e0cb1c1ffa89212aacdc63017f5a059f67d1c"
+    },
+    "timeline-world-wide-web-invented": {
+      "day": "2026-11-05",
+      "fingerprint": "0c45a754d8cbc788f0a7096e4d1204f170c44411072933b3f96871eb65c1f906"
+    },
+    "duration-one-solar-day": {
+      "day": "2026-11-06",
+      "fingerprint": "f63351dc61ebc478bb949e62f50e0ce3dbe7e5eded629bb6d1bbdf997a2daecd"
+    },
+    "duration-rugby-union-match": {
+      "day": "2026-11-07",
+      "fingerprint": "cfcb5b5816d3d001feaab0e810da253a8aff699cdde45bd12d4e30cbf6177f14"
+    },
+    "duration-nfl-play-clock": {
+      "day": "2026-11-08",
+      "fingerprint": "49523847008520090a1ba39ac46bb5d1a894706913c30e3e42e68def17469e53"
+    },
+    "duration-duck-egg-hatching": {
+      "day": "2026-11-11",
+      "fingerprint": "94b728f51283d0fe084b494c3f324b6b5cda52f4ae5045ec8baa660b081438b1"
+    },
+    "timeline-toy-story-released": {
+      "day": "2026-11-12",
+      "fingerprint": "a40ecc806d12af637ebda9b379e192e7288553620a88b16669feb1c9cd969ca4"
+    },
+    "duration-titanic": {
+      "day": "2026-11-14",
+      "fingerprint": "2003910591e7a6c0b5a63460618e6a8a46950a11f2e65f4daeec121ba91a5713"
+    },
+    "duration-pomodoro-focus-session": {
+      "day": "2026-11-15",
+      "fingerprint": "47d3a19b776dc430cffebe67291665ce604cd672622db8aa32bc1f86b7a1f43e"
+    },
+    "timeline-first-ipod-introduced": {
+      "day": "2026-11-15",
+      "fingerprint": "d710791f25b6e4bdf02244dafd641feb88ca9e992ef381d152751e7051ff9815"
+    },
+    "timeline-original-star-wars-released": {
+      "day": "2026-11-16",
+      "fingerprint": "611dbffbf17a367ee0904c1478b7b22a62b87c28a1f205b0d01d9f4824f8a02d"
+    },
+    "timeline-voyager-1-launches": {
+      "day": "2026-11-17",
+      "fingerprint": "66d0af0ca65a041903c1c751ab9ec8e00b9668fe3b375b4a372cdbbb55157e1d"
+    },
+    "duration-nfl-game": {
+      "day": "2026-11-17",
+      "fingerprint": "fe17d800d2a8b07b8dc916862338e7e36163c0149e27a035485bf0832027be3c"
+    },
+    "timeline-wright-brothers-first-flight": {
+      "day": "2026-11-18",
+      "fingerprint": "90e759c7546d4456c0ed5c454abfff9604620446ba8f0dc454ad0e45d73ccf75"
+    },
+    "timeline-first-iphone": {
+      "day": "2026-11-19",
+      "fingerprint": "90cf40b5d2044e7b26fa7d47b525fb5d787db604823811bf4d204d4135e6ae79"
+    },
+    "duration-hard-boiled-eggs": {
+      "day": "2026-11-20",
+      "fingerprint": "58cca91ccfe5a7e74fb74ad4a8b90e230c7c0ef20197799ec44d30012241d359"
+    },
+    "timeline-shrek-released": {
+      "day": "2026-11-21",
+      "fingerprint": "14139e1f3697aefd750a8dbeda837151d0b5c2dfa99035793cfe58229f566189"
+    },
+    "timeline-back-to-the-future-released": {
+      "day": "2026-11-22",
+      "fingerprint": "371a73028b321611f337a88cf5f8c73dcc67cc7987ce1c2011d7a6093952dda8"
+    },
+    "timeline-jurassic-park-released": {
+      "day": "2026-11-23",
+      "fingerprint": "9ad6d0c3b4ace8a1aee724022be5a292d5505249865485b2a872f35b50f9f375"
+    },
+    "timeline-world-war-i-begins": {
+      "day": "2026-11-24",
+      "fingerprint": "9e8bd75fc4fda769441d3761137dbdc4ab78574c517844f0ed19d8a855224204"
+    },
+    "duration-first-human-spaceflight": {
+      "day": "2026-11-26",
+      "fingerprint": "470e8e917cebcfc13efd25c84ef9c65393d9d70da93ecf4be55874362e5acab6"
+    },
+    "timeline-super-mario-bros-released": {
+      "day": "2026-11-26",
+      "fingerprint": "7bbc522aa6772864b8a35342f76c0c1d8474b5f0cafe9b16671d505821a91e0e"
+    },
+    "timeline-world-war-i-ends": {
+      "day": "2026-11-27",
+      "fingerprint": "758727a5bf3e462b4a16d612b8e2a4a0b55dbb968b93ab6decaf6aaec5bec7fd"
+    },
+    "duration-sunlight-earth": {
+      "day": "2026-11-29",
+      "fingerprint": "45d727fff18b4e0906957cf351e2c971dd72934e79f5cfe084256c83a68d55f5"
+    },
+    "duration-nhl-game": {
+      "day": "2026-12-01",
+      "fingerprint": "1f22fb505842249fb88ea493a5f6df875ff050b832faa21d6aa2ade2c54c34ff"
+    },
+    "duration-nba-shot-clock": {
+      "day": "2026-12-02",
+      "fingerprint": "a608d57e9f41ba37b5b0e604657bac431f3a1ba9e1dced289738fea78f1e9a95"
+    },
+    "timeline-first-space-shuttle-launch": {
+      "day": "2026-12-02",
+      "fingerprint": "a08a921dd1135aa9b4ffd8c2ff7291e77d197434b32e7c04fe751489ca571a67"
+    },
+    "timeline-bell-s-telephone-patent": {
+      "day": "2026-12-03",
+      "fingerprint": "120ed8fd58c57b4e88348e0c6b91849b3808929b3b4dd669a646739946bd1a0c"
+    },
+    "timeline-snow-white-premieres": {
+      "day": "2026-12-04",
+      "fingerprint": "1a92dade6b918505fd543f7225d28fb8f42db658569794edf3b641ed408210e3"
+    },
+    "duration-lightning-thunder": {
+      "day": "2026-12-04",
+      "fingerprint": "3e5aa2e949011cdfe23c5b5b77554df14d135b94d50cec61d0f4603608bb6a25"
+    },
+    "duration-wright-brothers-first-flight": {
+      "day": "2026-12-05",
+      "fingerprint": "bf5857618a98b8603b8f822c8038fcdab9b657e8d8487bfc7efc4093502a7c26"
+    }
+  }
+}
