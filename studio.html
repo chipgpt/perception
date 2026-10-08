@@ -154,7 +154,7 @@ function shareResultsText(rounds,day,game='mix',daily=true){
  const icons={view3d:'🧊',balance:'⚖️',motion:'✍️',perspective:'👁️',proportion:'▭',rhythm:'🥁',angle:'📐',colour:'🎨',time:'⏱️',timeline:'🗓️',duration:'⏳'};
  const gameLabel=game==='mix'?'five':rounds[0]?.q.skill||'game';
  const total=rounds.reduce((sum,r)=>sum+r.score,0);
- return `perception.danktank.com\n${dateLabel}${daily?'':' · Practice '+gameLabel}\n${rounds.map(r=>(icons[r.q.type]||'•')+' '+r.score).join(' ')}\nFinal score: ${total}/${rounds.length*100}`;
+ return `perception.danktank.com\n${dateLabel}${daily?'':' · Practice '+gameLabel}\n${rounds.map(r=>(icons[r.q.type]||'•')+r.score).join(' ')}\nFinal score: ${total}/${rounds.length*100}`;
 }
 function bindShareResults(){
  const button=$('share-results'),status=$('share-status'),fallback=$('share-fallback');
