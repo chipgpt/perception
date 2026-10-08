@@ -84,5 +84,16 @@ function browserHistoryHTML(){
  const stats=playerData.stats,active=[0,1].includes(dayNumber(calendarDay())-dayNumber(stats.lastDay))?stats.streak:0;
  const names={mix:'Daily five',view3d:'3D view',balance:'Balance',motion:'Line memory',perspective:'Perspective',proportion:'Proportions',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
  const label=day=>{const [y,m,d]=day.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});};
- return `<div class="browser-history"><p class="history-stats">Daily five streak: <strong>${active} ${active===1?'day':'days'}</strong> · Best: ${stats.best} · Played: ${stats.played}</p><details><summary>Recent results</summary>${playerData.history.slice(-14).reverse().map(h=>`<div class="history-row"><span>${escapeHTML(label(h.day))} · ${names[h.game]||'Daily game'}</span><strong>${h.scores.reduce((a,b)=>a+b,0)}/500</strong></div>`).join('')||'<p>No saved games yet.</p>'}</details><p class="storage-caption">Saved in this browser. Clearing site data resets your history. No cross-device sync.</p></div>`;
+ return `<div class="browser-history"><p class="history-stats">Daily five streak: <strong>${active} ${active===1?'day':'days'}</strong> · Best: ${stats.best} · Played: ${stats.played}</p><div class="history-list">${playerData.history.slice(-14).reverse().map(h=>`<div class="history-row"><span>${escapeHTML(label(h.day))} · ${names[h.game]||'Daily game'}</span><strong>${h.scores.reduce((a,b)=>a+b,0)}/500</strong></div>`).join('')||'<p>No saved games yet.</p>'}</div><p class="storage-caption">Saved in this browser. Clearing site data resets your history. No cross-device sync.</p></div>`;
+}
+
+function bindHistoryNavigation(){
+ const button=$('history-button'),dialog=$('history-dialog');
+ button.addEventListener('click',()=>{
+  playerData=readPlayer()||playerData;
+  $('practice-menu').open=false;
+  $('history-content').innerHTML=browserHistoryHTML();
+  dialog.showModal();
+ });
+ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
 }
