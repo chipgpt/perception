@@ -1183,6 +1183,97 @@
         "name": "NIST",
         "url": "https://www.nist.gov/physics/explainers/what-determines-length-day"
       }
+    },
+    {
+      "id": "duration-fiba-basketball-game",
+      "factKey": "duration-fiba-basketball-game",
+      "title": "FIBA basketball game",
+      "caption": "Regulation playing time in an international basketball game, excluding breaks and overtime.",
+      "explain": "FIBA’s official rules say a game has four quarters of 10 minutes. That is 40 minutes of regulation playing time, or 2,400 seconds; breaks, stoppages and overtime are not included.",
+      "type": "duration",
+      "answer": 2400,
+      "source": {
+        "name": "FIBA Official Basketball Rules",
+        "url": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2024-v10a.pdf"
+      }
+    },
+    {
+      "id": "duration-futsal-match",
+      "factKey": "duration-futsal-match",
+      "title": "Futsal match",
+      "caption": "Regulation playing time in a FIFA futsal match, excluding half-time and stoppages.",
+      "explain": "The FIFA Futsal Laws describe two equal periods of 20 minutes of playing time. That totals 40 minutes, or 2,400 seconds; the game clock may stop when the ball is out of play, so this is regulation playing time, not elapsed wall-clock time.",
+      "type": "duration",
+      "answer": 2400,
+      "source": {
+        "name": "FIFA Futsal Laws via The FA",
+        "url": "https://www.thefa.com/football-rules-governance/lawsandrules/laws/futsal/law-7---the-duration-of-the-match"
+      }
+    },
+    {
+      "id": "duration-tennis-warm-up",
+      "factKey": "duration-tennis-warm-up",
+      "title": "Tennis warm-up",
+      "caption": "Maximum pre-match warm-up under the 2026 ITF Rules of Tennis, unless organizers decide otherwise.",
+      "explain": "The ITF Rules of Tennis set the warm-up at a maximum of five minutes unless the event organizers decide otherwise. Five minutes equals 300 seconds.",
+      "type": "duration",
+      "answer": 300,
+      "source": {
+        "name": "ITF Rules of Tennis 2026 (Rule 29e)",
+        "url": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf"
+      }
+    },
+    {
+      "id": "duration-jupiter-rotation",
+      "factKey": "duration-jupiter-rotation",
+      "title": "Jupiter rotation",
+      "caption": "Approximate time Jupiter takes to rotate once, using NASA’s StarChild reference.",
+      "explain": "NASA’s StarChild Jupiter facts list the rotation period as 9 hours 55 minutes. Converting gives 9×3,600 + 55×60 = 35,700 seconds; this uses the source’s minute-level approximation.",
+      "type": "duration",
+      "answer": 35700,
+      "source": {
+        "name": "NASA StarChild: Facts about Jupiter",
+        "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/solar_system_level2/jupiter_facts.html"
+      }
+    },
+    {
+      "id": "duration-men-100m-world-record",
+      "factKey": "duration-men-100m-world-record",
+      "title": "Usain Bolt’s record sprint",
+      "caption": "Bolt’s record-setting men’s 100 m sprint at the 2009 World Championships, rounded to tenths.",
+      "explain": "World Athletics lists Usain Bolt’s record-setting 100 m sprint in Berlin in 2009 as 9.58 seconds. Rounded to tenths, the answer is 9.6 seconds.",
+      "type": "duration",
+      "answer": 9.6,
+      "source": {
+        "name": "World Athletics: Usain Bolt profile",
+        "url": "https://worldathletics.org/athletes/jamaica/usain-bolt-14201847"
+      }
+    },
+    {
+      "id": "duration-men-50m-freestyle-record",
+      "factKey": "duration-men-50m-freestyle-record",
+      "title": "McEvoy’s record swim (2026)",
+      "caption": "Cameron McEvoy’s record-setting long-course 50 m freestyle swim in March 2026, rounded to tenths.",
+      "explain": "World Aquatics reports Cameron McEvoy’s record-setting 50 m freestyle swim as 20.88 seconds in March 2026, beating César Cielo’s 20.91. Rounded to tenths, the answer is 20.9 seconds.",
+      "type": "duration",
+      "answer": 20.9,
+      "source": {
+        "name": "World Aquatics: McEvoy breaks 50 m freestyle record",
+        "url": "https://www.worldaquatics.com/news/4474806/swimming-world-record-cameron-mcevoy-breaks-iconic-50m-freestyle-world-record-cesar-cielo"
+      }
+    },
+    {
+      "id": "duration-one-mile-world-record",
+      "factKey": "duration-one-mile-world-record",
+      "title": "Josh Kerr’s record mile (2026)",
+      "caption": "Kerr’s record-setting outdoor mile in London in July 2026, rounded to whole seconds.",
+      "explain": "World Athletics reports Josh Kerr’s London mile in July 2026 as 3:42.66, a world-record performance subject to ratification. That is 222.66 seconds, rounded to 223 seconds in the game.",
+      "type": "duration",
+      "answer": 223,
+      "source": {
+        "name": "World Athletics: Kerr breaks world mile record",
+        "url": "https://worldathletics.org/competitions/diamond-league/news/london-athletics-meet-2026-josh-kerr-world-mile-record"
+      }
     }
   ]
 }

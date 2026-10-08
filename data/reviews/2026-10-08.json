@@ -1,0 +1,81 @@
+{
+  "generatedOn": "2026-10-08",
+  "model": "gpt-5.5",
+  "reviewRequired": false,
+  "candidates": [
+    {
+      "id": "duration-fiba-basketball-game",
+      "evidence": "The consulted FIBA rules page states that a game consists of four 10-minute quarters.",
+      "familiarity": "Basketball is widely played and watched, and people often compare NBA and international/Olympic game lengths.",
+      "source": {
+        "name": "FIBA Official Basketball Rules",
+        "url": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2024-v10a.pdf"
+      }
+    },
+    {
+      "id": "duration-futsal-match",
+      "evidence": "The consulted Law 7 page says the match lasts two equal periods of 20 minutes.",
+      "familiarity": "Futsal is a common school, gym and club variant of soccer, especially recognizable to soccer fans.",
+      "source": {
+        "name": "FIFA Futsal Laws via The FA",
+        "url": "https://www.thefa.com/football-rules-governance/lawsandrules/laws/futsal/law-7---the-duration-of-the-match"
+      }
+    },
+    {
+      "id": "duration-tennis-warm-up",
+      "evidence": "Independently checked the 2026 ITF Rules of Tennis, Rule 29e: warm-up maximum is five minutes unless organizers decide otherwise.",
+      "familiarity": "Tennis warm-ups are visible before school, club and televised matches, so recreational players and fans may know this.",
+      "source": {
+        "name": "ITF Rules of Tennis 2026 (Rule 29e)",
+        "url": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf"
+      }
+    },
+    {
+      "id": "duration-jupiter-rotation",
+      "evidence": "The consulted NASA Jupiter facts page lists Jupiter’s rotation period as 9 hours 55 minutes.",
+      "familiarity": "Jupiter is a standard school-astronomy planet, and its fast spin is a memorable solar-system fact.",
+      "source": {
+        "name": "NASA StarChild: Facts about Jupiter",
+        "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/solar_system_level2/jupiter_facts.html"
+      }
+    },
+    {
+      "id": "duration-men-100m-world-record",
+      "evidence": "The consulted World Athletics athlete profile lists Bolt as current world-record holder at 100 metres with 9.58.",
+      "familiarity": "Usain Bolt’s 100 m record is one of the best-known facts in Olympic and track-and-field history.",
+      "source": {
+        "name": "World Athletics: Usain Bolt profile",
+        "url": "https://worldathletics.org/athletes/jamaica/usain-bolt-14201847"
+      }
+    },
+    {
+      "id": "duration-men-50m-freestyle-record",
+      "evidence": "Independently checked the World Aquatics March 21, 2026 report: McEvoy swam 20.88, replacing Cielo’s 20.91. The game rounds this to 20.9 seconds.",
+      "familiarity": "The 50 m freestyle is the pool’s sprint event, familiar from Olympic swimming broadcasts.",
+      "source": {
+        "name": "World Aquatics: McEvoy breaks 50 m freestyle record",
+        "url": "https://www.worldaquatics.com/news/4474806/swimming-world-record-cameron-mcevoy-breaks-iconic-50m-freestyle-world-record-cesar-cielo"
+      }
+    },
+    {
+      "id": "duration-one-mile-world-record",
+      "evidence": "World Athletics reports Kerr’s London run on July 18, 2026 as 3:42.66, subject to ratification. The question is anchored to that performance; the game rounds 222.66 to 223 seconds.",
+      "familiarity": "The mile is a classic school and recreational running distance, and sub-four-minute miles are a well-known benchmark.",
+      "source": {
+        "name": "World Athletics: Kerr breaks world mile record",
+        "url": "https://worldathletics.org/competitions/diamond-league/news/london-athletics-meet-2026-josh-kerr-world-mile-record"
+      }
+    }
+  ],
+  "verification": {
+    "checkedOn": "2026-10-08",
+    "method": "Independent source review against FIBA rules, The FA futsal laws, ITF 2026 rules, NASA StarChild, World Athletics and World Aquatics.",
+    "notes": [
+      "Removed the numerical answer from Jupiter’s prompt caption.",
+      "Corrected the superseded swimming record and primary source.",
+      "Anchored sports performances to named athletes and dates so later record changes do not invalidate them.",
+      "Updated the tennis source to the 2026 official rules.",
+      "All seven facts are recognizable to sports fans or school-level astronomy learners; no existing facts are duplicated."
+    ]
+  }
+}
