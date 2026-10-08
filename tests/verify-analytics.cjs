@@ -1,0 +1,23 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const source=fs.readFileSync('src/design-options/analytics.js','utf8');
+function harness({host='perception.thedanktank.com',dnt='0',configured=true,storage,broken=false}={}){
+ const calls=[],scripts=[],listeners={},store=storage||new Map();
+ const context=vm.createContext({ANALYTICS_CONFIG:{websiteId:configured?'test-id':'',scriptUrl:'https://cloud.umami.is/script.js',hostname:'perception.thedanktank.com'},location:{hostname:host},navigator:{doNotTrack:dnt},window:{umami:{track(name,data){calls.push(typeof name==='function'?['visit',name({url:'/?game=mix'})]:[name,data]);return Promise.resolve();}}},document:{createElement(){return{dataset:{},addEventListener(name,fn){this[name]=fn;}}},head:{appendChild(s){scripts.push(s)}},addEventListener(name,fn){listeners[name]=fn}},localStorage:{getItem(k){if(broken)throw Error();return store.get(k)||null;},setItem(k,v){if(broken)throw Error();store.set(k,v)}},calendarDay(){return '2026-10-8'},dayNumber(s){const [y,m,d]=s.split('-').map(Number);return Date.UTC(y,m-1,d)/86400000;},playerData:{id:'existing-browser-id'},mode:'daily',mini:'mix',review:false,sessionDay:'2026-10-8',results:[]});
+ vm.runInContext(source,context);const run=s=>vm.runInContext(s,context);
+ return {run,calls,scripts,listeners,store};
+}
+const h=harness();h.run('setupAnalytics()');assert.equal(h.scripts.length,1);assert.equal(h.calls.length,0);assert.equal(h.scripts[0].dataset.autoTrack,'false');assert.equal(h.scripts[0].dataset.distinctId,'existing-browser-id');h.scripts[0].load();assert.equal(h.calls.length,1);assert.equal(h.calls[0][1].url,'/');
+h.listeners.pointerdown({type:'pointerdown',target:{closest:()=>true}});h.run('analyticsStarted();analyticsStarted()');assert.equal(h.calls.filter(c=>c[0]==='daily_started').length,1);
+h.run(`results=${JSON.stringify(['angle','time','colour','timeline','duration'].map((type,i)=>({q:{type},score:90+i})))};analyticsCompleted();analyticsCompleted()`);
+assert.equal(h.calls.length,3);assert.equal(h.calls[2][0],'daily_completed');assert.equal(h.calls[2][1].total,460);assert.equal(Object.keys(h.calls[2][1]).length,6);
+assert.equal(h.calls.reduce((sum,c)=>sum+1+(c[0]==='visit'?0:Object.keys(c[1]||{}).length),0),9,'Quota budget: visit + start + completion + six properties');
+const reload=harness({storage:h.store});reload.run('setupAnalytics();analyticsStarted();results='+JSON.stringify(['angle','time','colour','timeline','duration'].map(type=>({q:{type},score:80})))+';analyticsCompleted()');reload.scripts[0].load();assert.equal(reload.calls.length,0,'Reload/theme changes must not duplicate events');
+for(const config of [{host:'localhost'},{host:'chipgpt.github.io'},{dnt:'1'},{configured:false}]){const x=harness(config);x.run('setupAnalytics();analyticsStarted()');assert.equal(x.scripts.length,0);assert.equal(x.calls.length,0);assert.equal(x.store.size,0);}
+for(const mode of ["mode='practice'","mini='angle'","review=true"]){const x=harness();x.run('setupAnalytics();'+mode+';analyticsStarted()');x.scripts[0].load();assert.equal(x.calls.length,1,'Practice only contributes the deduplicated visit');}
+const unavailable=harness({broken:true});unavailable.run('setupAnalytics();analyticsStarted();analyticsStarted()');unavailable.scripts[0].load();assert.equal(unavailable.calls.length,2,'Storage failure must be safe and deduplicate in memory');
+for(const corrupt of ['{','{"2026-10-8":{"includes":true}}','{"2026-10-8":42}','x'.repeat(5000)]){const x=harness({storage:new Map([['perception-metrics-v1',corrupt]])});x.run('setupAnalytics();analyticsStarted()');x.scripts[0].load();assert.equal(x.calls.length,2);}
+const slow=harness();slow.run('setupAnalytics();analyticsStarted();');slow.scripts[0].load();assert.deepEqual(slow.calls.map(c=>c[0]),['visit','daily_started'],'Tracker loading must preserve event order');
+const failed=harness();failed.run('setupAnalytics();analyticsStarted()');failed.scripts[0].error();assert.equal(failed.calls.length,0);
+const retention=harness();for(let d=1;d<=30;d++)retention.run(`analyticsClaim('2026-10-${d}','visit')`);assert.equal(Object.keys(JSON.parse(retention.store.get('perception-metrics-v1'))).length,7);
+const generated=fs.readFileSync('src/design-options/game-themed.js','utf8');assert(generated.includes('analyticsStarted();results.push({q,guess:value,score});saveDailyGame();analyticsCompleted();'));
+console.log('Verified minimal nine-unit daily analytics, daily-only events, reload deduplication, bounded storage, queued loading, and failure isolation.');

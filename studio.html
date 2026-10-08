@@ -15,6 +15,73 @@
 <aside><div class="aside-label">TRAIN YOUR PERCEPTION</div><h2 id="aside-title">Find that colour.</h2><p id="aside-copy">Two seconds to look.<br>A whole wheel to choose from.</p><div class="aside-note"><span class="asterisk">✳</span><p>Close counts.<br><strong>Look. Judge. Learn.</strong></p></div></aside></div>
 <footer><span>See a little sharper.</span><button id="rules">How scoring works</button></footer></main>
 <dialog id="helpdialog"><button id="closehelp" class="circle" aria-label="Close instructions">×</button><p class="eyebrow">WELCOME TO PERCEPTION</p><h2>Guess. Reveal. Get sharper.</h2><p>Mixed five picks five different puzzle types. Each daily five is repeatable for your device’s date; Practice makes a fresh mix. Pick an individual game to focus on one skill.</p><p><strong>3D view:</strong> remember the view, then drag the shape to turn it and drag the green handle around the outer ring to tilt it. <strong>Balance:</strong> move a support beneath a uniform shape. <strong>Line memory:</strong> look at a generated path for three seconds, then trace it in one stroke on the blank canvas. <strong>Perspective:</strong> place the vanishing point. <strong>Proportions:</strong> resize a rectangle to match the ratio. Each reveal shows the target. All games are silent.</p><p><strong>Colour memory:</strong> look at a swatch for two seconds, then find it on the wheel. Hue goes around the wheel; saturation increases towards the edge. Arrow keys or the keyboard controls also work.</p><p><strong>Scoring:</strong> every round is worth 100 points. We divide your error by the game’s zero-point bound, then square the remaining closeness. An error of 10% earns 81 points; 25% earns 56; 50% earns 25. Scores are rounded to whole points. Five rounds total 500 points.</p><details><summary>Zero-point bounds</summary><p>3D and angles: 180°. Balance: 50% of the shape’s width. Line memory: 20% of the canvas diagonal (100 units). Perspective: 40% of the diagonal (200 units). Time: 3 seconds early or late. Rhythm and proportions: 1.5 times or two-thirds of the target. Colour: straight-line distance of one wheel radius. When?: 50 years early or late. How long?: four times or one-quarter of the target duration.</p></details><p><strong>Rhythm:</strong> watch five silent flashes, then tap five beats at the same pace. <strong>Angles:</strong> rotate a line to the target angle. Both reward closeness.</p><p><strong>When?</strong> Slide the timeline beneath the centre marker to choose an event’s year. The minus and plus buttons adjust by one year. <strong>How long?</strong> Turn the dial from seconds to days. Use minus, plus or arrow keys to fine tune; Shift and arrows adjust more broadly. Both award up to 100 points for closeness, with the answer and source shown after you commit. Daily five uses each trivia fact once; individual trivia modes are practice and may repeat.</p><p><strong>Time:</strong> Start, wait, Stop. Points fall with your timing error using the same curve as every other game.</p><p>Switching away resets an active memory flash or timer.</p><button id="gotit" class="primary">Let’s play</button></dialog><script>'use strict';
+const ANALYTICS_CONFIG={"websiteId": "87a5004f-6e63-4197-8776-a86e6bfb4279", "scriptUrl": "https://cloud.umami.is/script.js", "hostname": "perception.thedanktank.com"};
+// Only first-attempt Daily Five play is measured. Configuration is public.
+const ANALYTICS_STORAGE_KEY='perception-metrics-v1';
+let analyticsReady=false,analyticsQueue=[],analyticsLedger={};
+function analyticsAllowed(){return !!ANALYTICS_CONFIG.websiteId&&location.hostname===ANALYTICS_CONFIG.hostname&&navigator.doNotTrack!=='1';}
+function analyticsDaily(){return analyticsAllowed()&&mode==='daily'&&mini==='mix'&&!review;}
+function analyticsClaim(day,event){
+ try{
+  const text=localStorage.getItem(ANALYTICS_STORAGE_KEY)||'{}';
+  const stored=text.length<=4096?JSON.parse(text):{};
+  if(stored&&typeof stored==='object'&&!Array.isArray(stored))for(const [day,events]of Object.entries(stored)){
+   if(!/^\d{4}-\d{1,2}-\d{1,2}$/.test(day)||!Array.isArray(events))continue;
+   analyticsLedger[day]=[...new Set([...(analyticsLedger[day]||[]),...events.filter(e=>['visit','start','complete'].includes(e))])];
+  }
+ }catch{}
+ if(analyticsLedger[day]?.includes(event))return false;
+ const previous=Array.isArray(analyticsLedger[day])?analyticsLedger[day].filter(e=>['visit','start','complete'].includes(e)):[];
+ analyticsLedger[day]=[...previous,event];
+ // A fixed-size ledger survives reloads and theme switches without growing history.
+ analyticsLedger=Object.fromEntries(Object.entries(analyticsLedger).filter(([d])=>/^\d{4}-\d{1,2}-\d{1,2}$/.test(d)).sort(([a],[b])=>dayNumber(b)-dayNumber(a)).slice(0,7));
+ try{localStorage.setItem(ANALYTICS_STORAGE_KEY,JSON.stringify(analyticsLedger));}catch{}
+ return true;
+}
+function analyticsSend(name,data){
+ if(!analyticsAllowed())return;
+ if(!analyticsReady){if(analyticsQueue.length<3)analyticsQueue.push([name,data]);return;}
+ try{
+  const sent=name?window.umami.track(name,data):window.umami.track(p=>({...p,url:'/',title:'Perception'}));
+  if(sent&&typeof sent.catch==='function')sent.catch(()=>{});
+ }catch{} // Analytics failure must never affect play. No retries or catch-up uploads.
+}
+function analyticsStarted(){
+ if(!analyticsDaily()||results.length===5)return;
+ if(analyticsClaim(sessionDay,'start'))analyticsSend('daily_started');
+}
+function analyticsCompleted(){
+ if(!analyticsDaily()||results.length!==5)return;
+ if(!analyticsClaim(sessionDay,'complete'))return;
+ const data={total:results.reduce((sum,r)=>sum+r.score,0)};
+ for(const r of results)data[r.q.type]=r.score;
+ analyticsSend('daily_completed',data);
+}
+function setupAnalytics(){
+ if(!analyticsAllowed())return;
+ const script=document.createElement('script');
+ script.src=ANALYTICS_CONFIG.scriptUrl;script.defer=true;
+ script.dataset.websiteId=ANALYTICS_CONFIG.websiteId;
+ script.dataset.autoTrack='false';
+ script.dataset.domains=ANALYTICS_CONFIG.hostname;
+ script.dataset.excludeSearch='true';script.dataset.excludeHash='true';script.dataset.doNotTrack='true';
+ // Reuse the existing anonymous browser identity without an extra identify request.
+ if(typeof playerData.id==='string'&&playerData.id.length<=50)script.dataset.distinctId=playerData.id;
+ script.addEventListener('load',()=>{
+  analyticsReady=!!window.umami;
+  const pending=analyticsQueue;analyticsQueue=[];
+  if(analyticsReady)for(const [name,data]of pending)analyticsSend(name,data);
+ });
+ script.addEventListener('error',()=>{analyticsQueue=[];});
+ document.head.appendChild(script);
+ if(analyticsClaim(calendarDay(),'visit'))analyticsSend(null);
+ const interaction=e=>{
+  if(e.type==='keydown'&&!['Enter',' ','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;
+  if(e.target.closest?.('#playarea,#actionarea'))analyticsStarted();
+ };
+ for(const event of ['pointerdown','click','keydown'])document.addEventListener(event,interaction,true);
+}
+
 const PLAYER_STORAGE_KEY='perception-player-v1';
 const PLAYER_STORAGE_LIMIT=256*1024;
 const PLAYER_HISTORY_LIMIT=720;
@@ -415,7 +482,7 @@ function render(){stopEffects();clearTimeout(memoryTimeout);locked=false;guess=n
  if(q.type==='time'){shell(q,`<div class="time-cue"><strong>${q.answer}</strong><span>SECONDS</span></div>`,`<button id="timer" class="primary timerbutton">Start</button><p class="small-instruction" id="timerhint">Start. Wait. Stop.</p>`);$('timer').addEventListener('click',()=>{if(startedAt===null){startedAt=performance.now();$('timer').textContent='Stop';$('timer').classList.add('running');$('timerhint').textContent='Trust your internal clock.';$('playarea').querySelector('.time-cue').innerHTML='<strong>· · ·</strong><span>NO PEEKING</span>';}else{const elapsed=(performance.now()-startedAt)/1000;reveal(elapsed);}});}
 }
 
-function reveal(value){if(locked)return;stopEffects();clearTimeout(memoryTimeout);locked=true;const q=deck[index],score=scoreFor(value,q);results.push({q,guess:value,score});saveDailyGame();
+function reveal(value){if(locked)return;stopEffects();clearTimeout(memoryTimeout);locked=true;const q=deck[index],score=scoreFor(value,q);analyticsStarted();results.push({q,guess:value,score});saveDailyGame();analyticsCompleted();
  if(q.type==='time'){$('playarea').querySelector('.time-cue').innerHTML=`<strong>${value.toFixed(2)}</strong><span>SECONDS ELAPSED</span>`;}
  $('controls').querySelectorAll('button').forEach(btn=>{btn.disabled=true;if(btn.dataset.choice!==undefined){const c=q.choices[Number(btn.dataset.choice)];btn.classList.toggle('correct',c.value===q.answer);btn.classList.toggle('wrong',c.value===value&&score===0);}});
  gamebar();const feedback=score===100?'Nailed it.':score>=80?'Pretty close.':score>0?'Getting a feel.':'Now you know.';const answerLabel=['timeline','duration'].includes(q.type)?triviaFeedback(value,q):q.type==='time'?timeError(value,q):q.type==='rhythm'?`Your tempo: ${pretty(value)} BPM · Target: ${q.answer} BPM`:q.type==='angle'?`${Math.abs(value-q.answer).toFixed(1)}° away · Your angle: ${pretty(value)}°`:q.type==='typography'?'Solid: your text · Lime outline: target.':q.type==='colour'?q.hex:q.type==='view3d'?orientationError(value,q.answer).toFixed(1)+'° of rotation away':q.type==='balance'?score===100?'Balanced.': 'Off centre by '+(Math.abs(value-q.answer)/balanceWidth(q)*100).toFixed(1)+'% of the shape’s width':q.type==='motion'?'Average line error: '+Math.round(traceError(value,q.answer))+' units':q.type==='perspective'?Math.round(pointError(value,q.answer))+' units away':q.type==='proportion'?'Your ratio: '+(value.width/value.height).toFixed(2)+' : 1 · Target: '+q.label:q.answer;
@@ -488,6 +555,8 @@ $('daily').addEventListener('click',()=>start('daily'));$('practice').addEventLi
 document.querySelectorAll('[data-mini]').forEach(btn=>btn.addEventListener('click',()=>{mini=btn.dataset.mini;document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b===btn));start(mode);updateAside();}));
 function updateAside(){const copy={timeline:['Place it in history.','One event. A timeline to explore.<br>Slide the timeline to select the year at its centre.'],duration:['How long does it take?','Sport. Space. Everyday life.<br>Turn the dial to your best guess.'],mix:['Five puzzles. Five skills.','A different game each round.<br>How sharp is your perception?'],view3d:['Explore every side.','Remember a view.<br>Rotate the shape to match.'],balance:['Find the balance.','One shape. One support.<br>Where does it stay level?'],motion:['Remember the line.','A quick look.<br>Trace it from memory.'],perspective:['See the perspective.','Follow the lines.<br>Find where they meet.'],proportion:['Get a feel for ratios.','One proportion.<br>Stretch a rectangle to match.'],rhythm:['Copy the pulse.','Watch the flashes.<br>Tap the pace. No sound.'],typography:['Get a feel for type.','Size. Weight. Spacing.<br>Recreate what you saw.'],angle:['Find the angle.','One number.<br>A whole dial to explore.'],memory:['Find that colour.','Two seconds to look.<br>A whole wheel to choose from.'],time:['Feel the seconds.','Start. Wait. Stop.<br>No clock until the reveal.']}[mini];$('aside-title').textContent=copy[0];$('aside-copy').innerHTML=copy[1];}
 const demoGame=new URLSearchParams(location.search).get('game');if(['mix','view3d','balance','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration'].includes(demoGame)){mini=demoGame;document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b.dataset.mini===mini));}start();updateAside();
+
+setupAnalytics();
 </script><div class="option-switch"><label for="theme-select">Theme</label><select id="theme-select" aria-label="Theme"><option value="night-lab">Night Lab</option><option value="focus">Focus</option></select></div><script>(()=>{
  const select=document.getElementById('theme-select');
  select.value=document.documentElement.dataset.theme;

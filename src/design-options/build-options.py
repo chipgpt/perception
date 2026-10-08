@@ -61,6 +61,15 @@ themed=themed.replace("'use strict';", "'use strict';\n"+Path('src/design-option
 themed=themed.replace("render();}\nfunction gamebar", "if(restoreDailyGame()){if(index===deck.length){finish();return;}}else saveDailyGame();updateStorageNotice();render();}\nfunction gamebar")
 # Save committed answers immediately, before a player presses Next or closes the tab.
 themed=themed.replace('results.push({q,guess:value,score});', 'results.push({q,guess:value,score});saveDailyGame();')
+analytics_config=json.loads(Path('src/design-options/analytics-config.json').read_text())
+if analytics_config['websiteId'] and not re.fullmatch(r'[0-9a-fA-F-]{36}',analytics_config['websiteId']):
+ raise ValueError('Invalid Umami website ID')
+if not analytics_config['scriptUrl'].startswith('https://'):
+ raise ValueError('Umami script must use HTTPS')
+analytics_source='const ANALYTICS_CONFIG='+json.dumps(analytics_config).replace('<','\\u003c')+';\n'+Path('src/design-options/analytics.js').read_text()
+themed=themed.replace("'use strict';", "'use strict';\n"+analytics_source,1)
+themed=themed.replace('results.push({q,guess:value,score});saveDailyGame();', 'analyticsStarted();results.push({q,guess:value,score});saveDailyGame();analyticsCompleted();')
+themed+='\nsetupAnalytics();\n'
 themed=themed.replace('<div class="share-panel">', '${browserHistoryHTML()}<div class="share-panel">')
 html=html.replace('<div class="gamebar">','<p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar">')
 for key,css in styles.items():
