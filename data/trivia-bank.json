@@ -1300,58 +1300,6 @@
         "name": "Disney Movies: The Lion King",
         "url": "https://movies.disney.com/the-lion-king"
       }
-    },
-    {
-      "id": "duration-moana-2016",
-      "factKey": "duration-moana-2016",
-      "title": "Moana",
-      "caption": "Runtime of Disney’s 2016 animated feature film.",
-      "explain": "Disney’s official page for the 2016 animated Moana lists a runtime of 1 hour 47 minutes. That is 107 minutes, or 6,420 seconds. The film is familiar from Disney viewing, songs such as “How Far I’ll Go,” and broad family-audience popularity.",
-      "type": "duration",
-      "answer": 6420,
-      "source": {
-        "name": "Disney Movies: Moana",
-        "url": "https://movies.disney.com/moana"
-      }
-    },
-    {
-      "id": "duration-encanto",
-      "factKey": "duration-encanto",
-      "title": "Encanto",
-      "caption": "Runtime of Disney’s animated musical feature film.",
-      "explain": "Disney’s official Encanto page gives the runtime as 1 hour 42 minutes. That converts to 102 minutes, or 6,120 seconds. The subject is plausible for casual play because Encanto became a popular family musical and its songs were widely heard in everyday pop culture.",
-      "type": "duration",
-      "answer": 6120,
-      "source": {
-        "name": "Disney Movies: Encanto",
-        "url": "https://movies.disney.com/encanto"
-      }
-    },
-    {
-      "id": "duration-rugby-union-halftime-2025",
-      "factKey": "duration-rugby-union-halftime-2025",
-      "title": "Rugby union half-time",
-      "caption": "Maximum half-time interval under World Rugby’s 2025 Laws of the Game.",
-      "explain": "World Rugby’s 2025 Laws state that half-time is an interval not exceeding 15 minutes, as decided by the match organiser. The maximum is therefore 900 seconds. Rugby is globally recognized, and even people who only occasionally watch international matches can estimate that the break is comparable to other major sports.",
-      "type": "duration",
-      "answer": 900,
-      "source": {
-        "name": "World Rugby Passport: Law 5 Time",
-        "url": "https://passport.world.rugby/laws-of-the-game/laws-by-number/5-time/"
-      }
-    },
-    {
-      "id": "duration-womens-floor-exercise-usag",
-      "factKey": "duration-womens-floor-exercise-usag",
-      "title": "Women’s floor exercise",
-      "caption": "Maximum routine length in USA Gymnastics’ women’s artistic event description.",
-      "explain": "USA Gymnastics describes the women’s artistic floor routine as choreographed to music and lasting no more than 90 seconds. This is an exact maximum from the event description. Gymnastics floor routines are familiar from the Olympics and school-era exposure to major gymnastics events.",
-      "type": "duration",
-      "answer": 90,
-      "source": {
-        "name": "USA Gymnastics: Women’s Artistic Event Descriptions",
-        "url": "https://members.usagym.org/pages/gymnastics101/women/events.html"
-      }
     }
   ]
 }
