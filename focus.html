@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head><script>(()=>{
- const themes=['focus','night-lab','studio'];
+ const themes=['focus','night-lab'];
  let theme='night-lab';
- try{const saved=window.localStorage.getItem('perception-theme');if(themes.includes(saved))theme=saved;}catch(_){}
+ try{const saved=window.localStorage.getItem('perception-theme');if(themes.includes(saved))theme=saved;else if(saved==='studio')window.localStorage.setItem('perception-theme','night-lab');}catch(_){}
  document.documentElement.dataset.theme=theme;
  const stylesheet=document.createElement('link');
  stylesheet.id='theme-stylesheet';stylesheet.rel='stylesheet';stylesheet.href=theme+'.css';
@@ -488,7 +488,7 @@ $('daily').addEventListener('click',()=>start('daily'));$('practice').addEventLi
 document.querySelectorAll('[data-mini]').forEach(btn=>btn.addEventListener('click',()=>{mini=btn.dataset.mini;document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b===btn));start(mode);updateAside();}));
 function updateAside(){const copy={timeline:['Place it in history.','One event. A timeline to explore.<br>Slide the timeline to select the year at its centre.'],duration:['How long does it take?','Sport. Space. Everyday life.<br>Turn the dial to your best guess.'],mix:['Five puzzles. Five skills.','A different game each round.<br>How sharp is your perception?'],view3d:['Explore every side.','Remember a view.<br>Rotate the shape to match.'],balance:['Find the balance.','One shape. One support.<br>Where does it stay level?'],motion:['Remember the line.','A quick look.<br>Trace it from memory.'],perspective:['See the perspective.','Follow the lines.<br>Find where they meet.'],proportion:['Get a feel for ratios.','One proportion.<br>Stretch a rectangle to match.'],rhythm:['Copy the pulse.','Watch the flashes.<br>Tap the pace. No sound.'],typography:['Get a feel for type.','Size. Weight. Spacing.<br>Recreate what you saw.'],angle:['Find the angle.','One number.<br>A whole dial to explore.'],memory:['Find that colour.','Two seconds to look.<br>A whole wheel to choose from.'],time:['Feel the seconds.','Start. Wait. Stop.<br>No clock until the reveal.']}[mini];$('aside-title').textContent=copy[0];$('aside-copy').innerHTML=copy[1];}
 const demoGame=new URLSearchParams(location.search).get('game');if(['mix','view3d','balance','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration'].includes(demoGame)){mini=demoGame;document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b.dataset.mini===mini));}start();updateAside();
-</script><div class="option-switch"><label for="theme-select">Theme</label><select id="theme-select" aria-label="Theme"><option value="night-lab">Night Lab</option><option value="focus">Focus</option><option value="studio">Studio</option></select></div><script>(()=>{
+</script><div class="option-switch"><label for="theme-select">Theme</label><select id="theme-select" aria-label="Theme"><option value="night-lab">Night Lab</option><option value="focus">Focus</option></select></div><script>(()=>{
  const select=document.getElementById('theme-select');
  select.value=document.documentElement.dataset.theme;
  select.addEventListener('change',()=>{
