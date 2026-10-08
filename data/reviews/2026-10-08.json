@@ -1,0 +1,70 @@
+{
+  "generatedOn": "2026-10-08",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "duration-fiba-basketball-game",
+      "evidence": "The consulted FIBA rules page states that a game consists of four 10-minute quarters.",
+      "familiarity": "Basketball is widely played and watched, and people often compare NBA and international/Olympic game lengths.",
+      "source": {
+        "name": "FIBA Official Basketball Rules",
+        "url": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2024-v10a.pdf"
+      }
+    },
+    {
+      "id": "duration-futsal-match",
+      "evidence": "The consulted Law 7 page says the match lasts two equal periods of 20 minutes.",
+      "familiarity": "Futsal is a common school, gym and club variant of soccer, especially recognizable to soccer fans.",
+      "source": {
+        "name": "FIFA Futsal Laws via The FA",
+        "url": "https://www.thefa.com/football-rules-governance/lawsandrules/laws/futsal/law-7---the-duration-of-the-match"
+      }
+    },
+    {
+      "id": "duration-tennis-warm-up",
+      "evidence": "The consulted ITF rules page gives the warm-up time as a maximum of five minutes unless altered by organizers.",
+      "familiarity": "Tennis warm-ups are visible before school, club and televised matches, so recreational players and fans may know this.",
+      "source": {
+        "name": "International Tennis Federation Rules of Tennis",
+        "url": "https://itf.uberflip.com/i/920624-2018-rules-of-tennis/17"
+      }
+    },
+    {
+      "id": "duration-jupiter-rotation",
+      "evidence": "The consulted NASA Jupiter facts page lists Jupiter’s rotation period as 9 hours 55 minutes.",
+      "familiarity": "Jupiter is a standard school-astronomy planet, and its fast spin is a memorable solar-system fact.",
+      "source": {
+        "name": "NASA StarChild: Facts about Jupiter",
+        "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/solar_system_level2/jupiter_facts.html"
+      }
+    },
+    {
+      "id": "duration-men-100m-world-record",
+      "evidence": "The consulted World Athletics athlete profile lists Bolt as current world-record holder at 100 metres with 9.58.",
+      "familiarity": "Usain Bolt’s 100 m record is one of the best-known facts in Olympic and track-and-field history.",
+      "source": {
+        "name": "World Athletics: Usain Bolt profile",
+        "url": "https://worldathletics.org/athletes/jamaica/usain-bolt-14201847"
+      }
+    },
+    {
+      "id": "duration-men-50m-freestyle-record",
+      "evidence": "The consulted World Aquatics start list shows the men’s 50 m freestyle world record as 20.91 by César Cielo.",
+      "familiarity": "The 50 m freestyle is the pool’s sprint event, familiar from Olympic swimming broadcasts.",
+      "source": {
+        "name": "World Aquatics Olympic swimming start list",
+        "url": "https://resources.fina.org/fina/document/2024/08/02/c06f39fb-5057-4098-b239-bb338a2891ca/OG2024_Swimming_ExtendedStartList_02.08.2024.pdf"
+      }
+    },
+    {
+      "id": "duration-one-mile-world-record",
+      "evidence": "The consulted World Athletics report says Kerr ran 3:42.66 for the mile and broke the previous world record.",
+      "familiarity": "The mile is a classic school and recreational running distance, and sub-four-minute miles are a well-known benchmark.",
+      "source": {
+        "name": "World Athletics: Kerr breaks world mile record",
+        "url": "https://worldathletics.org/competitions/diamond-league/news/london-athletics-meet-2026-josh-kerr-world-mile-record"
+      }
+    }
+  ]
+}

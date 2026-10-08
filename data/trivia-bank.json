@@ -1183,6 +1183,97 @@
         "name": "NIST",
         "url": "https://www.nist.gov/physics/explainers/what-determines-length-day"
       }
+    },
+    {
+      "id": "duration-fiba-basketball-game",
+      "factKey": "duration-fiba-basketball-game",
+      "title": "FIBA basketball game",
+      "caption": "Regulation playing time in an international basketball game, excluding breaks and overtime.",
+      "explain": "FIBA’s official rules say a game has four quarters of 10 minutes. That is 40 minutes of regulation playing time, or 2,400 seconds; breaks, stoppages and overtime are not included.",
+      "type": "duration",
+      "answer": 2400,
+      "source": {
+        "name": "FIBA Official Basketball Rules",
+        "url": "https://assets.fiba.basketball/image/upload/documents-corporate-fiba-official-rules-2024-v10a.pdf"
+      }
+    },
+    {
+      "id": "duration-futsal-match",
+      "factKey": "duration-futsal-match",
+      "title": "Futsal match",
+      "caption": "Regulation playing time in a FIFA futsal match, excluding half-time and stoppages.",
+      "explain": "The FIFA Futsal Laws describe two equal periods of 20 minutes of playing time. That totals 40 minutes, or 2,400 seconds; the game clock may stop when the ball is out of play, so this is regulation playing time, not elapsed wall-clock time.",
+      "type": "duration",
+      "answer": 2400,
+      "source": {
+        "name": "FIFA Futsal Laws via The FA",
+        "url": "https://www.thefa.com/football-rules-governance/lawsandrules/laws/futsal/law-7---the-duration-of-the-match"
+      }
+    },
+    {
+      "id": "duration-tennis-warm-up",
+      "factKey": "duration-tennis-warm-up",
+      "title": "Tennis warm-up",
+      "caption": "Maximum pre-match warm-up under the ITF Rules of Tennis, unless organizers decide otherwise.",
+      "explain": "The ITF Rules of Tennis set the warm-up at a maximum of five minutes unless the event organizers decide otherwise. Five minutes equals 300 seconds.",
+      "type": "duration",
+      "answer": 300,
+      "source": {
+        "name": "International Tennis Federation Rules of Tennis",
+        "url": "https://itf.uberflip.com/i/920624-2018-rules-of-tennis/17"
+      }
+    },
+    {
+      "id": "duration-jupiter-rotation",
+      "factKey": "duration-jupiter-rotation",
+      "title": "Jupiter rotation",
+      "caption": "Approximate time Jupiter takes to rotate once, using NASA’s 9 hours 55 minutes figure.",
+      "explain": "NASA’s StarChild Jupiter facts list the rotation period as 9 hours 55 minutes. Converting gives 9×3,600 + 55×60 = 35,700 seconds; this uses the source’s minute-level approximation.",
+      "type": "duration",
+      "answer": 35700,
+      "source": {
+        "name": "NASA StarChild: Facts about Jupiter",
+        "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/solar_system_level2/jupiter_facts.html"
+      }
+    },
+    {
+      "id": "duration-men-100m-world-record",
+      "factKey": "duration-men-100m-world-record",
+      "title": "Men’s 100 m world record",
+      "caption": "Current World Athletics men’s outdoor 100 metres world-record time, rounded to tenths.",
+      "explain": "World Athletics lists Usain Bolt’s men’s 100 metres world record as 9.58 seconds. Because this game wants tenths below a minute, the submitted answer rounds to 9.6 seconds.",
+      "type": "duration",
+      "answer": 9.6,
+      "source": {
+        "name": "World Athletics: Usain Bolt profile",
+        "url": "https://worldathletics.org/athletes/jamaica/usain-bolt-14201847"
+      }
+    },
+    {
+      "id": "duration-men-50m-freestyle-record",
+      "factKey": "duration-men-50m-freestyle-record",
+      "title": "Men’s 50 m freestyle record",
+      "caption": "Long-course men’s 50 m freestyle world record, rounded to tenths.",
+      "explain": "World Aquatics competition materials list the men’s 50 m freestyle world record as 20.91 seconds by César Cielo. Since the answer is below a minute, it is rounded to tenths: 20.9 seconds.",
+      "type": "duration",
+      "answer": 20.9,
+      "source": {
+        "name": "World Aquatics Olympic swimming start list",
+        "url": "https://resources.fina.org/fina/document/2024/08/02/c06f39fb-5057-4098-b239-bb338a2891ca/OG2024_Swimming_ExtendedStartList_02.08.2024.pdf"
+      }
+    },
+    {
+      "id": "duration-one-mile-world-record",
+      "factKey": "duration-one-mile-world-record",
+      "title": "One-mile run record",
+      "caption": "Current World Athletics men’s outdoor mile world-record time, converted to seconds.",
+      "explain": "World Athletics reports Josh Kerr’s mile world record as 3:42.66. Converting gives 3×60 + 42.66 = 222.66 seconds, rounded to 223 seconds because durations under an hour use whole seconds.",
+      "type": "duration",
+      "answer": 223,
+      "source": {
+        "name": "World Athletics: Kerr breaks world mile record",
+        "url": "https://worldathletics.org/competitions/diamond-league/news/london-athletics-meet-2026-josh-kerr-world-mile-record"
+      }
     }
   ]
 }
