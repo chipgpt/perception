@@ -95,6 +95,7 @@ class ReviewTests(unittest.TestCase):
             if path.endswith('git/ref/heads/main'):
                 ref_reads+=1
                 return {'object':{'sha':('d'*40 if changed_main and ref_reads>1 else base_sha)}}
+            if path.endswith('git/ref/heads/'+review.BRANCH):return {'object':{'sha':new_sha}}
             if '/pulls?state=open' in path:return [pr]
             if path.endswith('/pulls/2') and method=='GET':
                 pr_reads+=1
@@ -148,19 +149,19 @@ class ReviewTests(unittest.TestCase):
 
     def test_waits_for_github_mergeability_and_keeps_expected_head(self):
         sha='c'*40
-        states=[{'state':'open','head':{'sha':sha},'mergeable':None}, {'state':'open','head':{'sha':sha},'mergeable':True}, {'merged':True}]
+        states=[{'object':{'sha':sha}}, {'state':'open','head':{'sha':sha},'mergeable':None}, {'object':{'sha':sha}}, {'state':'open','head':{'sha':sha},'mergeable':True}, {'merged':True}]
         with patch.object(review,'api',side_effect=states) as api, patch.object(review.time,'sleep') as sleep:
             review.merge_reviewed('repos/chipgpt/perception/',3,sha,2)
             sleep.assert_called_once_with(2)
             self.assertEqual(api.call_args.args[2]['sha'],sha)
         for current in [{'state':'open','head':{'sha':'different'},'mergeable':True},{'state':'open','head':{'sha':sha},'mergeable':False}]:
-            with patch.object(review,'api',return_value=current) as api:
+            with patch.object(review,'api',side_effect=[{'object':{'sha':'different' if current['head']['sha']=='different' else sha}},current]) as api:
                 with self.assertRaises(AssertionError):review.merge_reviewed('',3,sha,2)
-                self.assertEqual(api.call_count,1)
+                self.assertLessEqual(api.call_count,2)
 
     def test_saved_review_requires_exact_bot_audited_questions(self):
         original='b'*40
-        commit={'message':'Keep independently verified trivia and record review evidence','parents':[{'sha':original}], 'author':{'login':'github-actions[bot]'},'committer':{'login':'github-actions[bot]'}}
+        commit={'commit':{'message':'Keep independently verified trivia and record review evidence'},'parents':[{'sha':original}], 'author':{'login':'github-actions[bot]'},'committer':{'login':'github-actions[bot]'}}
         result={**self.verdict,'approved':True,'source_consulted':True,'answer_matches':True,'factFingerprint':review.fingerprint(self.fact)}
         report={'reviewVersion':review.VERSION,'reviewedHeadSha':original,'baseSha':'a'*40,'approved':1,'decisions':[result]}
         def at(sha,path):return self.bank if path.endswith('trivia-bank.json') else report

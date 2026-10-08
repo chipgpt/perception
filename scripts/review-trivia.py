@@ -105,8 +105,13 @@ def trusted_tests():
 def merge_reviewed(prefix, number, sha, count):
     # Updating the branch invalidates GitHub's cached mergeability; wait for recomputation.
     for _ in range(15):
+        branch = api(prefix + 'git/ref/heads/' + BRANCH)['object']['sha']
+        assert branch == sha, 'Reviewed branch changed; nothing merged'
         current = api(prefix + f'pulls/{number}')
-        assert current['state'] == 'open' and current['head']['sha'] == sha, 'Reviewed PR changed; nothing merged'
+        assert current['state'] == 'open', 'Reviewed PR closed; nothing merged'
+        if current['head']['sha'] != sha:
+            time.sleep(2)
+            continue  # PR metadata can lag the already-verified branch update.
         if current.get('mergeable') is True:
             result = api(prefix + f'pulls/{number}/merge', 'PUT', {'sha': sha, 'merge_method': 'squash', 'commit_title': f'Add {count} independently verified trivia questions'})
             assert result.get('merged'), 'GitHub did not permit the merge'
@@ -117,7 +122,7 @@ def merge_reviewed(prefix, number, sha, count):
 
 def saved_review(commit, sha, additions, at, bank):
     """Resume only the bot's exact audited commit, without another paid fact check."""
-    if commit.get('message') != 'Keep independently verified trivia and record review evidence':
+    if commit.get('commit', {}).get('message') != 'Keep independently verified trivia and record review evidence':
         return None
     assert commit.get('author', {}).get('login') == 'github-actions[bot]' and commit.get('committer', {}).get('login') in ('github-actions[bot]', 'web-flow'), 'Audit commit was not made by the reviewer bot'
     parents = commit['parents']
