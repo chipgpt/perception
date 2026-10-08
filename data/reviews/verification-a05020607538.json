@@ -1,0 +1,49 @@
+{
+  "reviewVersion": 1,
+  "reviewedOn": "2026-10-08T19:14:23.574508+00:00",
+  "model": "gpt-5.5",
+  "reviewedHeadSha": "a050206075380dc1d91cb5e6e3bf4cee679a161d",
+  "baseSha": "894c52117231011a5fbfe2f38aa9e432d02c374f",
+  "approved": 2,
+  "rejected": 0,
+  "decisions": [
+    {
+      "accurate": true,
+      "source_supports_answer": true,
+      "unambiguous": true,
+      "familiar": true,
+      "distinct": true,
+      "prompt_hides_answer": true,
+      "stable": true,
+      "id": "duration-mars-sol",
+      "verified_answer": 86400,
+      "confidence": "high",
+      "source_url": "https://www.giss.nasa.gov/tools/mars24/help/notes.html",
+      "evidence": "NASA GISS Mars24 notes give the mean Mars solar day as 24 h 39 m 35.244 s. That is 88,775.244 s = about 1.0275 Earth days, which rounds to 1.0 day under the stated nearest-0.1-day game precision.",
+      "reason": "The scoped fact is a Martian solar day/sol and the rounded game answer is correct. NASA is an authoritative source for the stated value; the topic is recognizable from basic astronomy and Mars missions.",
+      "approved": true,
+      "source_consulted": true,
+      "answer_matches": true,
+      "factFingerprint": "80da5d5148e5a94068e0ebd5c3f8e4537ac550a4349312b775c7768cdf6d1315"
+    },
+    {
+      "accurate": true,
+      "source_supports_answer": true,
+      "unambiguous": true,
+      "familiar": true,
+      "distinct": true,
+      "prompt_hides_answer": true,
+      "stable": true,
+      "id": "duration-the-lion-king-1994",
+      "verified_answer": 5640,
+      "confidence": "high",
+      "source_url": "https://movies.disney.com/the-lion-king",
+      "evidence": "Disney’s movie page for The Lion King lists runtime as 1 h 34 min and release date as June 24, 1994. 94 minutes converts to 5,640 seconds.",
+      "reason": "The caption clearly scopes the original animated Disney feature, avoiding the 2019 film or stage musical. It is a very familiar movie and is not a duplicate of the existing facts.",
+      "approved": true,
+      "source_consulted": true,
+      "answer_matches": true,
+      "factFingerprint": "6f066ec2b12a78ec4b0cff8f6f90d3ab9a3676f02ee21a95b23ef90ec8c76b7a"
+    }
+  ]
+}
