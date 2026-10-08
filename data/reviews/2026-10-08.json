@@ -1,7 +1,7 @@
 {
   "generatedOn": "2026-10-08",
   "model": "gpt-5.5",
-  "reviewRequired": true,
+  "reviewRequired": false,
   "candidates": [
     {
       "id": "duration-fiba-basketball-game",
@@ -23,11 +23,11 @@
     },
     {
       "id": "duration-tennis-warm-up",
-      "evidence": "The consulted ITF rules page gives the warm-up time as a maximum of five minutes unless altered by organizers.",
+      "evidence": "Independently checked the 2026 ITF Rules of Tennis, Rule 29e: warm-up maximum is five minutes unless organizers decide otherwise.",
       "familiarity": "Tennis warm-ups are visible before school, club and televised matches, so recreational players and fans may know this.",
       "source": {
-        "name": "International Tennis Federation Rules of Tennis",
-        "url": "https://itf.uberflip.com/i/920624-2018-rules-of-tennis/17"
+        "name": "ITF Rules of Tennis 2026 (Rule 29e)",
+        "url": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf"
       }
     },
     {
@@ -50,21 +50,32 @@
     },
     {
       "id": "duration-men-50m-freestyle-record",
-      "evidence": "The consulted World Aquatics start list shows the men’s 50 m freestyle world record as 20.91 by César Cielo.",
+      "evidence": "Independently checked the World Aquatics March 21, 2026 report: McEvoy swam 20.88, replacing Cielo’s 20.91. The game rounds this to 20.9 seconds.",
       "familiarity": "The 50 m freestyle is the pool’s sprint event, familiar from Olympic swimming broadcasts.",
       "source": {
-        "name": "World Aquatics Olympic swimming start list",
-        "url": "https://resources.fina.org/fina/document/2024/08/02/c06f39fb-5057-4098-b239-bb338a2891ca/OG2024_Swimming_ExtendedStartList_02.08.2024.pdf"
+        "name": "World Aquatics: McEvoy breaks 50 m freestyle record",
+        "url": "https://www.worldaquatics.com/news/4474806/swimming-world-record-cameron-mcevoy-breaks-iconic-50m-freestyle-world-record-cesar-cielo"
       }
     },
     {
       "id": "duration-one-mile-world-record",
-      "evidence": "The consulted World Athletics report says Kerr ran 3:42.66 for the mile and broke the previous world record.",
+      "evidence": "World Athletics reports Kerr’s London run on July 18, 2026 as 3:42.66, subject to ratification. The question is anchored to that performance; the game rounds 222.66 to 223 seconds.",
       "familiarity": "The mile is a classic school and recreational running distance, and sub-four-minute miles are a well-known benchmark.",
       "source": {
         "name": "World Athletics: Kerr breaks world mile record",
         "url": "https://worldathletics.org/competitions/diamond-league/news/london-athletics-meet-2026-josh-kerr-world-mile-record"
       }
     }
-  ]
+  ],
+  "verification": {
+    "checkedOn": "2026-10-08",
+    "method": "Independent source review against FIBA rules, The FA futsal laws, ITF 2026 rules, NASA StarChild, World Athletics and World Aquatics.",
+    "notes": [
+      "Removed the numerical answer from Jupiter’s prompt caption.",
+      "Corrected the superseded swimming record and primary source.",
+      "Anchored sports performances to named athletes and dates so later record changes do not invalidate them.",
+      "Updated the tennis source to the 2026 official rules.",
+      "All seven facts are recognizable to sports fans or school-level astronomy learners; no existing facts are duplicated."
+    ]
+  }
 }

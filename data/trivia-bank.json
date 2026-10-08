@@ -1214,20 +1214,20 @@
       "id": "duration-tennis-warm-up",
       "factKey": "duration-tennis-warm-up",
       "title": "Tennis warm-up",
-      "caption": "Maximum pre-match warm-up under the ITF Rules of Tennis, unless organizers decide otherwise.",
+      "caption": "Maximum pre-match warm-up under the 2026 ITF Rules of Tennis, unless organizers decide otherwise.",
       "explain": "The ITF Rules of Tennis set the warm-up at a maximum of five minutes unless the event organizers decide otherwise. Five minutes equals 300 seconds.",
       "type": "duration",
       "answer": 300,
       "source": {
-        "name": "International Tennis Federation Rules of Tennis",
-        "url": "https://itf.uberflip.com/i/920624-2018-rules-of-tennis/17"
+        "name": "ITF Rules of Tennis 2026 (Rule 29e)",
+        "url": "https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf"
       }
     },
     {
       "id": "duration-jupiter-rotation",
       "factKey": "duration-jupiter-rotation",
       "title": "Jupiter rotation",
-      "caption": "Approximate time Jupiter takes to rotate once, using NASA’s 9 hours 55 minutes figure.",
+      "caption": "Approximate time Jupiter takes to rotate once, using NASA’s StarChild reference.",
       "explain": "NASA’s StarChild Jupiter facts list the rotation period as 9 hours 55 minutes. Converting gives 9×3,600 + 55×60 = 35,700 seconds; this uses the source’s minute-level approximation.",
       "type": "duration",
       "answer": 35700,
@@ -1239,9 +1239,9 @@
     {
       "id": "duration-men-100m-world-record",
       "factKey": "duration-men-100m-world-record",
-      "title": "Men’s 100 m world record",
-      "caption": "Current World Athletics men’s outdoor 100 metres world-record time, rounded to tenths.",
-      "explain": "World Athletics lists Usain Bolt’s men’s 100 metres world record as 9.58 seconds. Because this game wants tenths below a minute, the submitted answer rounds to 9.6 seconds.",
+      "title": "Usain Bolt’s record sprint",
+      "caption": "Bolt’s record-setting men’s 100 m sprint at the 2009 World Championships, rounded to tenths.",
+      "explain": "World Athletics lists Usain Bolt’s record-setting 100 m sprint in Berlin in 2009 as 9.58 seconds. Rounded to tenths, the answer is 9.6 seconds.",
       "type": "duration",
       "answer": 9.6,
       "source": {
@@ -1252,22 +1252,22 @@
     {
       "id": "duration-men-50m-freestyle-record",
       "factKey": "duration-men-50m-freestyle-record",
-      "title": "Men’s 50 m freestyle record",
-      "caption": "Long-course men’s 50 m freestyle world record, rounded to tenths.",
-      "explain": "World Aquatics competition materials list the men’s 50 m freestyle world record as 20.91 seconds by César Cielo. Since the answer is below a minute, it is rounded to tenths: 20.9 seconds.",
+      "title": "McEvoy’s record swim (2026)",
+      "caption": "Cameron McEvoy’s record-setting long-course 50 m freestyle swim in March 2026, rounded to tenths.",
+      "explain": "World Aquatics reports Cameron McEvoy’s record-setting 50 m freestyle swim as 20.88 seconds in March 2026, beating César Cielo’s 20.91. Rounded to tenths, the answer is 20.9 seconds.",
       "type": "duration",
       "answer": 20.9,
       "source": {
-        "name": "World Aquatics Olympic swimming start list",
-        "url": "https://resources.fina.org/fina/document/2024/08/02/c06f39fb-5057-4098-b239-bb338a2891ca/OG2024_Swimming_ExtendedStartList_02.08.2024.pdf"
+        "name": "World Aquatics: McEvoy breaks 50 m freestyle record",
+        "url": "https://www.worldaquatics.com/news/4474806/swimming-world-record-cameron-mcevoy-breaks-iconic-50m-freestyle-world-record-cesar-cielo"
       }
     },
     {
       "id": "duration-one-mile-world-record",
       "factKey": "duration-one-mile-world-record",
-      "title": "One-mile run record",
-      "caption": "Current World Athletics men’s outdoor mile world-record time, converted to seconds.",
-      "explain": "World Athletics reports Josh Kerr’s mile world record as 3:42.66. Converting gives 3×60 + 42.66 = 222.66 seconds, rounded to 223 seconds because durations under an hour use whole seconds.",
+      "title": "Josh Kerr’s record mile (2026)",
+      "caption": "Kerr’s record-setting outdoor mile in London in July 2026, rounded to whole seconds.",
+      "explain": "World Athletics reports Josh Kerr’s London mile in July 2026 as 3:42.66, a world-record performance subject to ratification. That is 222.66 seconds, rounded to 223 seconds in the game.",
       "type": "duration",
       "answer": 223,
       "source": {
