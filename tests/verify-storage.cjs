@@ -21,6 +21,7 @@ denied=true;run("mode='daily';sessionDay='2026-10-11';deck=makeDeck(sessionDay);
 run("playerData.history=Array.from({length:1000},()=>({day:calendarDay(),game:'mix',scores:[1,2,3,4,5]}));writePlayer()");assert(run('playerData.history.length')<=720);assert(data.get('perception-player-v1').length*2<=256*1024);
 assert.equal(run("dayNumber('2026-11-2')-dayNumber('2026-11-1')"),1);
 assert.equal(run("validSavedGame({deck:[{}],results:[]})"),false);
+run("calendarDay=()=> '2030-1-1'"); // A full five-question archive is available for trivia validation.
 for(const game of ['mix','view3d','balance','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration']){
  assert(run(`(()=>{const deck=makeDeck('2026-10-7','${game}');return validSavedGame({deck,results:deck.map(q=>({guess:q.type==='proportion'?{width:q.answer,height:1}:q.answer,score:100}))});})()`),game+' can be restored');
 }

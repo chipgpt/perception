@@ -16,5 +16,5 @@ const {execFileSync}=require('child_process');
 const vectors=JSON.parse(execFileSync('python3',['-c',"import sys,json;sys.path.insert(0,'scripts');from trivia import shuffle,TYPES;print(json.dumps([shuffle(types,key) for types,key in [(TYPES,'2026-10-7|schedule-v1'),(TYPES[:-1],'2027-1-1|schedule-v1'),(TYPES[:-2],'2030-2-28|schedule-v1')]]))"],{encoding:'utf8'}));
 for(const [i,types,key] of [[0,run('GAME_TYPES'),'2026-10-7|schedule-v1'],[1,run('GAME_TYPES.slice(0,-1)'),'2027-1-1|schedule-v1'],[2,run('GAME_TYPES.slice(0,-2)'),'2030-2-28|schedule-v1']])assert.deepEqual(Array.from(run(`shuffleWith(rng(hashSeed(${JSON.stringify(key)})),${JSON.stringify(types)})`)),vectors[i]);
 const far=run("makeDeck('2030-1-1','mix')");assert(far.every(q=>!['timeline','duration'].includes(q.type)));
-assert.equal(run("makeDeck('practice:1','timeline').length"),5);
+run("calendarDay=()=> '2030-1-1'");assert.equal(run("makeDeck('practice:1','timeline').length"),5);
 console.log(`Verified ${Object.keys(schedule).length} published days: JS/Python deterministic parity, no repeated trivia, perfect scores, and safe procedural fallback.`);

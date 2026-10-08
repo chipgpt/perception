@@ -1,4 +1,13 @@
-function triviaDeck(random,type){const facts=(type==='timeline'?timelineFacts:durationFacts).slice();for(let i=facts.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[facts[i],facts[j]]=[facts[j],facts[i]];}return facts.slice(0,5).map((f,i)=>({id:type+'-'+i,type,skill:type==='timeline'?'When?':'How long?',title:f[0],answer:f[1],caption:type==='timeline'?'Place it in history.':f[2],explain:type==='timeline'?f[2]:f[3],source:type==='timeline'?f[3]:f[4],tip:type==='timeline'?'Answer: '+f[1]:'Answer: '+durationText(f[1])}));}
+function pastTriviaIds(type,before=calendarDay()){
+ const cutoff=before.split('-').map((n,i)=>i?String(Number(n)).padStart(2,'0'):n).join('-');
+ return [...new Set(Object.entries(DAILY_TRIVIA_SCHEDULE).filter(([day])=>day<cutoff).map(([,day])=>day.trivia[type]).filter(id=>id&&TRIVIA_BY_ID[id]?.type===type))];
+}
+function triviaDeck(random,type){return shuffleWith(random,pastTriviaIds(type)).slice(0,5).map(scheduledTriviaQuestion);}
+function emptyTriviaPractice(){
+ shell({type:mini,skill:mini==='timeline'?'When?':'How long?',title:'The practice archive is growing.'},'<p class="trivia-caption">Practice uses questions from past Daily Fives. There are no past questions of this type yet. Play today’s Daily Five while the archive grows.</p>','<button id="archive-daily" class="primary">Play Daily Five</button>');
+ $('roundlabel').textContent='PRACTICE';$('scoremax').textContent='';
+ $('archive-daily').addEventListener('click',()=>{mini='mix';document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b.dataset.mini===mini));start('daily');updateAside();});
+}
 // The selected answer uses exactly the precision shown by the dial.
 function durationValue(seconds){const step=seconds>=86400?8640:seconds>=3600?60:seconds>=60?1:.1;return Math.round(seconds/step)*step;}
 function durationText(seconds){seconds=durationValue(seconds);if(seconds>=86400)return pretty(seconds/86400)+' days';if(seconds>=3600){const minutes=Math.round(seconds/60);return Math.floor(minutes/60)+' h'+(minutes%60?' '+minutes%60+' min':'');}if(seconds>=60){const total=Math.round(seconds);return Math.floor(total/60)+' min'+(total%60?' '+total%60+' s':'');}return pretty(seconds)+' s';}

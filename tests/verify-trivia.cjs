@@ -3,6 +3,7 @@ const source=fs.readFileSync('src/design-options/game-themed.js','utf8').replace
 const el={addEventListener(){},classList:{toggle(){}},dataset:{}};
 const ctx=vm.createContext({document:{getElementById(){return el},addEventListener(){},querySelectorAll(){return[]}},Date,Math,Number,setTimeout,clearTimeout,performance});
 vm.runInContext(source,ctx);const run=s=>vm.runInContext(s,ctx);
+run("calendarDay=()=> '2030-1-1'");
 for(const type of ['timeline','duration']){
  const a=run(`makeDeck(rng(42),'${type}')`),b=run(`makeDeck(rng(42),'${type}')`);
  assert.equal(JSON.stringify(a),JSON.stringify(b));assert.equal(a.length,5);assert.equal(new Set(a.map(x=>x.title)).size,5);
@@ -27,6 +28,8 @@ for(const type of ['timeline','duration']){
   assert.equal(run(`scoreFor(${f[1]},{type:'${type}',answer:${f[1]}})`),100,f[0]);
  }
  const seen=new Set();for(let seed=0;seed<1000;seed++)for(const q of run(`makeDeck(rng(${seed}),'${type}')`))seen.add(q.title);
- assert.equal(seen.size,facts.length,'Every fact must be reachable');
+ const allowed=run(`pastTriviaIds('${type}').map(id=>TRIVIA_BY_ID[id].title)`);
+ assert.equal(seen.size,allowed.length,'Every past fact must be reachable');
+ assert([...seen].every(title=>allowed.includes(title)),'Unpublished trivia must not enter practice');
 }
-console.log(`Audited all ${bankCounts.timeline} timeline and ${bankCounts.duration} duration facts: unique short prompts, valid sources, supported ranges, selectable perfect answers, and reachable questions.`);
+console.log(`Audited all ${bankCounts.timeline} timeline and ${bankCounts.duration} duration facts: valid sources, selectable perfect answers, and practice restricted to published past questions.`);

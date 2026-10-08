@@ -21,7 +21,7 @@ function makeDeck(day,game=mini){
   // keep Daily five playable beyond the published horizon, deterministically.
   return shuffleWith(rng(hashSeed(key+'|schedule-v1')),GAME_TYPES.filter(type=>!['timeline','duration'].includes(type))).slice(0,5).map(type=>forGame(type)[0]);
  }
- if(game==='mix')return shuffleWith(rng(hashSeed(key+'|schedule-v1')),GAME_TYPES).slice(0,5).map(type=>forGame(type)[0]);
+ if(game==='mix')return shuffleWith(rng(hashSeed(key+'|schedule-v1')),GAME_TYPES.filter(type=>!['timeline','duration'].includes(type)||pastTriviaIds(type).length)).slice(0,5).map(type=>forGame(type)[0]);
  return forGame(game);
 }
 function generatedQuestion(type,random,round){

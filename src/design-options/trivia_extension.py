@@ -14,7 +14,6 @@ def augment(html, script):
     bank=json.loads((data/'trivia-bank.json').read_text())['facts']
     schedule=json.loads((data/'daily-trivia.json').read_text())
     trivia=Path('src/design-options/trivia-games.js').read_text()
-    end=trivia.index('function triviaDeck')
     arrays=[]
     for type in ['timeline','duration']:
         rows=[[f['title'],f['answer'],f['explain'],[f['source']['name'],f['source']['url']]] if type=='timeline' else [f['title'],f['answer'],f['caption'],f['explain'],[f['source']['name'],f['source']['url']]] for f in bank if f['type']==type]
@@ -22,7 +21,7 @@ def augment(html, script):
     data_js='const DAILY_TRIVIA_SCHEDULE='+json.dumps(schedule['days'],ensure_ascii=False)+';\nconst TRIVIA_BY_ID='+json.dumps({f['id']:f for f in bank},ensure_ascii=False)+';\n'
     # JSON is embedded in HTML script tags; escape HTML delimiters in curated text.
     data_js=(data_js+'\n'.join(arrays)+'\n').replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
-    script=script.replace("'use strict';", "'use strict';\n"+data_js+trivia[end:],1)
+    script=script.replace("'use strict';", "'use strict';\n"+data_js+trivia,1)
     html=html.replace('<button data-mini="time">Time</button>', '<button data-mini="time">Time</button><button data-mini="timeline">When?</button><button data-mini="duration">How long?</button>')
     html=html.replace('<p><strong>Time:</strong>', '<p><strong>When?</strong> Slide the timeline beneath the centre marker to choose an event’s year. The minus and plus buttons adjust by one year. <strong>How long?</strong> Turn the dial from seconds to days. Use minus, plus or arrow keys to fine tune; Shift and arrows adjust more broadly. Both award up to 100 points for closeness, with the answer and source shown after you commit.</p><p><strong>Time:</strong>')
     return html, script
