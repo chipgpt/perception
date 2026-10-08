@@ -50,5 +50,5 @@ class TriviaTests(unittest.TestCase):
         item['fact']['factKey']=self.bank['facts'][0]['factKey']
         self.assertFalse(accept_candidates([item],self.bank,{f['source']['url']},['timeline'])[0])
     def test_sources_parse_from_api_response(self):
-        self.assertEqual(source_urls({'output':[{'type':'web_search_call','action':{'sources':[{'url':'https://example.com'}]}}]}),{'https://example.com'})
+        self.assertEqual(source_urls({'output':[{'type':'web_search_call','action':{'sources':[{'url':'https://example.com'}]}}, {'type':'web_search_call','action':{'type':'open_page','url':'https://example.org/primary'}}]}),{'https://example.com','https://example.org/primary'})
 if __name__=='__main__':unittest.main()

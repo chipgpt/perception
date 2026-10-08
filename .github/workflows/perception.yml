@@ -53,11 +53,12 @@ jobs:
         run: |
           python scripts/trivia.py --check >> "$GITHUB_STEP_SUMMARY"
   deploy:
-    needs: maintain
+    needs: [maintain, replenish]
+    if: always() && needs.maintain.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      contents: read
+      contents: write
       pages: write
       id-token: write
     environment:
@@ -66,7 +67,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.maintain.outputs.sha }}
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and verify the latest approved bank
+        run: |
+          python scripts/trivia.py
+          python scripts/build-site.py
+          python scripts/check-data.py --base HEAD
+          python -m unittest discover -s tests -p 'test_*.py'
+          for test in tests/verify-*.cjs; do node "$test"; done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/daily-trivia.json public/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish independently approved trivia and daily buffer'
+            git push origin HEAD:main
+          fi
       - name: Package only the playable site
         run: python scripts/package-site.py
       - uses: actions/configure-pages@v5
@@ -81,7 +103,7 @@ jobs:
     needs: maintain
     runs-on: ubuntu-latest
     environment: github-pages
-    timeout-minutes: 12
+    timeout-minutes: 25
     permissions:
       contents: write
       pull-requests: write
@@ -100,5 +122,17 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_TRIVIA_MODEL: ${{ vars.OPENAI_TRIVIA_MODEL }}
+          OPENAI_TRIVIA_REVIEW_MODEL: ${{ vars.OPENAI_TRIVIA_REVIEW_MODEL }}
           GH_TOKEN: ${{ github.token }}
         run: python scripts/replenish.py
+      - name: Restore trusted main code before reviewing candidate data
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.maintain.outputs.sha }}
+          fetch-depth: 0
+      - name: Independently verify and merge passing questions
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_TRIVIA_REVIEW_MODEL: ${{ vars.OPENAI_TRIVIA_REVIEW_MODEL }}
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/review-trivia.py
