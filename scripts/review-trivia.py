@@ -119,7 +119,7 @@ def saved_review(commit, sha, additions, at, bank):
     """Resume only the bot's exact audited commit, without another paid fact check."""
     if commit.get('message') != 'Keep independently verified trivia and record review evidence':
         return None
-    assert all(commit.get(k, {}).get('login') == 'github-actions[bot]' for k in ('author', 'committer')), 'Audit commit was not made by the reviewer bot'
+    assert commit.get('author', {}).get('login') == 'github-actions[bot]' and commit.get('committer', {}).get('login') in ('github-actions[bot]', 'web-flow'), 'Audit commit was not made by the reviewer bot'
     parents = commit['parents']
     assert len(parents) == 1, 'Unexpected review commit ancestry'
     original = parents[0]['sha']
