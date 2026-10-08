@@ -1274,6 +1274,32 @@
         "name": "World Athletics: Kerr breaks world mile record",
         "url": "https://worldathletics.org/competitions/diamond-league/news/london-athletics-meet-2026-josh-kerr-world-mile-record"
       }
+    },
+    {
+      "id": "duration-mars-sol",
+      "factKey": "duration-mars-sol",
+      "title": "Mars sol",
+      "caption": "Approximate length of one Martian solar day, rounded to the nearest 0.1 day.",
+      "explain": "NASA gives a Martian solar day as 24 hours, 39 minutes, 35.244 seconds. Because this is at least a day, the game’s rule rounds to the nearest 0.1 day: about 1.027 Earth days becomes 1.0 day, or 86,400 seconds. Players may know this from school astronomy, Mars rover news, or the common idea that a Mars day is only slightly longer than Earth’s.",
+      "type": "duration",
+      "answer": 86400,
+      "source": {
+        "name": "NASA GISS Mars24 Technical Notes",
+        "url": "https://www.giss.nasa.gov/tools/mars24/help/notes.html"
+      }
+    },
+    {
+      "id": "duration-the-lion-king-1994",
+      "factKey": "duration-the-lion-king-1994",
+      "title": "The Lion King",
+      "caption": "Runtime of Disney’s original animated feature film.",
+      "explain": "Disney’s official movie page lists the 1994 animated The Lion King with a runtime of 1 hour 34 minutes. That converts to 94 minutes, or 5,640 seconds. This is a recognizable family-film duration: many players may have watched it, heard its songs, or know it as a major Disney classic.",
+      "type": "duration",
+      "answer": 5640,
+      "source": {
+        "name": "Disney Movies: The Lion King",
+        "url": "https://movies.disney.com/the-lion-king"
+      }
     }
   ]
 }

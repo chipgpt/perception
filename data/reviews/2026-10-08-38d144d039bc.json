@@ -1,0 +1,61 @@
+{
+  "generatedOn": "2026-10-08",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "duration-mars-sol",
+      "evidence": "NASA states that a Mars solar day has a mean period of 24 hours, 39 minutes, 35.244 seconds; rounded by the requested 0.1-day rule, that is 86,400 seconds.",
+      "familiarity": "Mars days are a common classroom and space-news topic, especially because rover missions operate on “sols.”",
+      "source": {
+        "name": "NASA GISS Mars24 Technical Notes",
+        "url": "https://www.giss.nasa.gov/tools/mars24/help/notes.html"
+      }
+    },
+    {
+      "id": "duration-the-lion-king-1994",
+      "evidence": "Disney’s page for the original animated film lists its runtime as 1 hour 34 minutes, which is 5,640 seconds.",
+      "familiarity": "A widely seen Disney classic with well-known songs, characters, and home-video/streaming presence.",
+      "source": {
+        "name": "Disney Movies: The Lion King",
+        "url": "https://movies.disney.com/the-lion-king"
+      }
+    },
+    {
+      "id": "duration-moana-2016",
+      "evidence": "Disney lists the 2016 animated Moana runtime as 1 hour 47 minutes, equal to 6,420 seconds.",
+      "familiarity": "Moana is a mainstream Disney animated musical, familiar from theaters, streaming, and its songs.",
+      "source": {
+        "name": "Disney Movies: Moana",
+        "url": "https://movies.disney.com/moana"
+      }
+    },
+    {
+      "id": "duration-encanto",
+      "evidence": "Disney lists Encanto with a runtime of 1 hour 42 minutes, which converts to 6,120 seconds.",
+      "familiarity": "Encanto is a recent widely watched Disney musical, especially recognizable through “We Don’t Talk About Bruno.”",
+      "source": {
+        "name": "Disney Movies: Encanto",
+        "url": "https://movies.disney.com/encanto"
+      }
+    },
+    {
+      "id": "duration-rugby-union-halftime-2025",
+      "evidence": "World Rugby Law 5 says half-time consists of an interval not exceeding 15 minutes, which is 900 seconds.",
+      "familiarity": "Rugby union is a major international sport, and half-time breaks are familiar from watching televised matches.",
+      "source": {
+        "name": "World Rugby Passport: Law 5 Time",
+        "url": "https://passport.world.rugby/laws-of-the-game/laws-by-number/5-time/"
+      }
+    },
+    {
+      "id": "duration-womens-floor-exercise-usag",
+      "evidence": "USA Gymnastics says the women’s floor routine is choreographed to music and lasts no more than 90 seconds.",
+      "familiarity": "Olympic gymnastics floor routines are widely watched, making a short music-backed routine length easy to estimate.",
+      "source": {
+        "name": "USA Gymnastics: Women’s Artistic Event Descriptions",
+        "url": "https://members.usagym.org/pages/gymnastics101/women/events.html"
+      }
+    }
+  ]
+}
