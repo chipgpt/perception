@@ -14,7 +14,7 @@ for(const [saved,expected]of [[null,'night-lab'],['night-lab','night-lab'],['foc
 const writes=[];vm.runInNewContext(source,{document:{documentElement:{dataset:{}},write:s=>writes.push(s)},window:{localStorage:{getItem(){throw Error('Unavailable')}}}});
 assert(writes[1].includes('night-lab.css'));
 for(const name of ['index','focus','night-lab','studio']){
- const page=fs.readFileSync(name+'.html','utf8');
+ const page=fs.readFileSync('public/'+name+'.html','utf8');
  assert(page.indexOf(source)>page.indexOf('<head>'));
  assert(page.indexOf(source)<page.indexOf('</head>'));
  assert(page.indexOf(source)<page.indexOf('function durationRound'));

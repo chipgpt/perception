@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://perception.thedanktank.com/">
-    <img src="assets/social/perception.png" alt="Perception — five daily puzzles. How sharp is your perception?" width="100%">
+    <img src="public/assets/social/perception.png" alt="Perception — five daily puzzles. How sharp is your perception?" width="100%">
   </a>
 </p>
 
@@ -58,10 +58,10 @@ Want to work on the game? Python and Node are needed for building and checks; pl
 ```sh
 python3 scripts/build-site.py
 for test in tests/verify-*.cjs; do node "$test" || exit 1; done
-python3 -m http.server 4175
+python3 -m http.server 4175 --directory public
 ```
 
-Open `http://localhost:4175/` to play your build.
+Open `http://localhost:4175/` to play your build. The complete playable site lives in `public/`; editable game sources live in `src/`.
 
 [Maintenance & daily trivia](docs/MAINTENANCE.md) · [Analytics](docs/ANALYTICS.md)
 

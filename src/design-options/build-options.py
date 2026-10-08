@@ -60,7 +60,8 @@ base+='\n@media(max-width:600px){.gamebar{gap:8px}.gamebar #roundlabel,.gamebar 
 focus+='\n.brand{text-transform:lowercase}\n'
 styles={'focus':focus,'night-lab':night}
 base=Path('src/design-options/fonts.css').read_text()+base
-out=Path('.')
+out=Path('public')
+out.mkdir(exist_ok=True)
 # Browser canvas colours follow the preview's theme; colour-memory target values stay untouched.
 themed=script.replace("function shell(q,content,controls){gamebar();","function shell(q,content,controls){$('playarea').dataset.puzzle=q.type;gamebar();")
 themed=themed.replace("'#f3f6ff'","getComputedStyle(document.documentElement).getPropertyValue('--canvas').trim()")

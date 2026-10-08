@@ -42,6 +42,6 @@ def augment_seo(html):
 
 def build_discovery_files():
     template=Path('src/design-options/about.html').read_text()
-    Path('about.html').write_text(template.replace('<!-- SEO -->',metadata(True)))
+    Path('public/about.html').write_text(template.replace('<!-- SEO -->',metadata(True)))
     for name in ['robots.txt','sitemap.xml','llms.txt']:
-        Path(name).write_text(Path('src/design-options/'+name).read_text())
+        Path('public',name).write_text(Path('src/design-options/'+name).read_text())

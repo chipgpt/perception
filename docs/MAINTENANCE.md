@@ -37,4 +37,4 @@ for test in tests/verify-*.cjs; do node "$test"; done
 
 `python scripts/trivia.py` extends the immutable buffer; `--today YYYY-MM-DD` permits isolated tests. Never delete the ledger to replenish a bank. Add new, reviewed facts instead.
 
-GitHub Pages deploys the playable site, fonts, social preview, and discovery files through the Actions workflow. CNAME and HTTPS remain configured for `perception.thedanktank.com`. Player identity, saved progress and bounded history remain in the player's browser; scheduling adds no browser storage.
+The build writes the complete playable site into `public/`. GitHub Pages publishes that directory at the domain root through the Actions workflow. CNAME and HTTPS remain configured for `perception.thedanktank.com`. Player identity, saved progress and bounded history remain in the player's browser; scheduling adds no browser storage.
