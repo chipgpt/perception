@@ -7,6 +7,7 @@ function harness({host='perception.thedanktank.com',dnt='0',configured=true,stor
  return {run,calls,scripts,listeners,store};
 }
 const h=harness();h.run('setupAnalytics()');assert.equal(h.scripts.length,1);assert.equal(h.calls.length,0);assert.equal(h.scripts[0].dataset.autoTrack,'false');assert.equal(h.scripts[0].dataset.distinctId,'existing-browser-id');h.scripts[0].load();assert.equal(h.calls.length,1);assert.equal(h.calls[0][1].url,'/');
+assert.equal(h.scripts[0].dataset.beforeSend,'perceptionAnalyticsBeforeSend');assert.equal(h.run("window.perceptionAnalyticsBeforeSend('identify',{})"),false);assert.equal(h.run("window.perceptionAnalyticsBeforeSend('performance',{})"),false);assert.equal(h.run("window.perceptionAnalyticsBeforeSend('event',{id:'existing-browser-id'}).id"),'existing-browser-id');
 h.listeners.pointerdown({type:'pointerdown',target:{closest:()=>true}});h.run('analyticsStarted();analyticsStarted()');assert.equal(h.calls.filter(c=>c[0]==='daily_started').length,1);
 h.run(`results=${JSON.stringify(['angle','time','colour','timeline','duration'].map((type,i)=>({q:{type},score:90+i})))};analyticsCompleted();analyticsCompleted()`);
 assert.equal(h.calls.length,3);assert.equal(h.calls[2][0],'daily_completed');assert.equal(h.calls[2][1].total,460);assert.equal(Object.keys(h.calls[2][1]).length,6);

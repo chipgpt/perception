@@ -59,10 +59,14 @@ function analyticsCompleted(){
 }
 function setupAnalytics(){
  if(!analyticsAllowed())return;
+ // The Cloud tracker otherwise sends an identify request on every script load.
+ // Keep its ID on event payloads, but allow only our explicit event requests.
+ window.perceptionAnalyticsBeforeSend=(type,payload)=>type==='event'?payload:false;
  const script=document.createElement('script');
  script.src=ANALYTICS_CONFIG.scriptUrl;script.defer=true;
  script.dataset.websiteId=ANALYTICS_CONFIG.websiteId;
  script.dataset.autoTrack='false';
+ script.dataset.beforeSend='perceptionAnalyticsBeforeSend';
  script.dataset.domains=ANALYTICS_CONFIG.hostname;
  script.dataset.excludeSearch='true';script.dataset.excludeHash='true';script.dataset.doNotTrack='true';
  // Reuse the existing anonymous browser identity without an extra identify request.
