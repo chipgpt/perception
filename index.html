@@ -17,7 +17,7 @@
 <footer><span>See a little sharper.</span><button id="rules">How scoring works</button></footer></main>
 <dialog id="helpdialog"><button id="closehelp" class="circle" aria-label="Close instructions">×</button><p class="eyebrow">WELCOME TO PERCEPTION</p><h2>Guess. Reveal. Get sharper.</h2><p>Mixed five picks five different puzzle types. Each daily five is repeatable for your device’s date; Practice makes a fresh mix. Pick an individual game to focus on one skill.</p><p><strong>3D view:</strong> remember the view, then drag the shape to turn it and drag the green handle around the outer ring to tilt it. <strong>Balance:</strong> move a support beneath a uniform shape. <strong>Line memory:</strong> look at a generated path for three seconds, then trace it in one stroke on the blank canvas. <strong>Perspective:</strong> place the vanishing point. <strong>Proportions:</strong> resize a rectangle to match the ratio. Each reveal shows the target. All games are silent.</p><p><strong>Colour memory:</strong> look at a swatch for two seconds, then find it on the wheel. Hue goes around the wheel; saturation increases towards the edge. Arrow keys or the keyboard controls also work.</p><p><strong>Scoring:</strong> every round is worth 100 points. We divide your error by the game’s zero-point bound, then square the remaining closeness. An error of 10% earns 81 points; 25% earns 56; 50% earns 25. Scores are rounded to whole points. Five rounds total 500 points.</p><details><summary>Zero-point bounds</summary><p>3D and angles: 180°. Balance: 50% of the shape’s width. Line memory: 20% of the canvas diagonal (100 units). Perspective: 40% of the diagonal (200 units). Time: 3 seconds early or late. Rhythm and proportions: 1.5 times or two-thirds of the target. Colour: straight-line distance of one wheel radius. When?: 50 years early or late. How long?: four times or one-quarter of the target duration.</p></details><p><strong>Rhythm:</strong> watch five silent flashes, then tap five beats at the same pace. <strong>Angles:</strong> rotate a line to the target angle. Both reward closeness.</p><p><strong>When?</strong> Slide the timeline beneath the centre marker to choose an event’s year. The minus and plus buttons adjust by one year. <strong>How long?</strong> Turn the dial from seconds to days. Use minus, plus or arrow keys to fine tune; Shift and arrows adjust more broadly. Both award up to 100 points for closeness, with the answer and source shown after you commit. Daily five uses each trivia fact once; individual trivia modes are practice and may repeat.</p><p><strong>Time:</strong> Start, wait, Stop. Points fall with your timing error using the same curve as every other game.</p><p>Switching away resets an active memory flash or timer.</p><button id="gotit" class="primary">Let’s play</button></dialog><script>'use strict';
 const ANALYTICS_CONFIG={"websiteId": "87a5004f-6e63-4197-8776-a86e6bfb4279", "scriptUrl": "https://cloud.umami.is/script.js", "hostname": "perception.thedanktank.com"};
-// Only first-attempt Daily Five play is measured. Configuration is public.
+// First-attempt Daily Five play and one daily share click are measured.
 const ANALYTICS_STORAGE_KEY='perception-metrics-v1';
 let analyticsReady=false,analyticsQueue=[],analyticsLedger={};
 function analyticsAllowed(){return !!ANALYTICS_CONFIG.websiteId&&location.hostname===ANALYTICS_CONFIG.hostname&&navigator.doNotTrack!=='1';}
@@ -28,11 +28,11 @@ function analyticsClaim(day,event){
   const stored=text.length<=4096?JSON.parse(text):{};
   if(stored&&typeof stored==='object'&&!Array.isArray(stored))for(const [day,events]of Object.entries(stored)){
    if(!/^\d{4}-\d{1,2}-\d{1,2}$/.test(day)||!Array.isArray(events))continue;
-   analyticsLedger[day]=[...new Set([...(analyticsLedger[day]||[]),...events.filter(e=>['visit','start','complete'].includes(e))])];
+   analyticsLedger[day]=[...new Set([...(analyticsLedger[day]||[]),...events.filter(e=>['visit','start','complete','share'].includes(e))])];
   }
  }catch{}
  if(analyticsLedger[day]?.includes(event))return false;
- const previous=Array.isArray(analyticsLedger[day])?analyticsLedger[day].filter(e=>['visit','start','complete'].includes(e)):[];
+ const previous=Array.isArray(analyticsLedger[day])?analyticsLedger[day].filter(e=>['visit','start','complete','share'].includes(e)):[];
  analyticsLedger[day]=[...previous,event];
  // A fixed-size ledger survives reloads and theme switches without growing history.
  analyticsLedger=Object.fromEntries(Object.entries(analyticsLedger).filter(([d])=>/^\d{4}-\d{1,2}-\d{1,2}$/.test(d)).sort(([a],[b])=>dayNumber(b)-dayNumber(a)).slice(0,7));
@@ -41,7 +41,7 @@ function analyticsClaim(day,event){
 }
 function analyticsSend(name,data){
  if(!analyticsAllowed())return;
- if(!analyticsReady){if(analyticsQueue.length<3)analyticsQueue.push([name,data]);return;}
+ if(!analyticsReady){if(analyticsQueue.length<4)analyticsQueue.push([name,data]);return;}
  try{
   const sent=name?window.umami.track(name,data):window.umami.track(p=>({...p,url:'/',title:'Perception'}));
   if(sent&&typeof sent.catch==='function')sent.catch(()=>{});
@@ -57,6 +57,12 @@ function analyticsCompleted(){
  const data={total:results.reduce((sum,r)=>sum+r.score,0)};
  for(const r of results)data[r.q.type]=r.score;
  analyticsSend('daily_completed',data);
+}
+function analyticsShareClicked(){
+ if(!analyticsAllowed())return;
+ // Sharing practice or an older saved game also helps distribution. Count the
+ // click's calendar day, independently of the puzzle's date and game mode.
+ if(analyticsClaim(calendarDay(),'share'))analyticsSend('results_share_clicked');
 }
 function setupAnalytics(){
  if(!analyticsAllowed())return;
@@ -232,6 +238,7 @@ function bindShareResults(){
  const button=$('share-results'),status=$('share-status'),fallback=$('share-fallback');
  const text=shareResultsText(results,sessionDay,mini,mode==='daily'&&!review);
  button.addEventListener('click',async()=>{
+  analyticsShareClicked();
   try{
    await navigator.clipboard.writeText(text);
    button.textContent='Copied!';status.textContent='Results copied. Paste them wherever you like.';fallback.hidden=true;

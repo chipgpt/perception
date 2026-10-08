@@ -15,18 +15,21 @@ requests are sent:
 | Pageview | First visit in a browser on a device-calendar day | None |
 | `daily_started` | First puzzle interaction in Daily Five | None |
 | `daily_completed` | Fifth answer committed in Daily Five | `total`, plus one score keyed by each of the five puzzle types |
+| `results_share_clicked` | First Share results click per browser per calendar day, in any game mode | None |
 
-Individual mini games, practice and retries do not send playing events. Controls,
-rounds, share clicks, theme changes, timing and performance are not tracked.
+Individual mini games, practice and retries do not send playing events. Their
+share clicks count toward the same single daily share event. Controls, rounds,
+theme changes, timing and performance are not tracked. Sharing measures intent
+(button click), including clipboard fallback, rather than proving an external post.
 Opening a completed saved game does not emit completion. Theme switches and
 reloads do not emit duplicate daily requests. Visits are consequently *browser
 days*, rather than every page load. Use event counts to compare starts and
 completions. Use completion property breakdowns to inspect total and per-type
 scores. This minimal schema cannot show abandonment by round or time per puzzle.
 
-The browser ledger keeps only seven days of three flags, capped on read at 4 KB.
+The browser ledger keeps only seven days of four flags, capped on read at 4 KB.
 No growing event backlog is stored. Tracking failures never stop play. At most
-three requests are held in memory while the script loads, with no retries or
+four requests are held in memory while the script loads, with no retries or
 historical uploads. A blocked or failed request can therefore be undercounted.
 Storage clearing, unavailable storage across reloads and simultaneous tabs can
 also affect deduplication; these are approximate analytics, not authoritative
@@ -35,7 +38,8 @@ player records.
 Under Umami's current billing, each request and each custom property consumes a
 quota unit. A complete daily play uses nine units: one visit, one start, one
 completion, six score properties. An abandoned play uses at most two units, and
-a non-playing visit uses one. Hobby's 100,000 monthly units would support roughly
+a non-playing visit uses one. Sharing adds at most one unit per browser per day,
+making a completed-and-shared daily play ten units. Hobby's 100,000 monthly units would support roughly
 11,000 complete daily plays with no other traffic; budget below that to leave
 room for other visits. The site does not enforce an account-wide quota: check
 Umami's usage dashboard, especially if this account tracks other websites.

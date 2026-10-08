@@ -1,4 +1,4 @@
-// Only first-attempt Daily Five play is measured. Configuration is public.
+// First-attempt Daily Five play and one daily share click are measured.
 const ANALYTICS_STORAGE_KEY='perception-metrics-v1';
 let analyticsReady=false,analyticsQueue=[],analyticsLedger={};
 function analyticsAllowed(){return !!ANALYTICS_CONFIG.websiteId&&location.hostname===ANALYTICS_CONFIG.hostname&&navigator.doNotTrack!=='1';}
@@ -9,11 +9,11 @@ function analyticsClaim(day,event){
   const stored=text.length<=4096?JSON.parse(text):{};
   if(stored&&typeof stored==='object'&&!Array.isArray(stored))for(const [day,events]of Object.entries(stored)){
    if(!/^\d{4}-\d{1,2}-\d{1,2}$/.test(day)||!Array.isArray(events))continue;
-   analyticsLedger[day]=[...new Set([...(analyticsLedger[day]||[]),...events.filter(e=>['visit','start','complete'].includes(e))])];
+   analyticsLedger[day]=[...new Set([...(analyticsLedger[day]||[]),...events.filter(e=>['visit','start','complete','share'].includes(e))])];
   }
  }catch{}
  if(analyticsLedger[day]?.includes(event))return false;
- const previous=Array.isArray(analyticsLedger[day])?analyticsLedger[day].filter(e=>['visit','start','complete'].includes(e)):[];
+ const previous=Array.isArray(analyticsLedger[day])?analyticsLedger[day].filter(e=>['visit','start','complete','share'].includes(e)):[];
  analyticsLedger[day]=[...previous,event];
  // A fixed-size ledger survives reloads and theme switches without growing history.
  analyticsLedger=Object.fromEntries(Object.entries(analyticsLedger).filter(([d])=>/^\d{4}-\d{1,2}-\d{1,2}$/.test(d)).sort(([a],[b])=>dayNumber(b)-dayNumber(a)).slice(0,7));
@@ -22,7 +22,7 @@ function analyticsClaim(day,event){
 }
 function analyticsSend(name,data){
  if(!analyticsAllowed())return;
- if(!analyticsReady){if(analyticsQueue.length<3)analyticsQueue.push([name,data]);return;}
+ if(!analyticsReady){if(analyticsQueue.length<4)analyticsQueue.push([name,data]);return;}
  try{
   const sent=name?window.umami.track(name,data):window.umami.track(p=>({...p,url:'/',title:'Perception'}));
   if(sent&&typeof sent.catch==='function')sent.catch(()=>{});
@@ -38,6 +38,12 @@ function analyticsCompleted(){
  const data={total:results.reduce((sum,r)=>sum+r.score,0)};
  for(const r of results)data[r.q.type]=r.score;
  analyticsSend('daily_completed',data);
+}
+function analyticsShareClicked(){
+ if(!analyticsAllowed())return;
+ // Sharing practice or an older saved game also helps distribution. Count the
+ // click's calendar day, independently of the puzzle's date and game mode.
+ if(analyticsClaim(calendarDay(),'share'))analyticsSend('results_share_clicked');
 }
 function setupAnalytics(){
  if(!analyticsAllowed())return;

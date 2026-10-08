@@ -11,6 +11,7 @@ function bindShareResults(){
  const button=$('share-results'),status=$('share-status'),fallback=$('share-fallback');
  const text=shareResultsText(results,sessionDay,mini,mode==='daily'&&!review);
  button.addEventListener('click',async()=>{
+  analyticsShareClicked();
   try{
    await navigator.clipboard.writeText(text);
    button.textContent='Copied!';status.textContent='Results copied. Paste them wherever you like.';fallback.hidden=true;
