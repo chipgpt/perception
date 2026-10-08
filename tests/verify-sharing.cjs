@@ -5,7 +5,7 @@ const ctx=vm.createContext({document:{getElementById(){return el},addEventListen
 vm.runInContext(source,ctx);const run=s=>vm.runInContext(s,ctx);
 const rounds=[{q:{type:'angle',skill:'Angles',title:'SECRET',answer:118},score:96},{q:{type:'duration',skill:'How long?',title:'Soccer',answer:5400},score:100}];
 const text=run(`shareResultsText(${JSON.stringify(rounds)},'2026-10-7')`);
-assert(text.includes('October 7, 2026'));assert(text.includes('Daily five'));assert(text.includes('📐 96'));assert(text.includes('⏳ 100'));assert(text.includes('Score: 196/200'));assert(text.endsWith('https://perception.thedanktank.com/'));
+assert(!text.includes('  '),'Share text must use single spaces');assert(text.includes('October 7, 2026'));assert(text.includes('Daily five'));assert(text.includes('📐 96'));assert(text.includes('⏳ 100'));assert(text.includes('Score: 196/200'));assert(text.endsWith('https://perception.thedanktank.com/'));
 for(const spoiler of ['SECRET','118','Soccer','5400'])assert(!text.includes(spoiler));
 assert(run(`shareResultsText(${JSON.stringify(rounds)},'2026-10-7','angle',false)`).includes('Practice Angles'));
 assert(source.includes("makeDeck(mode==='daily'?sessionDay:"));

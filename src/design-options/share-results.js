@@ -5,7 +5,7 @@ function shareResultsText(rounds,day,game='mix',daily=true){
  const icons={view3d:'🧊',balance:'⚖️',motion:'✍️',perspective:'👁️',proportion:'▭',rhythm:'🥁',angle:'📐',colour:'🎨',time:'⏱️',timeline:'🗓️',duration:'⏳'};
  const gameLabel=game==='mix'?'five':rounds[0]?.q.skill||'game';
  const total=rounds.reduce((sum,r)=>sum+r.score,0);
- return `Perception · ${dateLabel}\n${daily?'Daily':'Practice'} ${gameLabel}\n${rounds.map(r=>(icons[r.q.type]||'•')+' '+r.score).join('  ')}\nScore: ${total}/${rounds.length*100}\nhttps://perception.thedanktank.com/`;
+ return `Perception · ${dateLabel}\n${daily?'Daily':'Practice'} ${gameLabel}\n${rounds.map(r=>(icons[r.q.type]||'•')+' '+r.score).join(' ')}\nScore: ${total}/${rounds.length*100}\nhttps://perception.thedanktank.com/`;
 }
 function bindShareResults(){
  const button=$('share-results'),status=$('share-status'),fallback=$('share-fallback');

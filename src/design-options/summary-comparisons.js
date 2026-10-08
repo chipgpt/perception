@@ -1,10 +1,11 @@
 function captureSummaryComparison(result){
  const ids={view3d:'view-canvas',balance:'balance-canvas',motion:'trace-canvas',perspective:'perspective-canvas',proportion:'proportion-canvas',angle:'angle-dial',colour:'wheel'};
  const canvas=$(ids[result.q.type]);
- if(canvas)result.comparisonImage=canvas.toDataURL('image/png');
+ if(canvas&&result.q.type!=='colour')result.comparisonImage=canvas.toDataURL('image/png');
 }
 function summaryComparison(result){
  const {q,guess}=result;
+ if(q.type==='colour')return restoredComparison(result);
  if(result.comparisonImage)return `<img class="result-comparison-image" src="${result.comparisonImage}" alt="Your answer and the target overlaid for ${escapeHTML(q.skill)}" loading="lazy">`;
  if(['view3d','balance','motion','perspective','proportion','angle','colour'].includes(q.type))return restoredComparison(result);
  // Numeric puzzles use two labelled marks on the same scale.
