@@ -702,6 +702,16 @@
       "trivia": {
         "duration": "duration-wright-brothers-first-flight"
       }
+    },
+    "2026-12-06": {
+      "types": [
+        "time",
+        "view3d",
+        "perspective",
+        "rhythm",
+        "proportion"
+      ],
+      "trivia": {}
     }
   },
   "used": {
