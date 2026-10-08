@@ -1,0 +1,106 @@
+{
+  "generatedOn": "2026-10-08",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "duration-soccer-half-time",
+      "evidence": "The consulted IFAB Law 7 page states that half-time may not exceed 15 minutes.",
+      "familiarity": "Soccer is one of the world’s most familiar sports, and half-time is part of watching or playing it.",
+      "source": {
+        "name": "The IFAB — Law 7: The Duration of the Match",
+        "url": "https://backup.theifab.com/laws/latest/the-duration-of-the-match/"
+      }
+    },
+    {
+      "id": "duration-soccer-extra-time-drinks-break",
+      "evidence": "The consulted IFAB Law 7 page says the extra-time interval drinks break should not exceed one minute.",
+      "familiarity": "Extra time is common in knockout soccer matches, including major tournaments many casual fans watch.",
+      "source": {
+        "name": "The IFAB — Law 7: The Duration of the Match",
+        "url": "https://backup.theifab.com/laws/latest/the-duration-of-the-match/"
+      }
+    },
+    {
+      "id": "duration-mlb-pitch-timer-empty-bases",
+      "evidence": "The consulted MLB glossary page gives 15 seconds for the pitch timer with the bases empty.",
+      "familiarity": "Baseball fans have heard about the pitch clock because it changed the pace of MLB games.",
+      "source": {
+        "name": "MLB — Pitch Timer Glossary",
+        "url": "https://www.mlb.com/glossary/rules/pitch-timer?msockid=3094d1df2b7664221870c7a12ab665df"
+      }
+    },
+    {
+      "id": "duration-mlb-between-batters-timer",
+      "evidence": "The consulted MLB glossary page states that MLB uses a 30-second timer between batters.",
+      "familiarity": "Anyone who watches modern MLB broadcasts may notice the visible game clocks.",
+      "source": {
+        "name": "MLB — Pitch Timer Glossary",
+        "url": "https://www.mlb.com/glossary/rules/pitch-timer?msockid=3094d1df2b7664221870c7a12ab665df"
+      }
+    },
+    {
+      "id": "duration-tennis-between-points",
+      "evidence": "The consulted ITF rules PDF says players are allowed at most 25 seconds between points.",
+      "familiarity": "Tennis is widely watched, and serve-clock warnings are visible at many professional matches.",
+      "source": {
+        "name": "ITF — 2025 Rules of Tennis",
+        "url": "https://www.itftennis.com/media/7221/2025-rules-of-tennis-english.pdf"
+      }
+    },
+    {
+      "id": "duration-tennis-changeover",
+      "evidence": "The consulted ITF rules PDF gives 90 seconds as the maximum end-of-game changeover time.",
+      "familiarity": "Changeovers are a visible part of televised tennis, with players sitting, drinking water and toweling off.",
+      "source": {
+        "name": "ITF — 2025 Rules of Tennis",
+        "url": "https://www.itftennis.com/media/7221/2025-rules-of-tennis-english.pdf"
+      }
+    },
+    {
+      "id": "duration-volleyball-time-out",
+      "evidence": "The consulted FIVB rules material states that requested volleyball time-outs last 30 seconds.",
+      "familiarity": "Volleyball is common in schools, Olympics viewing and recreational leagues; time-outs are part of the game rhythm.",
+      "source": {
+        "name": "FIVB — Official Volleyball Rules page",
+        "url": "https://www.fivb.com/volleyball/the-game/official-volleyball-rules/"
+      }
+    },
+    {
+      "id": "duration-beach-volleyball-time-out",
+      "evidence": "The consulted FIVB beach volleyball rules PDF says requested time-outs are 30 seconds long.",
+      "familiarity": "Beach volleyball is a recognizable Olympic and summer recreation sport, and time-outs appear in broadcasts.",
+      "source": {
+        "name": "FIVB — Beach Volleyball Rules 2021–2024",
+        "url": "https://www.fivb.com/wp-content/uploads/2024/03/FIVB-Beach_Volleyball_Rules_2021_2024-EN.pdf"
+      }
+    },
+    {
+      "id": "duration-curling-team-time-out",
+      "evidence": "The consulted World Curling rules PDF describes each team time-out as 60 seconds, with separate event-determined travel time.",
+      "familiarity": "Curling is familiar from the Winter Olympics, where teams often pause to discuss strategy.",
+      "source": {
+        "name": "World Curling — Rules of Curling change log 2024",
+        "url": "https://worldcurling.org/wp-content/uploads/2024/08/Rule-2024_Change-log_01082024.pdf"
+      }
+    },
+    {
+      "id": "duration-f1-sprint-qualifying-sq1",
+      "evidence": "The consulted FIA regulations PDF defines SQ1 as the first 12 minutes of Sprint Qualifying.",
+      "familiarity": "Formula 1 qualifying formats are discussed often in race weekends, highlights and sports coverage.",
+      "source": {
+        "name": "FIA — 2026 F1 Regulations, Section B Sporting",
+        "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_06_-_2026-04-28.pdf"
+      }
+    },
+    {
+      "id": "duration-the-lion-king-1994",
+      "evidence": "The consulted Disney page lists the 1994 film’s runtime as 1 hour 34 minutes.",
+      "familiarity": "The Lion King is a widely known Disney film many people encountered in childhood, school music, streaming or family viewing.",
+      "source": {
+        "name": "Disney Movies — The Lion King",
+        "url": "https://movies.disney.com/the-lion-king"
+      }
+    }
+  ]
+}

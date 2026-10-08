@@ -1274,6 +1274,149 @@
         "name": "World Athletics: Kerr breaks world mile record",
         "url": "https://worldathletics.org/competitions/diamond-league/news/london-athletics-meet-2026-josh-kerr-world-mile-record"
       }
+    },
+    {
+      "id": "duration-soccer-half-time",
+      "factKey": "duration-soccer-half-time",
+      "title": "Soccer half-time",
+      "caption": "Maximum regulation interval between the two halves in association football.",
+      "explain": "IFAB Law 7 says players are entitled to a half-time interval not exceeding 15 minutes. Answer is the maximum regulation interval: 15 × 60 = 900 seconds.",
+      "type": "duration",
+      "answer": 900,
+      "source": {
+        "name": "The IFAB — Law 7: The Duration of the Match",
+        "url": "https://backup.theifab.com/laws/latest/the-duration-of-the-match/"
+      }
+    },
+    {
+      "id": "duration-soccer-extra-time-drinks-break",
+      "factKey": "duration-soccer-extra-time-drinks-break",
+      "title": "Soccer extra-time drinks break",
+      "caption": "Maximum short drinks break at the interval of extra time in association football.",
+      "explain": "IFAB Law 7 allows a short drinks break at the interval of extra time that should not exceed one minute. Answer is the maximum stated duration: 60 seconds.",
+      "type": "duration",
+      "answer": 60,
+      "source": {
+        "name": "The IFAB — Law 7: The Duration of the Match",
+        "url": "https://backup.theifab.com/laws/latest/the-duration-of-the-match/"
+      }
+    },
+    {
+      "id": "duration-mlb-pitch-timer-empty-bases",
+      "factKey": "duration-mlb-pitch-timer-empty-bases",
+      "title": "MLB pitch timer, bases empty",
+      "caption": "Regular-season pitch timer limit when no runners are on base.",
+      "explain": "MLB’s pitch timer glossary says the timer between pitches is 15 seconds with the bases empty. Answer is exact as stated: 15 seconds.",
+      "type": "duration",
+      "answer": 15,
+      "source": {
+        "name": "MLB — Pitch Timer Glossary",
+        "url": "https://www.mlb.com/glossary/rules/pitch-timer?msockid=3094d1df2b7664221870c7a12ab665df"
+      }
+    },
+    {
+      "id": "duration-mlb-between-batters-timer",
+      "factKey": "duration-mlb-between-batters-timer",
+      "title": "MLB between-batters timer",
+      "caption": "Timer used between batters under MLB’s pitch-timer rules.",
+      "explain": "MLB’s pitch timer glossary says a 30-second timer between batters was implemented in 2023. Answer is exact as stated: 30 seconds.",
+      "type": "duration",
+      "answer": 30,
+      "source": {
+        "name": "MLB — Pitch Timer Glossary",
+        "url": "https://www.mlb.com/glossary/rules/pitch-timer?msockid=3094d1df2b7664221870c7a12ab665df"
+      }
+    },
+    {
+      "id": "duration-tennis-between-points",
+      "factKey": "duration-tennis-between-points",
+      "title": "Tennis between points",
+      "caption": "Maximum time allowed between points under the Rules of Tennis.",
+      "explain": "The ITF Rules of Tennis state that between points, a maximum of 25 seconds is allowed. Answer is exact as stated: 25 seconds.",
+      "type": "duration",
+      "answer": 25,
+      "source": {
+        "name": "ITF — 2025 Rules of Tennis",
+        "url": "https://www.itftennis.com/media/7221/2025-rules-of-tennis-english.pdf"
+      }
+    },
+    {
+      "id": "duration-tennis-changeover",
+      "factKey": "duration-tennis-changeover",
+      "title": "Tennis changeover",
+      "caption": "Maximum rest when players change ends at the end of a game.",
+      "explain": "The ITF Rules of Tennis say that when players change ends at the end of a game, a maximum of 90 seconds is allowed, except after the first game of a set and during tie-breaks. Answer is exact for that scoped changeover: 90 seconds.",
+      "type": "duration",
+      "answer": 90,
+      "source": {
+        "name": "ITF — 2025 Rules of Tennis",
+        "url": "https://www.itftennis.com/media/7221/2025-rules-of-tennis-english.pdf"
+      }
+    },
+    {
+      "id": "duration-volleyball-time-out",
+      "factKey": "duration-volleyball-time-out",
+      "title": "Volleyball time-out",
+      "caption": "Length of a requested team time-out in standard volleyball rules.",
+      "explain": "FIVB material on volleyball rules says all requested time-outs last 30 seconds. Answer is exact as stated: 30 seconds.",
+      "type": "duration",
+      "answer": 30,
+      "source": {
+        "name": "FIVB — Official Volleyball Rules page",
+        "url": "https://www.fivb.com/volleyball/the-game/official-volleyball-rules/"
+      }
+    },
+    {
+      "id": "duration-beach-volleyball-time-out",
+      "factKey": "duration-beach-volleyball-time-out",
+      "title": "Beach volleyball time-out",
+      "caption": "Length of a requested team time-out in FIVB beach volleyball.",
+      "explain": "The FIVB Beach Volleyball Rules state that all requested time-outs last 30 seconds. Answer is exact as stated: 30 seconds.",
+      "type": "duration",
+      "answer": 30,
+      "source": {
+        "name": "FIVB — Beach Volleyball Rules 2021–2024",
+        "url": "https://www.fivb.com/wp-content/uploads/2024/03/FIVB-Beach_Volleyball_Rules_2021_2024-EN.pdf"
+      }
+    },
+    {
+      "id": "duration-curling-team-time-out",
+      "factKey": "duration-curling-team-time-out",
+      "title": "Curling team time-out",
+      "caption": "Core team time-out duration at World Curling events, excluding travel time.",
+      "explain": "World Curling rules say each team may call one 60-second team time-out, and the procedure includes travel time plus those 60 seconds. Answer uses the actual time-out portion only: 60 seconds.",
+      "type": "duration",
+      "answer": 60,
+      "source": {
+        "name": "World Curling — Rules of Curling change log 2024",
+        "url": "https://worldcurling.org/wp-content/uploads/2024/08/Rule-2024_Change-log_01082024.pdf"
+      }
+    },
+    {
+      "id": "duration-f1-sprint-qualifying-sq1",
+      "factKey": "duration-f1-sprint-qualifying-sq1",
+      "title": "F1 Sprint Qualifying 1",
+      "caption": "Duration of the first Sprint Qualifying segment under FIA Formula 1 rules.",
+      "explain": "The FIA 2026 Formula 1 Sporting Regulations state that Sprint Qualifying 1 runs for the first 12 minutes of the session. Answer is exact as stated: 12 × 60 = 720 seconds.",
+      "type": "duration",
+      "answer": 720,
+      "source": {
+        "name": "FIA — 2026 F1 Regulations, Section B Sporting",
+        "url": "https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_b_sporting_-_iss_06_-_2026-04-28.pdf"
+      }
+    },
+    {
+      "id": "duration-the-lion-king-1994",
+      "factKey": "duration-the-lion-king-1994",
+      "title": "The Lion King (1994)",
+      "caption": "Official listed runtime of Disney’s animated feature.",
+      "explain": "Disney’s movie page lists The Lion King with a runtime of 1 hour 34 minutes. Answer is exact from the studio listing: 94 minutes × 60 = 5,640 seconds.",
+      "type": "duration",
+      "answer": 5640,
+      "source": {
+        "name": "Disney Movies — The Lion King",
+        "url": "https://movies.disney.com/the-lion-king"
+      }
     }
   ]
 }
