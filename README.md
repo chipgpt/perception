@@ -16,8 +16,8 @@ The no-repeat guarantee covers trivia in **Daily five** from the schedule's star
 
 Scheduled/manual runs additionally research candidates when supply is low. To enable research:
 
-1. Open [repository Actions secrets](https://github.com/chipgpt/perception/settings/secrets/actions).
-2. Add a repository secret named **OPENAI_API_KEY**, containing an OpenAI API key with Responses API access and billing enabled. This is separate from ChatGPT billing. Do not put the key in source files.
+1. Open [github-pages environment secrets](https://github.com/chipgpt/perception/settings/environments).
+2. Open **github-pages** and add an environment secret named **OPENAI_API_KEY**, containing an OpenAI API key with Responses API access and billing enabled. This is separate from ChatGPT billing. Do not put the key in source files.
 3. Run **Maintain and publish Perception** manually to test it; subsequent weekly runs use the secret automatically.
 
 The optional repository variable `OPENAI_TRIVIA_MODEL` overrides the default `gpt-5.5`. Each eligible run makes at most **one API request**, with at most 8 hosted tool calls and 6,000 output tokens. It proposes up to 12 questions, only for depleted banks, and does not retry uncertain requests. These limits bound work, not an exact dollar amount; configure the API project's spending controls separately.

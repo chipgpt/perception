@@ -1,0 +1,104 @@
+name: Maintain and publish Perception
+on:
+  schedule:
+    - cron: '23 7 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['data/**', 'scripts/**', 'src/**', 'tests/**', '.github/workflows/**']
+permissions:
+  contents: read
+concurrency:
+  group: perception-maintenance
+  cancel-in-progress: false
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.save.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify scheduler and research guards
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Extend immutable assignments to sixty days ahead
+        run: python scripts/trivia.py
+      - name: Build site and verify games
+        run: |
+          python scripts/build-site.py
+          python scripts/check-data.py
+          for test in tests/verify-*.cjs; do node "$test"; done
+      - name: Save schedule and generated site
+        id: save
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/daily-trivia.json index.html focus.html night-lab.html studio.html focus.css night-lab.css studio.css
+          if ! git diff --cached --quiet; then
+            git commit -m 'Maintain daily trivia buffer and build site'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Publish supply report
+        run: |
+          python scripts/trivia.py --check >> "$GITHUB_STEP_SUMMARY"
+  deploy:
+    needs: maintain
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.maintain.outputs.sha }}
+      - name: Package only the playable site
+        run: python scripts/package-site.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+  replenish:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: maintain
+    runs-on: ubuntu-latest
+    environment: github-pages
+    timeout-minutes: 12
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.maintain.outputs.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Research new questions when supply is low
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_TRIVIA_MODEL: ${{ vars.OPENAI_TRIVIA_MODEL }}
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/replenish.py

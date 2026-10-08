@@ -61,7 +61,7 @@ def main():
         if summary:
             with open(summary,'a') as out:out.write(text+'\n')
     if not needed:report('Trivia supply is healthy; no API request needed.');return
-    if not os.environ.get('OPENAI_API_KEY'):report('Unused trivia is low. Add the OPENAI_API_KEY repository secret to enable research. Scheduling continues without repeating used facts.');return
+    if not os.environ.get('OPENAI_API_KEY'):report('Unused trivia is low. Add the OPENAI_API_KEY secret in the github-pages environment to enable research. Scheduling continues without repeating used facts.');return
     repo=os.environ['GITHUB_REPOSITORY'];branch='auto/trivia-replenishment'
     existing=json.loads(github('pr','list','--repo',repo,'--head',branch,'--state','open','--json','url'))
     if existing:report('A trivia review PR is already open; skipping another paid research request: '+existing[0]['url']);return
