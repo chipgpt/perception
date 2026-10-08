@@ -7,7 +7,7 @@ from trivia_extension import augment
 html,script=augment(html,script)
 from generated_extension import augment_generated
 script=augment_generated(script)
-script=script.replace("function start(nextmode='daily',retryDeck){", "function start(nextmode='daily',retryDeck){sessionDay=calendarDay();if(mini!=='mix')nextmode='practice';$('practice-menu').open=false;")
+script=script.replace("function start(nextmode='daily'){", "function start(nextmode='daily'){sessionDay=calendarDay();if(mini!=='mix')nextmode='practice';$('practice-menu').open=false;")
 script=script.replace("$('daily').addEventListener('click',()=>start('daily'));", "$('daily').addEventListener('click',()=>{mini='mix';document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',false));start('daily');updateAside();});")
 script=script.replace("start(mode);updateAside();", "start('practice');updateAside();")
 script=script.replace("makeDeck(mode==='daily'?calendarDay():", "makeDeck(mode==='daily'?sessionDay:")
@@ -18,7 +18,6 @@ script=script.replace(":'Fresh mix';render();}", ":['timeline','duration'].inclu
 script=script.replace('const q=deck[index];\n', 'const q=deck[index];if(!q){emptyTriviaPractice();return;}\n',1)
 script=script.replace('"Five rounds. A little better feel."', '`${results.length} ${results.length===1?"round":"rounds"}. A little better feel.`')
 script=script.replace('>Play a fresh mix</button>', ">${mini==='mix'?'Play a fresh mix':'Practice again'}</button>")
-script=script.replace('>Retry my toughest three</button>', ">${results.length===1?'Retry this round':results.length<3?'Retry these rounds':'Retry my toughest three'}</button>")
 script=script.replace("'use strict';", "'use strict';\n"+Path('src/design-options/share-results.js').read_text(),1)
 script=script.replace('<div class="summary-actions">', '<div class="share-panel"><button id="share-results" class="primary">Share results</button><p id="share-status" class="share-status" role="status" aria-live="polite"></p><textarea id="share-fallback" class="share-fallback" aria-label="Results to copy" readonly hidden></textarea></div><div class="summary-actions">')
 script=script.replace(";$('again').addEventListener", ";bindShareResults();$('again').addEventListener")
