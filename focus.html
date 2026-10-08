@@ -4,9 +4,10 @@
  let theme='night-lab';
  try{const saved=window.localStorage.getItem('perception-theme');if(themes.includes(saved))theme=saved;else if(saved==='studio')window.localStorage.setItem('perception-theme','night-lab');}catch(_){}
  document.documentElement.dataset.theme=theme;
- const stylesheet=document.createElement('link');
- stylesheet.id='theme-stylesheet';stylesheet.rel='stylesheet';stylesheet.href=theme+'.css';
- document.head.appendChild(stylesheet);
+ // This inline head script runs during HTML parsing. A parser-inserted link
+ // blocks first paint and the later game script until the chosen CSS is ready.
+ // A dynamically appended link does neither, leaving first-draw canvases black.
+ document.write('<link id="theme-stylesheet" rel="stylesheet" href="'+theme+'.css">');
 })();
 </script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#2448ed"><meta name="description" content="Explore 3D views, balance, motion, perspective, proportions, rhythm, typography, colour, and timing."><title>Perception</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232448ed'/%3E%3Cpath d='M17 33l10 10 21-24' stroke='%23e5ff57' stroke-width='7' fill='none'/%3E%3C/svg%3E"></head>
 <body><header><a class="brand" href="./" aria-label="Perception home"><span class="brandmark">p.</span>PERCEPTION</a><div class="header-right"><span class="tagline">A daily perception game</span><button id="help" class="circle" aria-label="How to play">?</button></div></header>
