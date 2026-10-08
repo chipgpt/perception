@@ -26,5 +26,8 @@ const failed=harness();failed.run('setupAnalytics();analyticsStarted()');failed.
 const queuedShare=harness();queuedShare.run('setupAnalytics();analyticsStarted();results='+JSON.stringify(['angle','time','colour','timeline','duration'].map(type=>({q:{type},score:80})))+';analyticsCompleted();analyticsShareClicked()');queuedShare.scripts[0].load();assert.equal(queuedShare.calls.length,4,'Share must survive loading alongside the other three requests');
 const retention=harness();for(let d=1;d<=30;d++)retention.run(`analyticsClaim('2026-10-${d}','visit')`);assert.equal(Object.keys(JSON.parse(retention.store.get('perception-metrics-v1'))).length,7);
 const generated=fs.readFileSync('src/design-options/game-themed.js','utf8');assert(generated.includes('analyticsStarted();results.push({q,guess:value,score});saveDailyGame();analyticsCompleted();'));
-assert(generated.includes("button.addEventListener('click',async()=>{\n  analyticsShareClicked();\n  try{"),'Share intent must be counted on click before clipboard success/fallback');
+const shareHandler=generated.slice(generated.indexOf('function bindShareResults()'),generated.indexOf('function bindShareResults()')+2200);
+assert(shareHandler.indexOf('analyticsShareClicked();')<shareHandler.indexOf('await navigator.share('),'Share intent must be counted before native sharing');
+assert(shareHandler.indexOf('analyticsShareClicked();')<shareHandler.indexOf('await navigator.clipboard.writeText('),'Share intent must be counted before clipboard fallback');
+
 console.log('Verified nine-unit daily analytics, one daily share across modes/reloads, next-day sharing, bounded storage, queued loading, and failure isolation.');

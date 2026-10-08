@@ -38,7 +38,7 @@ Free. No login. No downloads. No sound needed.
 
 - **One shared Daily Five.** Five different puzzle types, determined by your device’s date. Players on the same date get the same challenge.
 - **Close counts.** Every round is worth 100 points. See your guess and the target together, then inspect small comparisons in your final results.
-- **Compare with friends.** Copy a compact scorecard with the date, puzzle emojis, and your total. No answer spoilers.
+- **Compare with friends.** Share a compact scorecard with the date, puzzle emojis, and your total. No answer spoilers.
 - **Practice when you feel like it.** Open the Practice menu for a fresh mix or an individual skill. Trivia practice draws from past Daily Fives, keeping upcoming questions out of the pool.
 - **Pick your atmosphere.** Night Lab or Focus. Your choice sticks between visits.
 - **Come back later.** Daily progress, streaks, and recent results stay in your browser. No account required; no cross-device sync.

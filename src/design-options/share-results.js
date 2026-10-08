@@ -11,13 +11,28 @@ function bindShareResults(){
  const button=$('share-results'),status=$('share-status'),fallback=$('share-fallback');
  const text=shareResultsText(results,sessionDay,mini,mode==='daily'&&!review);
  button.addEventListener('click',async()=>{
+  if(button.disabled)return;
   analyticsShareClicked();
+  button.disabled=true;status.textContent='';fallback.hidden=true;
   try{
-   await navigator.clipboard.writeText(text);
-   button.textContent='Copied!';status.textContent='Results copied. Paste them wherever you like.';fallback.hidden=true;
-  }catch{
-   fallback.hidden=false;fallback.value=text;fallback.focus();fallback.select();
-   status.textContent='Select and copy your results below.';
-  }
+   if(typeof navigator.share==='function'){
+    try{
+     // Invoke directly from the tap, before any asynchronous work consumes user activation.
+     await navigator.share({text});
+     button.textContent='Share results';status.textContent='Share sheet opened.';
+     return;
+    }catch(error){
+     // Dismissing the native sheet should not unexpectedly copy anything.
+     if(error?.name==='AbortError'){button.textContent='Share results';return;}
+    }
+   }
+   try{
+    await navigator.clipboard.writeText(text);
+    button.textContent='Copied!';status.textContent='Results copied. Paste them wherever you like.';
+   }catch{
+    fallback.hidden=false;fallback.value=text;fallback.focus();fallback.select();
+    status.textContent='Select and copy your results below.';
+   }
+  }finally{button.disabled=false;}
  });
 }
