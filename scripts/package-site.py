@@ -4,5 +4,6 @@ root=Path(__file__).resolve().parents[1]
 out=root/'site'
 if out.exists():shutil.rmtree(out)
 out.mkdir()
-for name in ['index.html','focus.html','night-lab.html','studio.html','focus.css','night-lab.css','CNAME','.nojekyll']:shutil.copyfile(root/name,out/name)
+for name in ['index.html','focus.html','night-lab.html','studio.html','about.html','robots.txt','sitemap.xml','llms.txt','focus.css','night-lab.css','CNAME','.nojekyll']:shutil.copyfile(root/name,out/name)
 shutil.copytree(root/'assets/fonts',out/'assets/fonts')
+shutil.copytree(root/'assets/social',out/'assets/social')

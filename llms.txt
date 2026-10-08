@@ -1,0 +1,19 @@
+# Perception
+
+> A free daily browser game of visual puzzles, timing, memory, and trivia. Five different puzzle types per Daily Five, up to 100 points per round and 500 in total. No login required.
+
+## Official pages
+
+- [Play Perception](https://perception.thedanktank.com/): Opens directly into the Daily Five. A collapsed Practice menu offers a fresh mix and individual games.
+- [About and how to play](https://perception.thedanktank.com/about.html): Complete game descriptions, scoring, daily date rules, practice, sharing, and browser storage.
+- [Source and README](https://github.com/chipgpt/perception): Project overview and links to maintenance documentation.
+
+## Game facts
+
+The eleven puzzle types are 3D view, balance, line memory, perspective, proportions, rhythm, angles, colour memory, time awareness, When?, and How long?. All games are silent and support touch and desktop controls.
+
+Daily challenges follow the player's device-calendar date. Players on the same date receive the same challenge. Procedural puzzle values are deterministic; daily trivia assignments are maintained in a permanent schedule. Daily trivia facts are not reused. Trivia practice uses only previously scheduled questions from days before the current day. Practice sessions may have fewer than five questions while the archive is small.
+
+Scoring measures closeness, with game-specific error bounds and a shared squared-closeness curve. Exact guesses earn 100. Share text includes the date, puzzle emojis, scores, total, and game address without answers.
+
+Progress, recent results, and anonymous identity are saved in the player's browser, without cross-device sync. Minimal Umami analytics track daily visits, starts, completions with scores, and a daily share click. The game is a static website hosted on GitHub Pages.
