@@ -7,12 +7,14 @@ from trivia_extension import augment
 html,script=augment(html,script)
 from generated_extension import augment_generated
 script=augment_generated(script)
-script=script.replace("function start(nextmode='daily',retryDeck){", "function start(nextmode='daily',retryDeck){sessionDay=calendarDay();if(['timeline','duration'].includes(mini))nextmode='practice';$('daily').hidden=['timeline','duration'].includes(mini);")
+script=script.replace("function start(nextmode='daily',retryDeck){", "function start(nextmode='daily',retryDeck){sessionDay=calendarDay();if(mini!=='mix')nextmode='practice';$('practice-menu').open=false;")
+script=script.replace("$('daily').addEventListener('click',()=>start('daily'));", "$('daily').addEventListener('click',()=>{mini='mix';document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',false));start('daily');updateAside();});")
+script=script.replace("start(mode);updateAside();", "start('practice');updateAside();")
 script=script.replace("makeDeck(mode==='daily'?calendarDay():", "makeDeck(mode==='daily'?sessionDay:")
 script=script.replace('${q.title}</h1>', "${['timeline','duration'].includes(q.type)?escapeHTML(q.title):q.title}</h1>")
 script=script.replace('${q.explain}${q.source?', "${['timeline','duration'].includes(q.type)?escapeHTML(q.explain):q.explain}${q.source?")
 script=script.replace('${q.source[1]}', '${escapeHTML(q.source[1])}').replace('${q.source[0]}', '${escapeHTML(q.source[0])}')
-script=script.replace(":'Fresh mix';render();}", ":['timeline','duration'].includes(mini)?'Past daily questions':'Fresh mix';render();}")
+script=script.replace(":'Fresh mix';render();}", ":['timeline','duration'].includes(mini)?'Past daily questions':mini==='mix'?'Fresh mix':'Practice';render();}")
 script=script.replace('const q=deck[index];\n', 'const q=deck[index];if(!q){emptyTriviaPractice();return;}\n',1)
 script=script.replace('"Five rounds. A little better feel."', '`${results.length} ${results.length===1?"round":"rounds"}. A little better feel.`')
 script=script.replace('>Play a fresh mix</button>', ">${mini==='mix'?'Play a fresh mix':'Practice again'}</button>")
@@ -38,6 +40,10 @@ html=html.replace('Both award up to 100 points for closeness, with the answer an
 html=re.sub(r'<p>Colour scores reward closeness.*?</p>', '<p><strong>Scoring:</strong> every round is worth 100 points. We divide your error by the game’s zero-point bound, then square the remaining closeness. An error of 10% earns 81 points; 25% earns 56; 50% earns 25. Scores are rounded to whole points. Five rounds total 500 points.</p><details><summary>Zero-point bounds</summary><p>3D and angles: 180°. Balance: 50% of the shape’s width. Line memory: 20% of the canvas diagonal (100 units). Perspective: 40% of the diagonal (200 units). Time: 3 seconds early or late. Rhythm and proportions: 1.5 times or two-thirds of the target. Colour: straight-line distance of one wheel radius. When?: 50 years early or late. How long?: four times or one-quarter of the target duration.</p></details>',html)
 html=html.replace('Points fall with your timing error; within 0.05 seconds earns full points.', 'Points fall with your timing error using the same curve as every other game.')
 html=html.replace('<button data-mini="typography">Typography</button>', '')
+practice_nav=re.search(r'<nav class="minigames".*?</nav>',html).group(0).replace('aria-label="Mini-game"','aria-label="Practice games"').replace('class="active">Mixed five','>Fresh mix')
+html=html.replace(re.search(r'<nav class="minigames".*?</nav>',html).group(0),'')
+html=re.sub(r'<div class="topline">.*?<span id="date" class="meta"></span></div>', '<div class="topline"><div class="play-navigation"><button id="daily" class="daily-home active">Daily Five</button><details id="practice-menu" class="practice-menu"><summary>Practice <span aria-hidden="true">⌄</span></summary>'+practice_nav+'</details><button id="practice" hidden>Practice</button></div><span id="date" class="meta"></span></div>',html,count=1)
+html=html.replace('Mixed five picks five different puzzle types. Each daily five is repeatable for your device’s date; Practice makes a fresh mix. Pick an individual game to focus on one skill.', 'Daily Five is the shared daily challenge: five different puzzle types, worth 500 points. Open Practice to choose a skill or play a fresh mix. Individual games are practice-only.')
 html=html.replace('<strong>Typography:</strong> remember a specimen for two seconds, then match size, weight, and spacing. ', '').replace('All three reward closeness.', 'Both reward closeness.')
 html=html.replace("look at a line for two seconds", "look at a generated path for three seconds")
 base='''
@@ -76,7 +82,7 @@ themed=themed.replace('results.push({q,guess:value,score});saveDailyGame();', 'a
 themed+='\nsetupAnalytics();\n'
 themed=themed.replace('<div class="share-panel">', '${browserHistoryHTML()}<div class="share-panel">')
 html=html.replace('<div class="gamebar">','<p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar">')
-common_css=mobile_play+Path('src/design-options/trivia.css').read_text()+Path('src/design-options/theme-switcher.css').read_text()+Path('src/design-options/summary-comparisons.css').read_text()+Path('src/design-options/share-results.css').read_text()+Path('src/design-options/player-storage.css').read_text()
+common_css=mobile_play+Path('src/design-options/trivia.css').read_text()+Path('src/design-options/theme-switcher.css').read_text()+Path('src/design-options/summary-comparisons.css').read_text()+Path('src/design-options/share-results.css').read_text()+Path('src/design-options/player-storage.css').read_text()+Path('src/design-options/play-navigation.css').read_text()
 theme_assets={key:key+'.css?v='+hashlib.sha256((base+css+common_css).encode()).hexdigest()[:12] for key,css in styles.items()}
 theme_preference='window.perceptionThemeAssets='+json.dumps(theme_assets)+';\n'+theme_preference
 for key,css in styles.items():
