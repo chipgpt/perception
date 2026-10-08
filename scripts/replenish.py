@@ -87,4 +87,15 @@ def main():
     url=github('pr','create','--repo',repo,'--base','main','--head',branch,'--title','Review new Perception trivia','--body-file',str(body)).strip();report('Review candidates: '+url)
 if __name__=='__main__':
     try:main()
-    except urllib.error.HTTPError as e:print(f'::error::OpenAI request returned HTTP {e.code}; no response body or credentials logged.');sys.exit(1)
+    except urllib.error.HTTPError as e:
+        # Only emit fixed diagnostic text; API response bodies can contain sensitive data.
+        try: code=json.loads(e.read(8192)).get('error',{}).get('code')
+        except (ValueError,AttributeError): code=None
+        reasons={
+            'insufficient_quota':'The API project has no available quota. Check API billing, credits, and project budget.',
+            'rate_limit_exceeded':'The API project is rate limited. No automatic retry was attempted.',
+            'model_not_found':'The configured model is unavailable to this API project. Set OPENAI_TRIVIA_MODEL to an accessible model.',
+            'invalid_api_key':'The environment API key is invalid. Replace OPENAI_API_KEY in the github-pages environment.'
+        }
+        print(f'::error::OpenAI request returned HTTP {e.code}. '+reasons.get(code,'Check the API project settings; no response body or credentials logged.'))
+        sys.exit(1)
