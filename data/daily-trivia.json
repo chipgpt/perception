@@ -712,6 +712,18 @@
         "proportion"
       ],
       "trivia": {}
+    },
+    "2026-12-07": {
+      "types": [
+        "time",
+        "motion",
+        "angle",
+        "rhythm",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-futsal-match"
+      }
     }
   },
   "used": {
@@ -942,6 +954,10 @@
     "duration-wright-brothers-first-flight": {
       "day": "2026-12-05",
       "fingerprint": "bf5857618a98b8603b8f822c8038fcdab9b657e8d8487bfc7efc4093502a7c26"
+    },
+    "duration-futsal-match": {
+      "day": "2026-12-07",
+      "fingerprint": "81279b37fb82276c56bb2ec81ec20ff0dd53585eccb9a7021a5d5506a130fdf5"
     }
   }
 }
