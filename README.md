@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://perception.thedanktank.com/">
-    <img src="public/assets/social/perception.png" alt="Perception — five daily puzzles. How sharp is your perception?" width="100%">
+    <img src="public/assets/social/perception-mix.png" alt="Perception — a daily mix of 3D, colour, angles, rhythm and trivia puzzles." width="100%">
   </a>
 </p>
 

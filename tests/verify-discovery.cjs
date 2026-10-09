@@ -16,6 +16,6 @@ for(const name of ['index','focus','night-lab','studio','about']){
 const sitemap=fs.readFileSync('public/sitemap.xml','utf8');assert(sitemap.includes(origin+'</loc>'));assert(sitemap.includes(origin+'about.html</loc>'));assert(!sitemap.includes('focus.html')&&!sitemap.includes('night-lab.html'));
 const robots=fs.readFileSync('public/robots.txt','utf8');assert(robots.includes('User-agent: *\nAllow: /'));assert(robots.includes(origin+'sitemap.xml'));
 assert(fs.readFileSync('public/llms.txt','utf8').includes(origin+'about.html'));
-const png=fs.readFileSync('public/assets/social/perception.png');assert.equal(png.subarray(1,4).toString(),'PNG');assert.equal(png.readUInt32BE(16),1200);assert.equal(png.readUInt32BE(20),630);
+const png=fs.readFileSync('public/assets/social/perception-mix.png');assert.equal(png.subarray(1,4).toString(),'PNG');assert.equal(png.readUInt32BE(16),1200);assert.equal(png.readUInt32BE(20),630);
 const packageScript=fs.readFileSync('scripts/package-site.py','utf8');assert(packageScript.includes("shutil.copytree(root/'public',out)"),'The complete public site must ship at the domain root');assert(!fs.existsSync('index.html'));assert(!fs.existsSync('focus.css'));
 console.log('Verified canonical aliases, metadata, social preview dimensions, structured game data, static instructions, crawler files, and deployment packaging.');

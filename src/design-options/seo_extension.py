@@ -2,6 +2,8 @@ from pathlib import Path
 import json, re
 
 ORIGIN='https://perception.thedanktank.com/'
+SOCIAL_IMAGE=ORIGIN+'assets/social/perception-mix.png'
+SOCIAL_ALT='Five Perception puzzles: rotate a 3D shape, remember a colour, judge an angle, tap a rhythm, and place a historical event on a timeline.'
 TITLE='Perception — Daily Visual Puzzles & Trivia'
 DESCRIPTION='Five quick daily puzzles. Match colours, judge angles, feel time, and test your trivia. Play free, score up to 500, and share your results.'
 
@@ -9,7 +11,7 @@ def metadata(about=False):
     title='About Perception — How to Play the Daily Puzzle Game' if about else TITLE
     url=ORIGIN+'about.html' if about else ORIGIN
     graph=[{'@type':'WebSite','@id':ORIGIN+'#website','name':'Perception','url':ORIGIN,'description':DESCRIPTION,'inLanguage':'en'},
-           {'@type':'WebApplication','@id':ORIGIN+'#game','name':'Perception','url':ORIGIN,'description':DESCRIPTION,'applicationCategory':'GameApplication','operatingSystem':'Any device with a modern web browser','browserRequirements':'Requires JavaScript','isAccessibleForFree':True,'offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'image':ORIGIN+'assets/social/perception.png'},
+           {'@type':'WebApplication','@id':ORIGIN+'#game','name':'Perception','url':ORIGIN,'description':DESCRIPTION,'applicationCategory':'GameApplication','operatingSystem':'Any device with a modern web browser','browserRequirements':'Requires JavaScript','isAccessibleForFree':True,'offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'image':SOCIAL_IMAGE},
            {'@type':'WebPage','@id':url+'#page','url':url,'name':title,'isPartOf':{'@id':ORIGIN+'#website'},'about':{'@id':ORIGIN+'#game'},'inLanguage':'en'}]
     structured=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False).replace('<','\\u003c')
     return f'''<title>{title}</title>
@@ -22,15 +24,15 @@ def metadata(about=False):
 <meta property="og:description" content="{DESCRIPTION}">
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="{ORIGIN}assets/social/perception.png">
+<meta property="og:image" content="{SOCIAL_IMAGE}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Perception: five daily puzzles, 500 possible points, and a fresh mix of perception and trivia.">
+<meta property="og:image:alt" content="{SOCIAL_ALT}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{DESCRIPTION}">
-<meta name="twitter:image" content="{ORIGIN}assets/social/perception.png">
-<meta name="twitter:image:alt" content="Perception — five daily puzzles. How sharp is your perception?">
+<meta name="twitter:image" content="{SOCIAL_IMAGE}">
+<meta name="twitter:image:alt" content="{SOCIAL_ALT}">
 <script type="application/ld+json">{structured}</script>'''
 
 def augment_seo(html):
