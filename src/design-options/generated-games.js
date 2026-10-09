@@ -2,7 +2,23 @@
 const GENERATED_RANGES={angle:[5,175],time:[2,15],rhythm:[60,144],ratioTerms:[1,12],ratioBounds:[.55,2.4],pathAnchors:[4,6]};
 const GAME_TYPES=['view3d','balance','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration'];
 function hashSeed(text){let hash=2166136261;for(const c of String(text)){hash^=c.charCodeAt(0);hash=Math.imul(hash,16777619);}return hash>>>0;}
-function calendarDay(now=new Date()){return [now.getFullYear(),now.getMonth()+1,now.getDate()].join('-');}
+function calendarDay(now=new Date()){
+ const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'numeric',day:'numeric'}).formatToParts(now);
+ const value=type=>parts.find(p=>p.type===type).value;
+ return [value('year'),value('month'),value('day')].join('-');
+}
+function dailyDateLabel(day){const [y,m,d]=day.split('-').map(Number);return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString(undefined,{timeZone:'UTC',month:'short',day:'numeric',year:'numeric'});}
+function nextCentralMidnight(now=new Date()){
+ const day=calendarDay(now),[y,m,d]=day.split('-').map(Number);
+ // Chicago midnight is 05:00 UTC in summer and 06:00 UTC in winter.
+ return [5,6].map(hour=>Date.UTC(y,m-1,d+1,hour)).find(t=>calendarDay(new Date(t-1))===day&&calendarDay(new Date(t))!==day);
+}
+function startCentralDayRollover(){
+ let timer;
+ const check=()=>{if(mode==='daily'&&sessionDay!==calendarDay()){start('daily');updateAside();}clearTimeout(timer);timer=setTimeout(check,Math.max(1,nextCentralMidnight()-Date.now()+20));};
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)check();});
+ check();
+}
 function shuffleWith(random,list){const copy=list.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
 function integerBetween(random,min,max){return min+Math.floor(random()*(max-min+1));}
 function makeDeck(day,game=mini){

@@ -15,7 +15,7 @@ def augment_generated(script):
     script=script.replace("const date=new Date(),datekey=[date.getFullYear(),date.getMonth()+1,date.getDate()].join('-');\nconst seed=[...datekey].reduce((a,c)=>Math.imul(a,31)+c.charCodeAt(0)|0,0);\n",'')
     script=script.replace("'use strict';", "'use strict';\n"+Path('src/design-options/generated-games.js').read_text(),1)
     script=script.replace("makeDeck(rng(mode==='daily'?seed:Math.floor(Math.random()*4294967295)))", "makeDeck(mode==='daily'?calendarDay():'practice:'+Math.floor(Math.random()*4294967295))")
-    script=script.replace("mode==='daily'?date.toLocaleDateString", "mode==='daily'?new Date().toLocaleDateString")
+    script=script.replace("date.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})", "dailyDateLabel(sessionDay)")
     script=script.replace('min="400" max="700" step="100"','min="400" max="700" step="1"')
     script=script.replace('min="-2" max="6" step="0.25"','min="-2" max="6" step="0.1"')
     script=script.replace('Two seconds to remember it.</p><button id="show-line"','Three seconds to remember it.</p><button id="show-line"')
