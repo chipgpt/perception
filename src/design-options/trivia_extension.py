@@ -7,7 +7,7 @@ def augment(html, script):
     script=script.replace('function scoreFor(value,q){',"function scoreFor(value,q){\n if(['timeline','duration'].includes(q.type))return triviaScore(value,q);")
     script=script.replace("if(q.type==='view3d'){viewRound", "if(q.type==='timeline'){timelineRound(q);return;}\n if(q.type==='duration'){durationRound(q);return;}\n if(q.type==='view3d'){viewRound",1)
     script=script.replace("const answerLabel=q.type==='time'?", "const answerLabel=['timeline','duration'].includes(q.type)?triviaFeedback(value,q):q.type==='time'?",1)
-    script=script.replace("const copy={mix:","const copy={timeline:['Place it in history.','One event. A timeline to explore.<br>Slide the timeline to select the year at its centre.'],duration:['How long does it take?','Sport. Space. Everyday life.<br>Turn the dial to your best guess.'],mix:",1)
+    script=script.replace("const copy={mix:","const copy={timeline:['Place it in history.','One event. A timeline to explore.<br>Scroll the year wheel to select the year at its centre.'],duration:['How long does it take?','Sport. Space. Everyday life.<br>Turn the dial to your best guess.'],mix:",1)
     script=script.replace("r.q.cue||r.q.skill", "r.q.cue||(['timeline','duration'].includes(r.q.type)?escapeHTML(r.q.title):r.q.skill)")
     # Define the question bank before the initial start() call.
     data=Path(os.environ.get('PERCEPTION_DATA_DIR','data'))
@@ -23,5 +23,5 @@ def augment(html, script):
     data_js=(data_js+'\n'.join(arrays)+'\n').replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
     script=script.replace("'use strict';", "'use strict';\n"+data_js+trivia,1)
     html=html.replace('<button data-mini="time">Time</button>', '<button data-mini="time">Time</button><button data-mini="timeline">When?</button><button data-mini="duration">How long?</button>')
-    html=html.replace('<p><strong>Time:</strong>', '<p><strong>When?</strong> Slide the timeline beneath the centre marker to choose an event’s year. The minus and plus buttons adjust by one year. <strong>How long?</strong> Turn the dial from seconds to days. Use minus, plus or arrow keys to fine tune; Shift and arrows adjust more broadly. Both award up to 100 points for closeness, with the answer and source shown after you commit.</p><p><strong>Time:</strong>')
+    html=html.replace('<p><strong>Time:</strong>', '<p><strong>When?</strong> Scroll the year wheel beneath the centre marker to choose an event’s year. Up and down arrows adjust by one year. <strong>How long?</strong> Turn the dial from seconds to days. Use minus, plus or arrow keys to fine tune; Shift and arrows adjust more broadly. Both award up to 100 points for closeness, with the answer and source shown after you commit.</p><p><strong>Time:</strong>')
     return html, script

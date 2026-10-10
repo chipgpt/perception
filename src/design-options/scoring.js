@@ -1,7 +1,7 @@
 // Every game converts its distance to a fraction of one tunable error bound.
 // The common curve is 100 * (1 - errorFraction)^2, rounded once at the end.
 const SCORING_RANGES=Object.freeze({
- view3d:180, angle:180, balance:.5, halfhalf:.15,
+ view3d:180, angle:180, balance:.5, halfhalf:.20,
  motion:.2*Math.hypot(400,300), perspective:.4*Math.hypot(400,300),
  time:3,
  rhythm:Math.log(1.5), proportion:Math.log(1.5),

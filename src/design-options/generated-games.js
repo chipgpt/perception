@@ -51,7 +51,7 @@ function makeDeck(day,game=mini){
 }
 function generatedQuestion(type,random,round){
  const q={id:type+'-'+round,type};
- if(type==='view3d'){const answer={yaw:random()*360-180,pitch:random()*120-60,roll:random()*180-90};return {...q,skill:'3D view',title:'Match this view.',answer,shape:makeBlockShape(random),tip:'Solid is your view. The lime outline is the target.',explain:'Each puzzle has a generated, connected shape of three to five coloured pieces. Drag the shape to turn it; use the green handle to tilt the whole view. The score measures the smallest rotation between your view and the target.'};}
+ if(type==='view3d'){const answer={yaw:random()*360-180,pitch:random()*120-60,roll:random()*180-90};return {...q,skill:'3D view',title:'Match the view.',answer,shape:makeBlockShape(random),tip:'Solid is your view. The lime outline is the target.',explain:'Each puzzle has a generated, connected shape of three to five coloured pieces. Drag the shape to turn it; use the green handle to tilt the whole view. The score measures the smallest rotation between your view and the target.'};}
  if(type==='angle'){q.answer=integerBetween(random,...GENERATED_RANGES.angle);return {...q,skill:'Angles',title:q.answer+'°',tip:'The lime line shows the target angle.',explain:'The target can be any whole degree from 5° to 175°. Scores measure the angular distance from your guess.'};}
  if(type==='time'){q.answer=integerBetween(random,...GENERATED_RANGES.time);return {...q,skill:'Time awareness',title:'Feel '+q.answer+' seconds.',unit:' s',tip:'Notice whether you stop early or late.',explain:'Any whole duration from 2 to 15 seconds. The clock measures Start to Stop; switching away resets a running round.'};}
  if(type==='rhythm'){q.answer=integerBetween(random,...GENERATED_RANGES.rhythm);return {...q,skill:'Rhythm',title:'Copy the pulse.',tip:'Watch five flashes, then tap five beats at the same pace.',explain:'The pulse can be any whole tempo from 60 to 144 BPM. Your tempo is measured from the intervals between five taps. No sound is played.'};}
@@ -110,4 +110,9 @@ function makeBlockShape(random){
 function scheduledTriviaQuestion(id){
  const f=TRIVIA_BY_ID[id];if(!f)throw new Error('Missing scheduled trivia');
  return {id:f.id,type:f.type,skill:f.type==='timeline'?'When?':'How long?',title:f.title,answer:f.answer,caption:f.caption,explain:f.explain,source:[f.source.name,f.source.url],tip:'Answer: '+(f.type==='timeline'?f.answer:durationText(f.answer))};
+}
+
+function practiceLabel(game,mode){
+ const names={mix:'Fresh mix',view3d:'3D View',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Proportions',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
+ return mode==='practice'?'Practice: '+(names[game]||game):'Practice';
 }

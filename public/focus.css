@@ -86,7 +86,7 @@
 
 #timeline-canvas{cursor:grab}#timeline-canvas.dragging{cursor:grabbing}body:has(.feedback) #timeline-canvas{cursor:default}
 .trivia-nudge{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 0 14px}.trivia-nudge span{font-size:13px;color:var(--muted);min-width:90px;text-align:center;font-variant-numeric:tabular-nums}.nudge-button{width:48px;height:44px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;color:var(--ink);font-size:25px;line-height:1;touch-action:manipulation}.nudge-button:active{background:var(--canvas)}.wheel-result-legend{display:flex;justify-content:center;gap:24px;margin:12px 0 0}.wheel-result-legend span{display:flex;align-items:center;gap:8px;font-size:13px}.wheel-result-legend i{display:inline-block;width:13px;height:13px;border:2px solid #17234d;border-radius:50%;background:white}.wheel-result-legend .wheel-target-key{background:#e5ff57}
-@media(max-width:760px){.trivia-nudge{margin-bottom:10px;gap:20px}body:has(.feedback) #playarea[data-puzzle="colour"] .mixed-controls{display:block}body:has(.feedback) #playarea[data-puzzle="colour"] .mixed-controls>:not(.wheel-wrap){display:none}body:has(.feedback) #playarea[data-puzzle="colour"] .wheel-wrap{width:min(100%,clamp(150px,calc(100svh - 455px),250px))}.wheel-result-legend{margin-top:8px}}
+@media(max-width:760px){.trivia-nudge{margin-bottom:10px;gap:20px}.wheel-result-legend{margin-top:8px}}
 .header-right .option-switch{position:relative;inset:auto;display:flex;align-items:center;justify-content:center;width:38px;height:38px;max-width:none;margin:0;padding:0;border:1px solid transparent;border-radius:9px;background:transparent;box-shadow:none;color:var(--muted);flex:none}
 .header-right .option-switch:hover{color:var(--ink);border-color:var(--line)}
 .header-right .option-switch select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
@@ -124,3 +124,79 @@ main{display:block;max-width:920px;margin:0 auto;padding:28px 24px 36px}
 .practice-menu .minigames button:hover,.practice-menu .minigames button.active{background:var(--canvas);color:var(--ink);box-shadow:none}
 .site-links{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin:12px auto 24px}.site-links a{text-decoration:none}.site-links a:hover{text-decoration:underline}
 @media(max-width:760px){main{padding:12px 12px 16px}.topline{margin-bottom:12px}.daily-home,.practice-menu>summary{padding:9px 12px}.play-navigation{position:relative}.practice-menu{position:static}.practice-menu .minigames{left:0;right:auto;width:288px;max-width:calc(100vw - 32px)}.meta{font-size:11px}}
+
+@media(max-width:760px){
+ .play-navigation{min-width:0;max-width:100%}
+ .daily-home{flex:none}
+ .practice-menu{min-width:0}
+ .practice-menu>summary{gap:6px;padding-inline:10px;font-size:13px}
+ .practice-menu>summary>span{white-space:normal;text-align:left}
+ .topline:has(.practice-menu.active)>.meta{display:none}
+}
+.mixed-controls>.memory-countdown:disabled{position:relative;overflow:hidden;opacity:1;background:var(--canvas);color:var(--ink);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.memory-countdown::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:calc(var(--memory-remaining,1)*100%);background:var(--accent)}
+.view-start-stage{position:relative}
+.view-start-stage>.view-start-overlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);min-width:120px;min-height:48px;box-shadow:0 4px 24px #0004}
+.view-start-stage>.view-start-overlay:hover{transform:translate(-50%,-50%)}
+
+.view-start-waiting::after{content:'';position:absolute;inset:0;border-radius:12px;background:#0007;pointer-events:none}
+.view-start-stage>.view-start-overlay{z-index:1}
+
+.view-result-stage{position:relative}
+.view-result-phase{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:4px 10px;border-radius:6px;background:var(--surface);color:var(--muted);font-size:12px;white-space:nowrap;pointer-events:none}
+.view-feedback .feedbacktop{display:block}
+.view-result-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center}
+.view-result-stats strong{display:block;font-size:42px;line-height:1.1;letter-spacing:-1.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.view-result-stats strong small{font-size:18px;letter-spacing:0;color:var(--muted);margin-left:3px;font-weight:500}
+.view-result-points strong{color:var(--accent)}
+.view-result-stats span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+.view-result-points{border-left:1px solid var(--line)}
+.view-verdict{margin:14px 0 18px;text-align:center;color:var(--ink);font-size:14px}
+@media(min-width:761px){.view-result-stats strong{font-size:56px}.view-result-stats span{font-size:13px}.view-verdict{font-size:16px}}
+/* The active round fills the screen; summaries keep their natural scrolling layout. */
+body:has(.mixed-question){min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+body:has(.mixed-question)>header{flex:none}
+body:has(.mixed-question)>main{display:flex;flex-direction:column;flex:1;width:100%;margin:0 auto;padding-bottom:max(12px,env(safe-area-inset-bottom))}
+body:has(.mixed-question) .topline{flex:none}
+body:has(.mixed-question) .layout{display:flex;flex-direction:column;flex:1;width:100%;margin:0 auto}
+body:has(.mixed-question) .game{display:flex;flex-direction:column;flex:1}
+body:has(.mixed-question) .gamebar{flex:none}
+body:has(.mixed-question) #playarea{display:flex;flex-direction:column;flex:1}
+body:has(.mixed-question) .mixed-question{display:flex;flex-direction:column;flex:1}
+body:has(.mixed-question) .mixed-question>.spatial-wrap,body:has(.mixed-question) .mixed-question>.angle-wrap{margin-block:auto}
+body:has(.mixed-question) .mixed-controls{margin:12px auto 0;flex:none}
+body:has(.mixed-question) .mixed-controls:empty{margin:0}
+body:has(.mixed-question) .actionarea{flex:none}
+body:has(.mixed-question) footer,body:has(.mixed-question)>.site-links{display:none}
+/* Use the available width, with height caps to keep essential controls in view. */
+body:has(.mixed-question)>main{max-width:1200px;padding-inline:8px}
+body:has(.mixed-question) .layout{max-width:none}
+body:has(.mixed-question) .game{padding-inline:12px}
+body:has(.mixed-question) .spatial-wrap{width:min(100%,calc(clamp(180px,100svh - 350px,450px)*4/3));max-width:none}
+body:has(.mixed-question):has(.feedback) .spatial-wrap{width:min(100%,calc(clamp(120px,100svh - 470px,330px)*4/3))}
+@media(min-width:761px){
+ body:has(.mixed-question)>main{padding-inline:24px;padding-bottom:24px}
+ body:has(.mixed-question) .topline{margin-top:0;margin-bottom:12px}
+ body:has(.mixed-question) .game{padding:18px 24px 20px}
+ body:has(.mixed-question) .mixed-question{padding-block:14px 12px}
+ body:has(.mixed-question) .mixed-question h1{margin-bottom:12px}
+ body:has(.mixed-question) .spatial-wrap{width:min(100%,720px,calc((100svh - 320px)*4/3))}
+ body:has(.mixed-question):has(.feedback) .spatial-wrap{width:min(100%,720px,calc(max(180px,100svh - 610px)*4/3))}
+}
+/* Every puzzle gets the same flexible stage; drawings retain their own aspect ratio. */
+body:has(.mixed-question) .mixed-question>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.timeline-stage,.duration-stage){position:relative;flex:1;width:100%;max-width:none;min-height:180px;margin:0;background:var(--canvas);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+body:has(.mixed-question) .mixed-question>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.timeline-stage,.duration-stage) canvas{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;border:0;border-radius:0;background:var(--canvas)}
+body:has(.mixed-question) .mixed-question>:is(.memory-stage,.time-cue,.pulse-stage,.type-specimen){flex:1;width:100%;max-width:none;height:auto;min-height:150px;margin:0;border:1px solid var(--line);border-radius:12px;background:var(--canvas);padding:16px;justify-content:center;align-items:center}
+body:has(.mixed-question) .mixed-question>.time-cue{display:flex;flex-direction:column}
+body:has(.mixed-question) .mixed-question>.pulse-stage{display:flex;flex-direction:column}
+body:has(.mixed-question):has(.feedback) .mixed-question>.pulse-stage{display:none}
+body:has(.mixed-question):has(.feedback) .mixed-controls{display:none}
+.year-picker{isolation:isolate}
+.year-wheel{position:absolute;inset:0;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;scrollbar-width:none;font-variant-numeric:tabular-nums;mask-image:linear-gradient(transparent,#000 35%,#000 65%,transparent)}
+.year-wheel-dragging{scroll-snap-type:none;cursor:grabbing}
+.year-wheel::-webkit-scrollbar{display:none}
+.year-row{height:48px;display:grid;place-items:center;scroll-snap-align:center;color:var(--ink);font-size:30px;letter-spacing:-1px;cursor:pointer}
+.year-selection{position:absolute;top:50%;left:16px;right:16px;height:48px;transform:translateY(-50%);border-block:1px solid var(--draw);background:color-mix(in srgb,var(--draw) 8%,transparent);pointer-events:none}
+.year-selection::after{content:'';position:absolute;right:8px;top:19px;border-block:5px solid transparent;border-right:7px solid var(--draw)}
+.year-wheel-locked{overflow:hidden;touch-action:none}
+.year-answer{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);color:var(--target);background:var(--canvas);border:1px dashed var(--target);border-radius:8px;padding:6px 14px;font-size:16px;white-space:nowrap}

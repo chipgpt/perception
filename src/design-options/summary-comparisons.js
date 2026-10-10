@@ -2,7 +2,7 @@ function captureSummaryComparison(result){
  const ids={view3d:'view-canvas',balance:'balance-canvas',halfhalf:'balance-canvas',motion:'trace-canvas',perspective:'perspective-canvas',proportion:'proportion-canvas',angle:'angle-dial',colour:'wheel'};
  const canvas=$(ids[result.q.type]);
  if(canvas&&result.q.fruit)drawHalfFruit(canvas,result.q,result.guess,true);
- if(canvas&&result.q.type!=='colour')result.comparisonImage=canvas.toDataURL('image/png');
+ if(canvas&&!['colour','view3d'].includes(result.q.type))result.comparisonImage=canvas.toDataURL('image/png');
 }
 function summaryComparison(result){
  const {q,guess}=result;
@@ -28,7 +28,7 @@ function restoredComparison({q,guess}){
  if(q.fruit){const canvas=document.createElement('canvas');canvas.width=400;canvas.height=300;drawHalfFruit(canvas,q,guess,true);return `<img class="result-comparison-image" src="${canvas.toDataURL()}" alt="Your ${escapeHTML(q.fruit.kind)} split and the even-cut guide">`;}
  if(q.type==='view3d'){
   const canvas=document.createElement('canvas');canvas.width=400;canvas.height=300;
-  drawShape3D(canvas,guess,{shape:q.shape});drawShape3D(canvas,q.answer,{shape:q.shape,overlay:true});
+  drawShape3D(canvas,guess,{shape:q.shape});drawShape3D(canvas,q.answer,{shape:q.shape,overlay:true,dashed:true});
   return `<img class="result-comparison-image" src="${canvas.toDataURL()}" alt="Your 3D view and target overlaid">`;
  }
  const path=points=>points.map(p=>Array.isArray(p)?p.join(','):p.x+','+p.y).join(' ');

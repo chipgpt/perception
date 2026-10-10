@@ -21,3 +21,9 @@ run("mini='angle';start('practice')");let url=new URL(ctx.location.href);assert.
 run("mini='mix';start('practice')");url=new URL(ctx.location.href);assert.equal(url.searchParams.get('game'),'mix');assert.equal(url.searchParams.get('mode'),'practice');
 el('daily').listeners.click();url=new URL(ctx.location.href);assert(!url.searchParams.has('game'));assert(!url.searchParams.has('mode'));assert.equal(url.searchParams.get('from'),'challenge');
 assert(fs.readFileSync('public/index.html','utf8').includes("start(new URLSearchParams(location.search).get('mode')==='practice'?'practice':'daily')"));console.log('Verified selected game and mixed-practice mode follow the URL, while challenge and campaign parameters remain intact.');
+
+run("mini='view3d';start('practice')");assert.equal(el('practice-label').textContent,'Practice: 3D View');
+run("mini='memory';start('practice')");assert.equal(el('practice-label').textContent,'Practice: Colour memory');
+run("mini='mix';start('practice')");assert.equal(el('practice-label').textContent,'Practice: Fresh mix');
+el('daily').listeners.click();assert.equal(el('practice-label').textContent,'Practice');
+console.log('Verified Practice label follows the selected game and resets for Daily Five.');

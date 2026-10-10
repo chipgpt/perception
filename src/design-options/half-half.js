@@ -99,7 +99,7 @@ function halfQuestion(random,round,kind){
  const selected=kind||HALF_OBJECTS[Math.floor(random()*HALF_OBJECTS.length)];
  const shape=selected.startsWith('blob-')?halfClusterShape(selected,random):halfFruitShape(selected,random);
  const {points,...fruit}=shape;
- return {id:'half-half-'+round,type:'halfhalf',skill:'Half & Half',title:'Cut it in half.',fruit,points,answer:halfBisect(fruit.regions||points,{x:200,y:180,nx:1,ny:0}),tip:'The green line shows an even cut at your angle.',explain:'Split the total filled area into equal halves: count all the shapes together. Empty space does not count. Every colour counts equally. We measure the shape geometry, so screen size and pixel density do not affect your score. A 50/50 split earns 100 points. The same scoring curve as the other games applies: a 53/47 split earns 64 points, a 60/40 split earns 11 points, and a 65/35 split or worse earns zero.'};
+ return {id:'half-half-'+round,type:'halfhalf',skill:'Half & Half',title:'Cut it in half.',fruit,points,answer:halfBisect(fruit.regions||points,{x:200,y:180,nx:1,ny:0}),tip:'The green line shows an even cut at your angle.',explain:'Split the total filled area into equal halves: count all the shapes together. Empty space does not count. Every colour counts equally. We measure the shape geometry, so screen size and pixel density do not affect your score. A 50/50 split earns 100 points. The same scoring curve as the other games applies: a 53/47 split earns 72 points, a 60/40 split earns 25 points, and a 70/30 split or worse earns zero.'};
 }
 function halfError(value,q){
  if(!value||!['x','y','nx','ny'].every(k=>Number.isFinite(value[k]))||Math.abs(Math.hypot(value.nx,value.ny)-1)>1e-6)return Infinity;
@@ -118,7 +118,7 @@ function drawHalfFruit(canvas,q,cut,target=false){
 function halfRound(q){
  let cut=null,drag=null;shell(q,'<div class="spatial-wrap half-wrap"><canvas width="400" height="300" id="balance-canvas" tabindex="0" role="application" aria-label="Cut the shape into equal areas. Drag a cut; move its handles or the line to adjust. Arrow keys move it; Shift and arrows rotate it."></canvas></div>','<p class="small-instruction" id="half-hint">Cut half the total coloured area onto each side.</p><button id="half-lock" class="primary" disabled>Draw a cut</button>');
  const canvas=$('balance-canvas'),button=$('half-lock');
- const point=e=>{const r=canvas.getBoundingClientRect();return {x:200+((e.clientX-r.left)/r.width*400-200)/.85,y:180+((e.clientY-r.top)/r.height*300-150)/.85};};
+ const point=e=>{const p=canvasPointerPoint(canvas,e);return {x:200+(p.x-200)/.85,y:180+(p.y-150)/.85};};
  const choose=()=>{button.disabled=false;button.textContent='Slice it';$('half-hint').textContent='Move the cut or either handle. Then slice.';drawHalfFruit(canvas,q,cut);};
  const set=(a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy);if(len<12)return;cut={x:(a.x+b.x)/2,y:(a.y+b.y)/2,nx:-dy/len,ny:dx/len};choose();};
  canvas.addEventListener('pointerdown',e=>{if(locked)return;e.preventDefault();canvas.setPointerCapture(e.pointerId);const p=point(e);if(cut){const ends=halfCutEnds(cut),near=ends.findIndex(a=>Math.hypot(a.x-p.x,a.y-p.y)<24);if(near>=0){drag={mode:'handle',other:ends[1-near]};return;}if(Math.abs((p.x-cut.x)*cut.nx+(p.y-cut.y)*cut.ny)<22){drag={mode:'move',start:p,old:{...cut}};return;}}drag={mode:'new',start:p};});

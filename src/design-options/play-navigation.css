@@ -13,3 +13,12 @@ main{display:block;max-width:920px;margin:0 auto;padding:28px 24px 36px}
 .practice-menu .minigames button:hover,.practice-menu .minigames button.active{background:var(--canvas);color:var(--ink);box-shadow:none}
 .site-links{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin:12px auto 24px}.site-links a{text-decoration:none}.site-links a:hover{text-decoration:underline}
 @media(max-width:760px){main{padding:12px 12px 16px}.topline{margin-bottom:12px}.daily-home,.practice-menu>summary{padding:9px 12px}.play-navigation{position:relative}.practice-menu{position:static}.practice-menu .minigames{left:0;right:auto;width:288px;max-width:calc(100vw - 32px)}.meta{font-size:11px}}
+
+@media(max-width:760px){
+ .play-navigation{min-width:0;max-width:100%}
+ .daily-home{flex:none}
+ .practice-menu{min-width:0}
+ .practice-menu>summary{gap:6px;padding-inline:10px;font-size:13px}
+ .practice-menu>summary>span{white-space:normal;text-align:left}
+ .topline:has(.practice-menu.active)>.meta{display:none}
+}
