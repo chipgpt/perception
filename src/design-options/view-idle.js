@@ -18,9 +18,10 @@ function spinIdleView(q){
 }
 
 function overlayViewStart(buttonId='show-view',canvasId='view-canvas'){
- const button=$(buttonId),stage=$(canvasId).parentElement;
+ const button=$(buttonId),stage=$(canvasId).closest('.spatial-wrap,.memory-stage');
+ stage.querySelector('.memory-prompt')?.remove();
  stage.classList.add('view-start-stage','view-start-waiting');button.classList.add('view-start-overlay');stage.appendChild(button);
 }
 function beginViewPreview(buttonId='show-view',canvasId='view-canvas'){
- const button=$(buttonId);$(canvasId).parentElement.classList.remove('view-start-waiting');button.classList.remove('view-start-overlay');$('controls').appendChild(button);
+ const button=$(buttonId);$(canvasId).closest('.spatial-wrap,.memory-stage').classList.remove('view-start-waiting');button.classList.remove('view-start-overlay');$('controls').appendChild(button);
 }

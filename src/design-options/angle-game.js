@@ -12,6 +12,6 @@ function drawAngle(angle,target,showZero=false){
  ctx.clearRect(0,0,400,400);ctx.strokeStyle=colour('line');ctx.lineWidth=2;ctx.beginPath();ctx.arc(200,200,170,0,Math.PI*2);ctx.stroke();
  const line=(a,c,width,dashed=false)=>{const t=a*Math.PI/180;ctx.beginPath();ctx.setLineDash(dashed?[5,6]:[]);ctx.moveTo(200,200);ctx.lineTo(200+Math.cos(t)*160,200-Math.sin(t)*160);ctx.strokeStyle=c;ctx.lineWidth=width;ctx.lineCap='round';ctx.stroke();ctx.setLineDash([]);};
  if(showZero)line(0,colour('muted'),2,true);
- if(target!==undefined)line(target,colour('target'),5);
+ if(target!==undefined)line(target,colour('target'),5,true);
  line(angle,colour('draw'),5);ctx.fillStyle=colour('ink');ctx.beginPath();ctx.arc(200,200,6,0,Math.PI*2);ctx.fill();
 }

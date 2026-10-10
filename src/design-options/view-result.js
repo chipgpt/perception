@@ -34,10 +34,3 @@ function animateViewResult(q,guess){
  };
  frame();
 }
-function styleViewFeedback(q,value,score){
- const feedback=$('actionarea').querySelector('.feedback'),error=orientationError(value,q.answer);
- const verdict=score===100?'You nailed it.':score>=90?'Sharp eyes.':score>=75?'Pretty dialed in.':score>=50?'In the neighbourhood.':score>=25?'A generous interpretation.':score>0?'Bold. Incorrect.':'Did you memorize the back of your phone?';
- feedback.classList.add('view-feedback');
- feedback.querySelector('.feedbacktop').innerHTML=`<div class="view-result-stats"><div class="view-result-error"><strong>${error.toFixed(1)}<small>°</small></strong><span>rotation off</span></div><div class="view-result-points"><strong>${score}<small>/100</small></strong><span>points earned</span></div></div><p class="view-verdict">${verdict}</p>`;
- feedback.querySelector('.colour-comparison')?.remove();
-}

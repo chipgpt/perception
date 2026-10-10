@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><script>window.perceptionThemeAssets={"focus": "focus.css?v=d2fc1ffdf878", "night-lab": "night-lab.css?v=5530b4518210"};
+<html lang="en"><head><meta charset="utf-8"><script>window.perceptionThemeAssets={"focus": "focus.css?v=4b9cef787ea3", "night-lab": "night-lab.css?v=bbdb0c95d5a2"};
 (()=>{
  const themes=['focus','night-lab'];
  let preference='system';
@@ -291,6 +291,49 @@ function bindHistoryNavigation(){
  dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
 }
 
+function roundErrorDisplay(q,value){
+ const number=n=>Number.isFinite(n)?n.toFixed(1):'—';
+ const percent=(n,label)=>({value:number(n),unit:'%',label});
+ switch(q.type){
+  case 'view3d':return {value:number(orientationError(value,q.answer)),unit:'°',label:'rotation off'};
+  case 'angle':return {value:number(angularDistance(value,q.answer)),unit:'°',label:'angle off'};
+  case 'halfhalf':return {value:number(halfError(value,q)*100),unit:'',label:'percentage points off'};
+  case 'balance':return q.fruit?{value:number(halfError(value,q)*100),unit:'',label:'percentage points off'}:percent(Math.abs(value-q.answer)/balanceWidth(q)*100,'width off');
+  case 'motion':return percent(traceError(value,q.answer)/500*100,'of the diagonal off');
+  case 'perspective':return percent(pointError(value,q.answer)/500*100,'of the diagonal off');
+  case 'time':return {value:Math.abs(value-q.answer).toFixed(2),unit:'s',label:value===q.answer?'timing error':value<q.answer?'early':'late'};
+  case 'rhythm':return percent(Math.abs(value/q.answer-1)*100,value===q.answer?'tempo error':value<q.answer?'slower':'faster');
+  case 'proportion':return percent(Math.abs((value.width/value.height)/q.answer-1)*100,'ratio off');
+  case 'colour':return percent(wheelDistance(value,q.answer)*100,'of the wheel radius off');
+  case 'timeline':return {value:String(Math.abs(value-q.answer)),unit:'',label:Math.abs(value-q.answer)===1?'year off':'years off'};
+  case 'duration':return {value:durationText(Math.abs(durationValue(value)-q.answer)),unit:'',label:value===q.answer?'duration error':value<q.answer?'too short':'too long',compact:true};
+  default:return {value:String(Math.round(scoringError(value,q)*100)),unit:'%',label:'error'};
+ }
+}
+function roundAnswerDisplay(q,value){
+ switch(q.type){
+  case 'time':return `You: ${value.toFixed(2)} s · Target: ${q.answer} s`;
+  case 'timeline':return `You: ${value} · Answer: ${q.answer}`;
+  case 'duration':return `You: ${durationText(value)} · Answer: ${durationText(q.answer)}`;
+  case 'rhythm':return '';
+  case 'proportion':return `You: ${(value.width/value.height).toFixed(2)} : 1 · Target: ${q.label}`;
+  case 'halfhalf':case 'balance':return q.fruit?halfSplitText(value,q):'';
+  default:return '';
+ }
+}
+function styleRoundFeedback(q,value,score){
+ const feedback=$('actionarea').querySelector('.feedback'),error=roundErrorDisplay(q,value);
+ const verdict=score===100?'You nailed it.':score>=90?'Sharp eyes.':score>=75?'Pretty dialed in.':score>=50?'In the neighbourhood.':score>=25?'A generous interpretation.':score>0?'Bold. Incorrect.':'A spectacular miss.';
+ feedback.classList.add('round-feedback');
+ feedback.querySelector('.feedbacktop').innerHTML=`<div class="round-result-stats"><div class="round-result-error"><strong${(error.compact||error.value.length>6)?' class="compact-error"':''}>${escapeHTML(error.value)}<small>${escapeHTML(error.unit)}</small></strong><span>${escapeHTML(error.label)}</span></div><div class="round-result-points"><strong>${score}<small>/100</small></strong><span>points earned</span></div></div><p class="round-verdict">${verdict}</p>`;
+ const comparison=feedback.querySelector('.colour-comparison');
+ if(q.type!=='colour'){const answer=roundAnswerDisplay(q,value);if(answer){comparison.className='round-answer';comparison.textContent=answer;}else comparison.remove();}
+ feedback.querySelector('.quick-tip')?.remove();
+ const detail=feedback.querySelector('.math-detail');
+ if(['timeline','duration'].includes(q.type)){detail.querySelector('summary').textContent='About this answer';}else detail?.remove();
+ if(q.type==='rhythm'){$('pulse').parentElement.innerHTML=`<div class="rhythm-result-comparison"><div><span>Your tempo</span><strong>${pretty(value)}</strong><small>BPM</small></div><div class="rhythm-result-target"><span>Target</span><strong>${q.answer}</strong><small>BPM</small></div></div>`;}
+}
+
 function viewQuaternion(o){
  const m=rotationMatrix(o),t=m[0]+m[4]+m[8];let x,y,z,w;
  if(t>0){const s=Math.sqrt(t+1)*2;w=s/4;x=(m[7]-m[5])/s;y=(m[2]-m[6])/s;z=(m[3]-m[1])/s;}
@@ -327,13 +370,6 @@ function animateViewResult(q,guess){
  };
  frame();
 }
-function styleViewFeedback(q,value,score){
- const feedback=$('actionarea').querySelector('.feedback'),error=orientationError(value,q.answer);
- const verdict=score===100?'You nailed it.':score>=90?'Sharp eyes.':score>=75?'Pretty dialed in.':score>=50?'In the neighbourhood.':score>=25?'A generous interpretation.':score>0?'Bold. Incorrect.':'Did you memorize the back of your phone?';
- feedback.classList.add('view-feedback');
- feedback.querySelector('.feedbacktop').innerHTML=`<div class="view-result-stats"><div class="view-result-error"><strong>${error.toFixed(1)}<small>°</small></strong><span>rotation off</span></div><div class="view-result-points"><strong>${score}<small>/100</small></strong><span>points earned</span></div></div><p class="view-verdict">${verdict}</p>`;
- feedback.querySelector('.colour-comparison')?.remove();
-}
 
 function canvasDisplayScale(canvas){
  const r=canvas.getBoundingClientRect();return Math.min(r.width/canvas.width,r.height/canvas.height);
@@ -355,11 +391,12 @@ function spinIdleView(q){
 }
 
 function overlayViewStart(buttonId='show-view',canvasId='view-canvas'){
- const button=$(buttonId),stage=$(canvasId).parentElement;
+ const button=$(buttonId),stage=$(canvasId).closest('.spatial-wrap,.memory-stage');
+ stage.querySelector('.memory-prompt')?.remove();
  stage.classList.add('view-start-stage','view-start-waiting');button.classList.add('view-start-overlay');stage.appendChild(button);
 }
 function beginViewPreview(buttonId='show-view',canvasId='view-canvas'){
- const button=$(buttonId);$(canvasId).parentElement.classList.remove('view-start-waiting');button.classList.remove('view-start-overlay');$('controls').appendChild(button);
+ const button=$(buttonId);$(canvasId).closest('.spatial-wrap,.memory-stage').classList.remove('view-start-waiting');button.classList.remove('view-start-overlay');$('controls').appendChild(button);
 }
 
 // Reuse the round's cancellable timers so a countdown cannot outlive its preview.
@@ -887,9 +924,9 @@ function reveal(value){if(locked)return;stopEffects();clearTimeout(memoryTimeout
  if(q.type==='typography'){document.querySelectorAll('.type-slider').forEach(el=>el.disabled=true);$('type-preview').classList.add('type-overlay');$('type-preview').innerHTML=typeHTML(q.word,value).replace('class="type-word"','class="type-word type-overlay-guess"')+typeHTML(q.word,q.answer).replace('class="type-word"','class="type-word type-overlay-target"');$('type-preview').setAttribute('aria-label','Your text with the target overlaid as a lime outline.');}
  if(q.type==='colour'){document.querySelectorAll('.colour-input').forEach(el=>el.disabled=true);$('wheel').setAttribute('aria-disabled','true');drawWheel(q.answer);}
 
- $('actionarea').innerHTML=`<div class="feedback" aria-live="polite"><div class="feedbacktop"><h2>${feedback}</h2><span class="points">+${score.toLocaleString()} pts</span></div><div class="colour-comparison">${q.type==='colour'?`<div class="wheel-result-legend"><span><i class="wheel-guess-key"></i>Your guess</span><span><i class="wheel-target-key"></i>Target</span></div>`:`<p class="answertext">${escapeHTML(answerLabel)}</p>`}</div><p class="quick-tip">${q.type==='time'?'Target: '+q.answer+' s':q.tip}</p><details class="math-detail"><summary>${q.fruit?'How the split is measured':'Why it works'}</summary><p class="lesson">${['timeline','duration'].includes(q.type)?escapeHTML(q.explain):q.explain}${q.source?` <a href="${escapeHTML(q.source[1])}" target="_blank" rel="noopener">${escapeHTML(q.source[0])}</a>`:''}</p></details><button id="next" class="primary">${index+1===deck.length?'See my results':'Next round'}</button></div>`;if(q.type==='view3d'){styleViewFeedback(q,value,score);$('actionarea').querySelector('.math-detail')?.remove();$('actionarea').querySelector('.quick-tip')?.remove();}$('next').addEventListener('click',()=>{captureSummaryComparison(results[results.length-1]);index++;if(index===deck.length)finish();else render();});$('next').focus({preventScroll:true});}
+ $('actionarea').innerHTML=`<div class="feedback" aria-live="polite"><div class="feedbacktop"><h2>${feedback}</h2><span class="points">+${score.toLocaleString()} pts</span></div><div class="colour-comparison">${q.type==='colour'?`<div class="wheel-result-legend"><span><i class="wheel-guess-key"></i>Your guess</span><span><i class="wheel-target-key"></i>Target</span></div>`:`<p class="answertext">${escapeHTML(answerLabel)}</p>`}</div><p class="quick-tip">${q.type==='time'?'Target: '+q.answer+' s':q.tip}</p><details class="math-detail"><summary>${q.fruit?'How the split is measured':'Why it works'}</summary><p class="lesson">${['timeline','duration'].includes(q.type)?escapeHTML(q.explain):q.explain}${q.source?` <a href="${escapeHTML(q.source[1])}" target="_blank" rel="noopener">${escapeHTML(q.source[0])}</a>`:''}</p></details><button id="next" class="primary">${index+1===deck.length?'See my results':'Next round'}</button></div>`;styleRoundFeedback(q,value,score);$('next').addEventListener('click',()=>{captureSummaryComparison(results[results.length-1]);index++;if(index===deck.length)finish();else render();});$('next').focus({preventScroll:true});}
 function finish(){gamebar();const total=results.reduce((s,r)=>s+r.score,0),max=deck.length*100;sessionBest=Math.max(sessionBest,total/max);$('roundlabel').textContent='MIX COMPLETE';$('progress').innerHTML=deck.map(()=>'<i class="done"></i>').join('');$('playarea').innerHTML=`<div class="summary"><p class="eyebrow">${mode==='daily'&&!review?'DAILY MIX':'PRACTICE'} · COMPLETE</p><h1>A little sharper.</h1><div class="bigscore">${total.toLocaleString()}<small> / ${max.toLocaleString()}</small></div><p class="summary-intro">${`${results.length} ${results.length===1?"round":"rounds"}. A little better feel.`}</p><div id="share-panel" class="share-panel"><button id="share-results" class="primary">Share results</button><button id="challenge-friend" class="secondary" hidden>Challenge a friend</button><p id="share-status" class="share-status" role="status" aria-live="polite"></p><textarea id="share-fallback" class="share-fallback" aria-label="Results to copy" readonly hidden></textarea></div><div class="summary-legend"><span><i></i>Your answer</span><span><i class="target-key"></i>Target</span></div><div class="results">${results.map(r=>`<div class="result"><div class="resulthead"><span>${r.q.type==='time'?'Feel '+r.q.answer+' seconds':r.q.type==='colour'?r.q.skill+(r.q.source?' · '+r.q.title:''):r.q.cue||(['timeline','duration'].includes(r.q.type)?escapeHTML(r.q.title):r.q.skill)}</span><span>${r.score} pts</span></div><div class="result-body">${summaryComparison(r)}<p>${r.q.type==='time'?r.q.answer+' s target · '+timeError(r.guess,r.q):r.q.type==='colour'?'Your guess '+rgbHex(r.guess)+' · Target '+r.q.hex:(r.q.fruit?halfSplitText(r.guess,r.q):r.q.tip)}</p></div></div>`).join('')}</div><div class="summary-actions"><button id="again" class="secondary">${mini==='mix'?'Play a fresh mix':'Practice again'}</button></div><p class="tiny">Best score this session: ${Math.round(sessionBest*100)}% · Daily mix follows your device’s date.</p></div>`;bindShareResults();bindFriendChallenge();$('again').addEventListener('click',()=>start('practice'));}
-function memoryRound(q){shell(q,`<div class="memory-stage" id="memory-stage"><span class="memory-prompt">Two seconds to remember it.</span></div>`,`<button class="primary" id="show-colour">Show colour</button>`);$('show-colour').addEventListener('click',()=>{$('show-colour').disabled=true;memoryCountdown($('show-colour'),2000);$('memory-stage').style.background=q.hex;$('memory-stage').innerHTML='';memoryTimeout=setTimeout(()=>{memoryTimeout=null;colourPicker(q);},2000);});}
+function memoryRound(q){shell(q,`<div class="memory-stage" id="memory-stage"><span class="memory-prompt">Two seconds to remember it.</span></div>`,`<button class="primary" id="show-colour">Show colour</button>`);overlayViewStart('show-colour','memory-stage');$('show-colour').addEventListener('click',()=>{beginViewPreview('show-colour','memory-stage');$('show-colour').disabled=true;memoryCountdown($('show-colour'),2000);$('memory-stage').style.background=q.hex;$('memory-stage').innerHTML='';memoryTimeout=setTimeout(()=>{memoryTimeout=null;colourPicker(q);},2000);});}
 function colourPicker(q){wheelState={h:0,s:0,v:q.source?rgbHsv(q.answer).v:1};colourGuess=null;wheelImage=null;shell(q,`<p class="colour-caption">${q.source?q.caption:'From memory.'}</p>`,`<div class="wheel-wrap"><canvas width="480" height="480" id="wheel" tabindex="0" role="application" aria-label="Colour wheel. Left and right change hue; up and down change saturation."></canvas></div><div class="colour-adjust"><span>Your colour</span><span class="chosen-swatch" id="chosen" aria-label="Your selected colour"></span></div><details class="keyboard-colour"><summary>Keyboard controls</summary><label for="hue">Hue</label><input class="colour-input" id="hue" type="range" min="0" max="359" value="0"><label for="saturation">Saturation</label><input class="colour-input" id="saturation" type="range" min="0" max="100" value="0"></details><button class="primary" id="colour-lock" disabled>Pick a colour</button>`);
  $('playarea').querySelector('.mixed-question').appendChild($('wheel').parentElement);
  const choose=()=>{colourGuess=hsvRgb(wheelState.h,wheelState.s,wheelState.v);$('chosen').style.background=rgbHex(colourGuess);$('chosen').setAttribute('aria-label','Your selected colour');$('colour-lock').disabled=false;$('colour-lock').textContent='Lock it in';$('hue').value=Math.round(wheelState.h);$('saturation').value=Math.round(wheelState.s*100);drawWheel();};
@@ -922,7 +959,7 @@ function drawAngle(angle,target,showZero=false){
  ctx.clearRect(0,0,400,400);ctx.strokeStyle=colour('line');ctx.lineWidth=2;ctx.beginPath();ctx.arc(200,200,170,0,Math.PI*2);ctx.stroke();
  const line=(a,c,width,dashed=false)=>{const t=a*Math.PI/180;ctx.beginPath();ctx.setLineDash(dashed?[5,6]:[]);ctx.moveTo(200,200);ctx.lineTo(200+Math.cos(t)*160,200-Math.sin(t)*160);ctx.strokeStyle=c;ctx.lineWidth=width;ctx.lineCap='round';ctx.stroke();ctx.setLineDash([]);};
  if(showZero)line(0,colour('muted'),2,true);
- if(target!==undefined)line(target,colour('target'),5);
+ if(target!==undefined)line(target,colour('target'),5,true);
  line(angle,colour('draw'),5);ctx.fillStyle=colour('ink');ctx.beginPath();ctx.arc(200,200,6,0,Math.PI*2);ctx.fill();
 }
 function rotationMatrix(o){if(o.matrix)return o.matrix;const x=o.pitch*Math.PI/180,y=o.yaw*Math.PI/180,z=o.roll*Math.PI/180,cx=Math.cos(x),sx=Math.sin(x),cy=Math.cos(y),sy=Math.sin(y),cz=Math.cos(z),sz=Math.sin(z);return [cz*cy,cz*sy*sx-sz*cx,cz*sy*cx+sz*sx,sz*cy,sz*sy*sx+cz*cx,sz*sy*cx-cz*sx,-sy,cy*sx,cy*cx];}
