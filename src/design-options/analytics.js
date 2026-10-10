@@ -1,6 +1,7 @@
 // First-attempt Daily Five play and one daily share click are measured.
 const ANALYTICS_STORAGE_KEY='perception-metrics-v1';
-const ANALYTICS_EVENTS=['visit','start','complete','share','challenge_share_clicked','challenge_visit','challenge_start','challenge_complete'];
+const ACQUISITION_SOURCES=['x','listdle','playlin','dledirectory','webgames','showhn'];
+const ANALYTICS_EVENTS=['visit','start','complete','share','challenge_share_clicked','challenge_visit','challenge_start','challenge_complete',...ACQUISITION_SOURCES.flatMap(source=>['visit','start','complete'].map(stage=>'acquisition_'+source+'_'+stage))];
 let analyticsReady=false,analyticsQueue=[],analyticsLedger={};
 function analyticsAllowed(){return !!ANALYTICS_CONFIG.websiteId&&location.hostname===ANALYTICS_CONFIG.hostname&&navigator.doNotTrack!=='1';}
 function analyticsDaily(){return analyticsAllowed()&&mode==='daily'&&mini==='mix'&&!review;}
@@ -18,12 +19,14 @@ function analyticsClaim(day,event){
  analyticsLedger[day]=[...previous,event];
  // A fixed-size ledger survives reloads and theme switches without growing history.
  analyticsLedger=Object.fromEntries(Object.entries(analyticsLedger).filter(([d])=>/^\d{4}-\d{1,2}-\d{1,2}$/.test(d)).sort(([a],[b])=>dayNumber(b)-dayNumber(a)).slice(0,7));
- try{localStorage.setItem(ANALYTICS_STORAGE_KEY,JSON.stringify(analyticsLedger));}catch{}
+ let ledgerText=JSON.stringify(analyticsLedger);
+ while(ledgerText.length>4096){delete analyticsLedger[Object.keys(analyticsLedger).at(-1)];ledgerText=JSON.stringify(analyticsLedger);}
+ try{localStorage.setItem(ANALYTICS_STORAGE_KEY,ledgerText);}catch{}
  return true;
 }
 function analyticsSend(name,data){
  if(!analyticsAllowed())return;
- if(!analyticsReady){if(analyticsQueue.length<8)analyticsQueue.push([name,data]);return;}
+ if(!analyticsReady){if(analyticsQueue.length<11)analyticsQueue.push([name,data]);return;}
  try{
   const sent=name?window.umami.track(name,data):window.umami.track(p=>({...p,url:'/',title:'Perception'}));
   if(sent&&typeof sent.catch==='function')sent.catch(()=>{});
@@ -33,6 +36,7 @@ function analyticsStarted(){
  if(!analyticsDaily()||results.length===5)return;
  if(analyticsClaim(sessionDay,'start'))analyticsSend('daily_started');
  analyticsChallenge('start');
+ analyticsAcquisition('start');
 }
 function analyticsCompleted(){
  if(!analyticsDaily()||results.length!==5)return;
@@ -41,6 +45,14 @@ function analyticsCompleted(){
  for(const r of results)data[r.q.type]=r.score;
  analyticsSend('daily_completed',data);
  analyticsChallenge('complete');
+ analyticsAcquisition('complete');
+}
+function analyticsAcquisition(stage){
+ if(!analyticsDaily()||!['visit','start','complete'].includes(stage)||typeof URLSearchParams==='undefined')return;
+ const source=new URLSearchParams(location.search||'').get('source');
+ if(!ACQUISITION_SOURCES.includes(source))return;
+ const event='acquisition_'+source+'_'+stage;
+ if(analyticsClaim(calendarDay(),event))analyticsSend(event);
 }
 function analyticsChallenge(stage){
  if(!analyticsAllowed()||!['share_clicked','visit','start','complete'].includes(stage))return;
@@ -75,6 +87,7 @@ function setupAnalytics(){
  document.head.appendChild(script);
  if(analyticsClaim(calendarDay(),'visit'))analyticsSend(null);
  analyticsChallenge('visit');
+ analyticsAcquisition('visit');
  const interaction=e=>{
   if(e.type==='keydown'&&!['Enter',' ','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;
   if(e.target.closest?.('#playarea,#actionarea'))analyticsStarted();
