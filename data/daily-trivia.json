@@ -724,6 +724,18 @@
       "trivia": {
         "duration": "duration-futsal-match"
       }
+    },
+    "2026-12-08": {
+      "types": [
+        "rhythm",
+        "timeline",
+        "view3d",
+        "perspective",
+        "proportion"
+      ],
+      "trivia": {
+        "timeline": "timeline-american-civil-war-begins"
+      }
     }
   },
   "used": {
@@ -958,6 +970,10 @@
     "duration-futsal-match": {
       "day": "2026-12-07",
       "fingerprint": "81279b37fb82276c56bb2ec81ec20ff0dd53585eccb9a7021a5d5506a130fdf5"
+    },
+    "timeline-american-civil-war-begins": {
+      "day": "2026-12-08",
+      "fingerprint": "c7c19066a3b0c0388cd899af267487b794bc5532aa06332bb728ae4d46ecc1a6"
     }
   }
 }
