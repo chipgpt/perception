@@ -22,10 +22,12 @@ function startCentralDayRollover(){
 function shuffleWith(random,list){const copy=list.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
 function integerBetween(random,min,max){return min+Math.floor(random()*(max-min+1));}
 function makeDeck(day,game=mini){
+ if(game==='halfhalf')game='balance';
  // Accept an RNG for existing tooling; normal play passes a date or a practice-session seed.
  const key=typeof day==='function'?String(Math.floor(day()*4294967296)):String(day);
  const forGame=type=>{
   if(!GAME_TYPES.includes(type))throw new Error('Unknown mini-game');
+  if(type==='balance'){const kinds=shuffleWith(rng(hashSeed(key+'|half-half-objects-v1')),HALF_OBJECTS);return kinds.map((kind,round)=>halfQuestion(rng(hashSeed(key+'|half-half-v1|'+round)),round,kind));}
   if(['angle','time','rhythm','proportion','motion','view3d'].includes(type))return Array.from({length:5},(_,round)=>generatedQuestion(type,rng(hashSeed(key+'|'+type+'|v1|'+round)),round));
   return makeGameDeck(rng(hashSeed(key+'|'+type+'|v1')),type);
  };

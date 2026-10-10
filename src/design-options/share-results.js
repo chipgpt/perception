@@ -2,7 +2,7 @@ let sessionDay=calendarDay();
 function shareResultsText(rounds,day,game='mix',daily=true){
  const [year,month,date]=day.split('-').map(Number);
  const dateLabel=new Date(year,month-1,date).toLocaleDateString('en-US',{month:'short',day:'numeric'});
- const icons={view3d:'🧊',balance:'⚖️',motion:'✍️',perspective:'👁️',proportion:'▭',rhythm:'🥁',angle:'📐',colour:'🎨',time:'⏱️',timeline:'🗓️',duration:'⏳'};
+ const icons={view3d:'🧊',balance:'⚖️',halfhalf:'✂️',motion:'✍️',perspective:'👁️',proportion:'▭',rhythm:'🥁',angle:'📐',colour:'🎨',time:'⏱️',timeline:'🗓️',duration:'⏳'};
  const gameLabel=game==='mix'?'five':rounds[0]?.q.skill||'game';
  const total=rounds.reduce((sum,r)=>sum+r.score,0);
  return `perception.thedanktank.com ${dateLabel}${daily?'':' · Practice '+gameLabel}\n${rounds.map(r=>(icons[r.q.type]||'•')+r.score).join(' ')}\nFinal score: ${total}/${rounds.length*100}`;

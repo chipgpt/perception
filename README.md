@@ -23,7 +23,7 @@ Free. No login. No downloads. No sound needed.
 | Puzzle | Your move |
 | --- | --- |
 | 🧊 **3D view** | Remember a view. Rotate the shape back into place. |
-| ⚖️ **Balance** | Find the sweet spot that holds a shape level. |
+| ✂️ **Half & Half** | Cut a group of geometric shapes into two equal portions. How close can you get to 50/50? |
 | ✍️ **Line memory** | Watch a path vanish. Trace it from memory. |
 | 👁️ **Perspective** | Follow the lines to their vanishing point. |
 | ▭ **Proportions** | Stretch a rectangle to match a ratio. |

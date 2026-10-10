@@ -41,15 +41,16 @@ function validSavedGame(game){
  try{
   if(!game||!Array.isArray(game.deck)||game.deck.length!==5||!Array.isArray(game.results)||game.results.length>5)return false;
   for(const q of game.deck){
-   if(!q||!['view3d','balance','motion','perspective','proportion','rhythm','angle','colour','time','timeline','duration'].includes(q.type)||typeof q.title!=='string'||q.title.length>200||typeof q.skill!=='string'||q.skill.length>100||!finiteTree(q))return false;
+   if(!q||!['view3d','balance','halfhalf','motion','perspective','proportion','rhythm','angle','colour','time','timeline','duration'].includes(q.type)||typeof q.title!=='string'||q.title.length>200||typeof q.skill!=='string'||q.skill.length>100||!finiteTree(q))return false;
    if(q.source&&(!Array.isArray(q.source)||!/^https:\/\//.test(q.source[1])))return false;
    const pairs=points=>Array.isArray(points)&&points.length>=3&&points.every(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite));
    if(q.type==='view3d'&&(!q.shape||!Array.isArray(q.shape.boxes)||q.shape.boxes.length<3||q.shape.boxes.length>5||!q.shape.boxes.every(b=>Array.isArray(b)&&b.length===8&&b.slice(0,6).every(Number.isFinite)&&b.slice(3,6).every(n=>n>0)&&/^#[0-9a-f]{6}$/i.test(b[6])&&Array.isArray(b[7])&&b[7].length===6&&b[7].every(v=>typeof v==='boolean'))))return false;
-   if(q.type==='balance'&&(!pairs(q.points)||q.holes&&!q.holes.every(pairs)))return false;
+   if(q.type==='balance'||q.type==='halfhalf'){if(q.fruit){if(!HALF_SAVED_OBJECTS.includes(q.fruit.kind)||!Array.isArray(q.fruit.base)||q.fruit.base.length<3||!q.fruit.base.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y))||!['rotation','sx','sy','skew'].every(k=>Number.isFinite(q.fruit[k]))||q.fruit.sx<=0||q.fruit.sy<=0||!Array.isArray(q.points)||q.points.length<3||!q.points.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y))||!Number.isFinite(halfError(q.answer,q)))return false;}else if(!pairs(q.points)||q.holes&&!q.holes.every(pairs))return false;}
+   if(q.fruit?.regions&&(!Array.isArray(q.fruit.regions)||q.fruit.regions.length<3||q.fruit.regions.length>5||!q.fruit.regions.every(region=>Array.isArray(region)&&region.length>=3&&region.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)))))return false;
    if(q.type==='motion'&&(!Array.isArray(q.answer)||q.answer.length<2||!q.answer.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y))))return false;
    if(q.type==='perspective'&&(!q.answer||typeof q.answer.x!=='number'||typeof q.answer.y!=='number'))return false;
    if(q.type==='colour'&&(!Array.isArray(q.answer)||q.answer.length!==3))return false;
-   if(['angle','time','rhythm','proportion','balance','timeline','duration'].includes(q.type)&&typeof q.answer!=='number')return false;
+   if(['angle','time','rhythm','proportion','balance','timeline','duration'].includes(q.type)&&!q.fruit&&typeof q.answer!=='number')return false;
    if(scoreFor(q.type==='proportion'?{width:q.answer,height:1}:q.answer,q)!==100)return false;
   }
   return game.results.every((r,i)=>r&&Number.isInteger(r.score)&&r.score>=0&&r.score<=100&&finiteTree(r.guess)&&Number.isFinite(scoreFor(r.guess,game.deck[i])));
@@ -82,7 +83,7 @@ function saveDailyGame(){
 }
 function browserHistoryHTML(){
  const stats=playerData.stats,active=[0,1].includes(dayNumber(calendarDay())-dayNumber(stats.lastDay))?stats.streak:0;
- const names={mix:'Daily five',view3d:'3D view',balance:'Balance',motion:'Line memory',perspective:'Perspective',proportion:'Proportions',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
+ const names={mix:'Daily five',view3d:'3D view',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Proportions',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
  const label=day=>{const [y,m,d]=day.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});};
  return `<div class="browser-history"><p class="history-stats">Daily five streak: <strong>${active} ${active===1?'day':'days'}</strong> · Best: ${stats.best} · Played: ${stats.played}</p><div class="history-list">${playerData.history.slice(-14).reverse().map(h=>`<div class="history-row"><span>${escapeHTML(label(h.day))} · ${names[h.game]||'Daily game'}</span><strong>${h.scores.reduce((a,b)=>a+b,0)}/500</strong></div>`).join('')||'<p>No saved games yet.</p>'}</div><p class="storage-caption">Saved in this browser. Clearing site data resets your history. No cross-device sync.</p></div>`;
 }

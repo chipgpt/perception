@@ -1,13 +1,14 @@
 function captureSummaryComparison(result){
- const ids={view3d:'view-canvas',balance:'balance-canvas',motion:'trace-canvas',perspective:'perspective-canvas',proportion:'proportion-canvas',angle:'angle-dial',colour:'wheel'};
+ const ids={view3d:'view-canvas',balance:'balance-canvas',halfhalf:'balance-canvas',motion:'trace-canvas',perspective:'perspective-canvas',proportion:'proportion-canvas',angle:'angle-dial',colour:'wheel'};
  const canvas=$(ids[result.q.type]);
+ if(canvas&&result.q.fruit)drawHalfFruit(canvas,result.q,result.guess,true);
  if(canvas&&result.q.type!=='colour')result.comparisonImage=canvas.toDataURL('image/png');
 }
 function summaryComparison(result){
  const {q,guess}=result;
  if(q.type==='colour')return restoredComparison(result);
  if(result.comparisonImage)return `<img class="result-comparison-image" src="${result.comparisonImage}" alt="Your answer and the target overlaid for ${escapeHTML(q.skill)}" loading="lazy">`;
- if(['view3d','balance','motion','perspective','proportion','angle','colour'].includes(q.type))return restoredComparison(result);
+ if(['view3d','balance','halfhalf','motion','perspective','proportion','angle','colour'].includes(q.type))return restoredComparison(result);
  // Numeric puzzles use two labelled marks on the same scale.
  const format=v=>q.type==='duration'?durationText(v):q.type==='time'?v.toFixed(2)+' s':q.type==='rhythm'?pretty(v)+' BPM':String(v);
  const logarithmic=q.type==='duration',a=logarithmic?Math.log(guess):guess,b=logarithmic?Math.log(q.answer):q.answer;
@@ -24,6 +25,7 @@ function summaryComparison(result){
  </svg>`;
 }
 function restoredComparison({q,guess}){
+ if(q.fruit){const canvas=document.createElement('canvas');canvas.width=400;canvas.height=300;drawHalfFruit(canvas,q,guess,true);return `<img class="result-comparison-image" src="${canvas.toDataURL()}" alt="Your ${escapeHTML(q.fruit.kind)} split and the even-cut guide">`;}
  if(q.type==='view3d'){
   const canvas=document.createElement('canvas');canvas.width=400;canvas.height=300;
   drawShape3D(canvas,guess,{shape:q.shape});drawShape3D(canvas,q.answer,{shape:q.shape,overlay:true});

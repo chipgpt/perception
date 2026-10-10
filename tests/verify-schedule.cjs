@@ -6,7 +6,7 @@ const run=s=>vm.runInContext(s,ctx),schedule=JSON.parse(fs.readFileSync('data/da
 for(const [day,entry] of Object.entries(schedule)){
  const key=day.split('-').map(Number).join('-'),deck=run(`makeDeck('${key}','mix')`);
  assert.equal(deck.length,5);assert.equal(new Set(deck.map(q=>q.type)).size,5);
- assert.deepEqual(deck.map(q=>q.type==='colour'?'memory':q.type),entry.types);
+ assert.deepEqual(deck.map(q=>q.type==='colour'?'memory':q.type==='halfhalf'?'balance':q.type),entry.types);
  for(const q of deck.filter(q=>['timeline','duration'].includes(q.type))){assert.equal(q.id,entry.trivia[q.type]);assert(!used.has(q.id));used.add(q.id);assert.equal(run(`scoreFor(${q.answer},${JSON.stringify(q)})`),100);}
 
 }

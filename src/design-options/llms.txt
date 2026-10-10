@@ -10,7 +10,7 @@
 
 ## Game facts
 
-The eleven puzzle types are 3D view, balance, line memory, perspective, proportions, rhythm, angles, colour memory, time awareness, When?, and How long?. All games are silent and support touch and desktop controls.
+The eleven puzzle types are 3D view, Half & Half (cut shapes into equal visible areas), line memory, perspective, proportions, rhythm, angles, colour memory, time awareness, When?, and How long?. All games are silent and support touch and desktop controls.
 
 Daily challenges follow the player's device-calendar date. Players on the same date receive the same challenge. Procedural puzzle values are deterministic; daily trivia assignments are maintained in a permanent schedule. Daily trivia facts are not reused. Trivia practice uses only previously scheduled questions from days before the current day. Practice sessions may have fewer than five questions while the archive is small.
 

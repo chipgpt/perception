@@ -1,7 +1,7 @@
 // Every game converts its distance to a fraction of one tunable error bound.
 // The common curve is 100 * (1 - errorFraction)^2, rounded once at the end.
 const SCORING_RANGES=Object.freeze({
- view3d:180, angle:180, balance:.5,
+ view3d:180, angle:180, balance:.5, halfhalf:.15,
  motion:.2*Math.hypot(400,300), perspective:.4*Math.hypot(400,300),
  time:3,
  rhythm:Math.log(1.5), proportion:Math.log(1.5),
@@ -22,7 +22,8 @@ function scoringError(value,q){
  let error;
  switch(q.type){
   case 'view3d':error=orientationError(value,q.answer);break;
-  case 'balance':error=Math.abs(value-q.answer)/balanceWidth(q);break;
+  case 'halfhalf':error=halfError(value,q);break;
+  case 'balance':error=q.fruit?halfError(value,q):Math.abs(value-q.answer)/balanceWidth(q);break;
   case 'angle':case 'time':case 'timeline':
    error=Math.abs(value-q.answer);break;
   case 'motion':if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
