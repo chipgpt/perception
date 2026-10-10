@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><script>window.perceptionThemeAssets={"focus": "focus.css?v=247a36a59152", "night-lab": "night-lab.css?v=22d10fc74c71"};
+<html lang="en"><head><meta charset="utf-8"><script>window.perceptionThemeAssets={"focus": "focus.css?v=b5b76d44ae10", "night-lab": "night-lab.css?v=04465b6c43a8"};
 (()=>{
  const themes=['focus','night-lab'];
  let theme='night-lab';
@@ -35,13 +35,65 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://perception.thedanktank.com/#website", "name": "Perception", "url": "https://perception.thedanktank.com/", "description": "Five quick daily puzzles. Match colours, judge angles, feel time, and test your trivia. Play free, score up to 500, and share your results.", "inLanguage": "en"}, {"@type": "WebApplication", "@id": "https://perception.thedanktank.com/#game", "name": "Perception", "url": "https://perception.thedanktank.com/", "description": "Five quick daily puzzles. Match colours, judge angles, feel time, and test your trivia. Play free, score up to 500, and share your results.", "applicationCategory": "GameApplication", "operatingSystem": "Any device with a modern web browser", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://perception.thedanktank.com/assets/social/perception-mix.png"}, {"@type": "WebPage", "@id": "https://perception.thedanktank.com/#page", "url": "https://perception.thedanktank.com/", "name": "Perception — Daily Visual Puzzles & Trivia", "isPartOf": {"@id": "https://perception.thedanktank.com/#website"}, "about": {"@id": "https://perception.thedanktank.com/#game"}, "inLanguage": "en"}]}</script></head>
 <body><header><a class="brand" href="./" aria-label="Perception home"><span class="brandmark">p.</span>PERCEPTION</a><div class="header-right"><span class="tagline">A daily perception game</span><button id="help" class="circle" aria-label="How to play">?</button></div></header>
 <main><div class="topline"><div class="play-navigation"><button id="daily" class="daily-home active">Daily Five</button><details id="practice-menu" class="practice-menu"><summary>Practice <span aria-hidden="true">⌄</span></summary><nav class="minigames" aria-label="Practice games"><button data-mini="mix" >Fresh mix</button><button data-mini="view3d">3D view</button><button data-mini="balance">Balance</button><button data-mini="motion">Line memory</button><button data-mini="perspective">Perspective</button><button data-mini="proportion">Proportions</button><button data-mini="rhythm">Rhythm</button><button data-mini="angle">Angles</button><button data-mini="memory">Colour memory</button><button data-mini="time">Time</button><button data-mini="timeline">When?</button><button data-mini="duration">How long?</button></nav></details><button id="history-button" class="history-button" aria-label="Recent results" title="Recent results" aria-haspopup="dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.7 7"/><path d="M3 4v7h7"/><path d="M12 7v5l3 2"/></svg></button><button id="practice" hidden>Practice</button></div><span id="date" class="meta"></span></div>
-<div class="layout"><section class="game" aria-label="Game"><p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar"><span id="roundlabel">ROUND 01 / 05</span><div id="progress" class="progress" aria-label="Round progress"></div><span class="score"><span id="total">0</span> <small id="scoremax">/ 500</small></span></div><div id="playarea"><noscript><h1>Perception: five daily puzzles</h1><p>A free daily game of perception and trivia. Match colours, judge angles, feel time, and explore a new mix of five puzzle types each day. Each round is worth 100 points, for a total of 500.</p><p>Enable JavaScript to play, or <a href="about.html">read how Perception works</a>.</p></noscript></div></section>
+<div class="layout"><section class="game" aria-label="Game"><p id="friend-challenge" class="friend-challenge" role="status" hidden></p><p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar"><span id="roundlabel">ROUND 01 / 05</span><div id="progress" class="progress" aria-label="Round progress"></div><span class="score"><span id="total">0</span> <small id="scoremax">/ 500</small></span></div><div id="playarea"><noscript><h1>Perception: five daily puzzles</h1><p>A free daily game of perception and trivia. Match colours, judge angles, feel time, and explore a new mix of five puzzle types each day. Each round is worth 100 points, for a total of 500.</p><p>Enable JavaScript to play, or <a href="about.html">read how Perception works</a>.</p></noscript></div></section>
 <aside><div class="aside-label">TRAIN YOUR PERCEPTION</div><h2 id="aside-title">Find that colour.</h2><p id="aside-copy">Two seconds to look.<br>A whole wheel to choose from.</p><div class="aside-note"><span class="asterisk">✳</span><p>Close counts.<br><strong>Look. Judge. Learn.</strong></p></div></aside></div>
 <footer><span>See a little sharper.</span><button id="rules">How scoring works</button></footer></main>
 <dialog id="helpdialog"><button id="closehelp" class="circle" aria-label="Close instructions">×</button><p class="eyebrow">WELCOME TO PERCEPTION</p><h2>Guess. Reveal. Get sharper.</h2><p>Daily Five is the shared daily challenge: five different puzzle types, worth 500 points. Open Practice to choose a skill or play a fresh mix. Individual games are practice-only.</p><p><strong>3D view:</strong> remember the view, then drag the shape to turn it and drag the green handle around the outer ring to tilt it. <strong>Balance:</strong> move a support beneath a uniform shape. <strong>Line memory:</strong> look at a generated path for three seconds, then trace it in one stroke on the blank canvas. <strong>Perspective:</strong> place the vanishing point. <strong>Proportions:</strong> resize a rectangle to match the ratio. Each reveal shows the target. All games are silent.</p><p><strong>Colour memory:</strong> look at a swatch for two seconds, then find it on the wheel. Hue goes around the wheel; saturation increases towards the edge. Arrow keys or the keyboard controls also work.</p><p><strong>Scoring:</strong> every round is worth 100 points. We divide your error by the game’s zero-point bound, then square the remaining closeness. An error of 10% earns 81 points; 25% earns 56; 50% earns 25. Scores are rounded to whole points. Five rounds total 500 points.</p><details><summary>Zero-point bounds</summary><p>3D and angles: 180°. Balance: 50% of the shape’s width. Line memory: 20% of the canvas diagonal (100 units). Perspective: 40% of the diagonal (200 units). Time: 3 seconds early or late. Rhythm and proportions: 1.5 times or two-thirds of the target. Colour: straight-line distance of one wheel radius. When?: 50 years early or late. How long?: four times or one-quarter of the target duration.</p></details><p><strong>Rhythm:</strong> watch five silent flashes, then tap five beats at the same pace. <strong>Angles:</strong> rotate a line to the target angle. Both reward closeness.</p><p><strong>When?</strong> Slide the timeline beneath the centre marker to choose an event’s year. The minus and plus buttons adjust by one year. <strong>How long?</strong> Turn the dial from seconds to days. Use minus, plus or arrow keys to fine tune; Shift and arrows adjust more broadly. Both award up to 100 points for closeness, with the answer and source shown after you commit. Daily five uses each trivia fact once. Trivia practice draws only from past Daily Fives, with up to five different questions per session. Today’s and future questions stay out of the practice pool.</p><p><strong>Time:</strong> Start, wait, Stop. Points fall with your timing error using the same curve as every other game.</p><p>Switching away resets an active memory flash or timer.</p><button id="gotit" class="primary">Let’s play</button></dialog><dialog id="history-dialog" class="history-dialog" aria-labelledby="history-title"><div class="history-heading"><h2 id="history-title">Recent results</h2><form method="dialog"><button class="history-close" aria-label="Close recent results">×</button></form></div><div id="history-content"></div></dialog><script>'use strict';
+// A challenge contains only a date and total, never answers or player identifiers.
+function readFriendChallenge(search){
+ const params=new URLSearchParams(search),day=params.get('day'),score=params.get('beat');
+ if(params.get('from')!=='challenge'||!validDay(day)||!/^\d{1,3}$/.test(score||'')||Number(score)>500)return null;
+ return {day:day.split('-').map(Number).join('-'),score:Number(score)};
+}
+const friendChallenge=typeof location!=='undefined'&&typeof URLSearchParams!=='undefined'?readFriendChallenge(location.search):null;
+function currentFriendChallenge(){return friendChallenge&&friendChallenge.day===calendarDay()&&mode==='daily'&&mini==='mix'&&!review;}
+function friendChallengeURL(total,day){
+ const url=new URL('https://perception.thedanktank.com/');
+ url.search=new URLSearchParams({from:'challenge',day,beat:String(total)}).toString();
+ return url.href;
+}
+function friendChallengeText(){
+ const total=results.reduce((sum,r)=>sum+r.score,0);
+ return `I scored ${total}/500 on Perception. Can you beat me?\nFive daily puzzles. No login.\n${friendChallengeURL(total,sessionDay)}`;
+}
+function renderFriendChallenge(){
+ const banner=$('friend-challenge');if(!banner)return;
+ banner.hidden=!friendChallenge||mode!=='daily'||mini!=='mix'||review;
+ if(banner.hidden)return;
+ if(!currentFriendChallenge()){
+  banner.textContent='That daily challenge has ended. Play today’s five and send a fresh challenge.';return;
+ }
+ if(results.length===5){
+  const total=results.reduce((sum,r)=>sum+r.score,0),delta=total-friendChallenge.score;
+  banner.textContent=delta>0?`You beat your friend by ${delta} ${delta===1?'point':'points'}! Send a challenge back.`:delta===0?`A tie at ${total}/500. Challenge someone else to break it.`:`Your friend scored ${friendChallenge.score}/500. You were ${-delta} points away. Try again tomorrow.`;
+ }else banner.textContent=`Your friend scored ${friendChallenge.score}/500. Can you beat them? Same five puzzles. Your own first attempt.`;
+}
+function bindFriendChallenge(){
+ renderFriendChallenge();
+ const button=$('challenge-friend');if(!button)return;
+ button.hidden=mode!=='daily'||mini!=='mix'||review||sessionDay!==calendarDay()||results.length!==5;
+ if(button.hidden)return;
+ button.addEventListener('click',async()=>{
+  if(button.disabled)return;
+  analyticsShareClicked();analyticsChallenge('share_clicked');
+  button.disabled=true;
+  const text=friendChallengeText(),status=$('share-status'),fallback=$('share-fallback');
+  status.textContent='';fallback.hidden=true;
+  try{
+   if(typeof navigator.share==='function'){
+    try{await navigator.share({text});status.textContent='Challenge shared.';return;}
+    catch(error){if(error?.name==='AbortError')return;}
+   }
+   try{await navigator.clipboard.writeText(text);status.textContent='Challenge copied. Send it to a friend.';}
+   catch{fallback.hidden=false;fallback.value=text;fallback.focus();fallback.select();status.textContent='Select and copy your challenge below.';}
+  }finally{button.disabled=false;}
+ });
+}
+
 const ANALYTICS_CONFIG={"websiteId": "87a5004f-6e63-4197-8776-a86e6bfb4279", "scriptUrl": "https://cloud.umami.is/script.js", "hostname": "perception.thedanktank.com"};
 // First-attempt Daily Five play and one daily share click are measured.
 const ANALYTICS_STORAGE_KEY='perception-metrics-v1';
+const ANALYTICS_EVENTS=['visit','start','complete','share','challenge_share_clicked','challenge_visit','challenge_start','challenge_complete'];
 let analyticsReady=false,analyticsQueue=[],analyticsLedger={};
 function analyticsAllowed(){return !!ANALYTICS_CONFIG.websiteId&&location.hostname===ANALYTICS_CONFIG.hostname&&navigator.doNotTrack!=='1';}
 function analyticsDaily(){return analyticsAllowed()&&mode==='daily'&&mini==='mix'&&!review;}
@@ -51,11 +103,11 @@ function analyticsClaim(day,event){
   const stored=text.length<=4096?JSON.parse(text):{};
   if(stored&&typeof stored==='object'&&!Array.isArray(stored))for(const [day,events]of Object.entries(stored)){
    if(!/^\d{4}-\d{1,2}-\d{1,2}$/.test(day)||!Array.isArray(events))continue;
-   analyticsLedger[day]=[...new Set([...(analyticsLedger[day]||[]),...events.filter(e=>['visit','start','complete','share'].includes(e))])];
+   analyticsLedger[day]=[...new Set([...(analyticsLedger[day]||[]),...events.filter(e=>ANALYTICS_EVENTS.includes(e))])];
   }
  }catch{}
  if(analyticsLedger[day]?.includes(event))return false;
- const previous=Array.isArray(analyticsLedger[day])?analyticsLedger[day].filter(e=>['visit','start','complete','share'].includes(e)):[];
+ const previous=Array.isArray(analyticsLedger[day])?analyticsLedger[day].filter(e=>ANALYTICS_EVENTS.includes(e)):[];
  analyticsLedger[day]=[...previous,event];
  // A fixed-size ledger survives reloads and theme switches without growing history.
  analyticsLedger=Object.fromEntries(Object.entries(analyticsLedger).filter(([d])=>/^\d{4}-\d{1,2}-\d{1,2}$/.test(d)).sort(([a],[b])=>dayNumber(b)-dayNumber(a)).slice(0,7));
@@ -64,7 +116,7 @@ function analyticsClaim(day,event){
 }
 function analyticsSend(name,data){
  if(!analyticsAllowed())return;
- if(!analyticsReady){if(analyticsQueue.length<4)analyticsQueue.push([name,data]);return;}
+ if(!analyticsReady){if(analyticsQueue.length<8)analyticsQueue.push([name,data]);return;}
  try{
   const sent=name?window.umami.track(name,data):window.umami.track(p=>({...p,url:'/',title:'Perception'}));
   if(sent&&typeof sent.catch==='function')sent.catch(()=>{});
@@ -73,6 +125,7 @@ function analyticsSend(name,data){
 function analyticsStarted(){
  if(!analyticsDaily()||results.length===5)return;
  if(analyticsClaim(sessionDay,'start'))analyticsSend('daily_started');
+ analyticsChallenge('start');
 }
 function analyticsCompleted(){
  if(!analyticsDaily()||results.length!==5)return;
@@ -80,11 +133,16 @@ function analyticsCompleted(){
  const data={total:results.reduce((sum,r)=>sum+r.score,0)};
  for(const r of results)data[r.q.type]=r.score;
  analyticsSend('daily_completed',data);
+ analyticsChallenge('complete');
+}
+function analyticsChallenge(stage){
+ if(!analyticsAllowed()||!['share_clicked','visit','start','complete'].includes(stage))return;
+ if(stage!=='share_clicked'&&(typeof friendChallenge==='undefined'||!friendChallenge||!currentFriendChallenge()))return;
+ if(analyticsClaim(calendarDay(),'challenge_'+stage))analyticsSend('challenge_'+stage);
 }
 function analyticsShareClicked(){
- if(!analyticsAllowed())return;
- // Sharing practice or an older saved game also helps distribution. Count the
- // click's calendar day, independently of the puzzle's date and game mode.
+ if(!analyticsDaily())return;
+ // Count the click's calendar day, independently of the Daily Five's date.
  if(analyticsClaim(calendarDay(),'share'))analyticsSend('results_share_clicked');
 }
 function setupAnalytics(){
@@ -109,6 +167,7 @@ function setupAnalytics(){
  script.addEventListener('error',()=>{analyticsQueue=[];});
  document.head.appendChild(script);
  if(analyticsClaim(calendarDay(),'visit'))analyticsSend(null);
+ analyticsChallenge('visit');
  const interaction=e=>{
   if(e.type==='keydown'&&!['Enter',' ','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;
   if(e.target.closest?.('#playarea,#actionarea'))analyticsStarted();
@@ -269,6 +328,10 @@ function shareResultsText(rounds,day,game='mix',daily=true){
  return `perception.thedanktank.com ${dateLabel}${daily?'':' · Practice '+gameLabel}\n${rounds.map(r=>(icons[r.q.type]||'•')+r.score).join(' ')}\nFinal score: ${total}/${rounds.length*100}`;
 }
 function bindShareResults(){
+ const panel=$('share-panel');
+ const allowed=mode==='daily'&&mini==='mix'&&!review;
+ if(panel)panel.hidden=!allowed;
+ if(!allowed)return;
  const button=$('share-results'),status=$('share-status'),fallback=$('share-fallback');
  const text=shareResultsText(results,sessionDay,mini,mode==='daily'&&!review);
  button.addEventListener('click',async()=>{
@@ -550,7 +613,7 @@ function scoreFor(value,q){return scoreFromError(scoringError(value,q));}
 
 function timeError(value,q){const delta=value-q.answer;return Math.abs(delta)<.005?'Right on time':Math.abs(delta).toFixed(2)+' s '+(delta<0?'early':'late');}
 function start(nextmode='daily'){sessionDay=calendarDay();if(mini!=='mix')nextmode='practice';$('practice-menu').open=false;stopEffects();clearTimeout(memoryTimeout);memoryTimeout=null;mode=nextmode;review=false;deck=makeDeck(mode==='daily'?sessionDay:'practice:'+Math.floor(Math.random()*4294967295));index=0;results=[];locked=false;guess=null;startedAt=null;$('daily').classList.toggle('active',mode==='daily');$('practice').classList.toggle('active',mode==='practice');$('date').textContent=mode==='daily'?dailyDateLabel(sessionDay):['timeline','duration'].includes(mini)?'Past daily questions':mini==='mix'?'Fresh mix':'Practice';if(restoreDailyGame()){if(index===deck.length){finish();return;}}else saveDailyGame();updateStorageNotice();render();}
-function gamebar(){ $('scoremax').textContent='/ '+(deck.length*100); $('roundlabel').textContent='ROUND '+String(Math.min(index+1,deck.length)).padStart(2,'0')+' / '+String(deck.length).padStart(2,'0');$('total').textContent=results.reduce((s,r)=>s+r.score,0).toLocaleString();$('progress').innerHTML=deck.map((_,i)=>`<i class="${i<index?'done':i===index?'current':''}"></i>`).join('');}
+function gamebar(){renderFriendChallenge(); $('scoremax').textContent='/ '+(deck.length*100); $('roundlabel').textContent='ROUND '+String(Math.min(index+1,deck.length)).padStart(2,'0')+' / '+String(deck.length).padStart(2,'0');$('total').textContent=results.reduce((s,r)=>s+r.score,0).toLocaleString();$('progress').innerHTML=deck.map((_,i)=>`<i class="${i<index?'done':i===index?'current':''}"></i>`).join('');}
 function shell(q,content,controls){$('playarea').dataset.puzzle=q.type;gamebar();$('playarea').innerHTML=`<div class="mixed-question"><p class="eyebrow">${q.skill}</p><h1 id="challenge">${['timeline','duration'].includes(q.type)?escapeHTML(q.title):q.title}</h1>${content}</div><div class="mixed-controls" id="controls">${controls}</div><div class="actionarea" id="actionarea"></div>`;}
 function render(){stopEffects();clearTimeout(memoryTimeout);locked=false;guess=null;startedAt=null;const q=deck[index];if(!q){emptyTriviaPractice();return;}
  if(q.type==='timeline'){timelineRound(q);return;}
@@ -583,7 +646,7 @@ function reveal(value){if(locked)return;stopEffects();clearTimeout(memoryTimeout
  if(q.type==='colour'){document.querySelectorAll('.colour-input').forEach(el=>el.disabled=true);$('wheel').setAttribute('aria-disabled','true');drawWheel(q.answer);}
 
  $('actionarea').innerHTML=`<div class="feedback" aria-live="polite"><div class="feedbacktop"><h2>${feedback}</h2><span class="points">+${score.toLocaleString()} pts</span></div><div class="colour-comparison">${q.type==='colour'?`<div class="wheel-result-legend"><span><i class="wheel-guess-key"></i>Your guess</span><span><i class="wheel-target-key"></i>Target</span></div>`:`<p class="answertext">${escapeHTML(answerLabel)}</p>`}</div><p class="quick-tip">${q.type==='time'?'Target: '+q.answer+' s':q.tip}</p><details class="math-detail"><summary>Why it works</summary><p class="lesson">${['timeline','duration'].includes(q.type)?escapeHTML(q.explain):q.explain}${q.source?` <a href="${escapeHTML(q.source[1])}" target="_blank" rel="noopener">${escapeHTML(q.source[0])}</a>`:''}</p></details><button id="next" class="primary">${index+1===deck.length?'See my results':'Next round'}</button></div>`;$('next').addEventListener('click',()=>{captureSummaryComparison(results[results.length-1]);index++;if(index===deck.length)finish();else render();});$('next').focus({preventScroll:true});}
-function finish(){gamebar();const total=results.reduce((s,r)=>s+r.score,0),max=deck.length*100;sessionBest=Math.max(sessionBest,total/max);$('roundlabel').textContent='MIX COMPLETE';$('progress').innerHTML=deck.map(()=>'<i class="done"></i>').join('');$('playarea').innerHTML=`<div class="summary"><p class="eyebrow">${mode==='daily'&&!review?'DAILY MIX':'PRACTICE'} · COMPLETE</p><h1>A little sharper.</h1><div class="bigscore">${total.toLocaleString()}<small> / ${max.toLocaleString()}</small></div><p class="summary-intro">${`${results.length} ${results.length===1?"round":"rounds"}. A little better feel.`}</p><div class="summary-legend"><span><i></i>Your answer</span><span><i class="target-key"></i>Target</span></div><div class="results">${results.map(r=>`<div class="result"><div class="resulthead"><span>${r.q.type==='time'?'Feel '+r.q.answer+' seconds':r.q.type==='colour'?r.q.skill+(r.q.source?' · '+r.q.title:''):r.q.cue||(['timeline','duration'].includes(r.q.type)?escapeHTML(r.q.title):r.q.skill)}</span><span>${r.score} pts</span></div><div class="result-body">${summaryComparison(r)}<p>${r.q.type==='time'?r.q.answer+' s target · '+timeError(r.guess,r.q):r.q.type==='colour'?'Your guess '+rgbHex(r.guess)+' · Target '+r.q.hex:r.q.tip}</p></div></div>`).join('')}</div><div class="share-panel"><button id="share-results" class="primary">Share results</button><p id="share-status" class="share-status" role="status" aria-live="polite"></p><textarea id="share-fallback" class="share-fallback" aria-label="Results to copy" readonly hidden></textarea></div><div class="summary-actions"><button id="again" class="secondary">${mini==='mix'?'Play a fresh mix':'Practice again'}</button></div><p class="tiny">Best score this session: ${Math.round(sessionBest*100)}% · Daily mix follows your device’s date.</p></div>`;bindShareResults();$('again').addEventListener('click',()=>start('practice'));}
+function finish(){gamebar();const total=results.reduce((s,r)=>s+r.score,0),max=deck.length*100;sessionBest=Math.max(sessionBest,total/max);$('roundlabel').textContent='MIX COMPLETE';$('progress').innerHTML=deck.map(()=>'<i class="done"></i>').join('');$('playarea').innerHTML=`<div class="summary"><p class="eyebrow">${mode==='daily'&&!review?'DAILY MIX':'PRACTICE'} · COMPLETE</p><h1>A little sharper.</h1><div class="bigscore">${total.toLocaleString()}<small> / ${max.toLocaleString()}</small></div><p class="summary-intro">${`${results.length} ${results.length===1?"round":"rounds"}. A little better feel.`}</p><div id="share-panel" class="share-panel"><button id="challenge-friend" class="primary" hidden>Challenge a friend</button><button id="share-results" class="secondary">Share results</button><p id="share-status" class="share-status" role="status" aria-live="polite"></p><textarea id="share-fallback" class="share-fallback" aria-label="Results to copy" readonly hidden></textarea></div><div class="summary-legend"><span><i></i>Your answer</span><span><i class="target-key"></i>Target</span></div><div class="results">${results.map(r=>`<div class="result"><div class="resulthead"><span>${r.q.type==='time'?'Feel '+r.q.answer+' seconds':r.q.type==='colour'?r.q.skill+(r.q.source?' · '+r.q.title:''):r.q.cue||(['timeline','duration'].includes(r.q.type)?escapeHTML(r.q.title):r.q.skill)}</span><span>${r.score} pts</span></div><div class="result-body">${summaryComparison(r)}<p>${r.q.type==='time'?r.q.answer+' s target · '+timeError(r.guess,r.q):r.q.type==='colour'?'Your guess '+rgbHex(r.guess)+' · Target '+r.q.hex:r.q.tip}</p></div></div>`).join('')}</div><div class="summary-actions"><button id="again" class="secondary">${mini==='mix'?'Play a fresh mix':'Practice again'}</button></div><p class="tiny">Best score this session: ${Math.round(sessionBest*100)}% · Daily mix follows your device’s date.</p></div>`;bindShareResults();bindFriendChallenge();$('again').addEventListener('click',()=>start('practice'));}
 function memoryRound(q){shell(q,`<div class="memory-stage" id="memory-stage"><span class="memory-prompt">Two seconds to remember it.</span></div>`,`<button class="primary" id="show-colour">Show colour</button>`);$('show-colour').addEventListener('click',()=>{$('show-colour').disabled=true;$('show-colour').textContent='Remember it…';$('memory-stage').style.background=q.hex;$('memory-stage').innerHTML='';memoryTimeout=setTimeout(()=>{memoryTimeout=null;colourPicker(q);},2000);});}
 function colourPicker(q){wheelState={h:0,s:0,v:q.source?rgbHsv(q.answer).v:1};colourGuess=null;wheelImage=null;shell(q,`<p class="colour-caption">${q.source?q.caption:'From memory.'}</p>`,`<div class="wheel-wrap"><canvas width="480" height="480" id="wheel" tabindex="0" role="application" aria-label="Colour wheel. Left and right change hue; up and down change saturation."></canvas></div><div class="colour-adjust"><span>Your colour</span><span class="chosen-swatch" id="chosen" aria-label="Your selected colour"></span></div><details class="keyboard-colour"><summary>Keyboard controls</summary><label for="hue">Hue</label><input class="colour-input" id="hue" type="range" min="0" max="359" value="0"><label for="saturation">Saturation</label><input class="colour-input" id="saturation" type="range" min="0" max="100" value="0"></details><button class="primary" id="colour-lock" disabled>Pick a colour</button>`);
  const choose=()=>{colourGuess=hsvRgb(wheelState.h,wheelState.s,wheelState.v);$('chosen').style.background=rgbHex(colourGuess);$('chosen').setAttribute('aria-label','Your selected colour');$('colour-lock').disabled=false;$('colour-lock').textContent='Lock it in';$('hue').value=Math.round(wheelState.h);$('saturation').value=Math.round(wheelState.s*100);drawWheel();};

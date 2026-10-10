@@ -19,8 +19,8 @@ script=script.replace('const q=deck[index];\n', 'const q=deck[index];if(!q){empt
 script=script.replace('"Five rounds. A little better feel."', '`${results.length} ${results.length===1?"round":"rounds"}. A little better feel.`')
 script=script.replace('>Play a fresh mix</button>', ">${mini==='mix'?'Play a fresh mix':'Practice again'}</button>")
 script=script.replace("'use strict';", "'use strict';\n"+Path('src/design-options/share-results.js').read_text(),1)
-script=script.replace('<div class="summary-actions">', '<div class="share-panel"><button id="share-results" class="primary">Share results</button><p id="share-status" class="share-status" role="status" aria-live="polite"></p><textarea id="share-fallback" class="share-fallback" aria-label="Results to copy" readonly hidden></textarea></div><div class="summary-actions">')
-script=script.replace(";$('again').addEventListener", ";bindShareResults();$('again').addEventListener")
+script=script.replace('<div class="results">', '<div id="share-panel" class="share-panel"><button id="challenge-friend" class="primary" hidden>Challenge a friend</button><button id="share-results" class="secondary">Share results</button><p id="share-status" class="share-status" role="status" aria-live="polite"></p><textarea id="share-fallback" class="share-fallback" aria-label="Results to copy" readonly hidden></textarea></div><div class="results">')
+script=script.replace(";$('again').addEventListener", ";bindShareResults();bindFriendChallenge();$('again').addEventListener")
 script=script.replace("'use strict';", "'use strict';\n"+Path('src/design-options/summary-comparisons.js').read_text(),1)
 script=script.replace("()=>{index++;if(index===deck.length)finish();", "()=>{captureSummaryComparison(results[results.length-1]);index++;if(index===deck.length)finish();")
 script=script.replace('<div class="results">${results.map', '<div class="summary-legend"><span><i></i>Your answer</span><span><i class="target-key"></i>Target</span></div><div class="results">${results.map')
@@ -81,10 +81,12 @@ if not analytics_config['scriptUrl'].startswith('https://'):
 analytics_source='const ANALYTICS_CONFIG='+json.dumps(analytics_config).replace('<','\\u003c')+';\n'+Path('src/design-options/analytics.js').read_text()
 themed=themed.replace("'use strict';", "'use strict';\n"+analytics_source,1)
 themed=themed.replace('results.push({q,guess:value,score});saveDailyGame();', 'analyticsStarted();results.push({q,guess:value,score});saveDailyGame();analyticsCompleted();')
+themed=themed.replace("'use strict';", "'use strict';\n"+Path('src/design-options/friend-challenge.js').read_text(),1)
+themed=themed.replace('function gamebar(){', 'function gamebar(){renderFriendChallenge();')
 themed+='\nsetupAnalytics();\n'
 html=html.replace('<script src="game.js"></script>', '<dialog id="history-dialog" class="history-dialog" aria-labelledby="history-title"><div class="history-heading"><h2 id="history-title">Recent results</h2><form method="dialog"><button class="history-close" aria-label="Close recent results">×</button></form></div><div id="history-content"></div></dialog><script src="game.js"></script>')
 themed+='\nbindHistoryNavigation();\n' 
-html=html.replace('<div class="gamebar">','<p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar">')
+html=html.replace('<div class="gamebar">','<p id="friend-challenge" class="friend-challenge" role="status" hidden></p><p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar">')
 common_css=mobile_play+Path('src/design-options/trivia.css').read_text()+Path('src/design-options/theme-switcher.css').read_text()+Path('src/design-options/summary-comparisons.css').read_text()+Path('src/design-options/share-results.css').read_text()+Path('src/design-options/player-storage.css').read_text()+Path('src/design-options/play-navigation.css').read_text()
 theme_assets={key:key+'.css?v='+hashlib.sha256((base+css+common_css).encode()).hexdigest()[:12] for key,css in styles.items()}
 theme_preference='window.perceptionThemeAssets='+json.dumps(theme_assets)+';\n'+theme_preference
