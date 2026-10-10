@@ -8,6 +8,10 @@ function shareResultsText(rounds,day,game='mix',daily=true){
  return `perception.thedanktank.com ${dateLabel}${daily?'':' · Practice '+gameLabel}\n${rounds.map(r=>(icons[r.q.type]||'•')+r.score).join(' ')}\nFinal score: ${total}/${rounds.length*100}`;
 }
 function bindShareResults(){
+ const panel=$('share-panel');
+ const allowed=mode==='daily'&&mini==='mix'&&!review;
+ if(panel)panel.hidden=!allowed;
+ if(!allowed)return;
  const button=$('share-results'),status=$('share-status'),fallback=$('share-fallback');
  const text=shareResultsText(results,sessionDay,mini,mode==='daily'&&!review);
  button.addEventListener('click',async()=>{

@@ -16,19 +16,21 @@ console.log('Verified share date, totals, game labels, practice labels, public l
 
 (async()=>{
  const shareSource=fs.readFileSync('src/design-options/share-results.js','utf8');
- function setup(nav){
-  const elements={};for(const id of ['share-results','share-status','share-fallback'])elements[id]={textContent:'',hidden:true,disabled:false,addEventListener(type,fn){this.click=fn},focus(){this.focused=true},select(){this.selected=true}};
+ function setup(nav,state={}){
+  const elements={};for(const id of ['share-panel','share-results','share-status','share-fallback'])elements[id]={textContent:'',hidden:true,disabled:false,addEventListener(type,fn){this.click=fn},focus(){this.focused=true},select(){this.selected=true}};
   let clicks=0;const copied=[];
   const navigator={clipboard:{async writeText(t){copied.push(t)}},...nav};
-  const c=vm.createContext({Date,calendarDay:()=> '2026-10-8',navigator,$:id=>elements[id],results:sample,mini:'mix',mode:'daily',review:false,analyticsShareClicked:()=>clicks++});
+  const c=vm.createContext({Date,calendarDay:()=> '2026-10-8',navigator,$:id=>elements[id],results:sample,mini:'mix',mode:'daily',review:false,analyticsShareClicked:()=>clicks++,...state});
   vm.runInContext(shareSource+'\nbindShareResults();',c);
-  return {button:elements['share-results'],status:elements['share-status'],fallback:elements['share-fallback'],copied,clicks:()=>clicks};
+  return {panel:elements['share-panel'],button:elements['share-results'],status:elements['share-status'],fallback:elements['share-fallback'],copied,clicks:()=>clicks};
  }
  let payload,resolve;const native=setup({share:data=>{payload=data;return new Promise(r=>resolve=r)}});
  const pending=native.button.click();assert(payload,'Native share must be invoked immediately from the click');assert.equal(payload.text,run(`shareResultsText(${JSON.stringify(sample)},'2026-10-8')`));assert.equal(Object.keys(payload).length,1,'Avoid duplicating the URL in shared messages');assert(native.button.disabled);
  await native.button.click();assert.equal(native.clicks(),1);resolve();await pending;assert(!native.button.disabled);assert.equal(native.copied.length,0);
  const cancel=setup({share:async()=>{throw {name:'AbortError'}}});await cancel.button.click();assert.equal(cancel.copied.length,0);assert(cancel.fallback.hidden);assert.equal(cancel.status.textContent,'');assert(!cancel.button.disabled);
  const desktop=setup({});await desktop.button.click();assert.equal(desktop.copied.length,1);assert.equal(desktop.button.textContent,'Copied!');
+ assert(!desktop.panel.hidden);
+ for(const state of [{mode:'practice'},{mode:'practice',mini:'angle'},{review:true}]){const practice=setup({},state);assert(practice.panel.hidden);assert.equal(practice.button.click,undefined);assert.equal(practice.clicks(),0);}
  const rejected=setup({share:async()=>{throw {name:'NotAllowedError'}}});await rejected.button.click();assert.equal(rejected.copied.length,1);
  const denied=setup({clipboard:{async writeText(){throw new Error('blocked')}}});await denied.button.click();assert(!denied.fallback.hidden);assert(denied.fallback.focused&&denied.fallback.selected);assert.equal(denied.fallback.value,payload.text);assert(!denied.button.disabled);
  console.log('Verified native sharing on tap, cancellation, repeated taps, clipboard fallback, and manual copy when permissions fail.');
