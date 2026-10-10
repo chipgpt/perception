@@ -31,9 +31,9 @@ days*, rather than every page load. Use event counts to compare starts and
 completions. Use completion property breakdowns to inspect total and per-type
 scores. This minimal schema cannot show abandonment by round or time per puzzle.
 
-The browser ledger keeps only seven days of four flags, capped on read at 4 KB.
+The browser ledger keeps only seven days of bounded event flags, capped on read at 4 KB.
 No growing event backlog is stored. Tracking failures never stop play. At most
-eight requests are held in memory while the script loads, with no retries or
+eleven requests are held in memory while the script loads, with no retries or
 historical uploads. A blocked or failed request can therefore be undercounted.
 Storage clearing, unavailable storage across reloads and simultaneous tabs can
 also affect deduplication; these are approximate analytics, not authoritative
@@ -67,3 +67,25 @@ never re-emits completion. Use the same date window when comparing counts.
 
 Run `node tests/verify-analytics.cjs` after building. The regular game checks
 also cover analytics integration without contacting Umami.
+
+## Acquisition campaign counts
+
+Links may include `?source=x`, `listdle`, `playlin`, `dledirectory`, `webgames`,
+or `showhn`. Only those six fixed values are accepted; arbitrary query values
+are never uploaded. For Daily Five, the app sends `acquisition_<source>_visit`,
+`acquisition_<source>_start`, and `acquisition_<source>_complete`. These events
+have no custom properties and deduplicate per source, browser and Central day.
+Practice links do not send acquisition events. The query string remains excluded
+from ordinary analytics.
+
+A campaign-tagged daily play adds at most three quota units. A tagged incoming
+challenge that is completed and shared uses at most seventeen units including
+the existing play and challenge events. The loading queue is capped at eleven
+requests; failures remain isolated from play.
+
+These are campaign-attributed browser days, not new-user counts or causal
+conversion cohorts. The same browser can count for multiple sources; changing
+links mid-play, tracker blocking, untagged return visits, and removed parameters
+limit attribution. Source tags are neither authenticated nor persisted across
+untagged visits. Read starts and completions as directional evidence and pair
+them with real player feedback.
