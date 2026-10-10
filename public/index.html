@@ -1,9 +1,11 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><script>window.perceptionThemeAssets={"focus": "focus.css?v=b5b76d44ae10", "night-lab": "night-lab.css?v=04465b6c43a8"};
+<html lang="en"><head><meta charset="utf-8"><script>window.perceptionThemeAssets={"focus": "focus.css?v=033160188f89", "night-lab": "night-lab.css?v=b997c85c2ba6"};
 (()=>{
  const themes=['focus','night-lab'];
- let theme='night-lab';
- try{const saved=window.localStorage.getItem('perception-theme');if(themes.includes(saved))theme=saved;else if(saved==='studio')window.localStorage.setItem('perception-theme','night-lab');}catch(_){}
+ let preference='system';
+ try{const saved=window.localStorage.getItem('perception-theme');if(themes.includes(saved)||saved==='system')preference=saved;else if(saved==='studio'){preference='night-lab';window.localStorage.setItem('perception-theme','night-lab');}}catch(_){}
+ const theme=preference==='system'?(window.matchMedia?.('(prefers-color-scheme: dark)').matches?'night-lab':'focus'):preference;
+ document.documentElement.dataset.themePreference=preference;
  document.documentElement.dataset.theme=theme;
  // Both themes use Manrope. Only Night Lab needs the mono UI fonts up front.
  const fonts=['manrope-latin',...(theme==='night-lab'?['ibm-plex-mono-400-latin','ibm-plex-mono-500-latin','ibm-plex-mono-600-latin']:[])];
@@ -33,8 +35,8 @@
 <meta name="twitter:image" content="https://perception.thedanktank.com/assets/social/perception-mix.png">
 <meta name="twitter:image:alt" content="Five Perception puzzles: rotate a 3D shape, remember a colour, judge an angle, tap a rhythm, and place a historical event on a timeline.">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://perception.thedanktank.com/#website", "name": "Perception", "url": "https://perception.thedanktank.com/", "description": "Five quick daily puzzles. Match colours, judge angles, feel time, and test your trivia. Play free, score up to 500, and share your results.", "inLanguage": "en"}, {"@type": "WebApplication", "@id": "https://perception.thedanktank.com/#game", "name": "Perception", "url": "https://perception.thedanktank.com/", "description": "Five quick daily puzzles. Match colours, judge angles, feel time, and test your trivia. Play free, score up to 500, and share your results.", "applicationCategory": "GameApplication", "operatingSystem": "Any device with a modern web browser", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://perception.thedanktank.com/assets/social/perception-mix.png"}, {"@type": "WebPage", "@id": "https://perception.thedanktank.com/#page", "url": "https://perception.thedanktank.com/", "name": "Perception — Daily Visual Puzzles & Trivia", "isPartOf": {"@id": "https://perception.thedanktank.com/#website"}, "about": {"@id": "https://perception.thedanktank.com/#game"}, "inLanguage": "en"}]}</script></head>
-<body><header><a class="brand" href="./" aria-label="Perception home"><span class="brandmark">p.</span>PERCEPTION</a><div class="header-right"><span class="tagline">A daily perception game</span><button id="help" class="circle" aria-label="How to play">?</button></div></header>
-<main><div class="topline"><div class="play-navigation"><button id="daily" class="daily-home active">Daily Five</button><details id="practice-menu" class="practice-menu"><summary>Practice <span aria-hidden="true">⌄</span></summary><nav class="minigames" aria-label="Practice games"><button data-mini="mix" >Fresh mix</button><button data-mini="view3d">3D view</button><button data-mini="balance">Half &amp; Half</button><button data-mini="motion">Line memory</button><button data-mini="perspective">Perspective</button><button data-mini="proportion">Proportions</button><button data-mini="rhythm">Rhythm</button><button data-mini="angle">Angles</button><button data-mini="memory">Colour memory</button><button data-mini="time">Time</button><button data-mini="timeline">When?</button><button data-mini="duration">How long?</button></nav></details><button id="history-button" class="history-button" aria-label="Recent results" title="Recent results" aria-haspopup="dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.7 7"/><path d="M3 4v7h7"/><path d="M12 7v5l3 2"/></svg></button><button id="practice" hidden>Practice</button></div><span id="date" class="meta"></span></div>
+<body><header><a class="brand" href="./" aria-label="Perception home"><span class="brandmark">p.</span>PERCEPTION</a><div class="header-right"><span class="tagline">A daily perception game</span><div class="option-switch"><svg class="theme-icon theme-icon-system" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><svg class="theme-icon theme-icon-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="theme-icon theme-icon-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg><select id="theme-select" aria-label="Theme"><option value="system">System</option><option value="focus">Light</option><option value="night-lab">Dark</option></select></div><button id="help" class="circle" aria-label="How to play">?</button></div></header>
+<main><div class="topline"><div class="play-navigation"><button id="daily" class="daily-home active">Daily Five</button><details id="practice-menu" class="practice-menu"><summary><span>Practice</span><svg class="practice-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><nav class="minigames" aria-label="Practice games"><button data-mini="mix" >Fresh mix</button><button data-mini="view3d">3D view</button><button data-mini="balance">Half &amp; Half</button><button data-mini="motion">Line memory</button><button data-mini="perspective">Perspective</button><button data-mini="proportion">Proportions</button><button data-mini="rhythm">Rhythm</button><button data-mini="angle">Angles</button><button data-mini="memory">Colour memory</button><button data-mini="time">Time</button><button data-mini="timeline">When?</button><button data-mini="duration">How long?</button></nav></details><button id="history-button" class="history-button" aria-label="Recent results" title="Recent results" aria-haspopup="dialog"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></button><button id="practice" hidden>Practice</button></div><span id="date" class="meta"></span></div>
 <div class="layout"><section class="game" aria-label="Game"><p id="friend-challenge" class="friend-challenge" role="status" hidden></p><p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar"><span id="roundlabel">ROUND 01 / 05</span><div id="progress" class="progress" aria-label="Round progress"></div><span class="score"><span id="total">0</span> <small id="scoremax">/ 500</small></span></div><div id="playarea"><noscript><h1>Perception: five daily puzzles</h1><p>A free daily game of perception and trivia. Match colours, judge angles, feel time, and explore a new mix of five puzzle types each day. Each round is worth 100 points, for a total of 500.</p><p>Enable JavaScript to play, or <a href="about.html">read how Perception works</a>.</p></noscript></div></section>
 <aside><div class="aside-label">TRAIN YOUR PERCEPTION</div><h2 id="aside-title">Find that colour.</h2><p id="aside-copy">Two seconds to look.<br>A whole wheel to choose from.</p><div class="aside-note"><span class="asterisk">✳</span><p>Close counts.<br><strong>Look. Judge. Learn.</strong></p></div></aside></div>
 <footer><span>See a little sharper.</span><button id="rules">How scoring works</button></footer></main>
@@ -297,7 +299,7 @@ function captureSummaryComparison(result){
 }
 function summaryComparison(result){
  const {q,guess}=result;
- if(q.type==='colour')return restoredComparison(result);
+ if(['colour','angle'].includes(q.type))return restoredComparison(result);
  if(result.comparisonImage)return `<img class="result-comparison-image" src="${result.comparisonImage}" alt="Your answer and the target overlaid for ${escapeHTML(q.skill)}" loading="lazy">`;
  if(['view3d','balance','halfhalf','motion','perspective','proportion','angle','colour'].includes(q.type))return restoredComparison(result);
  // Numeric puzzles use two labelled marks on the same scale.
@@ -325,7 +327,7 @@ function restoredComparison({q,guess}){
  const path=points=>points.map(p=>Array.isArray(p)?p.join(','):p.x+','+p.y).join(' ');
  let content='';
  const line=(a,b,target=false)=>`<path d="M${a.join(' ')}L${b.join(' ')}" fill="none" stroke="var(--${target?'target':'draw'})" stroke-width="5"/>`;
- if(q.type==='angle'){const end=a=>[200+Math.cos(a*Math.PI/180)*155,220-Math.sin(a*Math.PI/180)*155];content=line([200,220],end(q.answer),true)+line([200,220],end(guess));}
+ if(q.type==='angle'){const end=a=>[200+Math.cos(a*Math.PI/180)*125,150-Math.sin(a*Math.PI/180)*125];content=line([200,150],end(q.answer),true)+line([200,150],end(guess));}
  if(q.type==='motion')content=`<polyline points="${path(q.answer)}" fill="none" stroke="var(--target)" stroke-width="5"/><polyline points="${path(guess)}" fill="none" stroke="var(--draw)" stroke-width="5"/>`;
  if(q.type==='perspective')content=line([guess.x,guess.y],[q.answer.x,q.answer.y],true)+`<circle cx="${q.answer.x}" cy="${q.answer.y}" r="8" fill="var(--target)"/><circle cx="${guess.x}" cy="${guess.y}" r="6" fill="var(--draw)"/>`;
  if(q.type==='balance'){content=`<path d="${[q.points,...(q.holes||[])].map(p=>'M'+path(p)+'Z').join(' ')}" fill="var(--draw)" fill-rule="evenodd"/>`+line([q.answer,30],[q.answer,235],true)+`<path d="M${guess} 190l-14 30h28Z" fill="var(--ink)"/>`;}
@@ -530,6 +532,13 @@ function startCentralDayRollover(){
 }
 function shuffleWith(random,list){const copy=list.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
 function integerBetween(random,min,max){return min+Math.floor(random()*(max-min+1));}
+function syncGameURL(game,mode){
+ if(typeof location==='undefined'||typeof history==='undefined')return;
+ const url=new URL(location.href);
+ if(mode==='daily'){url.searchParams.delete('game');url.searchParams.delete('mode');}
+ else{url.searchParams.set('game',game);if(game==='mix')url.searchParams.set('mode','practice');else url.searchParams.delete('mode');}
+ history.replaceState(null,'',url.pathname+url.search+url.hash);
+}
 function makeDeck(day,game=mini){
  if(game==='halfhalf')game='balance';
  // Accept an RNG for existing tooling; normal play passes a date or a practice-session seed.
@@ -740,13 +749,15 @@ function scoreFromError(fraction){
  const closeness=1-Math.max(0,Math.min(1,fraction));
  return Math.round(100*closeness*closeness);
 }
+function angularDistance(a,b){const delta=Math.abs(a-b)%360;return Math.min(delta,360-delta);}
 function scoringError(value,q){
  let error;
  switch(q.type){
   case 'view3d':error=orientationError(value,q.answer);break;
   case 'halfhalf':error=halfError(value,q);break;
   case 'balance':error=q.fruit?halfError(value,q):Math.abs(value-q.answer)/balanceWidth(q);break;
-  case 'angle':case 'time':case 'timeline':
+  case 'angle':error=angularDistance(value,q.answer);break;
+  case 'time':case 'timeline':
    error=Math.abs(value-q.answer);break;
   case 'motion':if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
   case 'perspective':error=pointError(value,q.answer);break;
@@ -761,7 +772,7 @@ function scoringError(value,q){
 function scoreFor(value,q){return scoreFromError(scoringError(value,q));}
 
 function timeError(value,q){const delta=value-q.answer;return Math.abs(delta)<.005?'Right on time':Math.abs(delta).toFixed(2)+' s '+(delta<0?'early':'late');}
-function start(nextmode='daily'){sessionDay=calendarDay();if(mini==='halfhalf')mini='balance';if(mini!=='mix')nextmode='practice';$('practice-menu').open=false;stopEffects();clearTimeout(memoryTimeout);memoryTimeout=null;mode=nextmode;review=false;deck=makeDeck(mode==='daily'?sessionDay:'practice:'+Math.floor(Math.random()*4294967295));index=0;results=[];locked=false;guess=null;startedAt=null;$('daily').classList.toggle('active',mode==='daily');$('practice').classList.toggle('active',mode==='practice');$('date').textContent=mode==='daily'?dailyDateLabel(sessionDay):['timeline','duration'].includes(mini)?'Past daily questions':mini==='mix'?'Fresh mix':'Practice';if(restoreDailyGame()){if(index===deck.length){finish();return;}}else saveDailyGame();updateStorageNotice();render();}
+function start(nextmode='daily'){sessionDay=calendarDay();if(mini==='halfhalf')mini='balance';if(mini!=='mix')nextmode='practice';syncGameURL(mini,nextmode);$('practice-menu').open=false;stopEffects();clearTimeout(memoryTimeout);memoryTimeout=null;mode=nextmode;review=false;deck=makeDeck(mode==='daily'?sessionDay:'practice:'+Math.floor(Math.random()*4294967295));index=0;results=[];locked=false;guess=null;startedAt=null;$('daily').classList.toggle('active',mode==='daily');$('practice').classList.toggle('active',mode==='practice');$('practice-menu').classList.toggle('active',mode==='practice');$('date').textContent=mode==='daily'?dailyDateLabel(sessionDay):['timeline','duration'].includes(mini)?'Past daily questions':mini==='mix'?'Fresh mix':'Practice';if(restoreDailyGame()){if(index===deck.length){finish();return;}}else saveDailyGame();updateStorageNotice();render();}
 function gamebar(){renderFriendChallenge(); $('scoremax').textContent='/ '+(deck.length*100); $('roundlabel').textContent='ROUND '+String(Math.min(index+1,deck.length)).padStart(2,'0')+' / '+String(deck.length).padStart(2,'0');$('total').textContent=results.reduce((s,r)=>s+r.score,0).toLocaleString();$('progress').innerHTML=deck.map((_,i)=>`<i class="${i<index?'done':i===index?'current':''}"></i>`).join('');}
 function shell(q,content,controls){$('playarea').dataset.puzzle=q.type;gamebar();$('playarea').innerHTML=`<div class="mixed-question"><p class="eyebrow">${q.skill}</p><h1 id="challenge">${['timeline','duration'].includes(q.type)?escapeHTML(q.title):q.title}</h1>${content}</div><div class="mixed-controls" id="controls">${controls}</div><div class="actionarea" id="actionarea"></div>`;}
 function render(){stopEffects();clearTimeout(memoryTimeout);locked=false;guess=null;startedAt=null;const q=deck[index];if(!q){emptyTriviaPractice();return;}
@@ -783,7 +794,7 @@ function render(){stopEffects();clearTimeout(memoryTimeout);locked=false;guess=n
 function reveal(value){if(locked)return;stopEffects();clearTimeout(memoryTimeout);locked=true;const q=deck[index],score=scoreFor(value,q);analyticsStarted();results.push({q,guess:value,score});saveDailyGame();analyticsCompleted();
  if(q.type==='time'){$('playarea').querySelector('.time-cue').innerHTML=`<strong>${value.toFixed(2)}</strong><span>SECONDS ELAPSED</span>`;}
  $('controls').querySelectorAll('button').forEach(btn=>{btn.disabled=true;if(btn.dataset.choice!==undefined){const c=q.choices[Number(btn.dataset.choice)];btn.classList.toggle('correct',c.value===q.answer);btn.classList.toggle('wrong',c.value===value&&score===0);}});
- gamebar();const feedback=score===100?'Nailed it.':score>=80?'Pretty close.':score>0?'Getting a feel.':'Now you know.';const answerLabel=['timeline','duration'].includes(q.type)?triviaFeedback(value,q):q.type==='time'?timeError(value,q):q.type==='rhythm'?`Your tempo: ${pretty(value)} BPM · Target: ${q.answer} BPM`:q.type==='angle'?`${Math.abs(value-q.answer).toFixed(1)}° away · Your angle: ${pretty(value)}°`:q.type==='typography'?'Solid: your text · Lime outline: target.':q.type==='colour'?q.hex:q.type==='view3d'?orientationError(value,q.answer).toFixed(1)+'° of rotation away':q.fruit?halfSplitText(value,q):q.type==='balance'?score===100?'Balanced.': 'Off centre by '+(Math.abs(value-q.answer)/balanceWidth(q)*100).toFixed(1)+'% of the shape’s width':q.type==='motion'?'Average line error: '+Math.round(traceError(value,q.answer))+' units':q.type==='perspective'?Math.round(pointError(value,q.answer))+' units away':q.type==='proportion'?'Your ratio: '+(value.width/value.height).toFixed(2)+' : 1 · Target: '+q.label:q.answer;
+ gamebar();const feedback=score===100?'Nailed it.':score>=80?'Pretty close.':score>0?'Getting a feel.':'Now you know.';const answerLabel=['timeline','duration'].includes(q.type)?triviaFeedback(value,q):q.type==='time'?timeError(value,q):q.type==='rhythm'?`Your tempo: ${pretty(value)} BPM · Target: ${q.answer} BPM`:q.type==='angle'?`${angularDistance(value,q.answer).toFixed(1)}° away · Your angle: ${pretty(value)}°`:q.type==='typography'?'Solid: your text · Lime outline: target.':q.type==='colour'?q.hex:q.type==='view3d'?orientationError(value,q.answer).toFixed(1)+'° of rotation away':q.fruit?halfSplitText(value,q):q.type==='balance'?score===100?'Balanced.': 'Off centre by '+(Math.abs(value-q.answer)/balanceWidth(q)*100).toFixed(1)+'% of the shape’s width':q.type==='motion'?'Average line error: '+Math.round(traceError(value,q.answer))+' units':q.type==='perspective'?Math.round(pointError(value,q.answer))+' units away':q.type==='proportion'?'Your ratio: '+(value.width/value.height).toFixed(2)+' : 1 · Target: '+q.label:q.answer;
  if(q.fruit){drawHalfFruit($('balance-canvas'),q,value,true);$('balance-canvas').setAttribute('aria-label',halfSplitText(value,q)+'. Your line is unchanged. The parallel green line shows an even cut.');}
  if(q.type==='balance'&&!q.fruit){const tilt=score===100?0:Math.sign(q.answer-value)*18;for(let i=0;i<=15;i++)afterEffect(()=>drawBalance(q,value,tilt*i/15,true),i*20);}
  if(q.type==='view3d'){drawShape3D($('view-canvas'),value,{shape:q.shape});drawShape3D($('view-canvas'),q.answer,{overlay:true,shape:q.shape});$('view-canvas').setAttribute('aria-label','Your 3D view with the target overlaid as a lime outline.');$('view-hint').textContent='Solid: your view · Lime outline: target.';}
@@ -815,8 +826,23 @@ function rhythmRound(q){shell(q,`<div class="pulse-stage"><div class="pulse" id=
 function typeHTML(word,settings){return `<span class="type-word" style="font-size:${settings.size}px;font-weight:${settings.weight};letter-spacing:${settings.spacing}px">${word}</span>`;}
 function typographyRound(q){shell(q,`<div class="type-specimen" id="type-preview"><span class="memory-prompt">Two seconds to remember it.</span></div>`,`<button class="primary" id="show-type">Show type</button>`);$('show-type').addEventListener('click',()=>{$('show-type').disabled=true;$('show-type').textContent='Remember it…';$('type-preview').innerHTML=typeHTML(q.word,q.answer);afterEffect(()=>typographyPicker(q),2000);});}
 function typographyPicker(q){let settings={size:52,weight:400,spacing:0};shell(q,`<div class="type-specimen" id="type-preview">${typeHTML(q.word,settings)}</div>`,`<div class="type-sliders"><label for="type-size">Size</label><input class="type-slider" id="type-size" type="range" min="28" max="72" value="52"><label for="type-weight">Weight</label><input class="type-slider" id="type-weight" type="range" min="400" max="700" step="1" value="400"><label for="type-spacing">Spacing</label><input class="type-slider" id="type-spacing" type="range" min="-2" max="6" step="0.1" value="0"></div><button class="primary" id="type-lock">Lock it in</button>`);['size','weight','spacing'].forEach(key=>$('type-'+key).addEventListener('input',()=>{settings[key]=Number($('type-'+key).value);$('type-preview').innerHTML=typeHTML(q.word,settings);}));$('type-lock').addEventListener('click',()=>reveal({...settings}));}
-function angleRound(q){let angle=0,chosen=false;shell(q,`<div class="angle-wrap"><canvas width="400" height="260" id="angle-dial" tabindex="0" role="application" aria-label="Rotate the line to ${q.answer} degrees. Left and right arrows adjust it."></canvas></div>`,`<p class="small-instruction">Drag the line or use arrow keys.</p><button class="primary" id="angle-lock" disabled>Choose your angle</button>`);const dial=$('angle-dial');const choose=v=>{if(locked)return;angle=Math.max(0,Math.min(180,v));chosen=true;drawAngle(angle);$('angle-lock').disabled=false;$('angle-lock').textContent='Lock it in';};const point=e=>{const rect=dial.getBoundingClientRect(),x=(e.clientX-rect.left)/rect.width*400-200,y=220-(e.clientY-rect.top)/rect.height*260;choose(Math.atan2(Math.max(0,y),x)*180/Math.PI);};let drag=false;dial.addEventListener('pointerdown',e=>{e.preventDefault();drag=true;dial.setPointerCapture(e.pointerId);point(e);});dial.addEventListener('pointermove',e=>{if(drag)point(e);});dial.addEventListener('pointerup',()=>drag=false);dial.addEventListener('pointercancel',()=>drag=false);dial.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();choose(angle+(e.key==='ArrowLeft'?1:-1));}});$('angle-lock').addEventListener('click',()=>{if(chosen)reveal(angle);});drawAngle(angle);}
-function drawAngle(angle,target){const canvas=$('angle-dial');if(!canvas)return;const ctx=canvas.getContext('2d');ctx.clearRect(0,0,400,260);ctx.strokeStyle='#cbd5ed';ctx.lineWidth=2;ctx.setLineDash([5,6]);ctx.beginPath();ctx.moveTo(200,220);ctx.lineTo(375,220);ctx.stroke();ctx.setLineDash([]);const line=(a,colour,width)=>{const t=a*Math.PI/180;ctx.beginPath();ctx.moveTo(200,220);ctx.lineTo(200+Math.cos(t)*155,220-Math.sin(t)*155);ctx.strokeStyle=colour;ctx.lineWidth=width;ctx.lineCap='round';ctx.stroke();};if(target!==undefined)line(target,'#a4be21',5);line(angle,getComputedStyle(document.documentElement).getPropertyValue('--draw').trim(),5);ctx.fillStyle='#17234d';ctx.beginPath();ctx.arc(200,220,7,0,Math.PI*2);ctx.fill();}
+function angleRound(q){let angle=0,chosen=false;
+ shell(q,`<div class="angle-wrap"><canvas width="400" height="400" id="angle-dial" tabindex="0" role="application" aria-label="Rotate the line to ${q.answer} degrees. Left and right arrows adjust it."></canvas></div>`,`<p class="small-instruction">Drag the line or use arrow keys.</p><button class="primary" id="angle-lock" disabled>Choose your angle</button>`);
+ const dial=$('angle-dial');
+ const choose=v=>{if(locked)return;angle=(v%360+360)%360;chosen=true;drawAngle(angle,undefined,false);$('angle-lock').disabled=false;$('angle-lock').textContent='Lock it in';};
+ const point=e=>{const rect=dial.getBoundingClientRect(),x=(e.clientX-rect.left)/rect.width*400-200,y=200-(e.clientY-rect.top)/rect.height*400;if(Math.hypot(x,y)>8)choose(Math.atan2(y,x)*180/Math.PI);};
+ let drag=false;dial.addEventListener('pointerdown',e=>{e.preventDefault();drag=true;dial.setPointerCapture(e.pointerId);point(e);});dial.addEventListener('pointermove',e=>{if(drag)point(e);});dial.addEventListener('pointerup',()=>drag=false);dial.addEventListener('pointercancel',()=>drag=false);
+ dial.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();choose(angle+(e.key==='ArrowLeft'?1:-1));}});
+ $('angle-lock').addEventListener('click',()=>{if(chosen)reveal(angle);});drawAngle(angle,undefined,true);
+}
+function drawAngle(angle,target,showZero=false){
+ const canvas=$('angle-dial');if(!canvas)return;const ctx=canvas.getContext('2d'),style=getComputedStyle(document.documentElement),colour=name=>style.getPropertyValue('--'+name).trim();
+ ctx.clearRect(0,0,400,400);ctx.strokeStyle=colour('line');ctx.lineWidth=2;ctx.beginPath();ctx.arc(200,200,170,0,Math.PI*2);ctx.stroke();
+ const line=(a,c,width,dashed=false)=>{const t=a*Math.PI/180;ctx.beginPath();ctx.setLineDash(dashed?[5,6]:[]);ctx.moveTo(200,200);ctx.lineTo(200+Math.cos(t)*160,200-Math.sin(t)*160);ctx.strokeStyle=c;ctx.lineWidth=width;ctx.lineCap='round';ctx.stroke();ctx.setLineDash([]);};
+ if(showZero)line(0,colour('muted'),2,true);
+ if(target!==undefined)line(target,colour('target'),5);
+ line(angle,colour('draw'),5);ctx.fillStyle=colour('ink');ctx.beginPath();ctx.arc(200,200,6,0,Math.PI*2);ctx.fill();
+}
 function rotationMatrix(o){if(o.matrix)return o.matrix;const x=o.pitch*Math.PI/180,y=o.yaw*Math.PI/180,z=o.roll*Math.PI/180,cx=Math.cos(x),sx=Math.sin(x),cy=Math.cos(y),sy=Math.sin(y),cz=Math.cos(z),sz=Math.sin(z);return [cz*cy,cz*sy*sx-sz*cx,cz*sy*cx+sz*sx,sz*cy,sz*sy*sx+cz*cx,sz*sy*cx-cz*sx,-sy,cy*sx,cy*cx];}
 function orientationError(a,b){const x=rotationMatrix(a),y=rotationMatrix(b),trace=x.reduce((n,v,i)=>n+v*y[i],0);return Math.acos(Math.max(-1,Math.min(1,(trace-1)/2)))*180/Math.PI;}
 function polygonCentre(points){let crossSum=0,xsum=0,ysum=0;for(let i=0;i<points.length;i++){const [x,y]=points[i],[u,v]=points[(i+1)%points.length],c=x*v-u*y;crossSum+=c;xsum+=(x+u)*c;ysum+=(y+v)*c;}return {x:xsum/(3*crossSum),y:ysum/(3*crossSum)};}
@@ -853,19 +879,24 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&(rhythmAct
 $('daily').addEventListener('click',()=>{mini='mix';document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',false));start('daily');updateAside();});$('practice').addEventListener('click',()=>start('practice'));['help','rules'].forEach(id=>$(id).addEventListener('click',()=>$('helpdialog').showModal()));['closehelp','gotit'].forEach(id=>$(id).addEventListener('click',()=>$('helpdialog').close()));
 document.querySelectorAll('[data-mini]').forEach(btn=>btn.addEventListener('click',()=>{mini=btn.dataset.mini;document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b===btn));start('practice');updateAside();}));
 function updateAside(){const copy={timeline:['Place it in history.','One event. A timeline to explore.<br>Slide the timeline to select the year at its centre.'],duration:['How long does it take?','Sport. Space. Everyday life.<br>Turn the dial to your best guess.'],mix:['Five puzzles. Five skills.','A different game each round.<br>How sharp is your perception?'],view3d:['Explore every side.','Remember a view.<br>Rotate the shape to match.'],balance:['Half & Half.','One cut. Two portions.<br>How evenly can you split it?'],motion:['Remember the line.','A quick look.<br>Trace it from memory.'],perspective:['See the perspective.','Follow the lines.<br>Find where they meet.'],proportion:['Get a feel for ratios.','One proportion.<br>Stretch a rectangle to match.'],rhythm:['Copy the pulse.','Watch the flashes.<br>Tap the pace. No sound.'],typography:['Get a feel for type.','Size. Weight. Spacing.<br>Recreate what you saw.'],angle:['Find the angle.','One number.<br>A whole dial to explore.'],memory:['Find that colour.','Two seconds to look.<br>A whole wheel to choose from.'],time:['Feel the seconds.','Start. Wait. Stop.<br>No clock until the reveal.']}[mini];$('aside-title').textContent=copy[0];$('aside-copy').innerHTML=copy[1];}
-const demoGame=new URLSearchParams(location.search).get('game');if(['mix','view3d','balance','halfhalf','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration'].includes(demoGame)){mini=demoGame;document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b.dataset.mini===mini));}start();updateAside();startCentralDayRollover();
+const demoGame=new URLSearchParams(location.search).get('game');if(['mix','view3d','balance','halfhalf','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration'].includes(demoGame)){mini=demoGame;document.querySelectorAll('[data-mini]').forEach(b=>b.classList.toggle('active',b.dataset.mini===mini));}start(new URLSearchParams(location.search).get('mode')==='practice'?'practice':'daily');updateAside();startCentralDayRollover();
 
 setupAnalytics();
 
 bindHistoryNavigation();
-</script><div class="option-switch"><label for="theme-select">Theme</label><select id="theme-select" aria-label="Theme"><option value="night-lab">Night Lab</option><option value="focus">Focus</option></select></div><p class="site-links"><a href="about.html">About &amp; how to play</a><a href="https://github.com/chipgpt/perception" target="_blank" rel="noopener">GitHub</a></p><script>(()=>{
- const select=document.getElementById('theme-select');
- select.value=document.documentElement.dataset.theme;
- select.addEventListener('change',()=>{
-  const theme=select.value;
-  document.getElementById('theme-stylesheet').href=window.perceptionThemeAssets?.[theme]||theme+'.css';
-  document.documentElement.dataset.theme=theme;
-  try{window.localStorage.setItem('perception-theme',theme);}catch(_){}
- });
+</script><p class="site-links"><a href="about.html">About &amp; how to play</a><a href="https://github.com/chipgpt/perception" target="_blank" rel="noopener">GitHub</a></p><script>(()=>{
+ const select=document.getElementById('theme-select'),root=document.documentElement;
+ const media=window.matchMedia?.('(prefers-color-scheme: dark)');
+ let preference=root.dataset.themePreference||'system';
+ const sync=()=>{
+  const theme=preference==='system'?(media?.matches?'night-lab':'focus'):preference;
+  const sheet=document.getElementById('theme-stylesheet'),href=window.perceptionThemeAssets?.[theme]||theme+'.css';
+  if(root.dataset.theme!==theme)sheet.href=href;
+  root.dataset.theme=theme;root.dataset.themePreference=preference;select.value=preference;
+  select.title='Theme: '+(preference==='system'?'System':preference==='focus'?'Light':'Dark');
+ };
+ select.addEventListener('change',()=>{preference=select.value;try{window.localStorage.setItem('perception-theme',preference);}catch(_){}sync();});
+ media?.addEventListener('change',()=>{if(preference==='system')sync();});
+ sync();
 })();
 </script></body></html>

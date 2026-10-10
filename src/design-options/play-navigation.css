@@ -4,8 +4,8 @@ main{display:block;max-width:920px;margin:0 auto;padding:28px 24px 36px}
 .layout{display:block}.layout aside{display:none}.game{max-width:none;width:100%}footer{max-width:none;grid-column:auto}
 .play-navigation{display:flex;align-items:center;gap:8px}
 .daily-home,.practice-menu>summary{display:flex;align-items:center;gap:10px;min-height:44px;padding:10px 16px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--muted);font:600 14px/1.4 var(--font);cursor:pointer;white-space:nowrap}
-.daily-home.active{color:var(--ink);border-color:var(--accent)}
-.practice-menu{position:relative}.practice-menu>summary{list-style:none}.practice-menu>summary::-webkit-details-marker{display:none}
+.daily-home.active,.practice-menu.active>summary{color:var(--ink);border-color:var(--accent)}
+.practice-menu{position:relative}.practice-menu>summary{list-style:none;justify-content:center}.practice-menu>summary>span{line-height:20px}.practice-chevron{display:block;flex:none;width:16px;height:16px}.practice-menu[open] .practice-chevron{transform:rotate(180deg)}.practice-menu>summary::-webkit-details-marker{display:none}
 .practice-menu[open]>summary{color:var(--ink);border-color:var(--accent)}
 .practice-menu .minigames{position:absolute;top:calc(100% + 8px);left:0;z-index:20;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:320px;max-width:calc(100vw - 32px);margin:0;padding:8px;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:0 12px 32px #0003;overflow:visible;gap:4px}
 .practice-menu:not([open]) .minigames{display:none}.practice-menu .minigames::before{display:none}

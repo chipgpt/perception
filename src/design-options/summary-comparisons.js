@@ -6,7 +6,7 @@ function captureSummaryComparison(result){
 }
 function summaryComparison(result){
  const {q,guess}=result;
- if(q.type==='colour')return restoredComparison(result);
+ if(['colour','angle'].includes(q.type))return restoredComparison(result);
  if(result.comparisonImage)return `<img class="result-comparison-image" src="${result.comparisonImage}" alt="Your answer and the target overlaid for ${escapeHTML(q.skill)}" loading="lazy">`;
  if(['view3d','balance','halfhalf','motion','perspective','proportion','angle','colour'].includes(q.type))return restoredComparison(result);
  // Numeric puzzles use two labelled marks on the same scale.
@@ -34,7 +34,7 @@ function restoredComparison({q,guess}){
  const path=points=>points.map(p=>Array.isArray(p)?p.join(','):p.x+','+p.y).join(' ');
  let content='';
  const line=(a,b,target=false)=>`<path d="M${a.join(' ')}L${b.join(' ')}" fill="none" stroke="var(--${target?'target':'draw'})" stroke-width="5"/>`;
- if(q.type==='angle'){const end=a=>[200+Math.cos(a*Math.PI/180)*155,220-Math.sin(a*Math.PI/180)*155];content=line([200,220],end(q.answer),true)+line([200,220],end(guess));}
+ if(q.type==='angle'){const end=a=>[200+Math.cos(a*Math.PI/180)*125,150-Math.sin(a*Math.PI/180)*125];content=line([200,150],end(q.answer),true)+line([200,150],end(guess));}
  if(q.type==='motion')content=`<polyline points="${path(q.answer)}" fill="none" stroke="var(--target)" stroke-width="5"/><polyline points="${path(guess)}" fill="none" stroke="var(--draw)" stroke-width="5"/>`;
  if(q.type==='perspective')content=line([guess.x,guess.y],[q.answer.x,q.answer.y],true)+`<circle cx="${q.answer.x}" cy="${q.answer.y}" r="8" fill="var(--target)"/><circle cx="${guess.x}" cy="${guess.y}" r="6" fill="var(--draw)"/>`;
  if(q.type==='balance'){content=`<path d="${[q.points,...(q.holes||[])].map(p=>'M'+path(p)+'Z').join(' ')}" fill="var(--draw)" fill-rule="evenodd"/>`+line([q.answer,30],[q.answer,235],true)+`<path d="M${guess} 190l-14 30h28Z" fill="var(--ink)"/>`;}

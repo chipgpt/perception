@@ -8,8 +8,8 @@ for(const [error,expected]of [[0,100],[.1,81],[.25,56],[.5,25],[.75,6],[1,0],[2,
  assert.equal(run(`scoreFromError(${error})`),expected);
  for(const type of ['angle','time','timeline']){
   const range=run(`SCORING_RANGES.${type}`);
-  assert.equal(score(10+error*range,{type,answer:10}),expected,type);
-  assert.equal(score(10-error*range,{type,answer:10}),expected,type+' symmetry');
+  assert.equal(score(10+error*range,{type,answer:10}),type==='angle'&&error>1?100:expected,type);
+  assert.equal(score(10-error*range,{type,answer:10}),type==='angle'&&error>1?100:expected,type+' symmetry');
  }
  for(const width of [100,200,310]){
   const q={type:'balance',answer:width/2,points:[[0,0],[width,0],[width,50],[0,50]]};
@@ -65,3 +65,6 @@ for(const answer of [12,1500,2880,4800,5400,11640,29.5*86400]){
  assert.equal(score(nearby,{type:'duration',answer}),100);
 }
 console.log('Verified displayed durations match scored values, including soccer 1 h 30 min and precision boundaries.');
+
+assert.equal(score(359,{type:'angle',answer:1}),score(3,{type:'angle',answer:1}));
+assert.equal(score(190,{type:'angle',answer:10}),0);

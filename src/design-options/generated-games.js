@@ -21,6 +21,13 @@ function startCentralDayRollover(){
 }
 function shuffleWith(random,list){const copy=list.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
 function integerBetween(random,min,max){return min+Math.floor(random()*(max-min+1));}
+function syncGameURL(game,mode){
+ if(typeof location==='undefined'||typeof history==='undefined')return;
+ const url=new URL(location.href);
+ if(mode==='daily'){url.searchParams.delete('game');url.searchParams.delete('mode');}
+ else{url.searchParams.set('game',game);if(game==='mix')url.searchParams.set('mode','practice');else url.searchParams.delete('mode');}
+ history.replaceState(null,'',url.pathname+url.search+url.hash);
+}
 function makeDeck(day,game=mini){
  if(game==='halfhalf')game='balance';
  // Accept an RNG for existing tooling; normal play passes a date or a practice-session seed.

@@ -1,7 +1,9 @@
 (()=>{
  const themes=['focus','night-lab'];
- let theme='night-lab';
- try{const saved=window.localStorage.getItem('perception-theme');if(themes.includes(saved))theme=saved;else if(saved==='studio')window.localStorage.setItem('perception-theme','night-lab');}catch(_){}
+ let preference='system';
+ try{const saved=window.localStorage.getItem('perception-theme');if(themes.includes(saved)||saved==='system')preference=saved;else if(saved==='studio'){preference='night-lab';window.localStorage.setItem('perception-theme','night-lab');}}catch(_){}
+ const theme=preference==='system'?(window.matchMedia?.('(prefers-color-scheme: dark)').matches?'night-lab':'focus'):preference;
+ document.documentElement.dataset.themePreference=preference;
  document.documentElement.dataset.theme=theme;
  // Both themes use Manrope. Only Night Lab needs the mono UI fonts up front.
  const fonts=['manrope-latin',...(theme==='night-lab'?['ibm-plex-mono-400-latin','ibm-plex-mono-500-latin','ibm-plex-mono-600-latin']:[])];

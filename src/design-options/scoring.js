@@ -18,13 +18,15 @@ function scoreFromError(fraction){
  const closeness=1-Math.max(0,Math.min(1,fraction));
  return Math.round(100*closeness*closeness);
 }
+function angularDistance(a,b){const delta=Math.abs(a-b)%360;return Math.min(delta,360-delta);}
 function scoringError(value,q){
  let error;
  switch(q.type){
   case 'view3d':error=orientationError(value,q.answer);break;
   case 'halfhalf':error=halfError(value,q);break;
   case 'balance':error=q.fruit?halfError(value,q):Math.abs(value-q.answer)/balanceWidth(q);break;
-  case 'angle':case 'time':case 'timeline':
+  case 'angle':error=angularDistance(value,q.answer);break;
+  case 'time':case 'timeline':
    error=Math.abs(value-q.answer);break;
   case 'motion':if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
   case 'perspective':error=pointError(value,q.answer);break;
