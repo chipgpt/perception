@@ -1315,19 +1315,6 @@
       }
     },
     {
-      "id": "duration-gettysburg-address",
-      "factKey": "duration-gettysburg-address",
-      "title": "Gettysburg Address",
-      "caption": "Approximate speaking time of Lincoln’s famous cemetery dedication speech.",
-      "explain": "Approximate duration: the Library of Congress notes Edward Everett contrasted his own two-hour speech with Lincoln’s remarks in about two minutes. I converted that contemporary estimate to seconds.",
-      "type": "duration",
-      "answer": 120,
-      "source": {
-        "name": "Library of Congress",
-        "url": "https://www.loc.gov/collections/abraham-lincoln-papers/articles-and-essays/frequently-requested-documents/"
-      }
-    },
-    {
       "id": "duration-frozen-2013",
       "factKey": "duration-frozen-2013",
       "title": "Frozen",
@@ -1341,19 +1328,6 @@
       }
     },
     {
-      "id": "duration-hey-jude-single",
-      "factKey": "duration-hey-jude-single",
-      "title": "Hey Jude",
-      "caption": "Official length of the Beatles single released on Apple Records.",
-      "explain": "Exact listed track length: The Beatles’ official page gives “Hey Jude” as 7:11. Converted to seconds: 7 × 60 + 11.",
-      "type": "duration",
-      "answer": 431,
-      "source": {
-        "name": "The Beatles",
-        "url": "https://www.thebeatles.com/hey-jude"
-      }
-    },
-    {
       "id": "duration-bohemian-rhapsody-single",
       "factKey": "duration-bohemian-rhapsody-single",
       "title": "Bohemian Rhapsody",
@@ -1364,32 +1338,6 @@
       "source": {
         "name": "Queen Online",
         "url": "https://www.queenonline.com/queen"
-      }
-    },
-    {
-      "id": "duration-mlb-2023-pitch-timer-empty",
-      "factKey": "duration-mlb-2023-pitch-timer-empty",
-      "title": "MLB pitch timer, empty bases",
-      "caption": "2023 MLB rule: time between pitches with no runners on base.",
-      "explain": "Exact regulation duration: MLB’s 2023 rule-change announcement says pitchers had up to 15 seconds between pitches when the bases were empty. The year is included because pitch-timer rules can change by season.",
-      "type": "duration",
-      "answer": 15,
-      "source": {
-        "name": "MLB.com",
-        "url": "https://www.mlb.com/press-release/press-release-mlb-announces-rule-changes-for-2023-season"
-      }
-    },
-    {
-      "id": "duration-soccer-halftime-interval",
-      "factKey": "duration-soccer-halftime-interval",
-      "title": "Soccer halftime interval",
-      "caption": "IFAB/FIFA Laws of the Game 2018/19: maximum halftime interval.",
-      "explain": "Exact regulation duration: the 2018/19 Laws of the Game state that players are entitled to a halftime interval not exceeding 15 minutes. Converted to seconds: 15 × 60. The edition is named because sport rules can be updated.",
-      "type": "duration",
-      "answer": 900,
-      "source": {
-        "name": "FIFA",
-        "url": "https://img.fifa.com/image/upload/khhloe2xoigyna8juxw3.pdf"
       }
     }
   ]
