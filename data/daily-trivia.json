@@ -736,6 +736,30 @@
       "trivia": {
         "timeline": "timeline-american-civil-war-begins"
       }
+    },
+    "2026-12-09": {
+      "types": [
+        "time",
+        "balance",
+        "duration",
+        "view3d",
+        "perspective"
+      ],
+      "trivia": {
+        "duration": "duration-fiba-basketball-game"
+      }
+    },
+    "2026-12-10": {
+      "types": [
+        "angle",
+        "memory",
+        "duration",
+        "rhythm",
+        "time"
+      ],
+      "trivia": {
+        "duration": "duration-mars-sol"
+      }
     }
   },
   "used": {
@@ -974,6 +998,14 @@
     "timeline-american-civil-war-begins": {
       "day": "2026-12-08",
       "fingerprint": "c7c19066a3b0c0388cd899af267487b794bc5532aa06332bb728ae4d46ecc1a6"
+    },
+    "duration-fiba-basketball-game": {
+      "day": "2026-12-09",
+      "fingerprint": "3333baafae9ce15114343602ec497d8f5be7352b5f3f3dbafd181ee336e6a495"
+    },
+    "duration-mars-sol": {
+      "day": "2026-12-10",
+      "fingerprint": "80da5d5148e5a94068e0ebd5c3f8e4537ac550a4349312b775c7768cdf6d1315"
     }
   }
 }
