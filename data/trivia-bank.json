@@ -1300,6 +1300,45 @@
         "name": "Disney Movies: The Lion King",
         "url": "https://movies.disney.com/the-lion-king"
       }
+    },
+    {
+      "id": "duration-mercury-rotation",
+      "factKey": "duration-mercury-rotation",
+      "title": "Mercury rotation",
+      "caption": "How long Mercury takes to spin once on its axis, in Earth days.",
+      "explain": "Approximate duration: NASA’s public facts page says Mercury completes one rotation every 59 Earth days. Since this is at least a day, the answer is expressed as an exact multiple of one day: 59 × 86,400 seconds.",
+      "type": "duration",
+      "answer": 5097600,
+      "source": {
+        "name": "NASA Science",
+        "url": "https://science.nasa.gov/mercury/facts/"
+      }
+    },
+    {
+      "id": "duration-frozen-2013",
+      "factKey": "duration-frozen-2013",
+      "title": "Frozen",
+      "caption": "Official runtime of Disney’s 2013 animated feature film.",
+      "explain": "Exact listed runtime: Disney’s official movie page gives the film’s runtime as 1 hour 42 minutes. Converted to seconds: 102 minutes × 60.",
+      "type": "duration",
+      "answer": 6120,
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/frozen"
+      }
+    },
+    {
+      "id": "duration-bohemian-rhapsody-single",
+      "factKey": "duration-bohemian-rhapsody-single",
+      "title": "Bohemian Rhapsody",
+      "caption": "Official length noted for Queen’s classic single.",
+      "explain": "Exact listed track length: Queen’s official site gives “Bohemian Rhapsody” as 5 minutes 55 seconds. Converted to seconds: 5 × 60 + 55.",
+      "type": "duration",
+      "answer": 355,
+      "source": {
+        "name": "Queen Online",
+        "url": "https://www.queenonline.com/queen"
+      }
     }
   ]
 }
