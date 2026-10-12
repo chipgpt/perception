@@ -1,0 +1,70 @@
+{
+  "generatedOn": "2026-10-12",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "duration-mercury-rotation",
+      "evidence": "NASA’s Mercury facts page states that Mercury spins slowly and completes one rotation every 59 Earth days.",
+      "familiarity": "Mercury is a well-known planet from school science, and slow planetary rotation is a plausible astronomy-estimation question.",
+      "source": {
+        "name": "NASA Science",
+        "url": "https://science.nasa.gov/mercury/facts/"
+      }
+    },
+    {
+      "id": "duration-gettysburg-address",
+      "evidence": "The Library of Congress describes Everett’s letter saying Lincoln reached the central idea in about two minutes, compared with Everett’s two hours.",
+      "familiarity": "The Gettysburg Address is widely taught in U.S. history and is famous for being unusually brief.",
+      "source": {
+        "name": "Library of Congress",
+        "url": "https://www.loc.gov/collections/abraham-lincoln-papers/articles-and-essays/frequently-requested-documents/"
+      }
+    },
+    {
+      "id": "duration-frozen-2013",
+      "evidence": "Disney’s official Frozen page lists the runtime as 1 h 42 min.",
+      "familiarity": "Frozen is a very widely seen Disney film, so many players can make a rough movie-length estimate.",
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/frozen"
+      }
+    },
+    {
+      "id": "duration-hey-jude-single",
+      "evidence": "The Beatles’ official song page lists the single’s length as 7:11.",
+      "familiarity": "The Beatles and “Hey Jude” are mainstream popular-culture staples, and the song is famously long for a single.",
+      "source": {
+        "name": "The Beatles",
+        "url": "https://www.thebeatles.com/hey-jude"
+      }
+    },
+    {
+      "id": "duration-bohemian-rhapsody-single",
+      "evidence": "Queen’s official band history says “Bohemian Rhapsody” ran 5 minutes 55 seconds.",
+      "familiarity": "Queen’s song is one of rock’s best-known singles, and its multi-section length is part of its popular reputation.",
+      "source": {
+        "name": "Queen Online",
+        "url": "https://www.queenonline.com/queen"
+      }
+    },
+    {
+      "id": "duration-mlb-2023-pitch-timer-empty",
+      "evidence": "MLB’s 2023 rule-change press release states that pitchers had up to 15 seconds between pitches with the bases empty.",
+      "familiarity": "Baseball’s pitch clock became a highly visible recent rule change, familiar to many casual sports fans.",
+      "source": {
+        "name": "MLB.com",
+        "url": "https://www.mlb.com/press-release/press-release-mlb-announces-rule-changes-for-2023-season"
+      }
+    },
+    {
+      "id": "duration-soccer-halftime-interval",
+      "evidence": "The FIFA-hosted 2018/19 Laws of the Game say the halftime interval must not exceed 15 minutes.",
+      "familiarity": "Soccer halftime is familiar from school sports, televised matches, and the World Cup.",
+      "source": {
+        "name": "FIFA",
+        "url": "https://img.fifa.com/image/upload/khhloe2xoigyna8juxw3.pdf"
+      }
+    }
+  ]
+}
