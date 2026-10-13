@@ -760,6 +760,16 @@
       "trivia": {
         "duration": "duration-mars-sol"
       }
+    },
+    "2026-12-11": {
+      "types": [
+        "angle",
+        "proportion",
+        "time",
+        "rhythm",
+        "perspective"
+      ],
+      "trivia": {}
     }
   },
   "used": {
