@@ -12,9 +12,9 @@ assert(!el('practice-menu').classList.contains('active'));assert(el('daily').cla
 run("mini='mix';start('practice')");assert.equal(run('mode'),'practice');assert.equal(run('deck.length'),5);
 assert(el('practice-menu').classList.contains('active'));
 for(const page of ['index','focus','night-lab','studio']){
- const html=fs.readFileSync('public/'+page+'.html','utf8');assert(html.includes('<details id="practice-menu" class="practice-menu">'));assert(!html.includes('role="group" aria-label="Game mode"'));assert(html.includes('aria-label="Practice games"'));assert(html.includes('Fresh mix'));assert(html.includes('id="history-button"'));assert(html.includes('aria-haspopup="dialog"'));assert(html.includes('<dialog id="history-dialog"'));assert(html.indexOf('<dialog id="history-dialog"')<html.indexOf('function bindHistoryNavigation'));assert(!html.includes('${browserHistoryHTML()}<div class="share-panel">'));
+ const html=fs.readFileSync('public/'+page+'.html','utf8');assert(html.includes('<section id="practice-menu" class="practice-menu"'));assert(!html.includes('role="group" aria-label="Game mode"'));assert(html.includes('aria-label="Practice games"'));assert(html.includes('Fresh mix'));assert(html.includes('id="history-button"'));assert(html.includes('aria-haspopup="dialog"'));assert(html.includes('<dialog id="history-dialog"'));assert(html.indexOf('<dialog id="history-dialog"')<html.indexOf('function bindHistoryNavigation'));assert(!html.includes('${browserHistoryHTML()}<div class="share-panel">'));
 }
-console.log('Verified one Daily Five, practice-only individual games, collapsed practice menu, return to daily, and fresh mixed practice.');
+console.log('Verified one Daily Five, practice-only individual games, expanded game menu, return to daily, and fresh mixed practice.');
 
 ctx.URL=URL;ctx.location={href:'https://perception.thedanktank.com/?game=balance&from=challenge&day=2026-10-09&beat=300#test'};ctx.history={replaceState(_state,_title,path){ctx.location.href=new URL(path,ctx.location.href).href;}};
 run("mini='angle';start('practice')");let url=new URL(ctx.location.href);assert.equal(url.searchParams.get('game'),'angle');assert.equal(url.searchParams.get('from'),'challenge');assert.equal(url.searchParams.get('beat'),'300');assert.equal(url.hash,'#test');

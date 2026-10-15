@@ -8,11 +8,11 @@ for(let day=1;day<=100;day++){
  const key='sample-day-'+day;
  for(const type of Object.keys(targets)){
   const a=run(`makeDeck('${key}','${type}')`),b=run(`makeDeck('${key}','${type}')`);assert.equal(JSON.stringify(a),JSON.stringify(b));assert.equal(a.length,5);
-  for(const q of a){targets[type].add(JSON.stringify(q.answer));assert.equal(run(`scoreFor(${JSON.stringify(type==='proportion'?{width:q.answer,height:1}:q.answer)},${JSON.stringify(q)})`),100);
+  for(const q of a){targets[type].add(JSON.stringify(q.answer));assert.equal(run(`scoreFor(${JSON.stringify(type==='proportion'&&q.measurementVersion!==2?{width:q.answer,height:1}:q.answer)},${JSON.stringify(q)})`),100);
    if(type==='angle')assert(Number.isInteger(q.answer)&&q.answer>=5&&q.answer<=175);
    if(type==='time')assert(Number.isInteger(q.answer)&&q.answer>=2&&q.answer<=15);
    if(type==='rhythm')assert(Number.isInteger(q.answer)&&q.answer>=60&&q.answer<=144);
-   if(type==='proportion'){assert(q.answer>=.55&&q.answer<=2.4);assert(/^\d+ : \d+$/.test(q.label));const [w,h]=q.label.split(' : ').map(Number);assert.equal(q.answer,w/h);assert(w<=12&&h<=12);}
+   if(type==='proportion'){assert.equal(q.measurementVersion,2);assert.equal(q.answer.width,q.wide*q.reference);assert.equal(q.answer.height,q.tall*q.reference);assert(q.answer.width<=260&&q.answer.height<=175);assert(q.reference>=32&&q.reference<=54);}
    if(type==='motion'){assert(q.answer.length>=73&&q.answer.length<=121);for(const p of q.answer)assert(p.x>=25&&p.x<=375&&p.y>=25&&p.y<=275);}
   }
  }

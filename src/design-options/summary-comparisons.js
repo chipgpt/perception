@@ -15,12 +15,12 @@ function summaryComparison(result){
  const padding=q.type==='timeline'?10:Math.max(.1,Math.abs(a-b)*.2);
  const low=q.type==='timeline'?Math.min(a,b)-padding:Math.min(0,a,b),high=Math.max(a,b)+padding;
  const x=v=>24+(v-low)/(high-low||1)*272;
- return `<svg class="result-comparison-chart" viewBox="0 0 320 82" role="img" aria-label="Your answer: ${escapeHTML(format(guess))}. Target: ${escapeHTML(format(q.answer))}.">
+ return `<svg class="result-comparison-chart" viewBox="0 0 320 82" role="img" aria-label="Your guess: ${escapeHTML(format(guess))}. Target: ${escapeHTML(format(q.answer))}.">
   <path d="M24 26H296 M24 60H296" class="comparison-track"/>
   <path d="M${x(a)} 26L${x(b)} 60" class="comparison-link"/>
   <circle cx="${x(a)}" cy="26" r="5" class="comparison-guess"/>
   <circle cx="${x(b)}" cy="60" r="5" class="comparison-target"/>
-  <text x="24" y="15">You: ${escapeHTML(format(guess))}</text>
+  <text x="24" y="15">Your guess: ${escapeHTML(format(guess))}</text>
   <text x="24" y="79">Target: ${escapeHTML(format(q.answer))}</text>
  </svg>`;
 }
@@ -38,6 +38,7 @@ function restoredComparison({q,guess}){
  if(q.type==='motion')content=`<polyline points="${path(q.answer)}" fill="none" stroke="var(--target)" stroke-width="5"/><polyline points="${path(guess)}" fill="none" stroke="var(--draw)" stroke-width="5"/>`;
  if(q.type==='perspective')content=line([guess.x,guess.y],[q.answer.x,q.answer.y],true)+`<circle cx="${q.answer.x}" cy="${q.answer.y}" r="8" fill="var(--target)"/><circle cx="${guess.x}" cy="${guess.y}" r="6" fill="var(--draw)"/>`;
  if(q.type==='balance'){content=`<path d="${[q.points,...(q.holes||[])].map(p=>'M'+path(p)+'Z').join(' ')}" fill="var(--draw)" fill-rule="evenodd"/>`+line([q.answer,30],[q.answer,235],true)+`<path d="M${guess} 190l-14 30h28Z" fill="var(--ink)"/>`;}
+ if(q.type==='proportion'&&isSizeQuestion(q)){const canvas=document.createElement('canvas');canvas.width=400;canvas.height=400;paintSize(canvas,guess,q,true);return `<img class="result-comparison-image" src="${canvas.toDataURL()}" alt="${escapeHTML(sizeFeedback(guess,q))}. Dashed: your rectangle; solid grid: target.">`;}
  if(q.type==='proportion'){const a=guess.width/guess.height,b=q.answer,h=Math.min(160,330/Math.max(a,b));content=`<rect x="${200-b*h/2}" y="${150-h/2}" width="${b*h}" height="${h}" fill="none" stroke="var(--target)" stroke-width="5"/><rect x="${200-a*h/2}" y="${150-h/2}" width="${a*h}" height="${h}" fill="none" stroke="var(--draw)" stroke-width="5"/>`;}
  if(q.type==='colour')content=`<rect x="30" y="70" width="160" height="150" rx="12" fill="${rgbHex(guess)}"/><rect x="210" y="70" width="160" height="150" rx="12" fill="${q.hex}"/><text x="110" y="250" text-anchor="middle" fill="var(--ink)" font-size="24">You</text><text x="290" y="250" text-anchor="middle" fill="var(--ink)" font-size="24">Target</text>`;
  return `<svg class="result-comparison-image" viewBox="0 0 400 300" role="img" aria-label="Your answer and target for ${escapeHTML(q.skill)}">${content}</svg>`;

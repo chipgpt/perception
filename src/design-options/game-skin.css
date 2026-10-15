@@ -1,0 +1,56 @@
+/* One visual vocabulary for every game. No game-specific layout or content. */
+:root{
+ --canvas:var(--surface);
+ --game-radius:18px;
+ --control-radius:12px;
+ --font-mono:'IBM Plex Mono',monospace;
+ --mark-width:3;
+ --guide-width:1.5;
+}
+body[data-game-active="true"] .game-prompt h1{
+ font:600 clamp(24px,6.8vw,32px)/1.23 var(--font);
+ letter-spacing:-1.1px;
+}
+.game-prompt .eyebrow{font-family:var(--font-mono);font-weight:500}
+.game-subtitle{max-width:420px}
+.game-stage{
+ background:var(--canvas);
+ border-radius:var(--game-radius);
+}
+.game-stage::after{content:'';position:absolute;inset:0;border:1px solid var(--line);border-radius:inherit;pointer-events:none;z-index:3}
+.game-stage>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.timeline-stage,.duration-stage,.memory-stage,.pulse-stage,.time-cue,.type-specimen){border-radius:inherit}
+/* The surface belongs to the stage, including transparent canvas letterboxing. */
+.game-stage canvas{background:transparent}
+.memory-ready-art{color:var(--draw);gap:24px}
+.memory-ready-art svg{opacity:1}
+.memory-ready-art span,.game-stage #pulse-label{font:400 12px/1.5 var(--font);color:var(--muted)}
+.game-stage .time-cue strong{font-family:var(--font-mono);font-size:clamp(72px,23vw,124px);font-weight:400;letter-spacing:-5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.game-stage .time-cue span{font:400 10px/1.5 var(--font-mono);letter-spacing:2px;margin-top:20px}
+.game-stage .pulse{border-color:var(--canvas-line);box-shadow:0 0 0 24px color-mix(in srgb,var(--draw) 3%,transparent),0 0 0 49px color-mix(in srgb,var(--draw) 1.5%,transparent)}
+.game-stage .pulse::after{opacity:1}
+.game-stage .beat-count{font-family:var(--font-mono);font-weight:400}
+.year-row{font-family:var(--font-mono);font-size:28px;font-weight:400;letter-spacing:-1px}
+.year-selection{left:14px;right:14px;border:1px solid var(--draw);border-radius:var(--control-radius);background:color-mix(in srgb,var(--draw) 8%,transparent)}
+.year-answer,.view-result-phase{border-radius:8px;font-family:var(--font-mono);font-size:12px;line-height:1.5}
+.game-controls>.small-instruction{font-size:12px;line-height:1.6;color:var(--muted)}
+.game-controls :is(.primary,.secondary),.game-feedback .primary{
+ min-height:52px;padding:15px 16px;border-radius:var(--control-radius);
+ font:600 14px/1.4 var(--font);letter-spacing:-.1px;box-shadow:none;
+ transition:background .15s,border-color .15s;
+}
+.game-controls .primary:hover,.game-feedback .primary:hover{transform:none;filter:none}
+.game-controls .primary:disabled{background:var(--surface);color:var(--muted);border:1px solid var(--line);opacity:1}
+.game-controls .secondary,.game-controls .nudge-button{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.game-controls .secondary:hover,.game-controls .nudge-button:hover{border-color:var(--muted)}
+.game-controls .nudge-button{border-radius:var(--control-radius);font:400 24px/1 var(--font-mono)}
+.game-controls :is(.trivia-nudge,.colour-adjust),.game-controls .keyboard-colour{font-size:12px;line-height:1.5}
+.game-controls :is(#duration-step,#sat-value){font-family:var(--font-mono);font-size:11px;font-variant-numeric:tabular-nums}
+.size-handle span{background:var(--draw);color:var(--canvas);border-color:var(--canvas);box-shadow:0 0 0 1px var(--draw)}
+.game-stage .rhythm-result-comparison strong{font-family:var(--font-mono);font-weight:400;letter-spacing:-1px}
+.game-stage .rhythm-result-comparison span,.game-stage .rhythm-result-comparison small{font-size:11px}
+@media(max-height:700px){
+ body[data-game-active="true"] .game-prompt h1{font-size:25px}
+}
+#playarea[data-phase="reveal"] .game-prompt h1{font-size:22px}
+@media(min-width:761px){body[data-game-active="true"] .game-prompt h1{font-size:34px}#playarea[data-phase="reveal"] .game-prompt h1{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.game-controls *,.game-feedback *{transition:none!important}}

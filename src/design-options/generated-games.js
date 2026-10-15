@@ -35,6 +35,7 @@ function makeDeck(day,game=mini){
  const forGame=type=>{
   if(!GAME_TYPES.includes(type))throw new Error('Unknown mini-game');
   if(type==='balance'){const kinds=shuffleWith(rng(hashSeed(key+'|half-half-objects-v1')),HALF_OBJECTS);return kinds.map((kind,round)=>halfQuestion(rng(hashSeed(key+'|half-half-v1|'+round)),round,kind));}
+  if(type==='proportion'&&(!validDay(key)||dayNumber(key)>=dayNumber(SIZE_DAILY_START)))return Array.from({length:5},(_,round)=>sizeQuestion(rng(hashSeed(key+'|proportion|v2|'+round)),round));
   if(['angle','time','rhythm','proportion','motion','view3d'].includes(type))return Array.from({length:5},(_,round)=>generatedQuestion(type,rng(hashSeed(key+'|'+type+'|v1|'+round)),round));
   return makeGameDeck(rng(hashSeed(key+'|'+type+'|v1')),type);
  };
@@ -113,6 +114,6 @@ function scheduledTriviaQuestion(id){
 }
 
 function practiceLabel(game,mode){
- const names={mix:'Fresh mix',view3d:'3D View',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Proportions',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
+ const names={mix:'Fresh mix',view3d:'3D View',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Size it up',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
  return mode==='practice'?'Practice: '+(names[game]||game):'Practice';
 }

@@ -26,7 +26,7 @@ Free. No login. No downloads. No sound needed.
 | ✂️ **Half & Half** | Cut a group of geometric shapes into two equal portions. How close can you get to 50/50? |
 | ✍️ **Line memory** | Watch a path vanish. Trace it from memory. |
 | 👁️ **Perspective** | Follow the lines to their vanishing point. |
-| ▭ **Proportions** | Stretch a rectangle to match a ratio. |
+| ▭ **Size it up** | Use a reference square to judge width and height. |
 | 🥁 **Rhythm** | Watch the pulse. Tap the tempo. Completely silent. |
 | 📐 **Angles** | One number. A dial. Trust your eye. |
 | 🎨 **Colour memory** | Remember a swatch. Find it on the colour wheel. |
@@ -39,7 +39,7 @@ Free. No login. No downloads. No sound needed.
 - **One shared Daily Five.** Five different puzzle types, determined by your device’s date. Players on the same date get the same challenge.
 - **Close counts.** Every round is worth 100 points. See your guess and the target together, then inspect small comparisons in your final results.
 - **Compare with friends.** Share your Daily Five results as a compact scorecard with the date, puzzle emojis, and your total. No answer spoilers.
-- **Practice when you feel like it.** Open the Practice menu for a fresh mix or an individual skill. Trivia practice draws from past Daily Fives, keeping upcoming questions out of the pool.
+- **Practice when you feel like it.** Open the game menu, then Practice, for a fresh mix or an individual skill. Trivia practice draws from past Daily Fives, keeping upcoming questions out of the pool.
 - **Pick your atmosphere.** Night Lab or Focus. Your choice sticks between visits.
 - **Come back later.** Daily progress, streaks, and recent results stay in your browser. No account required; no cross-device sync.
 
@@ -50,6 +50,8 @@ The game opens straight into today’s challenge. It works on phones and desktop
 ## Under the hood
 
 Perception is a static HTML/CSS/JavaScript game, hosted on GitHub Pages. Procedural puzzles use independent date-seeded generators. Trivia comes from a sourced question bank and a permanent daily schedule, so adding questions doesn’t rewrite published challenges.
+
+**Size it up replaces Proportions in current and future game plans.** The internal `proportion` identifier remains for schedule, save and challenge compatibility; earlier dated rounds keep their original mechanic. See [maintenance guidance](docs/MAINTENANCE.md#game-plans-size-it-up-replaces-proportions).
 
 Self-hosted fonts, a compact mobile layout, and two themes keep the puzzle front and centre. Minimal Umami analytics measure daily visits, starts, completions with scores, and one share-button click per browser per day.
 
@@ -63,7 +65,7 @@ python3 -m http.server 4175 --directory public
 
 Open `http://localhost:4175/` to play your build. The complete playable site lives in `public/`; editable game sources live in `src/`.
 
-[Maintenance & daily trivia](docs/MAINTENANCE.md) · [Analytics](docs/ANALYTICS.md)
+[Game shell & adapters](docs/GAME-SHELL.md) · [Maintenance & daily trivia](docs/MAINTENANCE.md) · [Analytics](docs/ANALYTICS.md)
 
 ---
 

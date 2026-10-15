@@ -34,7 +34,7 @@ assert.equal(score(2000,{type:'timeline',answer:1950}),0);
 assert(source.includes('function angleRound(q){let angle=0,chosen=false;'));
 for(const type of ['view3d','balance','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration']){
  const q=run(`makeDeck('scoring-check','${type}')[0]`);
- const value=q.type==='proportion'?{width:q.answer,height:1}:q.answer;
+ const value=q.type==='proportion'&&q.measurementVersion!==2?{width:q.answer,height:1}:q.answer;
  assert.equal(score(value,q),100,type+' exact answer');
 }
 for(let i=0;i<=1000;i++){

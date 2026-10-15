@@ -1,10 +1,3 @@
-.view-start-stage{position:relative}
-.view-start-stage>.view-start-overlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);min-width:120px;min-height:48px;box-shadow:0 4px 24px #0004}
-.view-start-stage>.view-start-overlay:hover{transform:translate(-50%,-50%)}
-
-.view-start-waiting::after{content:'';position:absolute;inset:0;border-radius:12px;background:#0007;pointer-events:none}
-.view-start-stage>.view-start-overlay{z-index:1}
-
 .view-result-stage{position:relative}
 .view-result-phase{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:4px 10px;border-radius:6px;background:var(--surface);color:var(--muted);font-size:12px;white-space:nowrap;pointer-events:none}
 .round-feedback .feedbacktop{display:block}

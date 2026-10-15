@@ -1,7 +1,7 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const source=fs.readFileSync('src/design-options/game-themed.js','utf8').replace(/const demoGame=new URLSearchParams[\s\S]*$/,'');
-const elements=new Map(),el=id=>{if(!elements.has(id))elements.set(id,{addEventListener(){},classList:{toggle(){}},dataset:{}});return elements.get(id)};
-const ctx=vm.createContext({document:{getElementById:el,addEventListener(){},querySelectorAll(){return[]}},Date,Math,Number,setTimeout,clearTimeout,performance});vm.runInContext(source,ctx);const run=s=>vm.runInContext(s,ctx);
+const elements=new Map(),el=id=>{if(!elements.has(id))elements.set(id,{addEventListener(){},querySelector(){return null},insertAdjacentHTML(_position,html){this.innerHTML=(this.innerHTML||'')+html},removeAttribute(){},classList:{toggle(){}},dataset:{}});return elements.get(id)};
+const ctx=vm.createContext({document:{body:{dataset:{},removeAttribute(){}},getElementById:el,addEventListener(){},querySelectorAll(){return[]}},Date,Math,Number,setTimeout,clearTimeout,performance});vm.runInContext(source,ctx);const run=s=>vm.runInContext(s,ctx);
 const schedule=JSON.parse(fs.readFileSync('data/daily-trivia.json','utf8')).days;
 for(const cutoff of ['2026-10-06','2026-10-07','2026-10-08','2026-10-20','2030-01-01']){
  run(`calendarDay=()=>${JSON.stringify(cutoff)}`);

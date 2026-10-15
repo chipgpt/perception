@@ -1,0 +1,80 @@
+/* Score, measurement, explanation, action: the same reading order every round. */
+.game-feedback .feedback{display:flex;flex-direction:column;gap:12px;padding-top:8px}
+.game-feedback .feedbacktop{display:flex;flex-direction:column;gap:10px}
+.game-feedback .round-result-stats{display:grid;grid-template-columns:minmax(90px,.8fr) minmax(0,1.2fr);align-items:start;width:100%;gap:16px;padding:16px 0;border-block:1px solid var(--line);text-align:left}
+.game-feedback .round-result-stats>div{min-width:0}
+.game-feedback .round-result-points{border:0;padding:0}
+.game-feedback .round-result-error{border-left:1px solid var(--line);padding-left:16px}
+.game-feedback .round-result-stats .result-metric-label{display:block;margin:0 0 7px;font:500 11px/1.4 var(--font);color:var(--muted)}
+.game-feedback .round-result-stats strong{display:block;font:400 30px/1.15 var(--font-mono);letter-spacing:-1.4px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.game-feedback .round-result-points strong{font-size:38px;color:var(--accent)}
+.game-feedback .round-result-stats strong small{margin-left:4px;font:400 13px/1 var(--font-mono);letter-spacing:-.3px;color:var(--muted)}
+.game-feedback .round-result-stats .compact-error{font-size:22px;line-height:1.4;letter-spacing:-.7px}
+.game-feedback .round-result-stats .result-metric-note{display:block;margin:6px 0 0;font:400 11px/1.4 var(--font);color:var(--muted)}
+.result-axes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.game-feedback .result-axes strong{font-size:21px;letter-spacing:-1px;white-space:nowrap}
+.game-feedback .result-axes strong small{font-size:11px;margin-left:1px}
+.game-feedback .round-verdict{margin:0;font:500 13px/1.5 var(--font);text-align:left;align-self:flex-start}
+.game-feedback .round-answer{margin:0;font:400 12px/1.6 var(--font);text-align:left;color:var(--muted)}
+.game-feedback .colour-comparison{margin:0;justify-content:flex-start}
+.game-feedback .wheel-result-legend{justify-content:flex-start;margin:0;gap:20px}
+.game-feedback .wheel-result-legend span{font-size:12px}
+.game-feedback .math-detail{margin:0;font:400 12px/1.6 var(--font)}
+.game-feedback .math-detail summary{padding:4px 0;min-height:28px}
+.game-feedback .math-detail p{margin:8px 0 4px}
+.game-feedback #next{flex:none;margin:0;background:var(--primary-background);color:var(--primary-ink)}
+.game-feedback #next:hover{background:var(--primary-hover)}
+.game-feedback #next:focus-visible{outline:2px solid var(--primary-ink);outline-offset:-5px}
+#playarea[data-phase="reveal"] .game-feedback{max-height:55svh;padding-bottom:1px}
+#playarea[data-phase="reveal"] .game-round{padding-top:18px}
+#playarea[data-phase="reveal"] .game-prompt .eyebrow{margin-bottom:8px}
+#playarea[data-phase="reveal"] .game-stage{margin:12px 0}
+/* Completion pages use the same metric and surface vocabulary, with room to scroll. */
+.summary{max-width:680px;margin:0 auto;padding:12px 0 24px}
+.summary>.eyebrow{font:500 10px/1.5 var(--font-mono);letter-spacing:1.8px;color:var(--accent);margin:0 0 12px}
+.summary h1{font-size:32px;line-height:1.2;letter-spacing:-1px;margin:0 0 20px}
+.summary .bigscore{font:400 clamp(56px,17vw,80px)/1.1 var(--font-mono);letter-spacing:-4px;color:var(--accent)}
+.summary .bigscore small{font-size:20px;letter-spacing:-1px;margin-left:8px}
+.summary-intro{font-size:13px;line-height:1.6;margin:12px 0 0}
+.summary .share-panel{margin:24px 0 20px}
+.summary .share-panel>button,.summary-actions button{min-height:48px;border-radius:var(--control-radius);font:600 14px/1.4 var(--font)}
+.summary .share-panel>button:first-child{margin-top:0}
+.summary-legend{margin:0 0 12px;gap:20px;font-size:11px}
+.summary .results{display:grid;gap:12px;margin:0 0 24px}
+.summary .result{padding:16px;border:1px solid var(--line);border-radius:var(--game-radius);background:var(--surface)}
+.resulthead{align-items:start;font-size:13px;line-height:1.5;gap:12px}
+.resulthead>span:first-child{min-width:0;font-weight:600}
+.resulthead small{display:block;margin-top:3px;font-size:12px;font-weight:400;color:var(--muted)}
+.resulthead>span:last-child{flex:none;white-space:nowrap;font:400 14px/1.5 var(--font-mono);color:var(--accent)}
+.result-body{gap:14px;margin-top:14px;align-items:center}
+.result-body>p{font-size:12px;line-height:1.6;overflow-wrap:anywhere;white-space:pre-line}
+.result-comparison-image{width:112px;height:90px;border:1px solid var(--line);border-radius:10px}
+.result-comparison-chart text{font-family:var(--font-mono);font-size:10px}
+.summary .tiny{font-size:11px;line-height:1.7;margin:16px 0 0}
+@media(max-width:600px){.result-body:has(.result-comparison-chart){display:flex;flex-direction:column;align-items:stretch;gap:10px}.result-body:has(.result-comparison-chart)>p{margin:0}.result-comparison-image{width:96px;height:80px}}
+@media(max-height:700px){
+ .game-feedback .feedback{gap:8px;padding-top:4px}
+ .game-feedback .feedbacktop{gap:8px}
+ .game-feedback .round-result-stats{padding:10px 0;gap:12px}
+ .game-feedback .round-result-error{padding-left:12px}
+ .game-feedback .round-result-points strong{font-size:32px}
+ .game-feedback .round-result-stats strong{font-size:26px}
+ .game-feedback .round-result-stats .compact-error{font-size:20px}
+ .game-feedback .result-axes strong{font-size:19px}
+ .game-feedback .round-result-stats .result-metric-label{margin-bottom:5px}
+ .game-feedback .round-result-stats .result-metric-note{margin-top:4px;font-size:10px}
+ #playarea[data-phase="reveal"] .game-round{padding-top:12px}
+ #playarea[data-phase="reveal"] .game-stage{margin-block:8px}
+}
+/* Completion keeps the same page width and chrome as an active round. */
+body:has(.summary)>main{max-width:var(--game-content-width);padding:0 24px 28px}
+body:has(.summary) .game{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+body:has(.summary) .gamebar{min-height:43px;padding:0 0 15px;font-size:10px;gap:8px}
+body:has(.summary) .gamebar .score{font-size:12px}
+body:has(.summary) .gamebar .score small{font-size:10px}
+body:has(.summary) .progress{gap:4px}
+body:has(.summary) .progress i{width:17px;height:3px}
+.summary{padding-top:24px}
+.summary .share-status:empty{min-height:0;margin:0}
+#playarea[data-phase="reveal"] .size-handle{display:none}
+@media(min-width:761px){body:has(.summary)>main{padding-inline:28px}}
