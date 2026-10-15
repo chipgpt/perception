@@ -770,6 +770,30 @@
         "perspective"
       ],
       "trivia": {}
+    },
+    "2026-12-12": {
+      "types": [
+        "timeline",
+        "view3d",
+        "motion",
+        "proportion",
+        "perspective"
+      ],
+      "trivia": {
+        "timeline": "timeline-penicillin-discovered"
+      }
+    },
+    "2026-12-13": {
+      "types": [
+        "proportion",
+        "memory",
+        "perspective",
+        "timeline",
+        "balance"
+      ],
+      "trivia": {
+        "timeline": "timeline-us-civil-rights-act-signed"
+      }
     }
   },
   "used": {
@@ -1016,6 +1040,14 @@
     "duration-mars-sol": {
       "day": "2026-12-10",
       "fingerprint": "80da5d5148e5a94068e0ebd5c3f8e4537ac550a4349312b775c7768cdf6d1315"
+    },
+    "timeline-penicillin-discovered": {
+      "day": "2026-12-12",
+      "fingerprint": "699c828ef2828dc983a47c326f0b9790bf236ff760419a4724f56c648b0702e7"
+    },
+    "timeline-us-civil-rights-act-signed": {
+      "day": "2026-12-13",
+      "fingerprint": "9c974b58babf97b441b7ff84ef482ef872f0790a673c00e01811a3a9b6bd77db"
     }
   }
 }
