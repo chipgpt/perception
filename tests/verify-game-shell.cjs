@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const source=fs.readFileSync('src/design-options/game-themed.js','utf8').replace(/const demoGame=new URLSearchParams[\s\S]*$/,'');
+const el={addEventListener(){},classList:{toggle(){}},dataset:{}};
+const ctx=vm.createContext({document:{getElementById(){return el},addEventListener(){},querySelectorAll(){return[]}},Date,Math,Number,setTimeout,clearTimeout,performance});vm.runInContext(source,ctx);const run=s=>vm.runInContext(s,ctx);
+assert.throws(()=>run("renderGame({type:'missing'})"),/Unknown puzzle type/);
+assert.throws(()=>run("registerGame('angle',{render(){}})"),/already registered/);
+assert.throws(()=>run("registerGame('invalid',{})"),/needs a renderer/);
+run("globalThis.calls=[];registerGame('new-game',{render:q=>calls.push(['render',q.answer]),reveal:(q,value,score)=>calls.push(['reveal',q.answer,value,score])});renderGame({type:'new-game',answer:42});revealGame({type:'new-game',answer:42},40,95)");
+assert.deepEqual(JSON.parse(run('JSON.stringify(calls)')),[['render',42],['reveal',42,40,95]]);
+run('globalThis.disposals=0;activeGameShell={cleanups:[]};onGameCleanup(()=>disposals++);revealGame({type:"new-game",answer:42},40,95)');assert.equal(run('disposals'),0,'reveal retains the stage and its resize observers');run('disposeGameShell();disposeGameShell()');assert.equal(run('disposals'),1,'each mounted resource cleans up once');
+for(const type of ['view3d','balance','halfhalf','motion','perspective','proportion','rhythm','angle','colour','time','timeline','duration','typography','choices'])assert(run(`gameRegistry.has('${type}')`),type+' has an adapter');
+const q=run("makeDeck('practice:adapter-presentation','proportion')[0]"),before=JSON.stringify(q);ctx.q=q;const presentation=run("gameRegistry.get('proportion').presentation(q,'ready')");assert(presentation.title.includes('square'));assert.equal(JSON.stringify(q),before,'view presentation cannot rewrite the saved question');
+console.log('Verified new-game render/reveal dispatch, duplicate and unknown game handling, legacy adapters, immutable presentation, and stage resource cleanup across reveal/unmount.');

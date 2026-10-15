@@ -110,8 +110,8 @@ function halfCutEnds(c){const tx=-c.ny,ty=c.nx;return [{x:c.x+tx*143,y:c.y+ty*14
 function drawHalfFruit(canvas,q,cut,target=false){
  if(!canvas)return;const ctx=canvas.getContext('2d');ctx.clearRect(0,0,400,300);ctx.save();ctx.translate(200,150);ctx.scale(.85,.85);ctx.translate(-200,-180);
  paintHalfFruit(ctx,q.fruit);
- const stroke=(c,color,dashed=false,handles=false)=>{const tx=-c.ny,ty=c.nx;ctx.beginPath();ctx.moveTo(c.x-tx*500,c.y-ty*500);ctx.lineTo(c.x+tx*500,c.y+ty*500);ctx.strokeStyle=color;ctx.lineWidth=2;ctx.setLineDash(dashed?[4,5]:[]);ctx.stroke();ctx.setLineDash([]);if(handles)for(const p of halfCutEnds(c)){ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--canvas').trim();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();ctx.arc(p.x,p.y,8,0,Math.PI*2);ctx.fill();ctx.stroke();}};
- if(cut)stroke(cut,getComputedStyle(document.documentElement).getPropertyValue('--ink').trim(),false,!target);
+ const stroke=(c,color,dashed=false,handles=false)=>{const tx=-c.ny,ty=c.nx;ctx.beginPath();ctx.moveTo(c.x-tx*500,c.y-ty*500);ctx.lineTo(c.x+tx*500,c.y+ty*500);ctx.strokeStyle=color;ctx.lineWidth=3;ctx.setLineDash(dashed?[4,5]:[]);ctx.stroke();ctx.setLineDash([]);if(handles)for(const p of halfCutEnds(c)){ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--canvas').trim();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();ctx.arc(p.x,p.y,8,0,Math.PI*2);ctx.fill();ctx.stroke();}};
+ if(cut)stroke(cut,getComputedStyle(document.documentElement).getPropertyValue('--draw').trim(),false,!target);
  if(target)stroke(halfBisect(halfGeometry(q),cut),getComputedStyle(document.documentElement).getPropertyValue('--target').trim()||'#c7f06a',true);
  ctx.restore();
 }
@@ -125,5 +125,5 @@ function halfRound(q){
  canvas.addEventListener('pointermove',e=>{if(locked||!drag)return;const p=point(e);if(drag.mode==='new')set(drag.start,p);if(drag.mode==='handle')set(drag.other,p);if(drag.mode==='move'){cut={...drag.old,x:drag.old.x+p.x-drag.start.x,y:drag.old.y+p.y-drag.start.y};choose();}});
  for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,()=>drag=null);
  canvas.addEventListener('keydown',e=>{if(locked||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();if(!cut)cut={x:200,y:180,nx:1,ny:0};if(e.shiftKey){const theta=Math.atan2(cut.ny,cut.nx)+(e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:1)*Math.PI/90;cut.nx=Math.cos(theta);cut.ny=Math.sin(theta);}else{if(e.key==='ArrowLeft')cut.x-=2;if(e.key==='ArrowRight')cut.x+=2;if(e.key==='ArrowUp')cut.y-=2;if(e.key==='ArrowDown')cut.y+=2;}choose();});
- button.addEventListener('click',()=>{if(cut)reveal(cut);});drawHalfFruit(canvas,q,null);
+ button.addEventListener('click',()=>{if(cut)reveal(cut);});onGameRedraw(()=>drawHalfFruit(canvas,q,cut,locked));drawHalfFruit(canvas,q,null);
 }

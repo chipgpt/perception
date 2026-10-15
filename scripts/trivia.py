@@ -2,6 +2,7 @@
 import argparse, copy, datetime as dt, difflib, hashlib, json, math, re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+# `proportion` is the stable schedule ID for Size it up; keep published slots intact.
 TYPES=['view3d','balance','motion','perspective','proportion','rhythm','angle','memory','time','timeline','duration']
 TRIVIA=('timeline','duration')
 

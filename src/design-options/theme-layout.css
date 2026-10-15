@@ -1,0 +1,60 @@
+/* Shared geometry and typography. Theme files contain palette tokens only. */
+body{background:var(--paper)}
+header{height:83px;position:relative;padding:0 42px 0 36px;border-bottom:1px solid var(--line);background:var(--header-background)}
+.brand{font-size:23px;font-weight:700}
+.brand::before{content:'';width:18px;height:18px;border-radius:50%;border:2px solid var(--accent);box-shadow:inset 0 0 0 4px var(--header-background)}
+.tagline{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--tagline-ink)}
+.circle{background:var(--circle-background);border-color:var(--circle-line);border-radius:9px}
+main{display:grid;grid-template-columns:210px minmax(0,1fr);max-width:1400px;margin:auto;padding:0 36px 70px;column-gap:44px}
+.minigames{grid-column:1;grid-row:1 / span 4;flex-direction:column;overflow:visible;gap:5px;margin:30px 0 0;padding-right:24px;border-right:1px solid var(--line)}
+.minigames::before{content:'PLAY MODES';font:12px 'IBM Plex Mono',monospace;color:var(--muted);letter-spacing:1px;margin:0 0 14px 12px}
+.minigames button{text-align:left;padding:12px 14px;color:var(--nav-ink);font-size:14px;border-radius:9px;font-weight:500}
+.minigames .active{background:var(--practice-background);color:var(--accent);border:1px solid var(--practice-line);padding:11px 13px}
+.minigames button:hover{color:var(--ink);background:var(--practice-hover)}
+.minigames .active:hover{color:var(--accent);background:var(--practice-background)}
+.topline{grid-column:2;margin:30px 0 20px;max-width:850px;width:100%;align-self:start}
+.tabs{background:var(--tabs-background);padding:4px;border-radius:9px}
+.tabs .active{background:var(--tabs-active-background);color:var(--tabs-active-ink)}
+.layout{grid-column:2;display:block;max-width:850px;width:100%}
+.game{background:var(--surface);border:1px solid var(--game-line);border-radius:18px;padding:24px 36px 30px;box-shadow:0 25px 80px var(--game-shadow)}
+.gamebar{font-family:'IBM Plex Mono',monospace;color:var(--gamebar-ink);border-bottom:1px solid var(--line);padding-bottom:21px}
+.score{color:var(--ink)}
+.progress i{background:var(--progress-track)}
+.progress .current{opacity:var(--progress-opacity);background:var(--accent);box-shadow:0 0 9px var(--progress-glow)}
+.mixed-question{padding:28px 0 22px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;color:var(--accent)}
+.mixed-question h1{font-size:38px;font-weight:600}
+.spatial-wrap{max-width:470px}
+.spatial-wrap canvas{border:1px solid var(--canvas-line);border-radius:12px}
+.primary{color:var(--primary-ink);background:var(--primary-background);border-radius:9px}
+.primary:hover{background:var(--primary-hover)}
+.secondary{border-color:var(--secondary-line);background:var(--secondary-background)}
+.points{color:var(--accent)}
+.type-overlay-target{color:var(--overlay-fill);-webkit-text-stroke-color:var(--target)}
+.chosen-swatch{border-color:var(--swatch-line)}
+.colour-caption{color:var(--nav-ink)}
+.memory-stage,.type-specimen{border:1px solid var(--canvas-line);border-radius:12px}
+.pulse{border:1px solid var(--pulse-line);background:var(--canvas)}
+.pulse.lit{background:var(--accent);border-color:var(--accent)}
+.beat-count{color:var(--beat-ink)}
+aside{display:none}
+footer{grid-column:2;max-width:850px;margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:12px}
+.option-switch{background:var(--option-background);border-color:var(--option-line)}
+.time-cue strong{color:var(--time-ink);font-family:'IBM Plex Mono',monospace;font-size:104px;letter-spacing:-7px}
+.bigscore{font-family:'IBM Plex Mono',monospace}
+.minigames button:focus-visible{outline-offset:0}
+@media(max-width:850px){header{padding:0 24px;height:73px}
+main{display:block;padding:0 20px 75px}
+.minigames{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:0 0 12px;margin:20px 0}
+.minigames::before{display:none}
+.topline{margin:20px 0}
+.game{padding:24px}
+.mixed-question h1{font-size:32px}
+footer{margin-top:24px}
+}
+@media(max-width:600px){.brand{font-size:22px}
+.game{padding:20px;border-radius:14px}
+.gamebar{gap:8px}
+.mixed-question{padding-top:24px}
+.option-switch span{display:none}
+}

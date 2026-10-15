@@ -8,7 +8,7 @@ for(const [saved,expected]of [[null,'focus'],['night-lab','night-lab'],['focus',
  assert.equal(document.documentElement.dataset.theme,expected);
  assert.equal(writes[1],`<link id="theme-stylesheet" rel="stylesheet" href="${expected}.css">`);
  assert(writes[0].includes('manrope-latin.woff2'));
- assert.equal(writes[0].includes('ibm-plex-mono-400-latin.woff2'),expected==='night-lab');
+ assert.equal(writes[0].includes('ibm-plex-mono-400-latin.woff2'),true);
  if(saved==='studio')assert.equal(store.get('perception-theme'),'night-lab');
 }
 const writes=[];vm.runInNewContext(source,{document:{documentElement:{dataset:{}},write:s=>writes.push(s)},window:{localStorage:{getItem(){throw Error('Unavailable')}}}});

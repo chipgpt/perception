@@ -50,10 +50,15 @@ function validSavedGame(game){
    if(q.type==='motion'&&(!Array.isArray(q.answer)||q.answer.length<2||!q.answer.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y))))return false;
    if(q.type==='perspective'&&(!q.answer||typeof q.answer.x!=='number'||typeof q.answer.y!=='number'))return false;
    if(q.type==='colour'&&(!Array.isArray(q.answer)||q.answer.length!==3))return false;
-   if(['angle','time','rhythm','proportion','balance','timeline','duration'].includes(q.type)&&!q.fruit&&typeof q.answer!=='number')return false;
-   if(scoreFor(q.type==='proportion'?{width:q.answer,height:1}:q.answer,q)!==100)return false;
+   if(['angle','time','rhythm','balance','timeline','duration'].includes(q.type)&&!q.fruit&&typeof q.answer!=='number')return false;
+   if(q.type==='proportion'){
+    if(isSizeQuestion(q)){
+     if(!Number.isInteger(q.wide)||q.wide<1||q.wide>5||!Number.isInteger(q.tall)||q.tall<1||q.tall>4||!Number.isInteger(q.reference)||q.reference<32||q.reference>54||q.answer?.width!==q.wide*q.reference||q.answer?.height!==q.tall*q.reference||q.answer.width>260||q.answer.height>175||!q.start||q.start.width<32||q.start.width>304||q.start.height<32||q.start.height>207)return false;
+    }else if(q.measurementVersion!==undefined||typeof q.answer!=='number')return false;
+   }
+   if(scoreFor(q.type==='proportion'&&!isSizeQuestion(q)?{width:q.answer,height:1}:q.answer,q)!==100)return false;
   }
-  return game.results.every((r,i)=>r&&Number.isInteger(r.score)&&r.score>=0&&r.score<=100&&finiteTree(r.guess)&&Number.isFinite(scoreFor(r.guess,game.deck[i])));
+  return game.results.every((r,i)=>r&&Number.isInteger(r.score)&&r.score>=0&&r.score<=100&&finiteTree(r.guess)&&(!isSizeQuestion(game.deck[i])||r.guess&&r.guess.width>=32&&r.guess.width<=304&&r.guess.height>=32&&r.guess.height<=207)&&Number.isFinite(scoreFor(r.guess,game.deck[i])));
  }catch{return false;}
 }
 function restoreDailyGame(){
@@ -83,7 +88,7 @@ function saveDailyGame(){
 }
 function browserHistoryHTML(){
  const stats=playerData.stats,active=[0,1].includes(dayNumber(calendarDay())-dayNumber(stats.lastDay))?stats.streak:0;
- const names={mix:'Daily five',view3d:'3D view',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Proportions',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
+ const names={mix:'Daily five',view3d:'3D view',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Size it up / Proportions',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
  const label=day=>{const [y,m,d]=day.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});};
  return `<div class="browser-history"><p class="history-stats">Daily five streak: <strong>${active} ${active===1?'day':'days'}</strong> · Best: ${stats.best} · Played: ${stats.played}</p><div class="history-list">${playerData.history.slice(-14).reverse().map(h=>`<div class="history-row"><span>${escapeHTML(label(h.day))} · ${names[h.game]||'Daily game'}</span><strong>${h.scores.reduce((a,b)=>a+b,0)}/500</strong></div>`).join('')||'<p>No saved games yet.</p>'}</div><p class="storage-caption">Saved in this browser. Clearing site data resets your history. No cross-device sync.</p></div>`;
 }

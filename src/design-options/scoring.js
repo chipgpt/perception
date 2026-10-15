@@ -1,5 +1,6 @@
-// Every game converts its distance to a fraction of one tunable error bound.
-// The common curve is 100 * (1 - errorFraction)^2, rounded once at the end.
+// Each scored dimension converts its distance to a tunable error bound.
+// The common curve is (1 - errorFraction)^2, rounded once after summing points.
+// Size it up averages two independently clipped curves, worth 50 points each.
 const SCORING_RANGES=Object.freeze({
  view3d:180, angle:180, balance:.5, halfhalf:.20,
  motion:.2*Math.hypot(400,300), perspective:.4*Math.hypot(400,300),
@@ -30,7 +31,7 @@ function scoringError(value,q){
    error=Math.abs(value-q.answer);break;
   case 'motion':if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
   case 'perspective':error=pointError(value,q.answer);break;
-  case 'proportion':error=proportionError(value,q.answer);break;
+  case 'proportion':if(isSizeQuestion(q)){const e=sizeErrors(value,q);return (e.width+e.height)/(2*SIZE_ERROR_BOUND);}error=proportionError(value,q.answer);break;
   case 'colour':error=wheelDistance(value,q.answer);break;
   case 'rhythm':error=Math.abs(Math.log(value/q.answer));break;
   case 'duration':error=Math.abs(Math.log(durationValue(value)/q.answer));break;
@@ -38,4 +39,4 @@ function scoringError(value,q){
  }
  return error/SCORING_RANGES[q.type];
 }
-function scoreFor(value,q){return scoreFromError(scoringError(value,q));}
+function scoreFor(value,q){return isSizeQuestion(q)?sizeScore(value,q):scoreFromError(scoringError(value,q));}

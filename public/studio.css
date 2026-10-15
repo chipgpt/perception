@@ -43,8 +43,108 @@
 
 @media(max-width:600px){.gamebar{gap:8px}.gamebar #roundlabel,.gamebar .score{white-space:nowrap}.gamebar .progress{gap:4px}.gamebar .progress i{width:12px}}
 .option-switch[hidden]{display:none}body:has(.feedback) .mixed-controls>button:disabled,body:has(.feedback) .preview-actions{display:none}
-
-:root{color-scheme:dark;--paper:#0d0e12;--surface:#181a20;--canvas:#111318;--line:#292c35;--ink:#eef0f5;--muted:#959ba8;--accent:#c7f06a;--draw:#9bb4ff;--target:#c7f06a;--font:'Manrope',sans-serif}body{background:#0d0e12}header{height:83px;position:relative;padding:0 42px 0 36px;border-bottom:1px solid var(--line);background:#111217}.brand{font-size:23px;font-weight:700}.brand::before{content:'';width:18px;height:18px;border-radius:50%;border:2px solid var(--accent);box-shadow:inset 0 0 0 4px #111217}.tagline{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#858b98}.circle{background:transparent;border-color:#3a3d48;border-radius:9px}main{display:grid;grid-template-columns:210px minmax(0,1fr);max-width:1400px;margin:auto;padding:0 36px 70px;column-gap:44px}.minigames{grid-column:1;grid-row:1 / span 4;flex-direction:column;overflow:visible;gap:5px;margin:30px 0 0;padding-right:24px;border-right:1px solid var(--line)}.minigames::before{content:'PLAY MODES';font:12px 'IBM Plex Mono',monospace;color:var(--muted);letter-spacing:1px;margin:0 0 14px 12px}.minigames button{text-align:left;padding:12px 14px;color:#969caa;font-size:14px;border-radius:9px;font-weight:500}.minigames .active{background:#262b22;color:var(--accent);border:1px solid #3c4930;padding:11px 13px}.minigames button:hover{color:var(--ink);background:#1b1e25}.minigames .active:hover{color:var(--accent);background:#262b22}.topline{grid-column:2;margin:30px 0 20px;max-width:850px;width:100%;align-self:start}.tabs{background:#191b22;padding:4px;border-radius:9px}.tabs .active{background:#31343f;color:#fff}.layout{grid-column:2;display:block;max-width:850px;width:100%}.game{background:var(--surface);border:1px solid #30333e;border-radius:18px;padding:24px 36px 30px;box-shadow:0 25px 80px #00000020}.gamebar{font-family:'IBM Plex Mono',monospace;color:#9097a5;border-bottom:1px solid var(--line);padding-bottom:21px}.score{color:#eef0f5}.progress i{background:#343844}.progress .current{opacity:1;background:var(--accent);box-shadow:0 0 9px #c7f06a22}.mixed-question{padding:28px 0 22px}.eyebrow{font-family:'IBM Plex Mono',monospace;color:var(--accent)}.mixed-question h1{font-size:38px;font-weight:600}.spatial-wrap{max-width:470px}.spatial-wrap canvas{border:1px solid #303440;border-radius:12px}.primary{color:#151a10;background:var(--accent);border-radius:9px}.primary:hover{background:#d7fa92}.secondary{border-color:#3b3f4c;background:#242730}.points{color:var(--accent)}.type-overlay-target{color:#c7f06a1a;-webkit-text-stroke-color:#c7f06a}.chosen-swatch{border-color:#4a5060}.colour-caption{color:#969caa}.memory-stage,.type-specimen{border:1px solid #303440;border-radius:12px}.pulse{border:1px solid #3c4350;background:#111318}.pulse.lit{background:var(--accent);border-color:var(--accent)}.beat-count{color:var(--accent)}aside{display:none}footer{grid-column:2;max-width:850px;margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:12px}.option-switch{background:#191b22;border-color:#373c47}.time-cue strong{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:104px;letter-spacing:-7px}.bigscore{font-family:'IBM Plex Mono',monospace}.minigames button:focus-visible{outline-offset:0}@media(max-width:850px){header{padding:0 24px;height:73px}main{display:block;padding:0 20px 75px}.minigames{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:0 0 12px;margin:20px 0}.minigames::before{display:none}.topline{margin:20px 0}.game{padding:24px}.mixed-question h1{font-size:32px}footer{margin-top:24px}}@media(max-width:600px){.brand{font-size:22px}.game{padding:20px;border-radius:14px}.gamebar{gap:8px}.mixed-question{padding-top:24px}.option-switch span{display:none}}
+:root {
+  color-scheme: dark;
+  --paper: #0d0e12;
+  --surface: #181a20;
+  --canvas: #111318;
+  --line: #292c35;
+  --ink: #eef0f5;
+  --muted: #959ba8;
+  --accent: #c7f06a;
+  --draw: #9bb4ff;
+  --target: #c7f06a;
+  --header-background: #111217;
+  --tagline-ink: #858b98;
+  --circle-line: #3a3d48;
+  --nav-ink: #969caa;
+  --practice-background: #262b22;
+  --practice-line: #3c4930;
+  --practice-hover: #1b1e25;
+  --tabs-background: #191b22;
+  --tabs-active-background: #31343f;
+  --game-line: #30333e;
+  --game-shadow: #00000020;
+  --gamebar-ink: #9097a5;
+  --progress-track: #343844;
+  --progress-glow: #c7f06a22;
+  --canvas-line: #303440;
+  --primary-ink: #151a10;
+  --primary-hover: #d7fa92;
+  --secondary-line: #3b3f4c;
+  --secondary-background: #242730;
+  --overlay-fill: #c7f06a1a;
+  --swatch-line: #4a5060;
+  --pulse-line: #3c4350;
+  --option-line: #373c47;
+  --tabs-active-ink: #fff;
+  --circle-background: transparent;
+  --primary-background: var(--accent);
+  --option-background: #191b22;
+  --beat-ink: var(--accent);
+  --time-ink: var(--accent);
+  --progress-opacity: 1;
+}
+/* Shared geometry and typography. Theme files contain palette tokens only. */
+body{background:var(--paper)}
+header{height:83px;position:relative;padding:0 42px 0 36px;border-bottom:1px solid var(--line);background:var(--header-background)}
+.brand{font-size:23px;font-weight:700}
+.brand::before{content:'';width:18px;height:18px;border-radius:50%;border:2px solid var(--accent);box-shadow:inset 0 0 0 4px var(--header-background)}
+.tagline{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--tagline-ink)}
+.circle{background:var(--circle-background);border-color:var(--circle-line);border-radius:9px}
+main{display:grid;grid-template-columns:210px minmax(0,1fr);max-width:1400px;margin:auto;padding:0 36px 70px;column-gap:44px}
+.minigames{grid-column:1;grid-row:1 / span 4;flex-direction:column;overflow:visible;gap:5px;margin:30px 0 0;padding-right:24px;border-right:1px solid var(--line)}
+.minigames::before{content:'PLAY MODES';font:12px 'IBM Plex Mono',monospace;color:var(--muted);letter-spacing:1px;margin:0 0 14px 12px}
+.minigames button{text-align:left;padding:12px 14px;color:var(--nav-ink);font-size:14px;border-radius:9px;font-weight:500}
+.minigames .active{background:var(--practice-background);color:var(--accent);border:1px solid var(--practice-line);padding:11px 13px}
+.minigames button:hover{color:var(--ink);background:var(--practice-hover)}
+.minigames .active:hover{color:var(--accent);background:var(--practice-background)}
+.topline{grid-column:2;margin:30px 0 20px;max-width:850px;width:100%;align-self:start}
+.tabs{background:var(--tabs-background);padding:4px;border-radius:9px}
+.tabs .active{background:var(--tabs-active-background);color:var(--tabs-active-ink)}
+.layout{grid-column:2;display:block;max-width:850px;width:100%}
+.game{background:var(--surface);border:1px solid var(--game-line);border-radius:18px;padding:24px 36px 30px;box-shadow:0 25px 80px var(--game-shadow)}
+.gamebar{font-family:'IBM Plex Mono',monospace;color:var(--gamebar-ink);border-bottom:1px solid var(--line);padding-bottom:21px}
+.score{color:var(--ink)}
+.progress i{background:var(--progress-track)}
+.progress .current{opacity:var(--progress-opacity);background:var(--accent);box-shadow:0 0 9px var(--progress-glow)}
+.mixed-question{padding:28px 0 22px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;color:var(--accent)}
+.mixed-question h1{font-size:38px;font-weight:600}
+.spatial-wrap{max-width:470px}
+.spatial-wrap canvas{border:1px solid var(--canvas-line);border-radius:12px}
+.primary{color:var(--primary-ink);background:var(--primary-background);border-radius:9px}
+.primary:hover{background:var(--primary-hover)}
+.secondary{border-color:var(--secondary-line);background:var(--secondary-background)}
+.points{color:var(--accent)}
+.type-overlay-target{color:var(--overlay-fill);-webkit-text-stroke-color:var(--target)}
+.chosen-swatch{border-color:var(--swatch-line)}
+.colour-caption{color:var(--nav-ink)}
+.memory-stage,.type-specimen{border:1px solid var(--canvas-line);border-radius:12px}
+.pulse{border:1px solid var(--pulse-line);background:var(--canvas)}
+.pulse.lit{background:var(--accent);border-color:var(--accent)}
+.beat-count{color:var(--beat-ink)}
+aside{display:none}
+footer{grid-column:2;max-width:850px;margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:12px}
+.option-switch{background:var(--option-background);border-color:var(--option-line)}
+.time-cue strong{color:var(--time-ink);font-family:'IBM Plex Mono',monospace;font-size:104px;letter-spacing:-7px}
+.bigscore{font-family:'IBM Plex Mono',monospace}
+.minigames button:focus-visible{outline-offset:0}
+@media(max-width:850px){header{padding:0 24px;height:73px}
+main{display:block;padding:0 20px 75px}
+.minigames{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:0 0 12px;margin:20px 0}
+.minigames::before{display:none}
+.topline{margin:20px 0}
+.game{padding:24px}
+.mixed-question h1{font-size:32px}
+footer{margin-top:24px}
+}
+@media(max-width:600px){.brand{font-size:22px}
+.game{padding:20px;border-radius:14px}
+.gamebar{gap:8px}
+.mixed-question{padding-top:24px}
+.option-switch span{display:none}
+}
 /* Compact play layout: reserve the viewport for the puzzle and its controls. */
 @media(max-width:760px){
  header{height:54px;padding:0 18px}.brand{font-size:23px;letter-spacing:-1px}.brand::after{font-size:25px}.tagline{display:none}.circle{width:34px;height:34px}
@@ -73,13 +173,13 @@
  .wheel-wrap{width:min(100%,clamp(170px,calc(100svh - 470px),280px))}
 }
 .trivia-caption{font-size:14px;color:var(--muted);margin:0 0 14px;text-align:center}.timeline-stage,.duration-stage{max-width:460px;margin:auto}.timeline-stage canvas,.duration-stage canvas{width:100%;height:auto;display:block;touch-action:none;border-radius:12px}.trivia-value{display:block;text-align:center;font-size:28px;font-weight:600;margin:12px 0 0;font-variant-numeric:tabular-nums}.timeline-zoom{display:flex;gap:14px;align-items:center;justify-content:center;margin:0 0 14px}.timeline-zoom span{font-size:13px;color:var(--muted)}.timeline-zoom button{width:48px;padding:8px;font-size:22px;min-height:44px}
-@media(max-width:760px){.trivia-caption{font-size:12px;line-height:1.4;margin:0 0 8px}.timeline-stage{width:100%;max-width:400px}.duration-stage{width:min(100%,calc(clamp(150px,100svh - 405px,270px)*4/3))}.trivia-value{font-size:23px;margin:6px 0 0}.timeline-zoom{margin-bottom:10px;gap:12px}body:has(.feedback) .duration-stage{width:min(100%,calc(clamp(120px,100svh - 505px,230px)*4/3))}body:has(.feedback) .timeline-stage{max-width:290px}body:has(.feedback) .trivia-value{display:none}}
+@media(max-width:760px){.trivia-caption{font-size:12px;line-height:1.4;margin:0 0 8px}.timeline-stage{width:100%;max-width:400px}.duration-stage{width:min(100%,calc(clamp(150px,100svh - 405px,270px)*4/3))}.trivia-value{font-size:23px;margin:6px 0 0}.timeline-zoom{margin-bottom:10px;gap:12px}body:has(.feedback) .duration-stage{width:min(100%,calc(clamp(120px,100svh - 505px,230px)*4/3))}body:has(.feedback) .trivia-value{display:none}}
 @media(max-width:760px){
  [data-puzzle="timeline"] .mixed-question h1,[data-puzzle="duration"] .mixed-question h1{font-size:25px}
  .timeline-stage{width:min(100%,clamp(230px,100svh - 400px,400px))}.trivia-value{font-size:21px;margin-top:2px}.timeline-zoom{margin-bottom:8px}
  .duration-stage{width:min(100%,calc(clamp(150px,100svh - 475px,270px)*4/3))}
  body:has(.feedback) .trivia-caption{display:none}
- body:has(.feedback) .timeline-stage{width:min(100%,clamp(220px,100svh - 410px,340px));max-width:340px}
+
 }
 
 #timeline-canvas{cursor:grab}#timeline-canvas.dragging{cursor:grabbing}body:has(.feedback) #timeline-canvas{cursor:default}
@@ -117,7 +217,7 @@ main{display:block;max-width:920px;margin:0 auto;padding:28px 24px 36px}
 .practice-menu{position:relative}.practice-menu>summary{list-style:none;justify-content:center}.practice-menu>summary>span{line-height:20px}.practice-chevron{display:block;flex:none;width:16px;height:16px}.practice-menu[open] .practice-chevron{transform:rotate(180deg)}.practice-menu>summary::-webkit-details-marker{display:none}
 .practice-menu[open]>summary{color:var(--ink);border-color:var(--accent)}
 .practice-menu .minigames{position:absolute;top:calc(100% + 8px);left:0;z-index:20;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:320px;max-width:calc(100vw - 32px);margin:0;padding:8px;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:0 12px 32px #0003;overflow:visible;gap:4px}
-.practice-menu:not([open]) .minigames{display:none}.practice-menu .minigames::before{display:none}
+details.practice-menu:not([open]) .minigames{display:none}.practice-menu .minigames::before{display:none}
 .practice-menu .minigames button{margin:0;min-height:44px;padding:10px;text-align:left;border:0;border-radius:7px;font:500 14px/1.4 var(--font);color:var(--ink);background:transparent;white-space:normal}
 .practice-menu .minigames button:hover,.practice-menu .minigames button.active{background:var(--canvas);color:var(--ink);box-shadow:none}
 .site-links{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin:12px auto 24px}.site-links a{text-decoration:none}.site-links a:hover{text-decoration:underline}
@@ -133,13 +233,6 @@ main{display:block;max-width:920px;margin:0 auto;padding:28px 24px 36px}
 }
 .mixed-controls>.memory-countdown:disabled{position:relative;overflow:hidden;opacity:1;background:var(--canvas);color:var(--ink);border:1px solid var(--line);font-variant-numeric:tabular-nums}
 .memory-countdown::after{content:'';position:absolute;bottom:0;left:0;height:3px;width:calc(var(--memory-remaining,1)*100%);background:var(--accent)}
-.view-start-stage{position:relative}
-.view-start-stage>.view-start-overlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);min-width:120px;min-height:48px;box-shadow:0 4px 24px #0004}
-.view-start-stage>.view-start-overlay:hover{transform:translate(-50%,-50%)}
-
-.view-start-waiting::after{content:'';position:absolute;inset:0;border-radius:12px;background:#0007;pointer-events:none}
-.view-start-stage>.view-start-overlay{z-index:1}
-
 .view-result-stage{position:relative}
 .view-result-phase{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);padding:4px 10px;border-radius:6px;background:var(--surface);color:var(--muted);font-size:12px;white-space:nowrap;pointer-events:none}
 .round-feedback .feedbacktop{display:block}
@@ -151,44 +244,131 @@ main{display:block;max-width:920px;margin:0 auto;padding:28px 24px 36px}
 .round-result-points{border-left:1px solid var(--line)}
 .round-verdict{margin:14px 0 18px;text-align:center;color:var(--ink);font-size:14px}
 @media(min-width:761px){.round-result-stats strong{font-size:56px}.round-result-stats span{font-size:13px}.round-verdict{font-size:16px}}
-/* The active round fills the screen; summaries keep their natural scrolling layout. */
-body:has(.mixed-question){min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
-body:has(.mixed-question)>header{flex:none}
-body:has(.mixed-question)>main{display:flex;flex-direction:column;flex:1;width:100%;margin:0 auto;padding-bottom:max(12px,env(safe-area-inset-bottom))}
-body:has(.mixed-question) .topline{flex:none}
-body:has(.mixed-question) .layout{display:flex;flex-direction:column;flex:1;width:100%;margin:0 auto}
-body:has(.mixed-question) .game{display:flex;flex-direction:column;flex:1}
-body:has(.mixed-question) .gamebar{flex:none}
-body:has(.mixed-question) #playarea{display:flex;flex-direction:column;flex:1}
-body:has(.mixed-question) .mixed-question{display:flex;flex-direction:column;flex:1}
-body:has(.mixed-question) .mixed-question>.spatial-wrap,body:has(.mixed-question) .mixed-question>.angle-wrap{margin-block:auto}
-body:has(.mixed-question) .mixed-controls{margin:12px auto 0;flex:none}
-body:has(.mixed-question) .mixed-controls:empty{margin:0}
-body:has(.mixed-question) .actionarea{flex:none}
-body:has(.mixed-question) footer,body:has(.mixed-question)>.site-links{display:none}
-/* Use the available width, with height caps to keep essential controls in view. */
-body:has(.mixed-question)>main{max-width:1200px;padding-inline:8px}
-body:has(.mixed-question) .layout{max-width:none}
-body:has(.mixed-question) .game{padding-inline:12px}
-body:has(.mixed-question) .spatial-wrap{width:min(100%,calc(clamp(180px,100svh - 350px,450px)*4/3));max-width:none}
-body:has(.mixed-question):has(.feedback) .spatial-wrap{width:min(100%,calc(clamp(120px,100svh - 470px,330px)*4/3))}
-@media(min-width:761px){
- body:has(.mixed-question)>main{padding-inline:24px;padding-bottom:24px}
- body:has(.mixed-question) .topline{margin-top:0;margin-bottom:12px}
- body:has(.mixed-question) .game{padding:18px 24px 20px}
- body:has(.mixed-question) .mixed-question{padding-block:14px 12px}
- body:has(.mixed-question) .mixed-question h1{margin-bottom:12px}
- body:has(.mixed-question) .spatial-wrap{width:min(100%,720px,calc((100svh - 320px)*4/3))}
- body:has(.mixed-question):has(.feedback) .spatial-wrap{width:min(100%,720px,calc(max(180px,100svh - 610px)*4/3))}
+/* Shared chrome. Game renderers provide content, never viewport geometry. */
+:root{--game-stage-min:100px;--game-content-width:600px;--canvas:var(--paper)}
+body>header{height:60px;padding:0 22px;background:var(--paper);border:0}
+body>header .brand{font-size:16px;letter-spacing:-.5px;gap:9px}
+body>header .brand::before{width:14px;height:14px;border-width:1.5px;box-shadow:inset 0 0 0 3px var(--paper)}
+body>header .header-right{gap:4px}
+body>header .tagline{display:none}
+body>header .circle{width:44px;height:44px;min-height:44px;background:transparent}
+body>header .option-switch{position:relative;inset:auto;width:44px;height:44px;min-height:44px;padding:0;background:transparent;border:0;display:grid;place-items:center}
+body>header .option-switch select{inset:0;width:44px;height:44px}
+body[data-game-active="true"]{height:100vh;height:100svh;min-height:0;display:flex;flex-direction:column}
+body[data-game-active="true"]>header{flex:none}
+body[data-game-active="true"]>main{display:flex;flex-direction:column;flex:1;min-height:0;width:100%;max-width:var(--game-content-width);margin:0 auto;padding:0 24px max(20px,env(safe-area-inset-bottom))}
+body[data-game-active="true"] .layout,body[data-game-active="true"] .game{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0;width:100%;margin:0;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}
+body[data-game-active="true"] .gamebar{flex:none;min-height:43px;padding:0 0 15px;margin:0;border-bottom:1px solid var(--line);font-size:10px;gap:8px}
+body[data-game-active="true"] .gamebar .score{font-size:12px;white-space:nowrap}
+body[data-game-active="true"] .gamebar .score small{font-size:10px}
+body[data-game-active="true"] .progress{gap:4px}
+body[data-game-active="true"] .progress i{width:17px;height:3px}
+body[data-game-active="true"] #playarea{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0}
+.game-round{display:flex;flex-direction:column;flex:1;min-height:0;padding:28px 0 0;text-align:center}
+.game-prompt{flex:none}
+.game-round .eyebrow{font-size:10px;letter-spacing:2.1px;margin:0 0 12px;color:var(--accent)}
+.game-round h1{font-family:var(--font);font-size:clamp(24px,6.8vw,32px);font-weight:600;line-height:1.23;letter-spacing:-1.1px;margin:0 0 14px;overflow-wrap:anywhere}
+.game-subtitle{margin:0 auto;color:var(--muted);font:13px/1.6 var(--font);max-width:450px}
+.game-stage{display:flex;position:relative;flex:1;min-height:var(--game-stage-min);min-width:0;margin:14px 0;isolation:isolate}
+.game-stage>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.timeline-stage,.duration-stage,.memory-stage,.pulse-stage,.time-cue,.type-specimen){position:relative;flex:1;min-height:0;width:100%;max-width:none;height:auto;margin:0;padding:0;border:0;border-radius:0;background:transparent;overflow:hidden}
+.game-stage>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.duration-stage) canvas{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;border:0;border-radius:0;background:transparent;touch-action:none}
+.game-stage>.memory-stage,.game-stage>.pulse-stage,.game-stage>.time-cue{display:flex;flex-direction:column;justify-content:center;align-items:center}
+body[data-game-active="true"] .game-controls{flex:none;display:flex;flex-direction:column;align-items:stretch;gap:0;width:100%;max-width:none;margin:0;padding:0}
+.game-controls>.small-instruction{order:-1;font:12px/1.6 var(--font);color:var(--muted);text-align:center;margin:0 0 14px}
+.game-controls .primary,.game-feedback .primary{width:100%;min-height:52px;height:auto;margin:0;border-radius:9px;font:700 14px/1.4 var(--font);padding:15px 16px}
+.game-controls .primary:disabled{background:var(--surface);color:var(--muted);border:1px solid var(--line);opacity:.65}
+.game-controls .preview-actions{display:flex;gap:12px}
+.game-controls .preview-actions .primary{flex:1;width:auto}
+.game-controls .preview-actions .secondary{min-height:52px}
+.game-feedback{flex:none;margin:0;padding:0}
+.game-feedback:empty{display:none}
+#playarea[data-phase="reveal"] .game-controls{display:none}
+#playarea[data-phase="reveal"] .game-stage>.pulse-stage{display:flex}
+#playarea[data-phase="reveal"] .game-round{padding-top:16px}
+#playarea[data-phase="reveal"] .game-round h1{font-size:22px;margin-bottom:8px}
+#playarea[data-phase="reveal"] .game-subtitle{display:none}
+#playarea[data-phase="reveal"] .game-stage{margin-block:8px}
+#playarea[data-phase="reveal"] .game-feedback{max-height:55svh;overflow:auto;overscroll-behavior:contain}
+.game-feedback .feedback{padding:8px 0 0;margin:0;border:0;background:transparent}
+.game-feedback .round-result-stats strong{font-size:34px}
+.game-feedback .round-result-stats strong small{font-size:15px}
+.game-feedback .round-verdict{margin:8px 0;font-size:13px}
+.game-feedback .round-answer{margin-bottom:10px}
+.game-feedback .math-detail{font-size:12px;margin:0 0 10px}
+.game-feedback #next{position:sticky;bottom:0;z-index:1}
+body[data-game-active="true"] main>footer,body[data-game-active="true"]>.site-links{display:none}
+body[data-game-active="true"] .friend-challenge:not([hidden]),body[data-game-active="true"] #save-note:not([hidden]){font-size:11px;margin:6px 0;padding:6px 8px}
+/* Ready, preview and play share the same stage; no game draws its own chrome. */
+.memory-ready-art{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;pointer-events:none;color:var(--draw)}
+.memory-ready-art svg{width:104px;height:104px;opacity:.8}
+.memory-ready-art span{font:12px/1.5 var(--font);color:var(--muted)}
+.memory-ready-illustration canvas{visibility:hidden}
+.game-stage .time-cue strong{font-family:var(--font);font-size:clamp(80px,25vw,136px);font-weight:500;line-height:1;letter-spacing:-6px}
+.game-stage .time-cue span{font-size:11px;letter-spacing:3px;color:var(--muted);margin-top:22px}
+.game-stage .pulse-stage{gap:28px}
+.game-stage .pulse{width:112px;height:112px;background:transparent;border:1px solid var(--line);box-shadow:0 0 0 24px color-mix(in srgb,var(--draw) 2%,transparent),0 0 0 49px color-mix(in srgb,var(--draw) 1%,transparent);position:relative}
+.game-stage .pulse::after{content:'';position:absolute;inset:36px;border-radius:50%;background:var(--draw);opacity:.8}
+.game-stage .pulse.lit{background:var(--accent);border-color:var(--accent)}
+.game-stage .pulse.lit::after{background:var(--accent)}
+.game-stage #pulse-label{font:12px var(--font);color:var(--muted)}
+.game-stage .beat-count{font-size:20px;letter-spacing:8px;color:var(--muted);margin:0}
+.game-stage .colour-caption{display:none}
+.game-controls .colour-adjust{margin:0 0 10px}
+.game-controls .keyboard-colour{font-size:12px;margin:0 0 10px}
+.game-controls .trivia-nudge{margin:0 0 12px;gap:16px}
+/* The chooser is a compact destination: daily ritual first, every skill visible. */
+.game-menu{width:min(520px,calc(100vw - 24px));max-height:calc(100svh - 24px);margin:auto;padding:24px;border:1px solid var(--line);border-radius:24px;background:var(--paper);color:var(--ink);overflow:auto;box-shadow:0 32px 100px #0004}
+.game-menu::backdrop{background:#0009;backdrop-filter:blur(10px)}
+.game-menu-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.game-menu-eyebrow{margin:0 0 5px;color:var(--muted);font:500 10px/1.4 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:1.8px}
+.game-menu-heading h2{margin:0;font:600 30px/1.15 var(--font);letter-spacing:-1.2px}
+.game-menu .circle{width:44px;height:44px;min-height:44px;border-radius:50%;background:transparent;color:var(--muted);font-size:22px;float:none}
+.game-menu .topline{display:block;margin:0;width:100%;max-width:none}
+.game-menu .play-navigation{display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:10px}
+.game-menu .daily-home{grid-column:1;min-height:82px;display:flex;justify-content:flex-start;gap:14px;padding:16px;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:14px;background:color-mix(in srgb,var(--accent) 9%,var(--surface));color:var(--ink);text-align:left;white-space:normal}
+.game-menu .daily-home.active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.daily-copy{display:flex;flex:1;flex-direction:column;gap:5px}
+.daily-copy strong{font-size:17px;line-height:1.2;letter-spacing:-.5px}
+.daily-copy small{font:400 11px/1.4 var(--font);color:var(--muted)}
+.daily-art{display:grid;flex:none;width:28px;height:28px;grid-template-columns:repeat(3,1fr);gap:3px;transform:rotate(-10deg)}
+.daily-art i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.daily-art i:nth-child(2){grid-column:3}.daily-art i:nth-child(3){grid-column:2}.daily-art i:nth-child(5){grid-column:3}
+.daily-arrow svg{display:block;width:20px;height:20px}
+.daily-arrow{align-self:flex-start;font-size:22px;line-height:1;color:var(--accent)}
+.game-menu .history-button{grid-column:2;grid-row:1;width:64px;height:auto;min-height:82px;display:flex;flex-direction:column;justify-content:center;gap:7px;border-radius:14px;background:transparent;color:var(--muted)}
+.game-menu .history-button span{font:500 10px/1.2 var(--font)}
+.game-menu .history-button:hover{background:var(--surface);color:var(--ink)}
+.game-menu .practice-menu{grid-column:1 / -1;grid-row:2;width:100%;min-width:0}
+.game-menu-section{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:18px 0 12px}
+.game-menu-section h3{margin:0;font:600 13px/1.4 var(--font);letter-spacing:-.2px}
+.game-menu-section>span{color:var(--muted);font:400 10px/1.4 var(--font)}
+.game-menu .practice-menu .minigames{position:static;width:100%;max-width:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;box-shadow:none;border:0;border-radius:0;background:transparent;overflow:visible}
+.game-menu .minigames button{position:relative;display:flex;align-items:center;gap:10px;min-width:0;min-height:66px;padding:11px 10px;white-space:normal;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-family:var(--font)}
+.game-menu .minigames button:hover{background:color-mix(in srgb,var(--accent) 5%,var(--surface));border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.game-menu .minigames button.active{background:color-mix(in srgb,var(--accent) 10%,var(--surface));border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.game-menu .minigames button.active::after{content:'✓';position:absolute;right:6px;top:3px;color:var(--accent);font:700 10px/1 var(--font)}
+.game-option-icon{display:grid;place-items:center;flex:none;width:26px;height:30px;color:var(--muted)}
+.game-option-icon svg{display:block;width:24px;height:24px}
+.game-menu .minigames button.active .game-option-icon{color:var(--accent)}
+.game-option-copy{display:flex;flex-direction:column;min-width:0;gap:4px;text-align:left}
+.game-option-copy strong{font-size:12px;font-weight:600;line-height:1.2;letter-spacing:-.2px}
+.game-option-copy small{font-size:9px;font-weight:400;line-height:1.4;color:var(--muted)}
+.game-menu .meta{display:none}
+@media(max-width:400px){.game-menu{padding:18px}.game-menu .minigames button{gap:8px;padding-inline:8px}.game-option-icon{width:23px}.game-option-copy small{font-size:8.5px}.daily-copy small{font-size:10px}.game-menu .daily-home{gap:10px;padding:12px}.daily-arrow{font-size:19px}}
+@media(max-height:740px){.game-menu{padding:16px}.game-menu-heading{margin-bottom:16px}.game-menu-heading h2{font-size:27px}.game-menu .daily-home,.game-menu .history-button{min-height:70px}.game-menu-section{margin:12px 0 10px}.game-menu .minigames button{min-height:54px;padding-block:7px}.game-menu .practice-menu .minigames{gap:6px}}
+@media(max-height:700px){
+ .game-round{padding-top:18px}.game-round h1{font-size:25px;margin-bottom:10px}.game-round .eyebrow{margin-bottom:9px}.game-subtitle{font-size:12px}
+ .game-stage{margin-block:8px}.game-controls>.small-instruction{margin-bottom:10px;font-size:11px}
+ body[data-game-active="true"]>main{padding-bottom:max(14px,env(safe-area-inset-bottom))}
+ #playarea[data-phase="reveal"] .game-prompt .eyebrow{display:none}.game-feedback .round-result-stats strong{font-size:28px}
+ .game-feedback .round-verdict{margin:6px 0}.game-stage .pulse-stage{gap:18px}.game-stage .pulse{width:92px;height:92px}.game-stage .pulse::after{inset:28px}
 }
-/* Every puzzle gets the same flexible stage; drawings retain their own aspect ratio. */
-body:has(.mixed-question) .mixed-question>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.timeline-stage,.duration-stage){position:relative;flex:1;width:100%;max-width:none;min-height:180px;margin:0;background:var(--canvas);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-body:has(.mixed-question) .mixed-question>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.timeline-stage,.duration-stage) canvas{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;border:0;border-radius:0;background:var(--canvas)}
-body:has(.mixed-question) .mixed-question>:is(.memory-stage,.time-cue,.pulse-stage,.type-specimen){flex:1;width:100%;max-width:none;height:auto;min-height:150px;margin:0;border:1px solid var(--line);border-radius:12px;background:var(--canvas);padding:16px;justify-content:center;align-items:center}
-body:has(.mixed-question) .mixed-question>.time-cue{display:flex;flex-direction:column}
-body:has(.mixed-question) .mixed-question>.pulse-stage{display:flex;flex-direction:column}
-body:has(.mixed-question):has(.feedback) .mixed-question>.pulse-stage{display:flex}
-body:has(.mixed-question):has(.feedback) .mixed-controls{display:none}
+@media(min-width:761px){
+ body[data-game-active="true"]>main{padding-inline:28px;padding-bottom:24px}.game-round{padding-top:28px}.game-round h1{font-size:34px}
+ body>header{padding-inline:32px}body>header .brand{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){.game-stage *, .game-controls *{animation:none!important;transition:none!important}}
+
 .year-picker{isolation:isolate}
 .year-wheel{position:absolute;inset:0;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;scrollbar-width:none;font-variant-numeric:tabular-nums;mask-image:linear-gradient(transparent,#000 35%,#000 65%,transparent)}
 .year-wheel-dragging{scroll-snap-type:none;cursor:grabbing}
@@ -210,3 +390,144 @@ body:has(.mixed-question):has(.feedback) .mixed-controls{display:none}
 .rhythm-result-comparison span,.rhythm-result-comparison small{color:var(--muted);font-size:13px}
 .rhythm-result-target{border-left:1px dashed var(--target);color:var(--target)}
 @media(min-width:761px){.round-feedback .round-result-stats .compact-error{font-size:32px}}
+.size-handle{position:absolute;transform:translate(-50%,-50%);width:48px;height:48px;min-height:48px;padding:0;border:0;background:transparent;touch-action:none;cursor:nwse-resize;display:grid;place-items:center;z-index:1}
+.size-handle span{display:grid;place-items:center;width:14px;height:14px;border:1px solid var(--ink);border-radius:3px;background:var(--accent);color:var(--canvas);font-size:20px;line-height:1}
+.size-handle:focus-visible{outline:none}
+.size-handle:focus-visible span{outline:2px solid var(--draw);outline-offset:3px}
+.size-handle[hidden]{display:none}
+/* One visual vocabulary for every game. No game-specific layout or content. */
+:root{
+ --canvas:var(--surface);
+ --game-radius:18px;
+ --control-radius:12px;
+ --font-mono:'IBM Plex Mono',monospace;
+ --mark-width:3;
+ --guide-width:1.5;
+}
+body[data-game-active="true"] .game-prompt h1{
+ font:600 clamp(24px,6.8vw,32px)/1.23 var(--font);
+ letter-spacing:-1.1px;
+}
+.game-prompt .eyebrow{font-family:var(--font-mono);font-weight:500}
+.game-subtitle{max-width:420px}
+.game-stage{
+ background:var(--canvas);
+ border-radius:var(--game-radius);
+}
+.game-stage::after{content:'';position:absolute;inset:0;border:1px solid var(--line);border-radius:inherit;pointer-events:none;z-index:3}
+.game-stage>:is(.spatial-wrap,.angle-wrap,.wheel-wrap,.timeline-stage,.duration-stage,.memory-stage,.pulse-stage,.time-cue,.type-specimen){border-radius:inherit}
+/* The surface belongs to the stage, including transparent canvas letterboxing. */
+.game-stage canvas{background:transparent}
+.memory-ready-art{color:var(--draw);gap:24px}
+.memory-ready-art svg{opacity:1}
+.memory-ready-art span,.game-stage #pulse-label{font:400 12px/1.5 var(--font);color:var(--muted)}
+.game-stage .time-cue strong{font-family:var(--font-mono);font-size:clamp(72px,23vw,124px);font-weight:400;letter-spacing:-5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.game-stage .time-cue span{font:400 10px/1.5 var(--font-mono);letter-spacing:2px;margin-top:20px}
+.game-stage .pulse{border-color:var(--canvas-line);box-shadow:0 0 0 24px color-mix(in srgb,var(--draw) 3%,transparent),0 0 0 49px color-mix(in srgb,var(--draw) 1.5%,transparent)}
+.game-stage .pulse::after{opacity:1}
+.game-stage .beat-count{font-family:var(--font-mono);font-weight:400}
+.year-row{font-family:var(--font-mono);font-size:28px;font-weight:400;letter-spacing:-1px}
+.year-selection{left:14px;right:14px;border:1px solid var(--draw);border-radius:var(--control-radius);background:color-mix(in srgb,var(--draw) 8%,transparent)}
+.year-answer,.view-result-phase{border-radius:8px;font-family:var(--font-mono);font-size:12px;line-height:1.5}
+.game-controls>.small-instruction{font-size:12px;line-height:1.6;color:var(--muted)}
+.game-controls :is(.primary,.secondary),.game-feedback .primary{
+ min-height:52px;padding:15px 16px;border-radius:var(--control-radius);
+ font:600 14px/1.4 var(--font);letter-spacing:-.1px;box-shadow:none;
+ transition:background .15s,border-color .15s;
+}
+.game-controls .primary:hover,.game-feedback .primary:hover{transform:none;filter:none}
+.game-controls .primary:disabled{background:var(--surface);color:var(--muted);border:1px solid var(--line);opacity:1}
+.game-controls .secondary,.game-controls .nudge-button{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.game-controls .secondary:hover,.game-controls .nudge-button:hover{border-color:var(--muted)}
+.game-controls .nudge-button{border-radius:var(--control-radius);font:400 24px/1 var(--font-mono)}
+.game-controls :is(.trivia-nudge,.colour-adjust),.game-controls .keyboard-colour{font-size:12px;line-height:1.5}
+.game-controls :is(#duration-step,#sat-value){font-family:var(--font-mono);font-size:11px;font-variant-numeric:tabular-nums}
+.size-handle span{background:var(--draw);color:var(--canvas);border-color:var(--canvas);box-shadow:0 0 0 1px var(--draw)}
+.game-stage .rhythm-result-comparison strong{font-family:var(--font-mono);font-weight:400;letter-spacing:-1px}
+.game-stage .rhythm-result-comparison span,.game-stage .rhythm-result-comparison small{font-size:11px}
+@media(max-height:700px){
+ body[data-game-active="true"] .game-prompt h1{font-size:25px}
+}
+#playarea[data-phase="reveal"] .game-prompt h1{font-size:22px}
+@media(min-width:761px){body[data-game-active="true"] .game-prompt h1{font-size:34px}#playarea[data-phase="reveal"] .game-prompt h1{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.game-controls *,.game-feedback *{transition:none!important}}
+/* Score, measurement, explanation, action: the same reading order every round. */
+.game-feedback .feedback{display:flex;flex-direction:column;gap:12px;padding-top:8px}
+.game-feedback .feedbacktop{display:flex;flex-direction:column;gap:10px}
+.game-feedback .round-result-stats{display:grid;grid-template-columns:minmax(90px,.8fr) minmax(0,1.2fr);align-items:start;width:100%;gap:16px;padding:16px 0;border-block:1px solid var(--line);text-align:left}
+.game-feedback .round-result-stats>div{min-width:0}
+.game-feedback .round-result-points{border:0;padding:0}
+.game-feedback .round-result-error{border-left:1px solid var(--line);padding-left:16px}
+.game-feedback .round-result-stats .result-metric-label{display:block;margin:0 0 7px;font:500 11px/1.4 var(--font);color:var(--muted)}
+.game-feedback .round-result-stats strong{display:block;font:400 30px/1.15 var(--font-mono);letter-spacing:-1.4px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.game-feedback .round-result-points strong{font-size:38px;color:var(--accent)}
+.game-feedback .round-result-stats strong small{margin-left:4px;font:400 13px/1 var(--font-mono);letter-spacing:-.3px;color:var(--muted)}
+.game-feedback .round-result-stats .compact-error{font-size:22px;line-height:1.4;letter-spacing:-.7px}
+.game-feedback .round-result-stats .result-metric-note{display:block;margin:6px 0 0;font:400 11px/1.4 var(--font);color:var(--muted)}
+.result-axes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.game-feedback .result-axes strong{font-size:21px;letter-spacing:-1px;white-space:nowrap}
+.game-feedback .result-axes strong small{font-size:11px;margin-left:1px}
+.game-feedback .round-verdict{margin:0;font:500 13px/1.5 var(--font);text-align:left;align-self:flex-start}
+.game-feedback .round-answer{margin:0;font:400 12px/1.6 var(--font);text-align:left;color:var(--muted)}
+.game-feedback .colour-comparison{margin:0;justify-content:flex-start}
+.game-feedback .wheel-result-legend{justify-content:flex-start;margin:0;gap:20px}
+.game-feedback .wheel-result-legend span{font-size:12px}
+.game-feedback .math-detail{margin:0;font:400 12px/1.6 var(--font)}
+.game-feedback .math-detail summary{padding:4px 0;min-height:28px}
+.game-feedback .math-detail p{margin:8px 0 4px}
+.game-feedback #next{flex:none;margin:0;background:var(--primary-background);color:var(--primary-ink)}
+.game-feedback #next:hover{background:var(--primary-hover)}
+.game-feedback #next:focus-visible{outline:2px solid var(--primary-ink);outline-offset:-5px}
+#playarea[data-phase="reveal"] .game-feedback{max-height:55svh;padding-bottom:1px}
+#playarea[data-phase="reveal"] .game-round{padding-top:18px}
+#playarea[data-phase="reveal"] .game-prompt .eyebrow{margin-bottom:8px}
+#playarea[data-phase="reveal"] .game-stage{margin:12px 0}
+/* Completion pages use the same metric and surface vocabulary, with room to scroll. */
+.summary{max-width:680px;margin:0 auto;padding:12px 0 24px}
+.summary>.eyebrow{font:500 10px/1.5 var(--font-mono);letter-spacing:1.8px;color:var(--accent);margin:0 0 12px}
+.summary h1{font-size:32px;line-height:1.2;letter-spacing:-1px;margin:0 0 20px}
+.summary .bigscore{font:400 clamp(56px,17vw,80px)/1.1 var(--font-mono);letter-spacing:-4px;color:var(--accent)}
+.summary .bigscore small{font-size:20px;letter-spacing:-1px;margin-left:8px}
+.summary-intro{font-size:13px;line-height:1.6;margin:12px 0 0}
+.summary .share-panel{margin:24px 0 20px}
+.summary .share-panel>button,.summary-actions button{min-height:48px;border-radius:var(--control-radius);font:600 14px/1.4 var(--font)}
+.summary .share-panel>button:first-child{margin-top:0}
+.summary-legend{margin:0 0 12px;gap:20px;font-size:11px}
+.summary .results{display:grid;gap:12px;margin:0 0 24px}
+.summary .result{padding:16px;border:1px solid var(--line);border-radius:var(--game-radius);background:var(--surface)}
+.resulthead{align-items:start;font-size:13px;line-height:1.5;gap:12px}
+.resulthead>span:first-child{min-width:0;font-weight:600}
+.resulthead small{display:block;margin-top:3px;font-size:12px;font-weight:400;color:var(--muted)}
+.resulthead>span:last-child{flex:none;white-space:nowrap;font:400 14px/1.5 var(--font-mono);color:var(--accent)}
+.result-body{gap:14px;margin-top:14px;align-items:center}
+.result-body>p{font-size:12px;line-height:1.6;overflow-wrap:anywhere;white-space:pre-line}
+.result-comparison-image{width:112px;height:90px;border:1px solid var(--line);border-radius:10px}
+.result-comparison-chart text{font-family:var(--font-mono);font-size:10px}
+.summary .tiny{font-size:11px;line-height:1.7;margin:16px 0 0}
+@media(max-width:600px){.result-body:has(.result-comparison-chart){display:flex;flex-direction:column;align-items:stretch;gap:10px}.result-body:has(.result-comparison-chart)>p{margin:0}.result-comparison-image{width:96px;height:80px}}
+@media(max-height:700px){
+ .game-feedback .feedback{gap:8px;padding-top:4px}
+ .game-feedback .feedbacktop{gap:8px}
+ .game-feedback .round-result-stats{padding:10px 0;gap:12px}
+ .game-feedback .round-result-error{padding-left:12px}
+ .game-feedback .round-result-points strong{font-size:32px}
+ .game-feedback .round-result-stats strong{font-size:26px}
+ .game-feedback .round-result-stats .compact-error{font-size:20px}
+ .game-feedback .result-axes strong{font-size:19px}
+ .game-feedback .round-result-stats .result-metric-label{margin-bottom:5px}
+ .game-feedback .round-result-stats .result-metric-note{margin-top:4px;font-size:10px}
+ #playarea[data-phase="reveal"] .game-round{padding-top:12px}
+ #playarea[data-phase="reveal"] .game-stage{margin-block:8px}
+}
+/* Completion keeps the same page width and chrome as an active round. */
+body:has(.summary)>main{max-width:var(--game-content-width);padding:0 24px 28px}
+body:has(.summary) .game{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+body:has(.summary) .gamebar{min-height:43px;padding:0 0 15px;font-size:10px;gap:8px}
+body:has(.summary) .gamebar .score{font-size:12px}
+body:has(.summary) .gamebar .score small{font-size:10px}
+body:has(.summary) .progress{gap:4px}
+body:has(.summary) .progress i{width:17px;height:3px}
+.summary{padding-top:24px}
+.summary .share-status:empty{min-height:0;margin:0}
+#playarea[data-phase="reveal"] .size-handle{display:none}
+@media(min-width:761px){body:has(.summary)>main{padding-inline:28px}}

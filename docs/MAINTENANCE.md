@@ -8,6 +8,24 @@
 
 The no-repeat guarantee covers trivia in **Daily five** from the schedule's start date, not historical games before that date or practice. Individual games are practice-only. Trivia practice draws only from Daily Fives dated before the current device-calendar day, with up to five unique questions per session; mixed practice follows the same restriction. The ledger lives in GitHub, independently of browser history. If a bank is exhausted, that trivia type is omitted from newly scheduled days. Beyond the scheduled horizon, the game falls back to five distinct procedural types instead of recycling trivia.
 
+## Game plans: Size it up replaces Proportions
+
+Use **Size it up** in all future game plans, mockups, instructions and roadmaps.
+It replaces the aspect-ratio game: players measure width and height against a
+visible reference square, with both dimensions scored independently. Do not plan
+Proportions as a separate current game.
+
+The daily schedule retains the internal type `proportion`. For dates on or after
+October 15, 2026, that slot generates Size it up (`measurementVersion: 2`), including
+already scheduled future days, newly extended schedules and the procedural
+fallback beyond the published horizon. Current practice also uses Size it up.
+Do not rename or reshuffle schedule entries to make this player-facing change;
+the identifier preserves seeded challenges, saved results and permanent daily
+assignments. Earlier dated rounds retain the historical ratio mechanic.
+
+`tests/verify-size.cjs` checks every scheduled measurement slot from the changeover
+onward, future generation beyond the schedule, and historical fixtures.
+
 ## Weekly automation
 
 [Maintain and publish Perception](https://github.com/chipgpt/perception/actions/workflows/perception.yml) runs Mondays at **07:23 UTC**, on relevant changes to `main`, and through **Run workflow**. It extends the published buffer to 60 days ahead, validates the bank and schedule, builds and tests the game, commits changed assignments and publishes GitHub Pages. The job warns when fewer than 20 unused facts remain in either bank.
