@@ -148,3 +148,13 @@ keep scoring and saved question data independent from display text. Optional
 registry `label` overrides a game name consistently in prompts and summary cards.
 Run `node tests/browser-results.cjs` to check exact/opposing size errors, long
 values, source disclosures, and summaries in both themes on small phones.
+
+New scored games follow the linear scoring policy in `docs/MAINTENANCE.md`. Use
+the shared conversion in `scoring.js`; configure the error measure and zero-point
+bound. Do not introduce a game-specific power curve. Preserve unversioned
+historical questions and only apply the current policy to newly generated rounds.
+
+The shared How it works dialog lives in `src/design-options/how-to-play.html`,
+with scoped styling in `how-to-play.css`. Update its controls, scoring examples,
+and legacy explanation when game rules change. It must remain scrollable on
+phones with dismissal controls reachable and preserve the active round.

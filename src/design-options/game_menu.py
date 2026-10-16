@@ -12,7 +12,7 @@ GAMES = {
     'proportion': ('Measure with your eye', '<rect x="3" y="6" width="18" height="14" rx="1"/><path d="M3 13h7V6m8 11h3v3"/>'),
     'rhythm': ('Catch the beat', '<path d="M3 10v4m5-8v12m4-16v20m5-16v12m4-8v4"/>'),
     'angle': ('Feel the degrees', '<path d="M3 3v18h18M3 21 19 5M3 13a8 8 0 0 1 6 2"/>'),
-    'memory': ('Hold a colour in mind', '<circle cx="10" cy="10" r="7"/><circle cx="15" cy="15" r="7" stroke-dasharray="2 3"/>'),
+    'memory': ('Hold a color in mind', '<circle cx="10" cy="10" r="7"/><circle cx="15" cy="15" r="7" stroke-dasharray="2 3"/>'),
     'time': ('Count on your instinct', '<circle cx="12" cy="13" r="8"/><path d="M12 8v5l3 2M9 2h6m-3 0v3M19 5l2 2"/>'),
     'timeline': ('Place it in history', '<path d="M3 5h18M3 19h18M7 2v6m10 8v6M7 5v8h10v6"/><circle cx="7" cy="13" r="2"/>'),
     'duration': ('Put time in perspective', '<path d="M6 2h12M6 22h12M7 2c0 6 2 7 5 10-3 3-5 4-5 10M17 2c0 6-2 7-5 10 3 3 5 4 5 10M9 18h6"/>'),

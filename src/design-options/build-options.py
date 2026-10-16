@@ -78,8 +78,6 @@ script=script.replace("$('show-line').textContent='Remember it…';", "memoryCou
 script=script.replace("$('show-line').addEventListener('click',()=>{", "overlayViewStart('show-line','trace-canvas');$('show-line').addEventListener('click',()=>{beginViewPreview('show-line','trace-canvas');")
 script=script.replace('The wheel already matches the target brightness.', 'Brightness stays full. Scores measure straight-line distance between your pick and the target on the wheel. One wheel radius of error earns zero points.')
 html=html.replace('Both award up to 100 points for closeness, with the answer and source shown after you commit.', 'Both award up to 100 points for closeness, with the answer and source shown after you commit. Daily five uses each trivia fact once. Trivia practice draws only from past Daily Fives, with up to five different questions per session. Today’s and future questions stay out of the practice pool.')
-html=re.sub(r'<p>Colour scores reward closeness.*?</p>', '<p><strong>Scoring:</strong> every round is worth 100 points. We divide your error by the game’s zero-point bound, then square the remaining closeness. An error of 10% earns 81 points; 25% earns 56; 50% earns 25. Scores are rounded to whole points. Five rounds total 500 points.</p><details><summary>Zero-point bounds</summary><p>3D and angles: 180°. Half &amp; Half: 20 percentage points from an even split (70/30); a 50/50 split earns full points. Line memory: 20% of the canvas diagonal (100 units). Perspective: 40% of the diagonal (200 units). Time: 3 seconds early or late. Rhythm: 1.5 times or two-thirds of the target. Size it up: width and height each earn up to 50 points; a 50% dimension error earns zero for that dimension. Colour: straight-line distance of one wheel radius. When?: 50 years early or late. How long?: four times or one-quarter of the target duration.</p></details>',html)
-html=html.replace('Points fall with your timing error; within 0.05 seconds earns full points.', 'Points fall with your timing error using the same curve as every other game.')
 html=html.replace('<button data-mini="typography">Typography</button>', '')
 practice_nav=re.search(r'<nav class="minigames".*?</nav>',html).group(0).replace('aria-label="Mini-game"','aria-label="Practice games"').replace('class="active">Mixed five','>Fresh mix')
 html=html.replace(re.search(r'<nav class="minigames".*?</nav>',html).group(0),'')
@@ -87,6 +85,8 @@ html=re.sub(r'<div class="topline">.*?<span id="date" class="meta"></span></div>
 html=html.replace('Mixed five picks five different puzzle types. Each daily five is repeatable for your device’s date; Practice makes a fresh mix. Pick an individual game to focus on one skill.', 'Daily Five is the shared daily challenge: five different puzzle types, worth 500 points. Open the game menu, then Practice, to choose a skill or play a fresh mix. Individual games are practice-only.')
 html=html.replace('<strong>Typography:</strong> remember a specimen for two seconds, then match size, weight, and spacing. ', '').replace('All three reward closeness.', 'Both reward closeness.')
 html=html.replace("look at a line for two seconds", "look at a generated path for three seconds")
+# A standalone partial keeps rules readable and independent of historical question text.
+html=re.sub(r'<dialog id="helpdialog">.*?</dialog>',lambda _:Path('src/design-options/how-to-play.html').read_text().strip(),html,count=1,flags=re.S)
 from shell_extension import augment_shell
 html,script=augment_shell(html,script)
 from seo_extension import augment_seo,build_discovery_files
@@ -100,6 +100,11 @@ styles={key:Path('src/design-options/'+key+'-palette.css').read_text()+theme_lay
 base=Path('src/design-options/fonts.css').read_text()+base
 out=Path('public')
 out.mkdir(exist_ok=True)
+# American spelling in interface copy; keep internal IDs and historical question payloads.
+html=html.replace('Colour','Color').replace('colour','color')
+script=script.replace("memory:['Find that colour.'","memory:['Find that color.'")
+for old,new in [('Show colour','Show color'),('Colour wheel.','Color wheel.'),('Your colour','Your color'),('Your selected colour','Your selected color'),('Pick a colour','Pick a color'),('>Your colour<','>Your color<')]:
+    script=script.replace(old,new)
 # Browser canvas colours follow the preview's theme; colour-memory target values stay untouched.
 themed=script
 themed=themed.replace("'#f3f6ff'","getComputedStyle(document.documentElement).getPropertyValue('--canvas').trim()")
@@ -125,7 +130,7 @@ themed+='\nsetupAnalytics();\n'
 html=html.replace('<script src="game.js"></script>', '<dialog id="history-dialog" class="history-dialog" aria-labelledby="history-title"><div class="history-heading"><h2 id="history-title">Recent results</h2><form method="dialog"><button class="history-close" aria-label="Close recent results">×</button></form></div><div id="history-content"></div></dialog><script src="game.js"></script>')
 themed+='\nbindHistoryNavigation();\nbindGameChrome();\n'
 html=html.replace('<div class="gamebar">','<p id="friend-challenge" class="friend-challenge" role="status" hidden></p><p id="save-note" class="save-note" role="status" hidden></p><div class="gamebar">')
-common_css=mobile_play+Path('src/design-options/trivia.css').read_text()+Path('src/design-options/theme-switcher.css').read_text()+Path('src/design-options/summary-comparisons.css').read_text()+Path('src/design-options/share-results.css').read_text()+Path('src/design-options/player-storage.css').read_text()+Path('src/design-options/play-navigation.css').read_text()+Path('src/design-options/memory-countdown.css').read_text()+Path('src/design-options/view-idle.css').read_text()+Path('src/design-options/app-layout.css').read_text()+Path('src/design-options/size-game.css').read_text()+Path('src/design-options/game-skin.css').read_text()+Path('src/design-options/result-layout.css').read_text()
+common_css=mobile_play+Path('src/design-options/trivia.css').read_text()+Path('src/design-options/theme-switcher.css').read_text()+Path('src/design-options/summary-comparisons.css').read_text()+Path('src/design-options/share-results.css').read_text()+Path('src/design-options/player-storage.css').read_text()+Path('src/design-options/play-navigation.css').read_text()+Path('src/design-options/memory-countdown.css').read_text()+Path('src/design-options/view-idle.css').read_text()+Path('src/design-options/app-layout.css').read_text()+Path('src/design-options/size-game.css').read_text()+Path('src/design-options/game-skin.css').read_text()+Path('src/design-options/result-layout.css').read_text()+Path('src/design-options/how-to-play.css').read_text()
 theme_assets={key:key+'.css?v='+hashlib.sha256((base+css+common_css).encode()).hexdigest()[:12] for key,css in styles.items()}
 theme_preference='window.perceptionThemeAssets='+json.dumps(theme_assets)+';\n'+theme_preference
 for key,css in styles.items():

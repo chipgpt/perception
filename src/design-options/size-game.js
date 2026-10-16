@@ -18,7 +18,7 @@ function sizeQuestion(random,round){
 function clampSize(size){return {width:Math.max(SIZE_BOUNDS.min,Math.min(SIZE_BOUNDS.width,size.width)),height:Math.max(SIZE_BOUNDS.min,Math.min(SIZE_BOUNDS.height,size.height))};}
 function sizeErrors(value,q){return {width:Math.abs(value.width/q.answer.width-1),height:Math.abs(value.height/q.answer.height-1)};}
 function sizeScore(value,q){
- const e=sizeErrors(value,q),axis=n=>Math.max(0,1-n/SIZE_ERROR_BOUND)**2;
+ const e=sizeErrors(value,q),axis=n=>{const closeness=Math.max(0,1-n/SIZE_ERROR_BOUND);return q.scoringVersion===2?closeness:closeness**2;};
  if(!Number.isFinite(e.width)||!Number.isFinite(e.height)||value.width<=0||value.height<=0)return 0;
  return Math.round(50*(axis(e.width)+axis(e.height)));
 }

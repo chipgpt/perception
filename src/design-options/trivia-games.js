@@ -2,7 +2,7 @@ function pastTriviaIds(type,before=calendarDay()){
  const cutoff=before.split('-').map((n,i)=>i?String(Number(n)).padStart(2,'0'):n).join('-');
  return [...new Set(Object.entries(DAILY_TRIVIA_SCHEDULE).filter(([day])=>day<cutoff).map(([,day])=>day.trivia[type]).filter(id=>id&&TRIVIA_BY_ID[id]?.type===type))];
 }
-function triviaDeck(random,type){return shuffleWith(random,pastTriviaIds(type)).slice(0,5).map(scheduledTriviaQuestion);}
+function triviaDeck(random,type,challengeDay=null){return shuffleWith(random,pastTriviaIds(type)).slice(0,5).map(id=>scheduledTriviaQuestion(id,challengeDay));}
 function emptyTriviaPractice(){
  shell({type:mini,skill:mini==='timeline'?'When?':'How long?',title:'The practice archive is growing.'},'<p class="trivia-caption">Practice uses questions from past Daily Fives. There are no past questions of this type yet. Play today’s Daily Five while the archive grows.</p>','<button id="archive-daily" class="primary">Play Daily Five</button>',{phase:'empty'});
  $('roundlabel').textContent='PRACTICE';$('scoremax').textContent='';

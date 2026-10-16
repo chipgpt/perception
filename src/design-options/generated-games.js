@@ -29,6 +29,11 @@ function syncGameURL(game,mode){
  history.replaceState(null,'',url.pathname+url.search+url.hash);
 }
 function makeDeck(day,game=mini){
+ const key=typeof day==='function'?String(Math.floor(day()*4294967296)):String(day);
+ const deck=makeDeckForSeed(key,game);
+ return !validDay(key)||dayNumber(key)>=dayNumber(LINEAR_SCORING_START)?deck.map(q=>({...q,scoringVersion:2,...(q.fruit?{explain:q.explain.replace('53/47 split earns 72 points','53/47 split earns 85 points').replace('60/40 split earns 25 points','60/40 split earns 50 points')}:{})})):deck;
+}
+function makeDeckForSeed(day,game=mini){
  if(game==='halfhalf')game='balance';
  // Accept an RNG for existing tooling; normal play passes a date or a practice-session seed.
  const key=typeof day==='function'?String(Math.floor(day()*4294967296)):String(day);
@@ -36,13 +41,13 @@ function makeDeck(day,game=mini){
   if(!GAME_TYPES.includes(type))throw new Error('Unknown mini-game');
   if(type==='balance'){const kinds=shuffleWith(rng(hashSeed(key+'|half-half-objects-v1')),HALF_OBJECTS);return kinds.map((kind,round)=>halfQuestion(rng(hashSeed(key+'|half-half-v1|'+round)),round,kind));}
   if(type==='proportion'&&(!validDay(key)||dayNumber(key)>=dayNumber(SIZE_DAILY_START)))return Array.from({length:5},(_,round)=>sizeQuestion(rng(hashSeed(key+'|proportion|v2|'+round)),round));
-  if(['angle','time','rhythm','proportion','motion','view3d'].includes(type))return Array.from({length:5},(_,round)=>generatedQuestion(type,rng(hashSeed(key+'|'+type+'|v1|'+round)),round));
-  return makeGameDeck(rng(hashSeed(key+'|'+type+'|v1')),type);
+  if(['angle','time','rhythm','proportion','motion','view3d'].includes(type))return Array.from({length:5},(_,round)=>{const q=generatedQuestion(type,rng(hashSeed(key+'|'+type+'|v1|'+round)),round);if(type==='time'&&(!validDay(key)||dayNumber(key)>=dayNumber(TIME_SCORING_START)))q.timeScoringVersion=2;return q;});
+  return makeGameDeck(rng(hashSeed(key+'|'+type+'|v1')),type,validDay(key)?key:null);
  };
  if(game==='mix'&&/^\d{4}-\d{1,2}-\d{1,2}$/.test(key)){
   const dateKey=key.split('-').map((n,i)=>i?String(Number(n)).padStart(2,'0'):n).join('-');
   const daily=typeof DAILY_TRIVIA_SCHEDULE==='undefined'?null:DAILY_TRIVIA_SCHEDULE[dateKey];
-  if(daily)return daily.types.map(type=>daily.trivia[type]?scheduledTriviaQuestion(daily.trivia[type]):forGame(type)[0]);
+  if(daily)return daily.types.map(type=>daily.trivia[type]?scheduledTriviaQuestion(daily.trivia[type],key):forGame(type)[0]);
   // A delayed schedule job must never accidentally recycle trivia. Procedural games
   // keep Daily five playable beyond the published horizon, deterministically.
   return shuffleWith(rng(hashSeed(key+'|schedule-v1')),GAME_TYPES.filter(type=>!['timeline','duration'].includes(type))).slice(0,5).map(type=>forGame(type)[0]);
@@ -108,12 +113,14 @@ function makeBlockShape(random){
  return {boxes};
 }
 
-function scheduledTriviaQuestion(id){
+function scheduledTriviaQuestion(id,challengeDay=null){
  const f=TRIVIA_BY_ID[id];if(!f)throw new Error('Missing scheduled trivia');
- return {id:f.id,type:f.type,skill:f.type==='timeline'?'When?':'How long?',title:f.title,answer:f.answer,caption:f.caption,explain:f.explain,source:[f.source.name,f.source.url],tip:'Answer: '+(f.type==='timeline'?f.answer:durationText(f.answer))};
+ const q={id:f.id,type:f.type,skill:f.type==='timeline'?'When?':'How long?',title:f.title,answer:f.answer,caption:f.caption,explain:f.explain,source:[f.source.name,f.source.url],tip:'Answer: '+(f.type==='timeline'?f.answer:durationText(f.answer))};
+ if(f.type==='timeline'&&(challengeDay===null||dayNumber(challengeDay)>=dayNumber(TIMELINE_SCORING_START))){q.timelineScoringVersion=2;q.scoringYear=Number((challengeDay||calendarDay()).split('-')[0]);}
+ return q;
 }
 
 function practiceLabel(game,mode){
- const names={mix:'Fresh mix',view3d:'3D View',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Size it up',rhythm:'Rhythm',angle:'Angles',memory:'Colour memory',time:'Time',timeline:'When?',duration:'How long?'};
+ const names={mix:'Fresh mix',view3d:'3D View',balance:'Half & Half',halfhalf:'Half & Half',motion:'Line memory',perspective:'Perspective',proportion:'Size it up',rhythm:'Rhythm',angle:'Angles',memory:'Color memory',time:'Time',timeline:'When?',duration:'How long?'};
  return mode==='practice'?'Practice: '+(names[game]||game):'Practice';
 }
