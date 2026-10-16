@@ -531,3 +531,34 @@ body:has(.summary) .progress i{width:17px;height:3px}
 .summary .share-status:empty{min-height:0;margin:0}
 #playarea[data-phase="reveal"] .size-handle{display:none}
 @media(min-width:761px){body:has(.summary)>main{padding-inline:28px}}
+/* Keep explanation scrollable while dismissal stays reachable on phones. */
+#helpdialog{padding:0;width:calc(100% - 24px);max-width:600px;max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;scroll-padding:112px 0 88px}
+#helpdialog .help-heading{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 24px 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+#helpdialog .help-heading .eyebrow{font-size:10px;margin:0 0 5px;letter-spacing:1.4px}
+#helpdialog h2{margin:0;font-size:30px;line-height:1.15;letter-spacing:-1px}
+#helpdialog .circle{float:none;flex:none;min-width:44px;min-height:44px}
+#helpdialog .help-body{padding:0 24px 24px}
+#helpdialog p{font-size:14px;line-height:1.65;margin:14px 0;color:var(--muted)}
+#helpdialog strong{color:var(--ink)}
+#helpdialog h3{font-size:19px;line-height:1.3;letter-spacing:-.4px;margin:26px 0 10px}
+#helpdialog .help-modes{display:grid;grid-template-columns:1fr 1fr;gap:16px;border-bottom:1px solid var(--line);padding-bottom:8px}
+#helpdialog .help-modes strong{display:block;margin-bottom:4px}
+#helpdialog .help-modes p{font-size:13px;margin-top:0}
+#helpdialog .help-score-scale{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;list-style:none;padding:16px 0;margin:0}
+#helpdialog .help-score-scale li{display:flex;flex-direction:column;gap:8px;min-width:0}
+#helpdialog .help-score-bar{display:block;height:8px;overflow:hidden;background:var(--line);border-radius:4px;border:1px solid var(--muted)}
+#helpdialog .help-score-bar i{display:block;height:100%;background:var(--accent)}
+#helpdialog .help-score-scale strong{font-size:26px;line-height:1.2;font-variant-numeric:tabular-nums}
+#helpdialog .help-score-scale small{font-size:12px;color:var(--muted);font-weight:400}
+#helpdialog .help-score-scale li>span:last-child{font-size:12px;line-height:1.5;color:var(--muted)}
+#helpdialog .help-example{padding:14px 16px;border-left:3px solid var(--accent);background:var(--paper);border-radius:0 8px 8px 0}
+#helpdialog .help-version{font-size:12px;border-top:1px solid var(--line);padding-top:14px}
+#helpdialog details{border-bottom:1px solid var(--line)}
+#helpdialog summary{cursor:pointer;padding:15px 4px;min-height:48px;font-size:14px;font-weight:600;line-height:1.5;color:var(--ink)}
+#helpdialog summary span{display:block;margin:4px 0 0 17px;font-size:12px;color:var(--muted);font-weight:400}
+#helpdialog details>div{padding:0 4px 6px 17px}
+#helpdialog details>div p:first-child{margin-top:0}
+#helpdialog .help-controls{margin-top:20px}
+#helpdialog .help-footer{position:sticky;bottom:0;padding:14px 24px;background:var(--surface);border-top:1px solid var(--line);z-index:2}
+#helpdialog .help-footer .primary{width:100%;min-height:48px}
+@media(max-width:360px){#helpdialog .help-heading{padding:18px 18px 14px}#helpdialog .help-body{padding:0 18px 18px}#helpdialog .help-footer{padding:12px 18px}#helpdialog .help-modes{grid-template-columns:1fr;gap:0}}

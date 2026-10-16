@@ -1,7 +1,7 @@
 from pathlib import Path
 
 def augment_generated(script):
-    script=script.replace('function makeDeck(random,game=mini){','function makeGameDeck(random,game=mini){',1)
+    script=script.replace('function makeDeck(random,game=mini){','function makeGameDeck(random,game=mini,challengeDay=null){',1)
     mix_start=script.index(" if(game==='mix')")
     mix_end=script.index("\n if(game==='view3d')",mix_start)
     script=script[:mix_start]+script[mix_end:]

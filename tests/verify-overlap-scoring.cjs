@@ -1,0 +1,25 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const source=fs.readFileSync('src/design-options/game-themed.js','utf8').replace(/const demoGame=new URLSearchParams[\s\S]*$/,'');
+const el={addEventListener(){},classList:{toggle(){}},dataset:{}};
+const ctx=vm.createContext({document:{getElementById(){return el},addEventListener(){},querySelectorAll(){return[]}},Date,Math,Number,setTimeout,clearTimeout,performance});vm.runInContext(source,ctx);const run=s=>vm.runInContext(s,ctx);
+const target=[{x:50,y:150},{x:350,y:150}];ctx.q={type:'motion',answer:target,scoringVersion:2};ctx.target=target;
+const score=points=>{ctx.testGuess=points;return run('scoreFor(testGuess,q)')};
+assert.equal(score(target),100);assert.equal(score([...target].reverse()),100);
+assert.equal(score([{x:50,y:150},{x:150,y:150},{x:200,y:150},{x:350,y:150}]),100,'sampling speed does not change occupancy');
+assert.equal(score([...target,...target.slice().reverse()]),100,'retracing must not add weight');
+assert.equal(score([]),0);assert.equal(score([target[0]]),0);
+assert.equal(score(target.map(p=>({...p,y:p.y+12}))),0,'one stroke width away has no overlap');
+const half=score([{x:50,y:150},{x:200,y:150}]);assert(half>=49&&half<=52,'half stroke earns about half points: '+half);
+const shifted=score(target.map(p=>({...p,y:p.y+4})));assert(shifted>=45&&shifted<=55,'four-unit shift has about half overlap: '+shifted);
+const scribble=[];for(let y=0;y<=300;y+=6){const row=y/6;scribble.push({x:row%2?400:0,y},{x:row%2?0:400,y});}assert(score(scribble)<5,'covering board cannot earn a useful score');
+for(const y of [0,300]){const edge=[{x:0,y},{x:400,y}];ctx.q.answer=edge;assert.equal(score(edge),100,'board-edge exact stroke');}ctx.q.answer=target;
+assert.equal(run("scoreFor(target.map(p=>({...p,y:p.y+50})),{type:'motion',answer:target})"),25,'historical trace distance and squared curve');
+for(const delta of [0,.1,.25,.5,1])for(const direction of [-1,1]){ctx.guessDuration=10000*(1+direction*delta);if(ctx.guessDuration<=0)continue;assert.equal(run("scoreFor(guessDuration,{type:'duration',answer:10000,scoringVersion:2})"),Math.max(0,Math.round(100*(1-delta/.5))));}
+assert.equal(run("scoreFor(20000,{type:'duration',answer:10000})"),25,'legacy log duration');
+assert.equal(run("scoreFor({x:PERSPECTIVE_INNER_DIAGONAL*.2,y:0},{type:'perspective',answer:{x:0,y:0},scoringVersion:2})"),50);
+assert.equal(run("scoreFor({x:100,y:0},{type:'perspective',answer:{x:0,y:0}})"),25,'legacy board scale');
+assert.equal(run("roundErrorDisplay(q,target).label"),'Line overlap');
+assert.equal(run("roundErrorDisplay({type:'perspective',answer:{x:0,y:0},scoringVersion:2},{x:0,y:0}).note"),'of the inner-box diagonal');
+assert.equal(run("gameRegistry.get('colour').label"),'Color memory');
+assert.equal(run("makeDeck('2026-10-15','memory')[0].skill"),'Colour memory','historical payload retained');
+console.log('Verified stroke IoU, reverse/subdivided/retraced strokes, empty/offset/partial/edge/scribble cases, duration symmetry, inner-box scale, feedback, American display spelling, and legacy scores.');

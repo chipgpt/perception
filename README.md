@@ -37,6 +37,7 @@ Free. No login. No downloads. No sound needed.
 ## Your daily little reality check
 
 - **One shared Daily Five.** Five different puzzle types, determined by your device’s date. Players on the same date get the same challenge.
+- **One scoring rule.** New practice rounds and daily games from October 16 use linear scoring: halfway to the game’s zero-point error bound earns 50 points. Earlier games retain their original scores.
 - **Close counts.** Every round is worth 100 points. See your guess and the target together, then inspect small comparisons in your final results.
 - **Compare with friends.** Share your Daily Five results as a compact scorecard with the date, puzzle emojis, and your total. No answer spoilers.
 - **Practice when you feel like it.** Open the game menu, then Practice, for a fresh mix or an individual skill. Trivia practice draws from past Daily Fives, keeping upcoming questions out of the pool.

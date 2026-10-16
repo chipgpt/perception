@@ -2,7 +2,7 @@ from pathlib import Path
 import json, os
 
 def augment(html, script):
-    script=script.replace("if(game==='mix')", "if(['timeline','duration'].includes(game))return triviaDeck(random,game);\n if(game==='mix')",1)
+    script=script.replace("if(game==='mix')", "if(['timeline','duration'].includes(game))return triviaDeck(random,game,challengeDay);\n if(game==='mix')",1)
     script=script.replace("'memory','time']).slice", "'memory','time','timeline','duration']).slice",1)
     script=script.replace('function scoreFor(value,q){',"function scoreFor(value,q){\n if(['timeline','duration'].includes(q.type))return triviaScore(value,q);")
     script=script.replace("if(q.type==='view3d'){viewRound", "if(q.type==='timeline'){timelineRound(q);return;}\n if(q.type==='duration'){durationRound(q);return;}\n if(q.type==='view3d'){viewRound",1)

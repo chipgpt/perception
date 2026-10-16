@@ -35,7 +35,8 @@ function restoredComparison({q,guess}){
  let content='';
  const line=(a,b,target=false)=>`<path d="M${a.join(' ')}L${b.join(' ')}" fill="none" stroke="var(--${target?'target':'draw'})" stroke-width="5"/>`;
  if(q.type==='angle'){const end=a=>[200+Math.cos(a*Math.PI/180)*125,150-Math.sin(a*Math.PI/180)*125];content=line([200,150],end(q.answer),true)+line([200,150],end(guess));}
- if(q.type==='motion')content=`<polyline points="${path(q.answer)}" fill="none" stroke="var(--target)" stroke-width="5"/><polyline points="${path(guess)}" fill="none" stroke="var(--draw)" stroke-width="5"/>`;
+ if(q.type==='motion'){const width=q.scoringVersion===2?TRACE_STROKE_WIDTH:5;content=`<g fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="${path(q.answer)}" stroke="var(--target)" stroke-width="${width}"/><polyline points="${path(guess)}" stroke="var(--draw)" stroke-width="${width}" opacity=".65"/>${q.scoringVersion===2?`<polyline points="${path(q.answer)}" stroke="var(--ink)" stroke-width="1" stroke-dasharray="4 5"/>`:''}</g>`;}
+
  if(q.type==='perspective')content=line([guess.x,guess.y],[q.answer.x,q.answer.y],true)+`<circle cx="${q.answer.x}" cy="${q.answer.y}" r="8" fill="var(--target)"/><circle cx="${guess.x}" cy="${guess.y}" r="6" fill="var(--draw)"/>`;
  if(q.type==='balance'){content=`<path d="${[q.points,...(q.holes||[])].map(p=>'M'+path(p)+'Z').join(' ')}" fill="var(--draw)" fill-rule="evenodd"/>`+line([q.answer,30],[q.answer,235],true)+`<path d="M${guess} 190l-14 30h28Z" fill="var(--ink)"/>`;}
  if(q.type==='proportion'&&isSizeQuestion(q)){const canvas=document.createElement('canvas');canvas.width=400;canvas.height=400;paintSize(canvas,guess,q,true);return `<img class="result-comparison-image" src="${canvas.toDataURL()}" alt="${escapeHTML(sizeFeedback(guess,q))}. Dashed: your rectangle; solid grid: target.">`;}

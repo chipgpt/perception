@@ -6,14 +6,14 @@ function roundErrorDisplay(q,value){
   case 'angle':return {value:number(angularDistance(value,q.answer)),unit:'°',label:'Angle error'};
   case 'halfhalf':return {value:number(halfError(value,q)*100),unit:'',label:'Split error',note:'percentage points'};
   case 'balance':return q.fruit?{value:number(halfError(value,q)*100),unit:'',label:'Split error',note:'percentage points'}:percent(Math.abs(value-q.answer)/balanceWidth(q)*100,'Balance error','of the shape’s width');
-  case 'motion':return percent(traceError(value,q.answer)/500*100,q.type==='motion'?'Path error':'Position error','of the play-area diagonal');
-  case 'perspective':return percent(pointError(value,q.answer)/500*100,q.type==='motion'?'Path error':'Position error','of the play-area diagonal');
-  case 'time':return {value:Math.abs(value-q.answer).toFixed(2),unit:'s',label:'Timing error',note:Math.abs(value-q.answer)<.005?'Spot on':value<q.answer?'Too early':'Too late'};
+  case 'motion':if(q.scoringVersion===2)return percent(traceOverlap(value,q.answer)*100,'Line overlap','shared area ÷ combined area');return percent(traceError(value,q.answer)/500*100,q.type==='motion'?'Path error':'Position error','of the play-area diagonal');
+  case 'perspective':return percent(pointError(value,q.answer)/perspectiveDiagonal(q)*100,'Position error',q.scoringVersion===2?'of the inner-box diagonal':'of the play-area diagonal');
+  case 'time':return {value:Math.abs(value-q.answer).toFixed(2),unit:'s',label:'Timing error',note:(Math.abs(value-q.answer)<.005?'Spot on':value<q.answer?'Too early':'Too late')+(usesRelativeTime(q)?' · 0 points at '+pretty(timeErrorBound(q))+' s off':'')};
   case 'rhythm':return percent(Math.abs(value/q.answer-1)*100,'Tempo error',Math.abs(value/q.answer-1)*100<.05?'Spot on':value<q.answer?'Too slow':'Too fast');
   case 'proportion':if(isSizeQuestion(q)){const e=sizeErrors(value,q);return {value:(e.width*100).toFixed(1)+'% / '+(e.height*100).toFixed(1)+'%',unit:'',label:'Size error',compact:true,axes:['width','height'].map(axis=>sizeAxisDisplay(value,q,axis))};}return percent(Math.abs((value.width/value.height)/q.answer-1)*100,'Ratio error');
-  case 'colour':return percent(wheelDistance(value,q.answer)*100,'Colour error','of the wheel radius');
-  case 'timeline':return {value:String(Math.abs(value-q.answer)),unit:Math.abs(value-q.answer)===1?'year':'years',label:'Year error'};
-  case 'duration':return {value:durationText(Math.abs(durationValue(value)-q.answer)),unit:'',label:'Duration error',note:value===q.answer?'Spot on':value<q.answer?'Too short':'Too long',compact:true};
+  case 'colour':return percent(wheelDistance(value,q.answer)*100,'Color error','of the wheel radius');
+  case 'timeline':return {value:String(Math.abs(value-q.answer)),unit:Math.abs(value-q.answer)===1?'year':'years',label:'Year error',note:usesAgeBasedTimeline(q)?'0 points at '+pretty(timelineErrorBound(q))+' years off':undefined};
+  case 'duration':return {value:durationText(Math.abs(durationValue(value)-q.answer)),unit:'',label:'Duration error',note:(value===q.answer?'Spot on':value<q.answer?'Too short':'Too long')+(q.scoringVersion===2?' · 0 points at 50% off':''),compact:true};
   default:return {value:String(Math.round(scoringError(value,q)*100)),unit:'%',label:'Error'};
  }
 }

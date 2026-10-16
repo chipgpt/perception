@@ -37,8 +37,8 @@ def augment_shell(html, script):
         'viewRound': ("drawShape3D($('view-canvas'),{yaw:0,pitch:0,roll:0},{shape:q.shape});", "onGameRedraw(()=>drawShape3D($('view-canvas'),$('playarea').dataset.phase==='preview'?q.answer:{yaw:0,pitch:0,roll:0},{shape:q.shape}));"),
         'viewPicker': ('redraw();}', "onGameRedraw(()=>{if(locked){drawShape3D(canvas,orientation,{shape:q.shape});drawShape3D(canvas,q.answer,{shape:q.shape,overlay:true,outlineOnly:true,dashed:true});}else redraw();});redraw();}"),
         'balanceRound': ('drawBalance(q,support);}', 'onGameRedraw(()=>drawBalance(q,support,locked&&scoreFor(support,q)!==100?Math.sign(q.answer-support)*18:0,locked));drawBalance(q,support);}'),
-        'motionRound': ('drawTrace([]);', "onGameRedraw(()=>drawTrace($('playarea').dataset.phase==='preview'?q.answer:[]));drawTrace([]);"),
-        'tracePicker': ('drawTrace([]);}', 'onGameRedraw(()=>drawTrace(points,locked?q.answer:undefined));drawTrace([]);}'),
+        'motionRound': ('drawTrace([],undefined,q);', "onGameRedraw(()=>drawTrace($('playarea').dataset.phase==='preview'?q.answer:[],undefined,q));drawTrace([],undefined,q);"),
+        'tracePicker': ('drawTrace([],undefined,q);}', 'onGameRedraw(()=>drawTrace(points,locked?q.answer:undefined,q));drawTrace([],undefined,q);}'),
         'perspectiveRound': ('drawPerspective(q);}', 'onGameRedraw(()=>drawPerspective(q,point,locked));drawPerspective(q);}'),
         'legacyProportionRound': ('legacyDrawProportion(size);}', 'onGameRedraw(()=>legacyDrawProportion(size,locked?q.answer:undefined));legacyDrawProportion(size);}'),
         'colourPicker': ('drawWheel();\n}', 'onGameRedraw(()=>drawWheel(locked?q.answer:undefined));drawWheel();\n}')

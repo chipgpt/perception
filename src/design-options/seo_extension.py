@@ -3,9 +3,9 @@ import json, re
 
 ORIGIN='https://perception.thedanktank.com/'
 SOCIAL_IMAGE=ORIGIN+'assets/social/perception-mix.png'
-SOCIAL_ALT='Five Perception puzzles: rotate a 3D shape, remember a colour, judge an angle, tap a rhythm, and place a historical event on a timeline.'
+SOCIAL_ALT='Five Perception puzzles: rotate a 3D shape, remember a color, judge an angle, tap a rhythm, and place a historical event on a timeline.'
 TITLE='Perception — Daily Visual Puzzles & Trivia'
-DESCRIPTION='Five quick daily puzzles. Match colours, judge angles, feel time, and test your trivia. Play free, score up to 500, and share your results.'
+DESCRIPTION='Five quick daily puzzles. Match colors, judge angles, feel time, and test your trivia. Play free, score up to 500, and share your results.'
 
 def metadata(about=False):
     title='About Perception — How to Play the Daily Puzzle Game' if about else TITLE
@@ -39,7 +39,7 @@ def augment_seo(html):
     html=re.sub(r'<title>.*?</title>','',html,count=1)
     html=re.sub(r'<meta name="description"[^>]*>','',html,count=1)
     html=html.replace('</head>',metadata()+'</head>')
-    html=html.replace('<div id="playarea"></div>','<div id="playarea"><noscript><h1>Perception: five daily puzzles</h1><p>A free daily game of perception and trivia. Match colours, judge angles, feel time, and explore a new mix of five puzzle types each day. Each round is worth 100 points, for a total of 500.</p><p>Enable JavaScript to play, or <a href="about.html">read how Perception works</a>.</p></noscript></div>')
+    html=html.replace('<div id="playarea"></div>','<div id="playarea"><noscript><h1>Perception: five daily puzzles</h1><p>A free daily game of perception and trivia. Match colors, judge angles, feel time, and explore a new mix of five puzzle types each day. Each round is worth 100 points, for a total of 500.</p><p>Enable JavaScript to play, or <a href="about.html">read how Perception works</a>.</p></noscript></div>')
     return html
 
 def build_discovery_files():
