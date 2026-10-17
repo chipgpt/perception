@@ -17,6 +17,9 @@ const PERSPECTIVE_INNER_SCALE=.65;
 const PERSPECTIVE_CORNERS=[[20,20],[380,20],[380,280],[20,280]];
 const PERSPECTIVE_INNER_DIAGONAL=Math.hypot(360,260)*PERSPECTIVE_INNER_SCALE;
 const TRACE_STROKE_WIDTH=12;
+const TRACE_COVERAGE_START='2026-10-17';
+const TRACE_AREA_ALLOWANCE=1.25;
+function usesTraceCoverage(q){return q.type==='motion'&&q.traceScoringVersion===3;}
 // Fixed half-unit sampling keeps scores independent of screen size and device DPR.
 // Each round-capped stroke is the union of capsules around its line segments.
 function traceMask(points){
@@ -32,11 +35,21 @@ function traceMask(points){
  }
  return mask;
 }
+function traceAreas(points,target){
+ if(!Array.isArray(points)||points.length<2||!Array.isArray(target)||target.length<2)return {intersection:0,drawn:0,target:0};
+ const a=traceMask(points),b=traceMask(target);let intersection=0,drawn=0,targetArea=0;
+ for(let i=0;i<a.length;i++){if(a[i]&&b[i])intersection++;drawn+=a[i];targetArea+=b[i];}
+ return {intersection,drawn,target:targetArea};
+}
+// October 16 and previously saved v2 questions retain intersection-over-union.
 function traceOverlap(points,target){
- if(!Array.isArray(points)||points.length<2||!Array.isArray(target)||target.length<2)return 0;
- const a=traceMask(points),b=traceMask(target);let intersection=0,union=0;
- for(let i=0;i<a.length;i++){if(a[i]&&b[i])intersection++;if(a[i]||b[i])union++;}
- return union?intersection/union:0;
+ const a=traceAreas(points,target),union=a.drawn+a.target-a.intersection;
+ return union?a.intersection/union:0;
+}
+function traceCoverageResult(points,target){
+ const a=traceAreas(points,target),coverage=a.target?a.intersection/a.target:0,areaRatio=a.target?a.drawn/a.target:0;
+ const penalty=Math.max(0,areaRatio-TRACE_AREA_ALLOWANCE);
+ return {coverage,areaRatio,penalty,closeness:Math.max(0,coverage-penalty)};
 }
 function perspectiveDiagonal(q){return q.scoringVersion===2?PERSPECTIVE_INNER_DIAGONAL:Math.hypot(400,300);}
 
@@ -67,7 +80,7 @@ function scoringError(value,q){
   case 'angle':error=angularDistance(value,q.answer);break;
   case 'timeline':return Math.abs(value-q.answer)/timelineErrorBound(q);
   case 'time':return Math.abs(value-q.answer)/timeErrorBound(q);
-  case 'motion':if(q.scoringVersion===2)return 1-traceOverlap(value,q.answer);if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
+  case 'motion':if(usesTraceCoverage(q))return 1-traceCoverageResult(value,q.answer).closeness;if(q.scoringVersion===2)return 1-traceOverlap(value,q.answer);if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
   case 'perspective':return pointError(value,q.answer)/(.4*perspectiveDiagonal(q));
   case 'proportion':if(isSizeQuestion(q)){const e=sizeErrors(value,q);return (e.width+e.height)/(2*SIZE_ERROR_BOUND);}error=proportionError(value,q.answer);break;
   case 'colour':error=wheelDistance(value,q.answer);break;

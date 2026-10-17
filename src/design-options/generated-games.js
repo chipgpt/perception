@@ -31,7 +31,7 @@ function syncGameURL(game,mode){
 function makeDeck(day,game=mini){
  const key=typeof day==='function'?String(Math.floor(day()*4294967296)):String(day);
  const deck=makeDeckForSeed(key,game);
- return !validDay(key)||dayNumber(key)>=dayNumber(LINEAR_SCORING_START)?deck.map(q=>({...q,scoringVersion:2,...(q.fruit?{explain:q.explain.replace('53/47 split earns 72 points','53/47 split earns 85 points').replace('60/40 split earns 25 points','60/40 split earns 50 points')}:{})})):deck;
+ return !validDay(key)||dayNumber(key)>=dayNumber(LINEAR_SCORING_START)?deck.map(q=>({...q,scoringVersion:2,...(q.type==='motion'&&(!validDay(key)||dayNumber(key)>=dayNumber(TRACE_COVERAGE_START))?{traceScoringVersion:3}:{}),...(q.fruit?{explain:q.explain.replace('53/47 split earns 72 points','53/47 split earns 85 points').replace('60/40 split earns 25 points','60/40 split earns 50 points')}:{})})):deck;
 }
 function makeDeckForSeed(day,game=mini){
  if(game==='halfhalf')game='balance';

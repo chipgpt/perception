@@ -43,6 +43,7 @@ function validSavedGame(game){
   for(const q of game.deck){
    if(!q||!['view3d','balance','halfhalf','motion','perspective','proportion','rhythm','angle','colour','time','timeline','duration'].includes(q.type)||typeof q.title!=='string'||q.title.length>200||typeof q.skill!=='string'||q.skill.length>100||!finiteTree(q))return false;
    if(q.scoringVersion!==undefined&&q.scoringVersion!==2)return false;
+   if(q.traceScoringVersion!==undefined&&(q.traceScoringVersion!==3||q.type!=='motion'||q.scoringVersion!==2))return false;
    if(q.scoringVersion===2&&q.type==='time'&&q.timeScoringVersion!==2)return false;
    if(q.scoringVersion===2&&q.type==='timeline'&&q.timelineScoringVersion!==2)return false;
    if(q.source&&(!Array.isArray(q.source)||!/^https:\/\//.test(q.source[1])))return false;
