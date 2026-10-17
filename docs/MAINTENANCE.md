@@ -117,3 +117,22 @@ bounds, curves, and thin-line rendering.
   score. The target's dashed center distinguishes it from the player's stroke.
 - Color memory keeps its wheel-distance scoring. Internal `colour`/`memory`
   identifiers and historical question text stay intact; UI uses American spelling.
+
+## Line memory coverage revision (October 17, 2026)
+
+New practice and daily dates from October 17 freeze `traceScoringVersion: 3`
+alongside `scoringVersion: 2`. With I = intersecting stroke area, T = target
+area, and G = unique drawn area, score is
+`round(100 * clamp(I/T - max(0, G/T - 1.25), 0, 1))`.
+There is no extra-ink penalty through 125% of target area. Each percentage point
+of target area beyond that costs one point, with no power curve. A 4-unit offset
+of equal-width strokes now loses uncovered-target points without an additional
+outside-target penalty. Identical masks, raster resolution, and stroke width
+preserve viewport/DPR independence. Feedback shows target coverage and any
+actual penalty, capped to the available base points.
+
+Do not infer this version from the current date during scoring. Unversioned
+historical motion questions retain path distance; v2 without the trace marker
+retains intersection-over-union, including all October 16 daily and saved rounds.
+Other question objects and game rules are unchanged. Unknown trace versions and
+trace markers on other games are rejected on restore.

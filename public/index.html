@@ -55,7 +55,7 @@
       </ol>
       <p class="help-example"><strong>For example:</strong> in Angles, the allowance is 180°. A 45° miss uses a quarter of it, so you earn <strong>75 points</strong>.</p>
       <p><strong>A smaller error number doesn’t always mean more points.</strong> Degrees, years, wheel distance, and split percentages measure different things. Compare your miss with that game’s allowance. For example, 5.5° off in 3D view earns 94 points; a 3.6 percentage-point split error in Half &amp; Half earns 82.</p>
-      <p>Scores are rounded to whole points. Size it up averages width and height accuracy; Line memory awards the percentage of stroke area that overlaps. Their rules are below.</p>
+      <p>Scores are rounded to whole points. Size it up averages width and height accuracy; Line memory starts with target coverage and deducts points only for excess painted area. Their rules are below.</p>
       <p class="help-version">These rules apply to new practice rounds and Daily Fives dated October 16, 2026 onward. Earlier challenges and saved rounds keep their original scoring.</p>
     </section>
     <section class="help-games" aria-labelledby="help-games-title">
@@ -63,7 +63,7 @@
       <p>Open a game for the controls, scoring rule, and an example.</p>
       <details><summary>3D view <span>90° rotation</span></summary><div><p>Study the view for three seconds. Drag the shape to turn it, then use the outer handle to tilt it back to the view you remember.</p><p>We measure the smallest 3D rotation from your view to the target. <strong>90° off earns zero; 45° off earns 50.</strong> Errors across the three rotation axes combine into one rotation distance.</p></div></details>
       <details><summary>Half &amp; Half <span>20 percentage points</span></summary><div><p>Drag the cut or its handles to split the total filled area equally. All shapes count together; empty space doesn’t count.</p><p><strong>50/50 earns 100; 60/40 earns 50; 70/30 or worse earns zero.</strong> A 53.6/46.4 split is 3.6 percentage points from even and earns 82 points.</p></div></details>
-      <details><summary>Line memory <span>Stroke overlap</span></summary><div><p>Study the line for three seconds, then trace it in one stroke. Your line and the target have the same thickness. Clear to try drawing again before you lock in.</p><p>Your score is the area shared by both strokes divided by the total area covered by either stroke. <strong>75% overlap earns 75 points; no overlap earns zero.</strong> Missing sections and extra scribbles lower your score. Speed and direction don’t matter. On reveal, a dashed center marks the target.</p></div></details>
+      <details><summary>Line memory <span>Target coverage · 25% extra ink allowed</span></summary><div><p>Study the line for three seconds, then trace it in one stroke. Your line and the target have the same thickness. Clear to try drawing again before you lock in.</p><p>Your base score is the percentage of the <strong>target stroke you cover</strong>. Covering 75% earns 75 points. Small misplaced marks don’t cost extra points unless your total painted area exceeds <strong>1.25× the target’s area</strong>.</p><p>Beyond that allowance, each extra 1% of target area deducts one point. For example, 80% coverage with 1.35× the target’s area earns <strong>80 − 10 = 70 points</strong>. Scores stop at zero. We count unique painted area, so retracing the same spot adds no ink. Speed and direction don’t matter. On reveal, a dashed center marks the target.</p><p>This rule applies to new practice rounds and Daily Fives from <strong>October 17, 2026</strong>. October 16 and previously saved overlap-scoring rounds keep their original shared-area ÷ combined-area rule.</p></div></details>
       <details><summary>Perspective <span>40% of the inner diagonal</span></summary><div><p>Tap where the receding lines would meet: the vanishing point.</p><p>Your miss is the straight-line distance from your point to the answer, measured against the <strong>inner box’s corner-to-corner diagonal</strong>. A miss of 40% of that diagonal earns zero; 20% earns 50.</p></div></details>
       <details><summary>Size it up <span>50% error per dimension</span></summary><div><p>Start with one square. Drag the corner to make the requested number of squares wide and tall. The shaded starting square stays fixed as your reference. The opposite corner stays anchored.</p><p>Width and height each contribute up to 50 points. A dimension that’s 50% too big or small earns zero for that dimension. <strong>5% off in both dimensions earns 90 points.</strong> One exact dimension and one 50% off earns 50. A wide guess can’t cancel a short one. The reveal overlays the correct grid on your dashed outline.</p></div></details>
       <details><summary>Rhythm <span>⅔× to 1½× the tempo</span></summary><div><p>Watch five silent flashes, then tap five beats at the same pace. Your tap intervals determine your tempo.</p><p>Zero points at two-thirds or one-and-a-half times the target tempo. We compare proportional tempo changes, so reciprocal changes get equal scores. For a target of <strong>100 BPM, about 82 or 122 BPM earns 50 points</strong>; 66⅔ or 150 BPM earns zero.</p></div></details>
@@ -272,6 +272,7 @@ function validSavedGame(game){
   for(const q of game.deck){
    if(!q||!['view3d','balance','halfhalf','motion','perspective','proportion','rhythm','angle','colour','time','timeline','duration'].includes(q.type)||typeof q.title!=='string'||q.title.length>200||typeof q.skill!=='string'||q.skill.length>100||!finiteTree(q))return false;
    if(q.scoringVersion!==undefined&&q.scoringVersion!==2)return false;
+   if(q.traceScoringVersion!==undefined&&(q.traceScoringVersion!==3||q.type!=='motion'||q.scoringVersion!==2))return false;
    if(q.scoringVersion===2&&q.type==='time'&&q.timeScoringVersion!==2)return false;
    if(q.scoringVersion===2&&q.type==='timeline'&&q.timelineScoringVersion!==2)return false;
    if(q.source&&(!Array.isArray(q.source)||!/^https:\/\//.test(q.source[1])))return false;
@@ -458,7 +459,7 @@ function roundErrorDisplay(q,value){
   case 'angle':return {value:number(angularDistance(value,q.answer)),unit:'°',label:'Angle error'};
   case 'halfhalf':return {value:number(halfError(value,q)*100),unit:'',label:'Split error',note:'percentage points'};
   case 'balance':return q.fruit?{value:number(halfError(value,q)*100),unit:'',label:'Split error',note:'percentage points'}:percent(Math.abs(value-q.answer)/balanceWidth(q)*100,'Balance error','of the shape’s width');
-  case 'motion':if(q.scoringVersion===2)return percent(traceOverlap(value,q.answer)*100,'Line overlap','shared area ÷ combined area');return percent(traceError(value,q.answer)/500*100,q.type==='motion'?'Path error':'Position error','of the play-area diagonal');
+  case 'motion':if(usesTraceCoverage(q)){const trace=traceCoverageResult(value,q.answer);return percent(trace.coverage*100,'Target covered',trace.penalty>0?'−'+number(Math.min(trace.coverage,trace.penalty)*100)+' pts for excess ink':'No excess-ink penalty');}if(q.scoringVersion===2)return percent(traceOverlap(value,q.answer)*100,'Line overlap','shared area ÷ combined area');return percent(traceError(value,q.answer)/500*100,q.type==='motion'?'Path error':'Position error','of the play-area diagonal');
   case 'perspective':return percent(pointError(value,q.answer)/perspectiveDiagonal(q)*100,'Position error',q.scoringVersion===2?'of the inner-box diagonal':'of the play-area diagonal');
   case 'time':return {value:Math.abs(value-q.answer).toFixed(2),unit:'s',label:'Timing error',note:(Math.abs(value-q.answer)<.005?'Spot on':value<q.answer?'Too early':'Too late')+(usesRelativeTime(q)?' · 0 points at '+pretty(timeErrorBound(q))+' s off':'')};
   case 'rhythm':return percent(Math.abs(value/q.answer-1)*100,'Tempo error',Math.abs(value/q.answer-1)*100<.05?'Spot on':value<q.answer?'Too slow':'Too fast');
@@ -899,7 +900,7 @@ function syncGameURL(game,mode){
 function makeDeck(day,game=mini){
  const key=typeof day==='function'?String(Math.floor(day()*4294967296)):String(day);
  const deck=makeDeckForSeed(key,game);
- return !validDay(key)||dayNumber(key)>=dayNumber(LINEAR_SCORING_START)?deck.map(q=>({...q,scoringVersion:2,...(q.fruit?{explain:q.explain.replace('53/47 split earns 72 points','53/47 split earns 85 points').replace('60/40 split earns 25 points','60/40 split earns 50 points')}:{})})):deck;
+ return !validDay(key)||dayNumber(key)>=dayNumber(LINEAR_SCORING_START)?deck.map(q=>({...q,scoringVersion:2,...(q.type==='motion'&&(!validDay(key)||dayNumber(key)>=dayNumber(TRACE_COVERAGE_START))?{traceScoringVersion:3}:{}),...(q.fruit?{explain:q.explain.replace('53/47 split earns 72 points','53/47 split earns 85 points').replace('60/40 split earns 25 points','60/40 split earns 50 points')}:{})})):deck;
 }
 function makeDeckForSeed(day,game=mini){
  if(game==='halfhalf')game='balance';
@@ -1115,6 +1116,9 @@ const PERSPECTIVE_INNER_SCALE=.65;
 const PERSPECTIVE_CORNERS=[[20,20],[380,20],[380,280],[20,280]];
 const PERSPECTIVE_INNER_DIAGONAL=Math.hypot(360,260)*PERSPECTIVE_INNER_SCALE;
 const TRACE_STROKE_WIDTH=12;
+const TRACE_COVERAGE_START='2026-10-17';
+const TRACE_AREA_ALLOWANCE=1.25;
+function usesTraceCoverage(q){return q.type==='motion'&&q.traceScoringVersion===3;}
 // Fixed half-unit sampling keeps scores independent of screen size and device DPR.
 // Each round-capped stroke is the union of capsules around its line segments.
 function traceMask(points){
@@ -1130,11 +1134,21 @@ function traceMask(points){
  }
  return mask;
 }
+function traceAreas(points,target){
+ if(!Array.isArray(points)||points.length<2||!Array.isArray(target)||target.length<2)return {intersection:0,drawn:0,target:0};
+ const a=traceMask(points),b=traceMask(target);let intersection=0,drawn=0,targetArea=0;
+ for(let i=0;i<a.length;i++){if(a[i]&&b[i])intersection++;drawn+=a[i];targetArea+=b[i];}
+ return {intersection,drawn,target:targetArea};
+}
+// October 16 and previously saved v2 questions retain intersection-over-union.
 function traceOverlap(points,target){
- if(!Array.isArray(points)||points.length<2||!Array.isArray(target)||target.length<2)return 0;
- const a=traceMask(points),b=traceMask(target);let intersection=0,union=0;
- for(let i=0;i<a.length;i++){if(a[i]&&b[i])intersection++;if(a[i]||b[i])union++;}
- return union?intersection/union:0;
+ const a=traceAreas(points,target),union=a.drawn+a.target-a.intersection;
+ return union?a.intersection/union:0;
+}
+function traceCoverageResult(points,target){
+ const a=traceAreas(points,target),coverage=a.target?a.intersection/a.target:0,areaRatio=a.target?a.drawn/a.target:0;
+ const penalty=Math.max(0,areaRatio-TRACE_AREA_ALLOWANCE);
+ return {coverage,areaRatio,penalty,closeness:Math.max(0,coverage-penalty)};
 }
 function perspectiveDiagonal(q){return q.scoringVersion===2?PERSPECTIVE_INNER_DIAGONAL:Math.hypot(400,300);}
 
@@ -1165,7 +1179,7 @@ function scoringError(value,q){
   case 'angle':error=angularDistance(value,q.answer);break;
   case 'timeline':return Math.abs(value-q.answer)/timelineErrorBound(q);
   case 'time':return Math.abs(value-q.answer)/timeErrorBound(q);
-  case 'motion':if(q.scoringVersion===2)return 1-traceOverlap(value,q.answer);if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
+  case 'motion':if(usesTraceCoverage(q))return 1-traceCoverageResult(value,q.answer).closeness;if(q.scoringVersion===2)return 1-traceOverlap(value,q.answer);if(value.length<2)return Infinity;error=traceError(value,q.answer);break;
   case 'perspective':return pointError(value,q.answer)/(.4*perspectiveDiagonal(q));
   case 'proportion':if(isSizeQuestion(q)){const e=sizeErrors(value,q);return (e.width+e.height)/(2*SIZE_ERROR_BOUND);}error=proportionError(value,q.answer);break;
   case 'colour':error=wheelDistance(value,q.answer);break;
