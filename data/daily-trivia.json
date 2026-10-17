@@ -804,6 +804,19 @@
         "memory"
       ],
       "trivia": {}
+    },
+    "2026-12-15": {
+      "types": [
+        "angle",
+        "timeline",
+        "motion",
+        "duration",
+        "rhythm"
+      ],
+      "trivia": {
+        "timeline": "timeline-first-academy-awards",
+        "duration": "duration-men-100m-world-record"
+      }
     }
   },
   "used": {
@@ -1058,6 +1071,14 @@
     "timeline-us-civil-rights-act-signed": {
       "day": "2026-12-13",
       "fingerprint": "9c974b58babf97b441b7ff84ef482ef872f0790a673c00e01811a3a9b6bd77db"
+    },
+    "timeline-first-academy-awards": {
+      "day": "2026-12-15",
+      "fingerprint": "c068829ec865908e42852afec6e9bb5a55194a3f4a7ac7a7e0fa5c88c697fe2a"
+    },
+    "duration-men-100m-world-record": {
+      "day": "2026-12-15",
+      "fingerprint": "43da34a44378916ab9ab6e0f7160171bea540818ec2b67f93494398b3cbb5615"
     }
   }
 }
