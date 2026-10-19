@@ -1339,6 +1339,97 @@
         "name": "Queen Online",
         "url": "https://www.queenonline.com/queen"
       }
+    },
+    {
+      "id": "duration-earth-sidereal-day",
+      "factKey": "duration-earth-sidereal-day",
+      "title": "Earth’s star-day spin",
+      "caption": "Approximate length of one Earth rotation relative to the stars.",
+      "explain": "NASA gives Earth’s sidereal rotation period as 23 hours, 56 minutes, 4.09053 seconds. Because this is under a day but over an hour, the answer is rounded to the nearest whole minute: 23 h 56 m = 86,160 seconds.",
+      "type": "duration",
+      "answer": 86160,
+      "source": {
+        "name": "NASA Goddard — Imagine the Universe",
+        "url": "https://imagine.gsfc.nasa.gov/ask_astro/earth.html"
+      }
+    },
+    {
+      "id": "duration-1964-alaska-earthquake",
+      "factKey": "duration-1964-alaska-earthquake",
+      "title": "1964 Alaska quake",
+      "caption": "Approximate shaking time of the Great Alaska Earthquake.",
+      "explain": "USGS says the magnitude 9.2 Great Alaska Earthquake lasted approximately 4.5 minutes. The answer converts 4.5 minutes directly to 270 seconds; it is labelled approximate because USGS describes the duration that way.",
+      "type": "duration",
+      "answer": 270,
+      "source": {
+        "name": "U.S. Geological Survey",
+        "url": "https://earthquake.usgs.gov/earthquakes/statistics/events/alaska1964/"
+      }
+    },
+    {
+      "id": "duration-hey-jude-single",
+      "factKey": "duration-hey-jude-single",
+      "title": "Hey Jude",
+      "caption": "Length of the Beatles’ original single.",
+      "explain": "The Beatles’ official site lists “Hey Jude” with a length of 7:11. The answer converts 7 minutes 11 seconds to 431 seconds.",
+      "type": "duration",
+      "answer": 431,
+      "source": {
+        "name": "The Beatles official site",
+        "url": "https://www.thebeatles.com/hey-jude"
+      }
+    },
+    {
+      "id": "duration-we-will-rock-you",
+      "factKey": "duration-we-will-rock-you",
+      "title": "We Will Rock You",
+      "caption": "Length of Queen’s original album track.",
+      "explain": "Queen’s official site lists “We Will Rock You” on News of the World as 2:01. The answer converts 2 minutes 1 second to 121 seconds.",
+      "type": "duration",
+      "answer": 121,
+      "source": {
+        "name": "Queen official site",
+        "url": "https://www.queenonline.com/noticias/boletin-de-prensa-news-of-the-world-edicion-40-aniversario"
+      }
+    },
+    {
+      "id": "duration-the-incredibles-2004",
+      "factKey": "duration-the-incredibles-2004",
+      "title": "The Incredibles",
+      "caption": "Runtime of Disney–Pixar’s 2004 superhero film.",
+      "explain": "Disney’s official movie page lists The Incredibles with a runtime of 1 hour 55 minutes. The answer converts 115 minutes to 6,900 seconds.",
+      "type": "duration",
+      "answer": 6900,
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/the-incredibles"
+      }
+    },
+    {
+      "id": "duration-sleeping-beauty-1959",
+      "factKey": "duration-sleeping-beauty-1959",
+      "title": "Sleeping Beauty",
+      "caption": "Runtime of Disney’s 1959 animated classic.",
+      "explain": "Disney’s official movie page lists Sleeping Beauty with a runtime of 1 hour 14 minutes. The answer converts 74 minutes to 4,440 seconds.",
+      "type": "duration",
+      "answer": 4440,
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/sleeping-beauty"
+      }
+    },
+    {
+      "id": "duration-nhl-intermission-2025-26",
+      "factKey": "duration-nhl-intermission-2025-26",
+      "title": "NHL intermission",
+      "caption": "Length of a standard intermission in the 2025–26 NHL rulebook.",
+      "explain": "The NHL 2025–26 Official Rules state that intermissions are 18:00 long unless otherwise notified. The answer converts 18 minutes to 1,080 seconds. This is a changeable sports rule, so the season is named in the caption.",
+      "type": "duration",
+      "answer": 1080,
+      "source": {
+        "name": "National Hockey League 2025–26 Official Rules",
+        "url": "https://media.nhl.com/site/asset/public/ext/2025-26/2025-26Rules.pdf"
+      }
     }
   ]
 }
