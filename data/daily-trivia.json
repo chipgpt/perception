@@ -817,6 +817,28 @@
         "timeline": "timeline-first-academy-awards",
         "duration": "duration-men-100m-world-record"
       }
+    },
+    "2026-12-16": {
+      "types": [
+        "time",
+        "balance",
+        "perspective",
+        "view3d",
+        "proportion"
+      ],
+      "trivia": {}
+    },
+    "2026-12-17": {
+      "types": [
+        "time",
+        "duration",
+        "memory",
+        "angle",
+        "motion"
+      ],
+      "trivia": {
+        "duration": "duration-mercury-rotation"
+      }
     }
   },
   "used": {
@@ -1079,6 +1101,10 @@
     "duration-men-100m-world-record": {
       "day": "2026-12-15",
       "fingerprint": "43da34a44378916ab9ab6e0f7160171bea540818ec2b67f93494398b3cbb5615"
+    },
+    "duration-mercury-rotation": {
+      "day": "2026-12-17",
+      "fingerprint": "87ab836c91ecbddaf00f5d3bf3434a18c6b9630b7cf957cffd13f71f43672bc6"
     }
   }
 }
