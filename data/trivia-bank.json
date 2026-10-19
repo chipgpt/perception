@@ -1339,6 +1339,19 @@
         "name": "Queen Online",
         "url": "https://www.queenonline.com/queen"
       }
+    },
+    {
+      "id": "duration-earth-sidereal-day",
+      "factKey": "duration-earth-sidereal-day",
+      "title": "Earth’s star-day spin",
+      "caption": "Approximate length of one Earth rotation relative to the stars.",
+      "explain": "NASA gives Earth’s sidereal rotation period as 23 hours, 56 minutes, 4.09053 seconds. Because this is under a day but over an hour, the answer is rounded to the nearest whole minute: 23 h 56 m = 86,160 seconds.",
+      "type": "duration",
+      "answer": 86160,
+      "source": {
+        "name": "NASA Goddard — Imagine the Universe",
+        "url": "https://imagine.gsfc.nasa.gov/ask_astro/earth.html"
+      }
     }
   ]
 }
