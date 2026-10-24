@@ -45,7 +45,7 @@ function validSavedGame(game){
    if(q.scoringVersion!==undefined&&q.scoringVersion!==2)return false;
    if(q.traceScoringVersion!==undefined&&(q.traceScoringVersion!==3||q.type!=='motion'||q.scoringVersion!==2))return false;
    if(q.scoringVersion===2&&q.type==='time'&&q.timeScoringVersion!==2)return false;
-   if(q.scoringVersion===2&&q.type==='timeline'&&q.timelineScoringVersion!==2)return false;
+   if(q.scoringVersion===2&&q.type==='timeline'&&![2,3].includes(q.timelineScoringVersion))return false;
    if(q.source&&(!Array.isArray(q.source)||!/^https:\/\//.test(q.source[1])))return false;
    const pairs=points=>Array.isArray(points)&&points.length>=3&&points.every(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite));
    if(q.type==='view3d'&&(!q.shape||!Array.isArray(q.shape.boxes)||q.shape.boxes.length<3||q.shape.boxes.length>5||!q.shape.boxes.every(b=>Array.isArray(b)&&b.length===8&&b.slice(0,6).every(Number.isFinite)&&b.slice(3,6).every(n=>n>0)&&/^#[0-9a-f]{6}$/i.test(b[6])&&Array.isArray(b[7])&&b[7].length===6&&b[7].every(v=>typeof v==='boolean'))))return false;
@@ -56,7 +56,7 @@ function validSavedGame(game){
    if(q.type==='colour'&&(!Array.isArray(q.answer)||q.answer.length!==3))return false;
    if(['angle','time','rhythm','balance','timeline','duration'].includes(q.type)&&!q.fruit&&typeof q.answer!=='number')return false;
    if(q.type==='time'&&q.timeScoringVersion!==undefined&&(q.timeScoringVersion!==2||q.answer<=0))return false;
-   if(q.type==='timeline'&&q.timelineScoringVersion!==undefined&&(q.timelineScoringVersion!==2||!Number.isInteger(q.scoringYear)||q.scoringYear<1850||q.scoringYear>9999))return false;
+   if(q.type==='timeline'&&q.timelineScoringVersion!==undefined&&(![2,3].includes(q.timelineScoringVersion)||!Number.isInteger(q.scoringYear)||q.scoringYear<1850||q.scoringYear>9999))return false;
    if(q.type==='proportion'){
     if(isSizeQuestion(q)){
      if(!Number.isInteger(q.wide)||q.wide<1||q.wide>5||!Number.isInteger(q.tall)||q.tall<1||q.tall>4||!Number.isInteger(q.reference)||q.reference<32||q.reference>54||q.answer?.width!==q.wide*q.reference||q.answer?.height!==q.tall*q.reference||q.answer.width>260||q.answer.height>175||!q.start||q.start.width<32||q.start.width>304||q.start.height<32||q.start.height>207)return false;
