@@ -116,7 +116,7 @@ function makeBlockShape(random){
 function scheduledTriviaQuestion(id,challengeDay=null){
  const f=TRIVIA_BY_ID[id];if(!f)throw new Error('Missing scheduled trivia');
  const q={id:f.id,type:f.type,skill:f.type==='timeline'?'When?':'How long?',title:f.title,answer:f.answer,caption:f.caption,explain:f.explain,source:[f.source.name,f.source.url],tip:'Answer: '+(f.type==='timeline'?f.answer:durationText(f.answer))};
- if(f.type==='timeline'&&(challengeDay===null||dayNumber(challengeDay)>=dayNumber(TIMELINE_SCORING_START))){q.timelineScoringVersion=2;q.scoringYear=Number((challengeDay||calendarDay()).split('-')[0]);}
+ if(f.type==='timeline'&&(challengeDay===null||dayNumber(challengeDay)>=dayNumber(TIMELINE_SCORING_START))){q.timelineScoringVersion=challengeDay===null||dayNumber(challengeDay)>=dayNumber(TIMELINE_GENTLE_START)?3:2;q.scoringYear=Number((challengeDay||calendarDay()).split('-')[0]);}
  return q;
 }
 

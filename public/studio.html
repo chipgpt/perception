@@ -70,7 +70,7 @@
       <details><summary>Angles <span>180°</span></summary><div><p>Turn the line to the requested angle. Measure counterclockwise from the right-facing baseline.</p><p>We use the shortest angular distance. <strong>45° off earns 75; 90° off earns 50; 180° off earns zero.</strong></p></div></details>
       <details><summary>Color memory <span>One wheel radius</span></summary><div><p>Remember the swatch for two seconds, then choose its color on the wheel. Hue goes around the wheel; vividness increases toward the edge.</p><p>We measure straight-line distance between your pick and the target <strong>on the wheel</strong>. Half a wheel radius away earns 50 points; one radius or more earns zero. This measures wheel position, rather than differences between hex codes.</p></div></details>
       <details><summary>Time <span>50% of the target, minimum 1.25 s</span></summary><div><p>Press Start, wait for the requested time, then Stop. There’s no clock until the reveal.</p><p>The zero-point miss is <strong>half the target duration or 1.25 seconds, whichever is larger</strong>. For a 10-second target, 2.5 seconds early or late earns 50; 5 seconds off earns zero. For a 2-second target, the allowance is 1.25 seconds.</p></div></details>
-      <details><summary>When? <span>25% of its age, minimum 5 years</span></summary><div><p>Scroll the year wheel to put your answer in the center. Lock it in to see the answer and source.</p><p>The zero-point miss is <strong>one-quarter of the event’s age or five years, whichever is larger</strong>. For a recent event, four years off still earns 20 points. For an event 100 years old, the allowance is 25 years. Age is fixed to the challenge year, so an old challenge’s scoring stays the same.</p></div></details>
+      <details><summary>When? <span>⅓ of its age, minimum 10 years</span></summary><div><p>Scroll the year wheel to put your answer in the center. Lock it in to see the answer and source.</p><p>The zero-point miss is <strong>one-third of the event’s age or ten years, whichever is larger</strong>. For events up to 30 years old, four years off earns 60 points and seven years off earns 30. For an event 60 years old, the allowance is 20 years; seven years off earns 65 points. Age is fixed to the challenge year, so an old challenge’s scoring stays the same.</p><p>This allowance applies to new practice rounds and Daily Fives from <strong>October 24, 2026</strong>. October 16–23 challenges and previously saved version-two rounds keep the five-year / 25%-of-age allowance. Earlier rounds retain their original rules.</p></div></details>
       <details><summary>How long? <span>50% of the answer</span></summary><div><p>Turn the duration dial to your best estimate. Use the unit controls and +/− buttons to refine it, then lock in to see the answer and source.</p><p>A guess <strong>50% shorter or longer earns zero</strong>. For a two-hour answer, 90 minutes or 2½ hours earns 50; one hour or three hours earns zero. We score the duration shown by the controls.</p></div></details>
     </section>
     <details class="help-controls"><summary>Touch, mouse &amp; keyboard</summary><div><p>Drag, tap, or click the game controls. Focus a control to use the keyboard; arrow keys adjust most answers. Size it up uses left/right for width and up/down for height, with Shift for larger steps. For Line memory, arrows move the cursor and Space adds a point. Color memory also has hue and saturation sliders.</p><p>Memory games are silent. Switching away resets an active memory preview or timer.</p></div></details>
@@ -274,7 +274,7 @@ function validSavedGame(game){
    if(q.scoringVersion!==undefined&&q.scoringVersion!==2)return false;
    if(q.traceScoringVersion!==undefined&&(q.traceScoringVersion!==3||q.type!=='motion'||q.scoringVersion!==2))return false;
    if(q.scoringVersion===2&&q.type==='time'&&q.timeScoringVersion!==2)return false;
-   if(q.scoringVersion===2&&q.type==='timeline'&&q.timelineScoringVersion!==2)return false;
+   if(q.scoringVersion===2&&q.type==='timeline'&&![2,3].includes(q.timelineScoringVersion))return false;
    if(q.source&&(!Array.isArray(q.source)||!/^https:\/\//.test(q.source[1])))return false;
    const pairs=points=>Array.isArray(points)&&points.length>=3&&points.every(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite));
    if(q.type==='view3d'&&(!q.shape||!Array.isArray(q.shape.boxes)||q.shape.boxes.length<3||q.shape.boxes.length>5||!q.shape.boxes.every(b=>Array.isArray(b)&&b.length===8&&b.slice(0,6).every(Number.isFinite)&&b.slice(3,6).every(n=>n>0)&&/^#[0-9a-f]{6}$/i.test(b[6])&&Array.isArray(b[7])&&b[7].length===6&&b[7].every(v=>typeof v==='boolean'))))return false;
@@ -285,7 +285,7 @@ function validSavedGame(game){
    if(q.type==='colour'&&(!Array.isArray(q.answer)||q.answer.length!==3))return false;
    if(['angle','time','rhythm','balance','timeline','duration'].includes(q.type)&&!q.fruit&&typeof q.answer!=='number')return false;
    if(q.type==='time'&&q.timeScoringVersion!==undefined&&(q.timeScoringVersion!==2||q.answer<=0))return false;
-   if(q.type==='timeline'&&q.timelineScoringVersion!==undefined&&(q.timelineScoringVersion!==2||!Number.isInteger(q.scoringYear)||q.scoringYear<1850||q.scoringYear>9999))return false;
+   if(q.type==='timeline'&&q.timelineScoringVersion!==undefined&&(![2,3].includes(q.timelineScoringVersion)||!Number.isInteger(q.scoringYear)||q.scoringYear<1850||q.scoringYear>9999))return false;
    if(q.type==='proportion'){
     if(isSizeQuestion(q)){
      if(!Number.isInteger(q.wide)||q.wide<1||q.wide>5||!Number.isInteger(q.tall)||q.tall<1||q.tall>4||!Number.isInteger(q.reference)||q.reference<32||q.reference>54||q.answer?.width!==q.wide*q.reference||q.answer?.height!==q.tall*q.reference||q.answer.width>260||q.answer.height>175||!q.start||q.start.width<32||q.start.width>304||q.start.height<32||q.start.height>207)return false;
@@ -985,7 +985,7 @@ function makeBlockShape(random){
 function scheduledTriviaQuestion(id,challengeDay=null){
  const f=TRIVIA_BY_ID[id];if(!f)throw new Error('Missing scheduled trivia');
  const q={id:f.id,type:f.type,skill:f.type==='timeline'?'When?':'How long?',title:f.title,answer:f.answer,caption:f.caption,explain:f.explain,source:[f.source.name,f.source.url],tip:'Answer: '+(f.type==='timeline'?f.answer:durationText(f.answer))};
- if(f.type==='timeline'&&(challengeDay===null||dayNumber(challengeDay)>=dayNumber(TIMELINE_SCORING_START))){q.timelineScoringVersion=2;q.scoringYear=Number((challengeDay||calendarDay()).split('-')[0]);}
+ if(f.type==='timeline'&&(challengeDay===null||dayNumber(challengeDay)>=dayNumber(TIMELINE_SCORING_START))){q.timelineScoringVersion=challengeDay===null||dayNumber(challengeDay)>=dayNumber(TIMELINE_GENTLE_START)?3:2;q.scoringYear=Number((challengeDay||calendarDay()).split('-')[0]);}
  return q;
 }
 
@@ -1153,11 +1153,12 @@ function traceCoverageResult(points,target){
 function perspectiveDiagonal(q){return q.scoringVersion===2?PERSPECTIVE_INNER_DIAGONAL:Math.hypot(400,300);}
 
 const TIMELINE_SCORING_START=LINEAR_SCORING_START;
+const TIMELINE_GENTLE_START='2026-10-24';
 const TIME_SCORING_START=LINEAR_SCORING_START;
 function usesRelativeTime(q){return q.type==='time'&&q.timeScoringVersion===2;}
 function timeErrorBound(q){return usesRelativeTime(q)?Math.max(1.25,q.answer*.5):SCORING_RANGES.time;}
-function usesAgeBasedTimeline(q){return q.type==='timeline'&&q.timelineScoringVersion===2;}
-function timelineErrorBound(q){return usesAgeBasedTimeline(q)?Math.max(5,Math.max(0,q.scoringYear-q.answer)*.25):SCORING_RANGES.timeline;}
+function usesAgeBasedTimeline(q){return q.type==='timeline'&&[2,3].includes(q.timelineScoringVersion);}
+function timelineErrorBound(q){const age=Math.max(0,q.scoringYear-q.answer);return q.timelineScoringVersion===3?Math.max(10,age/3):usesAgeBasedTimeline(q)?Math.max(5,age*.25):SCORING_RANGES.timeline;}
 function linearScoreFromError(fraction){return Number.isFinite(fraction)?Math.round(100*Math.max(0,Math.min(1,1-fraction))):0;}
 function wheelDistance(a,b){
  const position=rgb=>{const {h,s}=rgbHsv(rgb),angle=h*Math.PI/180;

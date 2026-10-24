@@ -54,11 +54,12 @@ function traceCoverageResult(points,target){
 function perspectiveDiagonal(q){return q.scoringVersion===2?PERSPECTIVE_INNER_DIAGONAL:Math.hypot(400,300);}
 
 const TIMELINE_SCORING_START=LINEAR_SCORING_START;
+const TIMELINE_GENTLE_START='2026-10-24';
 const TIME_SCORING_START=LINEAR_SCORING_START;
 function usesRelativeTime(q){return q.type==='time'&&q.timeScoringVersion===2;}
 function timeErrorBound(q){return usesRelativeTime(q)?Math.max(1.25,q.answer*.5):SCORING_RANGES.time;}
-function usesAgeBasedTimeline(q){return q.type==='timeline'&&q.timelineScoringVersion===2;}
-function timelineErrorBound(q){return usesAgeBasedTimeline(q)?Math.max(5,Math.max(0,q.scoringYear-q.answer)*.25):SCORING_RANGES.timeline;}
+function usesAgeBasedTimeline(q){return q.type==='timeline'&&[2,3].includes(q.timelineScoringVersion);}
+function timelineErrorBound(q){const age=Math.max(0,q.scoringYear-q.answer);return q.timelineScoringVersion===3?Math.max(10,age/3):usesAgeBasedTimeline(q)?Math.max(5,age*.25):SCORING_RANGES.timeline;}
 function linearScoreFromError(fraction){return Number.isFinite(fraction)?Math.round(100*Math.max(0,Math.min(1,1-fraction))):0;}
 function wheelDistance(a,b){
  const position=rgb=>{const {h,s}=rgbHsv(rgb),angle=h*Math.PI/180;
