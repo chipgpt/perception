@@ -839,6 +839,67 @@
       "trivia": {
         "duration": "duration-mercury-rotation"
       }
+    },
+    "2026-12-18": {
+      "types": [
+        "motion",
+        "timeline",
+        "perspective",
+        "time",
+        "angle"
+      ],
+      "trivia": {
+        "timeline": "timeline-sputnik-1-launched"
+      }
+    },
+    "2026-12-19": {
+      "types": [
+        "balance",
+        "memory",
+        "duration",
+        "motion",
+        "timeline"
+      ],
+      "trivia": {
+        "duration": "duration-bohemian-rhapsody-single",
+        "timeline": "timeline-19th-amendment-ratified"
+      }
+    },
+    "2026-12-20": {
+      "types": [
+        "duration",
+        "rhythm",
+        "time",
+        "balance",
+        "view3d"
+      ],
+      "trivia": {
+        "duration": "duration-brushing-your-teeth"
+      }
+    },
+    "2026-12-21": {
+      "types": [
+        "view3d",
+        "duration",
+        "proportion",
+        "time",
+        "motion"
+      ],
+      "trivia": {
+        "duration": "duration-frozen-2013"
+      }
+    },
+    "2026-12-22": {
+      "types": [
+        "view3d",
+        "proportion",
+        "perspective",
+        "timeline",
+        "rhythm"
+      ],
+      "trivia": {
+        "timeline": "timeline-berlin-wall-falls"
+      }
     }
   },
   "used": {
@@ -1105,6 +1166,30 @@
     "duration-mercury-rotation": {
       "day": "2026-12-17",
       "fingerprint": "87ab836c91ecbddaf00f5d3bf3434a18c6b9630b7cf957cffd13f71f43672bc6"
+    },
+    "timeline-sputnik-1-launched": {
+      "day": "2026-12-18",
+      "fingerprint": "d6d0e3366bfd3db2b5c1d39e9b4138f49b514af816f17f618f9572ea60300655"
+    },
+    "duration-bohemian-rhapsody-single": {
+      "day": "2026-12-19",
+      "fingerprint": "ec3be6bd5e3c8bbdcf4d038ae1a16320e9ee12c8e40cc5dcedeaea458687d49b"
+    },
+    "timeline-19th-amendment-ratified": {
+      "day": "2026-12-19",
+      "fingerprint": "0a91bea03c16f40162e12255139fb6f4389b5067c48afd6ce28377ac6d1c1aa8"
+    },
+    "duration-brushing-your-teeth": {
+      "day": "2026-12-20",
+      "fingerprint": "103a59ddb3af62767d2916b2ece4482fdc9cbef1fa580c1ad818903fb49c88ac"
+    },
+    "duration-frozen-2013": {
+      "day": "2026-12-21",
+      "fingerprint": "ccd04bf22905b87f5c83f9beb32679326cdfe41f878db82b7b028c0ba63ef78c"
+    },
+    "timeline-berlin-wall-falls": {
+      "day": "2026-12-22",
+      "fingerprint": "0c6373c1b69a9c134dfc50b80795b8bc3967fd46e9bfc263c3ec08b9267b49a4"
     }
   }
 }
