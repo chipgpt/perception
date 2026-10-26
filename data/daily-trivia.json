@@ -900,6 +900,30 @@
       "trivia": {
         "timeline": "timeline-berlin-wall-falls"
       }
+    },
+    "2026-12-23": {
+      "types": [
+        "motion",
+        "view3d",
+        "duration",
+        "rhythm",
+        "balance"
+      ],
+      "trivia": {
+        "duration": "duration-jaws"
+      }
+    },
+    "2026-12-24": {
+      "types": [
+        "angle",
+        "motion",
+        "time",
+        "memory",
+        "duration"
+      ],
+      "trivia": {
+        "duration": "duration-handwashing-scrub"
+      }
     }
   },
   "used": {
@@ -1190,6 +1214,14 @@
     "timeline-berlin-wall-falls": {
       "day": "2026-12-22",
       "fingerprint": "0c6373c1b69a9c134dfc50b80795b8bc3967fd46e9bfc263c3ec08b9267b49a4"
+    },
+    "duration-jaws": {
+      "day": "2026-12-23",
+      "fingerprint": "500b2d70c138b486357b7a1d9eb97abd326d0bc33f5ddbd126465775e79b418d"
+    },
+    "duration-handwashing-scrub": {
+      "day": "2026-12-24",
+      "fingerprint": "ae5f3ff3608e80499b59fb5886cfbf4654fd03cafb6421c6f86dfe130e4cd630"
     }
   }
 }
