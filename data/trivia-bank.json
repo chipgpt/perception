@@ -1352,6 +1352,19 @@
         "name": "NASA Goddard — Imagine the Universe",
         "url": "https://imagine.gsfc.nasa.gov/ask_astro/earth.html"
       }
+    },
+    {
+      "id": "duration-ceres-day",
+      "factKey": "duration-ceres-day",
+      "title": "Ceres day",
+      "caption": "About how long is one rotation on dwarf planet Ceres?",
+      "explain": "NASA says Ceres completes one rotation every 9 hours. Converted directly: 9 × 60 × 60 = 32,400 seconds.",
+      "type": "duration",
+      "answer": 32400,
+      "source": {
+        "name": "NASA Science: Ceres Facts",
+        "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/"
+      }
     }
   ]
 }
