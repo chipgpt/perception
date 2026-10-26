@@ -1,0 +1,61 @@
+{
+  "generatedOn": "2026-10-26",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "duration-ceres-day",
+      "evidence": "NASA’s Ceres facts page states that Ceres completes one rotation every 9 hours, so the duration is 32,400 seconds.",
+      "familiarity": "Ceres is a commonly taught dwarf planet/asteroid-belt object, and a “day length” is an intuitive school-science comparison.",
+      "source": {
+        "name": "NASA Science: Ceres Facts",
+        "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/"
+      }
+    },
+    {
+      "id": "duration-neptune-day",
+      "evidence": "NASA’s Neptune facts page says one day on Neptune takes about 16 hours, which converts to about 57,600 seconds.",
+      "familiarity": "Neptune is one of the eight planets students learn, and comparing planetary day lengths is a familiar space-facts topic.",
+      "source": {
+        "name": "NASA Science: Neptune Facts",
+        "url": "https://science.nasa.gov/neptune/neptune-facts/"
+      }
+    },
+    {
+      "id": "duration-sun-equator-rotation",
+      "evidence": "NASA’s Sun facts page states that the Sun rotates once every 25 Earth days at the equator, which is 2,160,000 seconds.",
+      "familiarity": "The Sun is universally familiar, and many people know it rotates even though it is not solid like Earth.",
+      "source": {
+        "name": "NASA Science: Sun Facts",
+        "url": "https://science.nasa.gov/sun/facts/"
+      }
+    },
+    {
+      "id": "duration-boggle-round-04601",
+      "evidence": "Hasbro’s BOGGLE 04601 page says players search for words while a 3-minute timer counts down, so the duration is 180 seconds.",
+      "familiarity": "Boggle is a long-running word game commonly played by families, in classrooms, and by casual board-game fans.",
+      "source": {
+        "name": "Hasbro Instructions: BOGGLE 04601",
+        "url": "https://instructions.hasbro.com/en-ca/instruction/boggle"
+      }
+    },
+    {
+      "id": "duration-icc-u19-womens-t20-2025-drinks-break",
+      "evidence": "The ICC 2025 playing conditions specify one scheduled drinks interval of 2 minutes 30 seconds at the midpoint of each innings, giving 150 seconds.",
+      "familiarity": "Cricket is one of the world’s most-followed sports, and a short drinks break is easy for players to picture even if they do not know the exact value.",
+      "source": {
+        "name": "ICC U19 Women’s T20 World Cup 2025 Playing Conditions",
+        "url": "https://images.icc-cricket.com/image/upload/prd/ICC_U19_WOMEN_S_T20WC25_PLAYING_CONDITIONS.pdf"
+      }
+    },
+    {
+      "id": "duration-rugby-union-2025-conversion-kick",
+      "evidence": "World Rugby’s 2025 laws say a conversion kick must be taken within 60 seconds from when the try was awarded.",
+      "familiarity": "Rugby is a widely watched international sport, and the post-try conversion is one of its most recognizable moments.",
+      "source": {
+        "name": "World Rugby Laws of the Game 2025",
+        "url": "https://passport.world.rugby/media/k2ekxsmo/2501en-world-rugby-laws-2025-compressed.pdf"
+      }
+    }
+  ]
+}
