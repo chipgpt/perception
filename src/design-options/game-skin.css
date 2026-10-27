@@ -7,6 +7,18 @@
  --mark-width:3;
  --guide-width:1.5;
 }
+/* Game gestures should manipulate the puzzle rather than select nearby text.
+   Scope this to gameplay so results and copy/paste fields remain usable. */
+body[data-game-active="true"] :is(.gamebar,.game-round,.game-controls){
+ -webkit-user-select:none;
+ user-select:none;
+ -webkit-touch-callout:none;
+}
+body[data-game-active="true"] .game-controls :is(input:not([type="range"]),textarea,[contenteditable="true"]){
+ -webkit-user-select:text;
+ user-select:text;
+ -webkit-touch-callout:default;
+}
 body[data-game-active="true"] .game-prompt h1{
  font:600 clamp(24px,6.8vw,32px)/1.23 var(--font);
  letter-spacing:-1.1px;
