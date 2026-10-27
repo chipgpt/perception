@@ -924,6 +924,18 @@
       "trivia": {
         "duration": "duration-handwashing-scrub"
       }
+    },
+    "2026-12-25": {
+      "types": [
+        "angle",
+        "motion",
+        "timeline",
+        "memory",
+        "rhythm"
+      ],
+      "trivia": {
+        "timeline": "timeline-d-day-landings"
+      }
     }
   },
   "used": {
@@ -1222,6 +1234,10 @@
     "duration-handwashing-scrub": {
       "day": "2026-12-24",
       "fingerprint": "ae5f3ff3608e80499b59fb5886cfbf4654fd03cafb6421c6f86dfe130e4cd630"
+    },
+    "timeline-d-day-landings": {
+      "day": "2026-12-25",
+      "fingerprint": "59e1af150e754e0108e0583c4b993cd690c05c82115aa207afe8a211c1609563"
     }
   }
 }
