@@ -1365,6 +1365,45 @@
         "name": "NASA Science: Ceres Facts",
         "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/"
       }
+    },
+    {
+      "id": "timeline-mount-rushmore-completed",
+      "factKey": "timeline-mount-rushmore-completed",
+      "title": "Mount Rushmore completed",
+      "caption": "In what year was Mount Rushmore declared completed?",
+      "explain": "The National Park Service says Mount Rushmore National Memorial was declared a completed project on October 31, 1941. It is a familiar U.S. landmark often covered in school and travel contexts.",
+      "type": "timeline",
+      "answer": 1941,
+      "source": {
+        "name": "National Park Service",
+        "url": "https://www.nps.gov/moru/learn/historyculture/memorial-history.htm"
+      }
+    },
+    {
+      "id": "timeline-playstation-launched-japan",
+      "factKey": "timeline-playstation-launched-japan",
+      "title": "First PlayStation launched",
+      "caption": "Original release territory: Japan. When did the first PlayStation launch?",
+      "explain": "PlayStation’s official history page says the first PlayStation console launched in Japan on December 3, 1994, before later 1995 releases in North America and Europe. Naming Japan avoids the regional-year ambiguity.",
+      "type": "timeline",
+      "answer": 1994,
+      "source": {
+        "name": "PlayStation official history",
+        "url": "https://www.playstation.com/en-us/playstation-history/1994-ps-one/?sf275620891=1"
+      }
+    },
+    {
+      "id": "duration-apollo-13-mission",
+      "factKey": "duration-apollo-13-mission",
+      "title": "Apollo 13 mission",
+      "caption": "Approximate total mission duration, rounded to the nearest 0.1 day.",
+      "explain": "NASA gives Apollo 13’s mission duration as 142 hours 54 minutes 41 seconds. Because the value is over a day, this candidate rounds to the nearest 0.1 day as requested: about 6.0 days, or 518,400 seconds.",
+      "type": "duration",
+      "answer": 518400,
+      "source": {
+        "name": "NASA Apollo 13 Mission Details",
+        "url": "https://www.nasa.gov/missions/apollo/apollo-13-mission-details/"
+      }
     }
   ]
 }
