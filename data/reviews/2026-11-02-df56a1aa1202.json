@@ -1,0 +1,70 @@
+{
+  "generatedOn": "2026-11-02",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "timeline-barbie-introduced",
+      "evidence": "The museum object page states that Mattel introduced the Barbie doll in 1959.",
+      "familiarity": "Barbie is a globally recognizable toy, often learned through childhood play, advertising, movies, and everyday pop culture.",
+      "source": {
+        "name": "Smithsonian National Museum of American History",
+        "url": "https://www.americanhistory.si.edu/collections/object/nmah_1155897"
+      }
+    },
+    {
+      "id": "timeline-mount-rushmore-completed",
+      "evidence": "The NPS history page says the memorial was declared completed on October 31, 1941.",
+      "familiarity": "Mount Rushmore is a widely known American monument, common in school lessons, tourism, and images of U.S. landmarks.",
+      "source": {
+        "name": "National Park Service",
+        "url": "https://www.nps.gov/moru/learn/historyculture/memorial-history.htm"
+      }
+    },
+    {
+      "id": "timeline-transcontinental-railroad-completed",
+      "evidence": "The LOC page gives May 10, 1869 as the completion date of the first such railroad.",
+      "familiarity": "The transcontinental railroad is a standard school-history subject tied to westward expansion and the Golden Spike.",
+      "source": {
+        "name": "Library of Congress",
+        "url": "https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/railroads-in-late-19th-century/"
+      }
+    },
+    {
+      "id": "timeline-starry-night-painted",
+      "evidence": "MoMA lists the work as The Starry Night, Saint Rémy, June 1889.",
+      "familiarity": "The Starry Night is a classroom staple and one of the most reproduced paintings in everyday culture.",
+      "source": {
+        "name": "Museum of Modern Art",
+        "url": "https://www.moma.org/collection/works/79802?page=1"
+      }
+    },
+    {
+      "id": "timeline-playstation-launched-japan",
+      "evidence": "The official history page lists the Japanese release as December 3, 1994.",
+      "familiarity": "PlayStation is a major video-game console brand familiar from gaming, stores, advertising, and popular culture.",
+      "source": {
+        "name": "PlayStation official history",
+        "url": "https://www.playstation.com/en-us/playstation-history/1994-ps-one/?sf275620891=1"
+      }
+    },
+    {
+      "id": "duration-apollo-13-mission",
+      "evidence": "NASA’s mission details page gives the duration as five days, 22 hours, 54 minutes, 41 seconds.",
+      "familiarity": "Apollo 13 is famous from space history and the popular film, making a rough duration plausible for casual players.",
+      "source": {
+        "name": "NASA Apollo 13 Mission Details",
+        "url": "https://www.nasa.gov/missions/apollo/apollo-13-mission-details/"
+      }
+    },
+    {
+      "id": "duration-mlb-2023-pitch-timer-empty",
+      "evidence": "MLB says the 2023 pitch timer included 15 seconds with bases empty and 20 seconds with runners on.",
+      "familiarity": "Baseball’s pitch clock has been widely discussed by fans and casual sports viewers since its MLB introduction.",
+      "source": {
+        "name": "MLB.com Glossary",
+        "url": "https://www.mlb.com/glossary/rules/pitch-timer?msockid=02b84dbb66e9698b20f15b2e67596846"
+      }
+    }
+  ]
+}
