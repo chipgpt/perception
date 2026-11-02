@@ -1367,19 +1367,6 @@
       }
     },
     {
-      "id": "timeline-barbie-introduced",
-      "factKey": "timeline-barbie-introduced",
-      "title": "Barbie introduced",
-      "caption": "When did Mattel introduce the Barbie doll?",
-      "explain": "The Smithsonian’s National Museum of American History says Mattel introduced Barbie in 1959. The year is familiar because Barbie remains one of the best-known toys and a major pop-culture brand.",
-      "type": "timeline",
-      "answer": 1959,
-      "source": {
-        "name": "Smithsonian National Museum of American History",
-        "url": "https://www.americanhistory.si.edu/collections/object/nmah_1155897"
-      }
-    },
-    {
       "id": "timeline-mount-rushmore-completed",
       "factKey": "timeline-mount-rushmore-completed",
       "title": "Mount Rushmore completed",
@@ -1390,32 +1377,6 @@
       "source": {
         "name": "National Park Service",
         "url": "https://www.nps.gov/moru/learn/historyculture/memorial-history.htm"
-      }
-    },
-    {
-      "id": "timeline-transcontinental-railroad-completed",
-      "factKey": "timeline-transcontinental-railroad-completed",
-      "title": "Transcontinental railroad completed",
-      "caption": "When was the first U.S. transcontinental railroad completed?",
-      "explain": "The Library of Congress says the first transcontinental railroad was completed on May 10, 1869, when the Union Pacific and Central Pacific lines met in Utah. This is a common U.S. history topic.",
-      "type": "timeline",
-      "answer": 1869,
-      "source": {
-        "name": "Library of Congress",
-        "url": "https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/railroads-in-late-19th-century/"
-      }
-    },
-    {
-      "id": "timeline-starry-night-painted",
-      "factKey": "timeline-starry-night-painted",
-      "title": "The Starry Night painted",
-      "caption": "In what year did van Gogh paint The Starry Night?",
-      "explain": "MoMA’s collection page identifies Vincent van Gogh’s The Starry Night as Saint Rémy, June 1889. The painting is one of the most recognizable artworks in school art history and popular culture.",
-      "type": "timeline",
-      "answer": 1889,
-      "source": {
-        "name": "Museum of Modern Art",
-        "url": "https://www.moma.org/collection/works/79802?page=1"
       }
     },
     {
@@ -1442,19 +1403,6 @@
       "source": {
         "name": "NASA Apollo 13 Mission Details",
         "url": "https://www.nasa.gov/missions/apollo/apollo-13-mission-details/"
-      }
-    },
-    {
-      "id": "duration-mlb-2023-pitch-timer-empty",
-      "factKey": "duration-mlb-2023-pitch-timer-empty",
-      "title": "MLB pitch timer, bases empty",
-      "caption": "In the 2023 MLB rule change, how long was the pitch timer with bases empty?",
-      "explain": "MLB’s 2023 rule-change glossary says the pitch timer was 15 seconds with the bases empty and 20 seconds with runners on. The caption specifies 2023 because MLB later changed the runners-on timer, while the bases-empty value remained the cited rule here.",
-      "type": "duration",
-      "answer": 15,
-      "source": {
-        "name": "MLB.com Glossary",
-        "url": "https://www.mlb.com/glossary/rules/pitch-timer?msockid=02b84dbb66e9698b20f15b2e67596846"
       }
     }
   ]
