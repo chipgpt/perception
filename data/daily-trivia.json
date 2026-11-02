@@ -936,6 +936,78 @@
       "trivia": {
         "timeline": "timeline-d-day-landings"
       }
+    },
+    "2026-12-26": {
+      "types": [
+        "angle",
+        "balance",
+        "duration",
+        "motion",
+        "timeline"
+      ],
+      "trivia": {
+        "duration": "duration-jupiter-rotation",
+        "timeline": "timeline-nato-founded"
+      }
+    },
+    "2026-12-27": {
+      "types": [
+        "duration",
+        "time",
+        "balance",
+        "memory",
+        "rhythm"
+      ],
+      "trivia": {
+        "duration": "duration-back-to-the-future"
+      }
+    },
+    "2026-12-28": {
+      "types": [
+        "timeline",
+        "motion",
+        "angle",
+        "time",
+        "balance"
+      ],
+      "trivia": {
+        "timeline": "timeline-lego-brick-patent-filed"
+      }
+    },
+    "2026-12-29": {
+      "types": [
+        "rhythm",
+        "time",
+        "memory",
+        "view3d",
+        "motion"
+      ],
+      "trivia": {}
+    },
+    "2026-12-30": {
+      "types": [
+        "time",
+        "duration",
+        "timeline",
+        "balance",
+        "memory"
+      ],
+      "trivia": {
+        "duration": "duration-earth-sidereal-day",
+        "timeline": "timeline-nintendo-64-first-released"
+      }
+    },
+    "2026-12-31": {
+      "types": [
+        "perspective",
+        "view3d",
+        "time",
+        "timeline",
+        "angle"
+      ],
+      "trivia": {
+        "timeline": "timeline-home-alone-released"
+      }
     }
   },
   "used": {
@@ -1238,6 +1310,34 @@
     "timeline-d-day-landings": {
       "day": "2026-12-25",
       "fingerprint": "59e1af150e754e0108e0583c4b993cd690c05c82115aa207afe8a211c1609563"
+    },
+    "duration-jupiter-rotation": {
+      "day": "2026-12-26",
+      "fingerprint": "83051fcb5a76eb54a56637a1d97ddfba0b8fe61884d3b0a118cd97fc128a898b"
+    },
+    "timeline-nato-founded": {
+      "day": "2026-12-26",
+      "fingerprint": "4f727d40af98342d8297e959e643e7170d4f6b9d32bd76e91f50cd9ac86eb25a"
+    },
+    "duration-back-to-the-future": {
+      "day": "2026-12-27",
+      "fingerprint": "8e12b8bc8d14aa0716d22ebebe4363161d850b81acdcf966966533bffb2fcd7e"
+    },
+    "timeline-lego-brick-patent-filed": {
+      "day": "2026-12-28",
+      "fingerprint": "9d06e49ef3ebcd08d2dac656dc8c0c6ed99e827ba8cce1a1e3d2079d71c1953b"
+    },
+    "duration-earth-sidereal-day": {
+      "day": "2026-12-30",
+      "fingerprint": "938e2e58af66e5d502ba14bc256ff632d2023cce2fbf5b6f780dbcc6344baa41"
+    },
+    "timeline-nintendo-64-first-released": {
+      "day": "2026-12-30",
+      "fingerprint": "95ea1802a916ddffeb2d4c5482ef657a9b2fb8339f8abb2cf942b9e4fbf32657"
+    },
+    "timeline-home-alone-released": {
+      "day": "2026-12-31",
+      "fingerprint": "04c4d6b059f73857933311d39902610df7670a1590afba73580585ecbfb62205"
     }
   }
 }
