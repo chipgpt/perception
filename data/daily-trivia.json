@@ -1008,6 +1008,80 @@
       "trivia": {
         "timeline": "timeline-home-alone-released"
       }
+    },
+    "2027-01-01": {
+      "types": [
+        "perspective",
+        "proportion",
+        "balance",
+        "view3d",
+        "rhythm"
+      ],
+      "trivia": {}
+    },
+    "2027-01-02": {
+      "types": [
+        "balance",
+        "perspective",
+        "time",
+        "memory",
+        "proportion"
+      ],
+      "trivia": {}
+    },
+    "2027-01-03": {
+      "types": [
+        "view3d",
+        "motion",
+        "proportion",
+        "memory",
+        "balance"
+      ],
+      "trivia": {}
+    },
+    "2027-01-04": {
+      "types": [
+        "balance",
+        "rhythm",
+        "motion",
+        "perspective",
+        "proportion"
+      ],
+      "trivia": {}
+    },
+    "2027-01-05": {
+      "types": [
+        "time",
+        "duration",
+        "view3d",
+        "memory",
+        "motion"
+      ],
+      "trivia": {
+        "duration": "duration-the-lion-king-1994"
+      }
+    },
+    "2027-01-06": {
+      "types": [
+        "motion",
+        "memory",
+        "balance",
+        "view3d",
+        "rhythm"
+      ],
+      "trivia": {}
+    },
+    "2027-01-07": {
+      "types": [
+        "time",
+        "motion",
+        "duration",
+        "balance",
+        "memory"
+      ],
+      "trivia": {
+        "duration": "duration-one-mile-world-record"
+      }
     }
   },
   "used": {
@@ -1338,6 +1412,14 @@
     "timeline-home-alone-released": {
       "day": "2026-12-31",
       "fingerprint": "04c4d6b059f73857933311d39902610df7670a1590afba73580585ecbfb62205"
+    },
+    "duration-the-lion-king-1994": {
+      "day": "2027-01-05",
+      "fingerprint": "6f066ec2b12a78ec4b0cff8f6f90d3ab9a3676f02ee21a95b23ef90ec8c76b7a"
+    },
+    "duration-one-mile-world-record": {
+      "day": "2027-01-07",
+      "fingerprint": "454d46dcb08748b042a6b9b5daa1cd2c4b3f5ba1e7887a8202d52a3e36438649"
     }
   }
 }
