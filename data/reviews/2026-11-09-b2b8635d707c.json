@@ -1,0 +1,52 @@
+{
+  "generatedOn": "2026-11-09",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "duration-raiders-of-the-lost-ark",
+      "evidence": "Paramount’s film page lists the running time as 115 minutes.",
+      "familiarity": "Indiana Jones is widely recognizable pop culture; many players can roughly gauge a blockbuster adventure runtime.",
+      "source": {
+        "name": "Paramount Pictures",
+        "url": "https://www.paramountpictures.com/movies/indiana-jones-and-the-raiders-of-the-lost-ark"
+      }
+    },
+    {
+      "id": "duration-forrest-gump",
+      "evidence": "Paramount’s film page lists Forrest Gump with a running time of 142 minutes.",
+      "familiarity": "Forrest Gump is an Oscar-winning mainstream film often encountered in popular culture and school-adjacent U.S. history discussions.",
+      "source": {
+        "name": "Paramount Pictures",
+        "url": "https://www.paramountpictures.com/movies/forrest-gump"
+      }
+    },
+    {
+      "id": "duration-avengers-endgame",
+      "evidence": "Disney’s movie page lists Avengers: Endgame with a runtime of 3 hours and 1 minute.",
+      "familiarity": "The Avengers films are mainstream pop culture, and Endgame is famous for being a notably long superhero movie.",
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/avengers-endgame"
+      }
+    },
+    {
+      "id": "duration-hey-jude-single",
+      "evidence": "The Beatles’ official page lists Hey Jude with a length of 7:11.",
+      "familiarity": "The Beatles are everyday classic-rock knowledge, and Hey Jude is especially known for its extended singalong ending.",
+      "source": {
+        "name": "The Beatles",
+        "url": "https://www.thebeatles.com/hey-jude"
+      }
+    },
+    {
+      "id": "duration-world-boxing-elite-round-2024",
+      "evidence": "World Boxing’s February 2024 competition rules state that Elite and U19 competition rounds last three minutes.",
+      "familiarity": "Boxing rounds are a common sports concept even for casual fans, and three-minute rounds are broadly familiar.",
+      "source": {
+        "name": "World Boxing",
+        "url": "https://worldboxing.org/wp-content/uploads/2024/03/World-Boxing-Competition-Rules-Feb-2024-v3.99-ClEAN.pdf"
+      }
+    }
+  ]
+}

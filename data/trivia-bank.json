@@ -1404,6 +1404,71 @@
         "name": "NASA Apollo 13 Mission Details",
         "url": "https://www.nasa.gov/missions/apollo/apollo-13-mission-details/"
       }
+    },
+    {
+      "id": "duration-raiders-of-the-lost-ark",
+      "factKey": "duration-raiders-of-the-lost-ark",
+      "title": "Raiders of the Lost Ark",
+      "caption": "How long is the original Indiana Jones adventure film?",
+      "explain": "Answer is 115 minutes, converted to 6,900 seconds. The Paramount page lists the official running time for Indiana Jones and the Raiders of the Lost Ark.",
+      "type": "duration",
+      "answer": 6900,
+      "source": {
+        "name": "Paramount Pictures",
+        "url": "https://www.paramountpictures.com/movies/indiana-jones-and-the-raiders-of-the-lost-ark"
+      }
+    },
+    {
+      "id": "duration-forrest-gump",
+      "factKey": "duration-forrest-gump",
+      "title": "Forrest Gump",
+      "caption": "How long is the Tom Hanks film about a man’s unlikely journey through U.S. history?",
+      "explain": "Answer is 142 minutes, converted to 8,520 seconds. The Paramount page gives the official running time for Forrest Gump.",
+      "type": "duration",
+      "answer": 8520,
+      "source": {
+        "name": "Paramount Pictures",
+        "url": "https://www.paramountpictures.com/movies/forrest-gump"
+      }
+    },
+    {
+      "id": "duration-avengers-endgame",
+      "factKey": "duration-avengers-endgame",
+      "title": "Avengers: Endgame",
+      "caption": "How long is Marvel Studios’ big finale to the Infinity Saga?",
+      "explain": "Answer is 3 hours 1 minute, converted to 10,860 seconds. The Disney Movies page gives the official runtime in hours and minutes.",
+      "type": "duration",
+      "answer": 10860,
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/avengers-endgame"
+      }
+    },
+    {
+      "id": "duration-hey-jude-single",
+      "factKey": "duration-hey-jude-single",
+      "title": "Hey Jude",
+      "caption": "How long is The Beatles’ long singalong single?",
+      "explain": "Answer is 7 minutes 11 seconds, converted to 431 seconds. The Beatles’ official page lists the single length directly.",
+      "type": "duration",
+      "answer": 431,
+      "source": {
+        "name": "The Beatles",
+        "url": "https://www.thebeatles.com/hey-jude"
+      }
+    },
+    {
+      "id": "duration-world-boxing-elite-round-2024",
+      "factKey": "duration-world-boxing-elite-round-2024",
+      "title": "Elite boxing round",
+      "caption": "In World Boxing’s 2024 rules, how long is one Elite competition round?",
+      "explain": "Answer is 3 minutes, converted to 180 seconds. This is a rule duration, so the caption names the 2024 World Boxing rule set consulted.",
+      "type": "duration",
+      "answer": 180,
+      "source": {
+        "name": "World Boxing",
+        "url": "https://worldboxing.org/wp-content/uploads/2024/03/World-Boxing-Competition-Rules-Feb-2024-v3.99-ClEAN.pdf"
+      }
     }
   ]
 }
