@@ -1,0 +1,61 @@
+{
+  "generatedOn": "2026-11-16",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "timeline-barbie-debuts",
+      "evidence": "Mattel’s page describes Ruth Handler creating Barbie and debuting the doll at the New York Toy Fair in 1959.",
+      "familiarity": "Barbie is one of the world’s best-known toys and a major pop-culture brand.",
+      "source": {
+        "name": "Mattel Creations",
+        "url": "https://creations.mattel.com/blogs/inside-look/barbie-65th-anniversary-inspiration-through-the-decades"
+      }
+    },
+    {
+      "id": "timeline-pac-man-arcade-debut",
+      "evidence": "Bandai Namco says Pac-Man was born on May 22, 1980 and first rose to popularity in video game arcades.",
+      "familiarity": "Pac-Man is a widely recognized classic video game character and arcade staple.",
+      "source": {
+        "name": "Bandai Namco Entertainment America",
+        "url": "https://www.bandainamcoent.com/news/pac-man-happy-40th-birthday"
+      }
+    },
+    {
+      "id": "timeline-harry-potter-first-book-uk",
+      "evidence": "Bloomsbury’s official material says the first Harry Potter book was first published on June 26, 1997 by Bloomsbury.",
+      "familiarity": "Harry Potter is a common school-age and pop-culture reference across books, films, and theme parks.",
+      "source": {
+        "name": "Bloomsbury Publishing",
+        "url": "https://media.bloomsbury.com/rep/files/harry-potter-activity-pack.pdf"
+      }
+    },
+    {
+      "id": "duration-total-solar-eclipse-maximum",
+      "evidence": "NASA’s FAQ gives the longest total solar eclipse in its stated span as 7 minutes 29 seconds.",
+      "familiarity": "Solar eclipses are widely covered in school science, news, and skywatching events.",
+      "source": {
+        "name": "NASA Science",
+        "url": "https://science.nasa.gov/eclipses/faq/"
+      }
+    },
+    {
+      "id": "duration-mlb-pitch-timer-bases-empty-2023",
+      "evidence": "MLB’s 2023 rule announcement says pitchers have 15 seconds between pitches when the bases are empty.",
+      "familiarity": "Baseball is a common U.S. spectator sport, and the pitch clock was a highly publicized recent rule change.",
+      "source": {
+        "name": "Major League Baseball",
+        "url": "https://www.mlb.com/press-release/press-release-mlb-announces-rule-changes-for-2023-season"
+      }
+    },
+    {
+      "id": "duration-olympic-mens-boxing-bout-2016",
+      "evidence": "The Olympic document states that men’s Rio 2016 boxing bouts had three rounds of three minutes each, with rests between rounds.",
+      "familiarity": "Olympic boxing is a recognizable Summer Games event, and three-minute rounds are plausible from common boxing knowledge.",
+      "source": {
+        "name": "Olympic World Library",
+        "url": "https://library.olympics.com/Default/digitalCollection/DigitalCollectionAttachmentDownloadHandler.ashx?documentId=165332&parentDocumentId=165312"
+      }
+    }
+  ]
+}

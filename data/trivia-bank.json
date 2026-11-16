@@ -1404,6 +1404,32 @@
         "name": "NASA Apollo 13 Mission Details",
         "url": "https://www.nasa.gov/missions/apollo/apollo-13-mission-details/"
       }
+    },
+    {
+      "id": "timeline-barbie-debuts",
+      "factKey": "timeline-barbie-debuts",
+      "title": "Barbie debuts",
+      "caption": "The original Barbie doll is introduced at New York Toy Fair.",
+      "explain": "Mattel’s Barbie history page says Barbie debuted at the New York Toy Fair in 1959. This is familiar from toy aisles, pop culture, and the 2023 Barbie movie, so many players can make a rough generational guess even if they do not know the exact year.",
+      "type": "timeline",
+      "answer": 1959,
+      "source": {
+        "name": "Mattel Creations",
+        "url": "https://creations.mattel.com/blogs/inside-look/barbie-65th-anniversary-inspiration-through-the-decades"
+      }
+    },
+    {
+      "id": "timeline-harry-potter-first-book-uk",
+      "factKey": "timeline-harry-potter-first-book-uk",
+      "title": "First Harry Potter book",
+      "caption": "Harry Potter and the Philosopher’s Stone is first published in the UK.",
+      "explain": "Bloomsbury’s official activity pack states that Harry Potter and the Philosopher’s Stone was first published by Bloomsbury on June 26, 1997, so the answer is 1997. The UK territory is named because later editions and titles differed in other markets.",
+      "type": "timeline",
+      "answer": 1997,
+      "source": {
+        "name": "Bloomsbury Publishing",
+        "url": "https://media.bloomsbury.com/rep/files/harry-potter-activity-pack.pdf"
+      }
     }
   ]
 }
