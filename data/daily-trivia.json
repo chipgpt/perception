@@ -1082,6 +1082,92 @@
       "trivia": {
         "duration": "duration-one-mile-world-record"
       }
+    },
+    "2027-01-08": {
+      "types": [
+        "balance",
+        "rhythm",
+        "duration",
+        "memory",
+        "motion"
+      ],
+      "trivia": {
+        "duration": "duration-ceres-day"
+      }
+    },
+    "2027-01-09": {
+      "types": [
+        "time",
+        "motion",
+        "timeline",
+        "view3d",
+        "proportion"
+      ],
+      "trivia": {
+        "timeline": "timeline-wii-first-released"
+      }
+    },
+    "2027-01-10": {
+      "types": [
+        "balance",
+        "timeline",
+        "memory",
+        "rhythm",
+        "motion"
+      ],
+      "trivia": {
+        "timeline": "timeline-american-civil-war-ends"
+      }
+    },
+    "2027-01-11": {
+      "types": [
+        "proportion",
+        "duration",
+        "angle",
+        "timeline",
+        "balance"
+      ],
+      "trivia": {
+        "duration": "duration-tennis-warm-up",
+        "timeline": "timeline-i-have-a-dream-speech"
+      }
+    },
+    "2027-01-12": {
+      "types": [
+        "proportion",
+        "rhythm",
+        "memory",
+        "time",
+        "timeline"
+      ],
+      "trivia": {
+        "timeline": "timeline-india-gains-independence"
+      }
+    },
+    "2027-01-13": {
+      "types": [
+        "time",
+        "proportion",
+        "view3d",
+        "duration",
+        "motion"
+      ],
+      "trivia": {
+        "duration": "duration-men-50m-freestyle-record"
+      }
+    },
+    "2027-01-14": {
+      "types": [
+        "timeline",
+        "time",
+        "rhythm",
+        "duration",
+        "proportion"
+      ],
+      "trivia": {
+        "timeline": "timeline-webb-telescope-launches",
+        "duration": "duration-apollo-13-mission"
+      }
     }
   },
   "used": {
@@ -1420,6 +1506,42 @@
     "duration-one-mile-world-record": {
       "day": "2027-01-07",
       "fingerprint": "454d46dcb08748b042a6b9b5daa1cd2c4b3f5ba1e7887a8202d52a3e36438649"
+    },
+    "duration-ceres-day": {
+      "day": "2027-01-08",
+      "fingerprint": "9d4e02fe4d05ea4045f5b405f4a05f0c1782cf0134f04d115bdaad3c3237e62d"
+    },
+    "timeline-wii-first-released": {
+      "day": "2027-01-09",
+      "fingerprint": "3efd97891197388d89ba86b7b6a9889084dc6dfcbd99b12abe6dcff4147cadb5"
+    },
+    "timeline-american-civil-war-ends": {
+      "day": "2027-01-10",
+      "fingerprint": "1bc2d4bf0a173f87b1f239717cd7c74a40c7119601628831abe0c64025b017f3"
+    },
+    "duration-tennis-warm-up": {
+      "day": "2027-01-11",
+      "fingerprint": "90b9e960ee2fd7fbf278f73eeee501144ff173f07f2f919d2d21712dd270e5b9"
+    },
+    "timeline-i-have-a-dream-speech": {
+      "day": "2027-01-11",
+      "fingerprint": "6a6004b2fc6c837334c202e1338580b467081ed133a10e89f77d56ecb694b571"
+    },
+    "timeline-india-gains-independence": {
+      "day": "2027-01-12",
+      "fingerprint": "c4a6008cfe54632d9f9ae575eaf92adba6342a17c793f71973b9a2941a644b1a"
+    },
+    "duration-men-50m-freestyle-record": {
+      "day": "2027-01-13",
+      "fingerprint": "a4882720ab2eded3281750a4cc657aa033ca8992a01e867bd1479996dc3a8666"
+    },
+    "timeline-webb-telescope-launches": {
+      "day": "2027-01-14",
+      "fingerprint": "447c82695a92893e297dda62cc24de9128617350e64d1bee396b7e1b3c2f2777"
+    },
+    "duration-apollo-13-mission": {
+      "day": "2027-01-14",
+      "fingerprint": "ac4f0f0d12ec6f4dd1e1355aa63dc37193b9989fb0b82671ef9e5c89ea3306b5"
     }
   }
 }
