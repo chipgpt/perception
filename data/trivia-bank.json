@@ -1419,19 +1419,6 @@
       }
     },
     {
-      "id": "timeline-pac-man-arcade-debut",
-      "factKey": "timeline-pac-man-arcade-debut",
-      "title": "Pac-Man arcade debut",
-      "caption": "Pac-Man first appears in arcades in Japan.",
-      "explain": "Bandai Namco’s official anniversary page gives Pac-Man’s birth date as May 22, 1980. I use the integer year 1980. The title is familiar through arcades, home consoles, phone games, merchandise, and the character’s distinctive maze-and-ghost imagery.",
-      "type": "timeline",
-      "answer": 1980,
-      "source": {
-        "name": "Bandai Namco Entertainment America",
-        "url": "https://www.bandainamcoent.com/news/pac-man-happy-40th-birthday"
-      }
-    },
-    {
       "id": "timeline-harry-potter-first-book-uk",
       "factKey": "timeline-harry-potter-first-book-uk",
       "title": "First Harry Potter book",
@@ -1442,45 +1429,6 @@
       "source": {
         "name": "Bloomsbury Publishing",
         "url": "https://media.bloomsbury.com/rep/files/harry-potter-activity-pack.pdf"
-      }
-    },
-    {
-      "id": "duration-total-solar-eclipse-maximum",
-      "factKey": "duration-total-solar-eclipse-maximum",
-      "title": "Longest solar totality",
-      "caption": "Approximate maximum duration of totality for a total solar eclipse on Earth.",
-      "explain": "NASA’s eclipse FAQ says the longest total solar eclipse in a 12,000-year span lasts 7 minutes 29 seconds. Converted directly, that is 449 seconds. This is a clearly scoped approximate natural maximum, not a prediction for every eclipse; most total eclipses are much shorter.",
-      "type": "duration",
-      "answer": 449,
-      "source": {
-        "name": "NASA Science",
-        "url": "https://science.nasa.gov/eclipses/faq/"
-      }
-    },
-    {
-      "id": "duration-mlb-pitch-timer-bases-empty-2023",
-      "factKey": "duration-mlb-pitch-timer-bases-empty-2023",
-      "title": "MLB pitch timer",
-      "caption": "2023 MLB rule: time for a pitcher with the bases empty.",
-      "explain": "MLB’s official 2023 rule-change announcement says pitchers have up to 15 seconds between pitches with the bases empty. The caption names the year because pitch-timer rules can change; the answer is the regulation duration in seconds for that 2023 rule.",
-      "type": "duration",
-      "answer": 15,
-      "source": {
-        "name": "Major League Baseball",
-        "url": "https://www.mlb.com/press-release/press-release-mlb-announces-rule-changes-for-2023-season"
-      }
-    },
-    {
-      "id": "duration-olympic-mens-boxing-bout-2016",
-      "factKey": "duration-olympic-mens-boxing-bout-2016",
-      "title": "Olympic men’s boxing bout",
-      "caption": "Rio 2016 Olympic men’s boxing: scheduled fighting time, excluding rests.",
-      "explain": "The IOC’s Rio 2016 boxing document says men’s bouts consist of three rounds, each lasting three minutes, with one-minute rests between rounds. The answer counts only scheduled fighting time: 3 × 3 minutes = 9 minutes = 540 seconds, excluding the rests as stated in the caption.",
-      "type": "duration",
-      "answer": 540,
-      "source": {
-        "name": "Olympic World Library",
-        "url": "https://library.olympics.com/Default/digitalCollection/DigitalCollectionAttachmentDownloadHandler.ashx?documentId=165332&parentDocumentId=165312"
       }
     }
   ]
