@@ -1,0 +1,61 @@
+{
+  "generatedOn": "2026-11-23",
+  "model": "gpt-5.5",
+  "reviewRequired": true,
+  "candidates": [
+    {
+      "id": "timeline-nintendo-switch-debut",
+      "evidence": "Nintendo’s official company history lists March 3, 2017 as the debut date for the Nintendo Switch system.",
+      "familiarity": "The Switch is a widely owned modern game console, and players may remember it from Zelda: Breath of the Wild, Mario Kart, or pandemic-era gaming.",
+      "source": {
+        "name": "Nintendo of America Press Center",
+        "url": "https://press.nintendo.com/CompanyHistory"
+      }
+    },
+    {
+      "id": "timeline-starry-night-painted",
+      "evidence": "MoMA’s collection page dates Van Gogh’s The Starry Night to Saint Rémy, June 1889.",
+      "familiarity": "The Starry Night is one of the most recognizable paintings in art classes, museums, posters, and everyday visual culture.",
+      "source": {
+        "name": "The Museum of Modern Art",
+        "url": "https://www.moma.org/collection/works/79802"
+      }
+    },
+    {
+      "id": "timeline-golden-gate-bridge-opens",
+      "evidence": "The NPS Golden Gate Bridge Plaza page gives May 28, 1937 as the official opening to vehicular traffic.",
+      "familiarity": "The Golden Gate Bridge is a famous U.S. landmark often seen in geography, travel, movies, and San Francisco imagery.",
+      "source": {
+        "name": "U.S. National Park Service",
+        "url": "https://www.nps.gov/places/000/golden-gate-bridge-plaza.htm"
+      }
+    },
+    {
+      "id": "timeline-washington-quarter-introduced",
+      "evidence": "The U.S. Mint explains that Washington’s image replaced Liberty on the quarter in 1932.",
+      "familiarity": "U.S. quarters are everyday objects, and Washington’s face on the coin is familiar to almost anyone who has handled American change.",
+      "source": {
+        "name": "U.S. Mint",
+        "url": "https://www.usmint.gov/learn/coins-and-medals/circulating-coins/quarter"
+      }
+    },
+    {
+      "id": "duration-little-mermaid-1989",
+      "evidence": "Disney’s official page for The Little Mermaid lists the runtime as 1 hour 22 minutes and the release date as November 16, 1989.",
+      "familiarity": "Ariel, Sebastian, and “Under the Sea” are widely recognized from Disney films, songs, toys, and family viewing.",
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/the-little-mermaid"
+      }
+    },
+    {
+      "id": "duration-aladdin-1992",
+      "evidence": "Disney’s official page for Aladdin lists a runtime of 1 hour 30 minutes and a November 25, 1992 release date.",
+      "familiarity": "Aladdin, Jasmine, the Genie, and “A Whole New World” are familiar from Disney movies, music, stage versions, and family pop culture.",
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/aladdin"
+      }
+    }
+  ]
+}

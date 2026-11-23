@@ -1430,6 +1430,84 @@
         "name": "Bloomsbury Publishing",
         "url": "https://media.bloomsbury.com/rep/files/harry-potter-activity-pack.pdf"
       }
+    },
+    {
+      "id": "timeline-nintendo-switch-debut",
+      "factKey": "timeline-nintendo-switch-debut",
+      "title": "Nintendo Switch debut",
+      "caption": "In what year did Nintendo debut the Switch system?",
+      "explain": "Nintendo’s company history says the Nintendo Switch debuted on March 3, 2017. This asks for the calendar year, so the answer is 2017.",
+      "type": "timeline",
+      "answer": 2017,
+      "source": {
+        "name": "Nintendo of America Press Center",
+        "url": "https://press.nintendo.com/CompanyHistory"
+      }
+    },
+    {
+      "id": "timeline-starry-night-painted",
+      "factKey": "timeline-starry-night-painted",
+      "title": "The Starry Night painted",
+      "caption": "In what year did Van Gogh paint The Starry Night?",
+      "explain": "MoMA’s collection entry titles the work The Starry Night, Saint Rémy, June 1889, and describes it as made in mid-June. The answer is the year 1889.",
+      "type": "timeline",
+      "answer": 1889,
+      "source": {
+        "name": "The Museum of Modern Art",
+        "url": "https://www.moma.org/collection/works/79802"
+      }
+    },
+    {
+      "id": "timeline-golden-gate-bridge-opens",
+      "factKey": "timeline-golden-gate-bridge-opens",
+      "title": "Golden Gate Bridge opens",
+      "caption": "In what year did the Golden Gate Bridge officially open to traffic?",
+      "explain": "The National Park Service says the Golden Gate Bridge took more than four years to build and officially opened to vehicular traffic on May 28, 1937. The requested timeline answer is 1937.",
+      "type": "timeline",
+      "answer": 1937,
+      "source": {
+        "name": "U.S. National Park Service",
+        "url": "https://www.nps.gov/places/000/golden-gate-bridge-plaza.htm"
+      }
+    },
+    {
+      "id": "timeline-washington-quarter-introduced",
+      "factKey": "timeline-washington-quarter-introduced",
+      "title": "Washington on the quarter",
+      "caption": "In what year did George Washington replace Liberty on the U.S. quarter?",
+      "explain": "The U.S. Mint’s quarter page says that in 1932, John Flanagan’s image of George Washington replaced Liberty on the quarter’s obverse to honor Washington’s 200th birthday. The answer is 1932.",
+      "type": "timeline",
+      "answer": 1932,
+      "source": {
+        "name": "U.S. Mint",
+        "url": "https://www.usmint.gov/learn/coins-and-medals/circulating-coins/quarter"
+      }
+    },
+    {
+      "id": "duration-little-mermaid-1989",
+      "factKey": "duration-little-mermaid-1989",
+      "title": "The Little Mermaid",
+      "caption": "How long is Disney’s 1989 animated The Little Mermaid?",
+      "explain": "Disney’s official movie page lists The Little Mermaid with a runtime of 1 hour 22 minutes. Converted exactly, that is 82 minutes × 60 = 4,920 seconds.",
+      "type": "duration",
+      "answer": 4920,
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/the-little-mermaid"
+      }
+    },
+    {
+      "id": "duration-aladdin-1992",
+      "factKey": "duration-aladdin-1992",
+      "title": "Aladdin",
+      "caption": "How long is Disney’s 1992 animated Aladdin?",
+      "explain": "Disney’s official Aladdin page lists the runtime as 1 hour 30 minutes. Converted exactly, that is 90 minutes × 60 = 5,400 seconds.",
+      "type": "duration",
+      "answer": 5400,
+      "source": {
+        "name": "Disney Movies",
+        "url": "https://movies.disney.com/aladdin"
+      }
     }
   ]
 }
