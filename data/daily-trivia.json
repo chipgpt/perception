@@ -1168,6 +1168,82 @@
         "timeline": "timeline-webb-telescope-launches",
         "duration": "duration-apollo-13-mission"
       }
+    },
+    "2027-01-15": {
+      "types": [
+        "motion",
+        "perspective",
+        "memory",
+        "proportion",
+        "angle"
+      ],
+      "trivia": {}
+    },
+    "2027-01-16": {
+      "types": [
+        "angle",
+        "view3d",
+        "memory",
+        "proportion",
+        "rhythm"
+      ],
+      "trivia": {}
+    },
+    "2027-01-17": {
+      "types": [
+        "memory",
+        "timeline",
+        "balance",
+        "proportion",
+        "perspective"
+      ],
+      "trivia": {
+        "timeline": "timeline-disneyland-opens"
+      }
+    },
+    "2027-01-18": {
+      "types": [
+        "perspective",
+        "motion",
+        "memory",
+        "time",
+        "rhythm"
+      ],
+      "trivia": {}
+    },
+    "2027-01-19": {
+      "types": [
+        "view3d",
+        "memory",
+        "balance",
+        "time",
+        "motion"
+      ],
+      "trivia": {}
+    },
+    "2027-01-20": {
+      "types": [
+        "motion",
+        "perspective",
+        "timeline",
+        "memory",
+        "view3d"
+      ],
+      "trivia": {
+        "timeline": "timeline-first-human-in-space"
+      }
+    },
+    "2027-01-21": {
+      "types": [
+        "timeline",
+        "motion",
+        "balance",
+        "time",
+        "view3d"
+      ],
+      "trivia": {
+        "timeline": "timeline-nasa-begins-operations"
+      }
     }
   },
   "used": {
@@ -1542,6 +1618,18 @@
     "duration-apollo-13-mission": {
       "day": "2027-01-14",
       "fingerprint": "ac4f0f0d12ec6f4dd1e1355aa63dc37193b9989fb0b82671ef9e5c89ea3306b5"
+    },
+    "timeline-disneyland-opens": {
+      "day": "2027-01-17",
+      "fingerprint": "e38df8805ffa57b4cbbe5a67f79c768669849dc12bcd1f2c42a5719e20964a80"
+    },
+    "timeline-first-human-in-space": {
+      "day": "2027-01-20",
+      "fingerprint": "5ef06e3587b860c9241124f27a9a749ef11cccdd3e4faf348a2b5304f2d1d554"
+    },
+    "timeline-nasa-begins-operations": {
+      "day": "2027-01-21",
+      "fingerprint": "3074bd646fe759364d40a8fae8bbe1bb067394e9a8a6a1677887297fe81ddf03"
     }
   }
 }
